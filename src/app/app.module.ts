@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
-import { LoadersCssModule } from 'angular2-loaders-css';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
 import { AppComponent } from './app.component';
 import { AppNavbarComponent } from './app-navbar/app-navbar.component';
@@ -21,7 +21,7 @@ import { AppLoaderComponent } from './app-loader/app-loader.component';
   imports: [
     BrowserModule,
     NgbModule.forRoot(),
-    LoadersCssModule
+    Ng4LoadingSpinnerModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
