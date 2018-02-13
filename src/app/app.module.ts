@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
+import { LoadersCssModule } from 'angular2-loaders-css';
+
 import { AppComponent } from './app.component';
 import { AppNavbarComponent } from './app-navbar/app-navbar.component';
 import { AppFooterComponent } from './app-footer/app-footer.component';
@@ -18,7 +20,8 @@ import { AppLoaderComponent } from './app-loader/app-loader.component';
   ],
   imports: [
     BrowserModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    LoadersCssModule
   ],
   providers: [],
   bootstrap: [AppComponent]
