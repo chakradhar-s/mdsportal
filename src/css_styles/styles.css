@@ -3125,3 +3125,79 @@ html.w-mod-js *[data-ix="cs-thumb-2"]{
     font-weight:700;
     font-style:normal
 } */
+
+    html {
+      animation: fadeSiteIn 0.5s ease;
+      /* [1] */
+    }
+
+    html.fadeSiteOut {
+      animation: fadeSiteOut 0.5s ease forwards;
+      /* [2] */
+    }
+
+    body,
+    html {
+      height: 100%;
+    }
+
+    body {
+      background-color: #FFF;
+    }
+    
+    body {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .header--white #logo,
+    .header--white .header__payoff a {
+      fill: #FFF;
+      color: white;
+    }
+
+    @media (min-width: 992px) {
+      .header--white .nav__link {
+        color: white;
+      }
+    }
+
+    @media (max-width: 767px) {
+      #icn-linkedin {
+        fill: #111111;
+      }
+    }
+
+    .w-slider-dot {
+      width: 0.5em;
+      height: 0.5em;
+      background-color: rgba(0, 0, 0, 0.25);
+    }
+
+    .w-slider-dot.w-active {
+      background-color: rgba(0, 0, 0, 1);
+    }
+
+    .c-art__img {
+      mix-blend-mode: soft-light;
+    }
+
+    .b-blobs {
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    .c-art-10,
+    .c-art-work,
+    .c-art-company,
+    .c-art-process,
+    .c-art-contact {
+      transform-style: preserve-3d;
+    }
+
+    @media (min-width: 767px) {
+      .nav__list {
+        display: block !important;
+        opacity: 1 !important;
+      }
+    }
