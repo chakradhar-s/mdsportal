@@ -12,18 +12,12 @@ import { AboutModule } from './about/about.module';
 
 import { RouterModule, Routes } from '@angular/router';
 import { AppHomeComponent } from './app-home/app-home.component';
-import { ContactUsComponent } from './contact-us/contact-us.component';
-import { ContactUsModule } from './contact-us/contact-us.module';
 
 const myRoots: Routes = [
 
   {
     path: 'about',
     loadChildren: 'app/about/about.module#AboutModule'
-  },
-  {
-    path: 'contactus',
-    loadChildren: 'app/contact-us/contact-us.module#ContactUsModule'
   },
   { path: '', component: AppHomeComponent },
 ];
@@ -38,7 +32,6 @@ const myRoots: Routes = [
   imports: [
     BrowserModule,
     AboutModule,
-    ContactUsModule,
     NgbModule.forRoot(),
     Ng4LoadingSpinnerModule.forRoot(),
     RouterModule.forRoot(myRoots)
