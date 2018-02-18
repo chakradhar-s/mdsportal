@@ -11,12 +11,14 @@ import { AppNavbarComponent } from './app-navbar/app-navbar.component';
 import { AppFooterComponent } from './app-footer/app-footer.component';
 import { AppHomeComponent } from './app-home/app-home.component';
 
-import { ContactUsModule } from './contact-us/contact-us.module';
-import { RegisterUserModule } from './register-user/register-user.module';
-import { AboutModule } from './about/about.module';
 
 const myRoots: Routes = [
-
+  {
+    path: '', redirectTo: 'home', pathMatch: 'full'
+  },
+  {
+    path: 'home', component: AppHomeComponent
+  },
   {
     path: 'about',
     loadChildren: 'app/about/about.module#AboutModule'
@@ -24,16 +26,16 @@ const myRoots: Routes = [
   {
     path: 'contactus',
     loadChildren: 'app/contact-us/contact-us.module#ContactUsModule'
-  },  
-  { path: 'register/user',
+  },
+  {
+    path: 'register/user',
     loadChildren: 'app/register-user/register-user.module#RegisterUserModule'
   },
   {
-    path: '', component: AppHomeComponent
-  },
-  {
-    path: 'home', component: AppHomeComponent
+    path: 'testimonials',
+    loadChildren: 'app/results/results.module#ResultsModule'
   }
+
 ];
 
 
