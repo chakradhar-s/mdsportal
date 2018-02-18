@@ -44,8 +44,7 @@ const myRoots: Routes = [
   {
     path: 'pp-books',
     loadChildren: 'app/pp-books/pp-books.module#PpBooksModule'
-  },
-  }, 
+  },   
   {
     path: 'testimonials',
     loadChildren: 'app/results/results.module#ResultsModule'
