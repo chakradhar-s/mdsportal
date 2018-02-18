@@ -14,6 +14,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppHomeComponent } from './app-home/app-home.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { ContactUsModule } from './contact-us/contact-us.module';
+import { ScheduleModule } from './schedule/schedule.module';
+import { PpBooksModule } from './pp-books/pp-books.module';
+
 
 const myRoots: Routes = [
 
@@ -24,6 +27,14 @@ const myRoots: Routes = [
   {
     path: 'contactus',
     loadChildren: 'app/contact-us/contact-us.module#ContactUsModule'
+  },
+  {
+    path: 'schedule',
+    loadChildren: 'app/schedule/schedule.module#ScheduleModule'
+  },
+  {
+    path: 'pp-books',
+    loadChildren: 'app/pp-books/pp-books.module#PpBooksModule'
   },
   { path: '', component: AppHomeComponent },
 ];
@@ -39,6 +50,8 @@ const myRoots: Routes = [
     BrowserModule,
     AboutModule,
     ContactUsModule,
+    ScheduleModule,
+    PpBooksModule,
     NgbModule.forRoot(),
     Ng4LoadingSpinnerModule.forRoot(),
     RouterModule.forRoot(myRoots)
