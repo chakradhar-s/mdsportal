@@ -10,7 +10,8 @@
       "assets": [
         "assets",
         "assets/*",
-        "favicon.ico"
+        "favicon.ico",
+        "experts_fav.jpg"
       ],
       "index": "index.html",
       "main": "main.ts",
