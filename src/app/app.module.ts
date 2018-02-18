@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { RouterModule, Routes } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
@@ -9,14 +8,19 @@ import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { AppComponent } from './app.component';
 import { AppNavbarComponent } from './app-navbar/app-navbar.component';
 import { AppFooterComponent } from './app-footer/app-footer.component';
-import { AppHomeComponent } from './app-home/app-home.component';
-
-import { ContactUsModule } from './contact-us/contact-us.module';
-import { RegisterUserModule } from './register-user/register-user.module';
 import { AboutModule } from './about/about.module';
 
-const myRoots: Routes = [
+import { RouterModule, Routes } from '@angular/router';
+import { AppHomeComponent } from './app-home/app-home.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { ContactUsModule } from './contact-us/contact-us.module';
+import { RegisterUserModule } from './register-user/register-user.module';
+import { PaymentModule } from './payment/payment.module';
+import { DataTablesModule } from 'angular-datatables';
 
+
+
+const myRoots: Routes = [
   {
     path: 'about',
     loadChildren: 'app/about/about.module#AboutModule'
@@ -24,16 +28,28 @@ const myRoots: Routes = [
   {
     path: 'contactus',
     loadChildren: 'app/contact-us/contact-us.module#ContactUsModule'
-  },  
-  { path: 'register/user',
+  },
+  {
+    path: 'schedule',
+    loadChildren: 'app/schedule/schedule.module#ScheduleModule'
+
+  },
+  {
+    path: 'register/user',
     loadChildren: 'app/register-user/register-user.module#RegisterUserModule'
+  },
+  {
+    path: 'payment',
+    loadChildren: 'app/payment/payment.module#PaymentModule'
   },
   {
     path: '', component: AppHomeComponent
   },
   {
-    path: 'home', component: AppHomeComponent
-  }
+    path: 'pp-books',
+    loadChildren: 'app/pp-books/pp-books.module#PpBooksModule'
+  },
+  { path: '', component: AppHomeComponent },
 ];
 
 
@@ -45,6 +61,7 @@ const myRoots: Routes = [
   ],
   imports: [
     BrowserModule,
+    DataTablesModule,
     NgbModule.forRoot(),
     Ng4LoadingSpinnerModule.forRoot(),
     RouterModule.forRoot(myRoots)
