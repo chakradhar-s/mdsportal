@@ -29,11 +29,6 @@ const myRoots: Routes = [
     loadChildren: 'app/contact-us/contact-us.module#ContactUsModule'
   },
   {
-    path: 'schedule',
-    loadChildren: 'app/schedule/schedule.module#ScheduleModule'
-
-  },
-  {
     path: 'register/user',
     loadChildren: 'app/register-user/register-user.module#RegisterUserModule'
   },
@@ -41,10 +36,6 @@ const myRoots: Routes = [
     path: 'payment',
     loadChildren: 'app/payment/payment.module#PaymentModule'
   },
-  {
-    path: 'pp-books',
-    loadChildren: 'app/pp-books/pp-books.module#PpBooksModule'
-  },   
   {
     path: 'testimonials',
     loadChildren: 'app/results/results.module#ResultsModule'
