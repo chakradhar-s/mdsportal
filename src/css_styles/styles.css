@@ -1000,8 +1000,8 @@ li {
     margin-bottom: 3%;
     -webkit-box-flex: 0;
     -webkit-flex: 0 0 47%;
-    -ms-flex: 0 0 47%;
-    flex: 0 0 47%;
+    -ms-flex: 0.4 0 47%;
+    flex: 0.4 0 47%;
     background-color: #f6f6f6
 }
 
@@ -1041,7 +1041,7 @@ li {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    padding: 2em;
+    padding: 0.8em;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -webkit-flex-direction: column;
@@ -1070,7 +1070,7 @@ li {
 }
 
 .c-card__title {
-    width: 80%;
+    width: 100%;
     margin-bottom: 0;
     line-height: 1
 }
@@ -3299,7 +3299,7 @@ html.w-mod-js *[data-ix="cs-thumb-2"] {
         flex-basis: 100%
     }
     .c-card {
-        max-height: 16em;
+        max-height: 19em;
         -webkit-flex-basis: 100%;
         -ms-flex-preferred-size: 100%;
         flex-basis: 100%
@@ -3560,4 +3560,17 @@ p.b-questions__text {
     font-weight: 200;
     letter-spacing: .05em;
     text-transform: uppercase;
+}
+
+.min-card {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;  
+    word-wrap: break-word;
 }

@@ -21,10 +21,13 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "css_styles/styles.css"        
+        "css_styles/styles.css",
+        "../node_modules/datatables.net-dt/css/jquery.dataTables.css"        
       ],
       "scripts": [       
-        "js_scripts/mod-touch.js"
+        "js_scripts/mod-touch.js",
+        "../node_modules/jquery/dist/jquery.js",
+        "../node_modules/datatables.net/js/jquery.dataTables.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
