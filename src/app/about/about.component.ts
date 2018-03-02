@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
@@ -7,10 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutComponent implements OnInit {
 
-  constructor() { }
+  constructor(private spinnerService: Ng4LoadingSpinnerService) { }
 
   ngOnInit() {
-    
+    this.spinnerService.show();
+  }
+
+  ngAfterViewInit() {
+    this.spinnerService.hide();
   }
 
 }
