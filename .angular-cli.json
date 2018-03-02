@@ -22,13 +22,15 @@
       "prefix": "app",
       "styles": [
         "sass_styles/style.scss",
-        "../node_modules/datatables.net-dt/css/jquery.dataTables.css"
+        "../node_modules/datatables.net-dt/css/jquery.dataTables.css",
+        "../node_modules/font-awesome/scss/font-awesome.scss"
       ],
       "stylePreprocessorOptions": {
         "includePaths": [
           "../node_modules/bootstrap/scss",
           "../node_modules/perfect-scrollbar/src/css/main",
-          "../node_modules/compass-mixins/lib"
+          "../node_modules/compass-mixins/lib",
+          "../node_modules/font-awesome/scss"
         ]
       },
       "scripts": [

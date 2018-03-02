@@ -206,6 +206,12 @@ li {
     float: left
 }
 
+.sub-header{
+    display: block;
+    position: relative;
+    min-height: 7rem;
+}
+
 .nav__list {
     position: static;
     display: inline-block;
