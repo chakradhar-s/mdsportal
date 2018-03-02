@@ -216,6 +216,12 @@ form.forms-sample {
 			background-image: -webkit-gradient(linear, left top, right top, from(#318be3), to(#04befe));
 			background-image: linear-gradient(to right, #318be3, #04befe);
 		}
+
+		&.secondary-btn{
+			height: 39px;
+			background-image: -webkit-gradient(linear, left top, right top, from(#e5e5e5), to(#bcbcbc));
+			background-image: linear-gradient(to right, #e5e5e5, #bcbcbc);
+		}
 	}
 
 	.Or-login-with {

@@ -14,13 +14,14 @@ export class AppComponent {
   constructor(
     private spinnerService: Ng4LoadingSpinnerService
 ) { 
-this.startLoadingSpinner()
+
 }
-startLoadingSpinner() {
+
+ngOnInit() {
   this.spinnerService.show();
-  
-  setTimeout(function() {
-    this.spinnerService.hide();
-  }.bind(this), 5000);
+}
+
+ngAfterViewInit() {
+  this.spinnerService.hide();
 }
 }
