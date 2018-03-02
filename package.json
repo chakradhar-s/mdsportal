@@ -27,10 +27,12 @@
     "core-js": "^2.4.1",
     "datatables.net": "^1.10.16",
     "datatables.net-dt": "^1.10.16",
+    "jquery": "^3.3.1",
     "ng4-loading-spinner": "^1.1.1",
     "popper.js": "^1.13.0",
     "rxjs": "^5.5.6",
-    "zone.js": "^0.8.19"
+    "zone.js": "^0.8.19",
+    "perfect-scrollbar": "0.7.1"
   },
   "devDependencies": {
     "@angular/cli": "1.6.8",
@@ -39,6 +41,7 @@
     "@types/datatables.net": "^1.10.8",
     "@types/jasmine": "~2.8.3",
     "@types/jasminewd2": "~2.0.2",
+    "@types/jquery": "^3.3.0",
     "@types/node": "^6.0.101",
     "codelyzer": "^4.0.1",
     "jasmine-core": "~2.8.0",
@@ -51,6 +54,7 @@
     "protractor": "~5.1.2",
     "ts-node": "~4.1.0",
     "tslint": "~5.9.1",
-    "typescript": "~2.5.3"
+    "typescript": "~2.5.3",
+    "compass-mixins": "^0.12.10"
   }
 }

@@ -33,12 +33,20 @@ const myRoots: Routes = [
     loadChildren: 'app/register-user/register-user.module#RegisterUserModule'
   },
   {
+    path: 'login/user',
+    loadChildren: 'app/login-user/login-user.module#LoginUserModule'
+  },
+  {
     path: 'payment',
     loadChildren: 'app/payment/payment.module#PaymentModule'
   },
   {
     path: 'testimonials',
     loadChildren: 'app/results/results.module#ResultsModule'
+  },
+  {
+    path: 's-strategy',
+    loadChildren: 'app/s-strategy/s-strategy.module#SStrategyModule'
   }
 ];
 
