@@ -30,7 +30,11 @@ const myRoots: Routes = [
   },
   {
     path: 'register/user',
-    loadChildren: 'app/payment/payment.module#PaymentModule'
+    loadChildren: 'app/register-user/register-user.module#RegisterUserModule'
+  },
+  {
+    path: 'login/user',
+    loadChildren: 'app/login-user/login-user.module#LoginUserModule'
   },
   {
     path: 'payment',
