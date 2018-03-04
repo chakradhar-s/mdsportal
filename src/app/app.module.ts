@@ -12,6 +12,14 @@ import { AppFooterComponent } from './app-footer/app-footer.component';
 import { AppHomeComponent } from './app-home/app-home.component';
 
 import { DataTablesModule } from 'angular-datatables';
+import { QuestionpaperComponent } from './questionpaper/questionpaper.component';
+
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
+import { FileUploadService } from './mdsportal.services/file.upload.service';
+import {FileUploadModule} from 'primeng/fileupload';
+
+import { HttpClientModule } from '@angular/common/http';
 
 const myRoots: Routes = [
   {
@@ -47,6 +55,10 @@ const myRoots: Routes = [
   {
     path: 's-strategy',
     loadChildren: 'app/s-strategy/s-strategy.module#SStrategyModule'
+  },
+  {
+    path: 'question-upload',
+    component: QuestionpaperComponent
   }
 ];
 
@@ -55,16 +67,19 @@ const myRoots: Routes = [
   declarations: [
     AppComponent,
     AppNavbarComponent,
-    AppFooterComponent, AppHomeComponent
+    AppFooterComponent, AppHomeComponent, QuestionpaperComponent
   ],
   imports: [
     BrowserModule,
     DataTablesModule,
     NgbModule.forRoot(),
     Ng4LoadingSpinnerModule.forRoot(),
-    RouterModule.forRoot(myRoots)
+    RouterModule.forRoot(myRoots),
+    BrowserAnimationsModule,
+    FileUploadModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [FileUploadService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
