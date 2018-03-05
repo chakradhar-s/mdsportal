@@ -11,6 +11,9 @@ import { AppNavbarComponent } from './app-navbar/app-navbar.component';
 import { AppFooterComponent } from './app-footer/app-footer.component';
 import { AppHomeComponent } from './app-home/app-home.component';
 
+import { ContactUsModule } from './contact-us/contact-us.module';
+import { ScheduleModule } from './schedule/schedule.module';
+
 import { DataTablesModule } from 'angular-datatables';
 
 const myRoots: Routes = [
@@ -28,6 +31,11 @@ const myRoots: Routes = [
     path: 'contactus',
     loadChildren: 'app/contact-us/contact-us.module#ContactUsModule'
   },
+  {
+    path: 'schedule-pp-books',
+    loadChildren: 'app/schedule/schedule.module#ScheduleModule'
+  },
+  { path: '', component: AppHomeComponent },
   {
     path: 'register/user',
     loadChildren: 'app/register-user/register-user.module#RegisterUserModule'
@@ -55,7 +63,8 @@ const myRoots: Routes = [
   declarations: [
     AppComponent,
     AppNavbarComponent,
-    AppFooterComponent, AppHomeComponent
+    AppFooterComponent, 
+    AppHomeComponent
   ],
   imports: [
     BrowserModule,
