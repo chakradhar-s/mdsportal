@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ScheduleComponent } from './schedule.component';
 
 const routes: Routes = [
-  { path:'schedule-pp-books', component:ScheduleComponent}
+  { path:'', component:ScheduleComponent}
 ];
 
 @NgModule({
