@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule,CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ScheduleRoutingModule } from './schedule-routing.module';
@@ -12,6 +12,8 @@ import { PpBooksComponent } from '../pp-books/pp-books.component';
     ScheduleRoutingModule,
     NgbModule
   ],
-  declarations: [ScheduleComponent,PpBooksComponent]
+  declarations: [ScheduleComponent,PpBooksComponent],
+  exports:[ScheduleComponent,PpBooksComponent],
+  schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ScheduleModule { }

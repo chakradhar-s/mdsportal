@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { PpBooksComponent } from '../pp-books/pp-books.component';
 
 @Component({
   selector: 'app-schedule',
