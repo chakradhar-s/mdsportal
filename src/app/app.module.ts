@@ -14,6 +14,8 @@ import { AppHomeComponent } from './app-home/app-home.component';
 import { ContactUsModule } from './contact-us/contact-us.module';
 import { ScheduleModule } from './schedule/schedule.module';
 
+import { HttpServiceRegistryModule } from './http-service-registry/http-service-registry.module';
+
 import { DataTablesModule } from 'angular-datatables';
 
 const myRoots: Routes = [
@@ -63,7 +65,7 @@ const myRoots: Routes = [
   declarations: [
     AppComponent,
     AppNavbarComponent,
-    AppFooterComponent, 
+    AppFooterComponent,
     AppHomeComponent
   ],
   imports: [
@@ -71,9 +73,11 @@ const myRoots: Routes = [
     DataTablesModule,
     NgbModule.forRoot(),
     Ng4LoadingSpinnerModule.forRoot(),
+    HttpServiceRegistryModule,
     RouterModule.forRoot(myRoots)
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [HttpServiceRegistryModule]
 })
 export class AppModule { }

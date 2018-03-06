@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoginServiceService } from './login-service.service';
+import { HttpModule } from '@angular/http';
+import { LoginService } from './login-service.service';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    HttpModule
   ],
   declarations: [],
-  providers: [LoginServiceService]
+  providers: [LoginService]
 })
 export class HttpServiceRegistryModule { }
