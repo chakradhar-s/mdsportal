@@ -1,10 +1,11 @@
 export interface Registration {
-    firstName: string,
-    lastName: string,
-    college: string,
-    password: string,
-    sYear: Date,
-    referencedBy: string,
+    firstName: string|null,
+    lastName: string|null,
+    college: string|null,
+    password: string|null,
+    sYear: Date|null,
+    referencedBy: string|null,
     mobileNumber: string,
-    whatsAPPNumber: string
+    whatsAPPNumber: string,
+    emailId:string
 }
