@@ -39,26 +39,26 @@ export class AppNavbarComponent implements OnInit {
     { exact: true, link: '/payment/student', name: 'Payment  |  Schedule & PP Books' },
     { exact: true, link: '/s-strategy', name: 'Sashi' },
     { exact: true, link: '/contactus', name: 'Demo Exam' },
-    { exact: true, link: '/register/user', name: 'Register' },
+    { exact: true, link: '/register/user', name: 'Register'},
     { exact: true, link: '/contactus', name: 'Contact Us' }];
   }
 
   ngOnInit() {
-    this._login.getUserType().subscribe((uType) => {
+    this._login.userType.subscribe((uType) => {
       this._userType = uType;
       this.nav = this._defaultNav.slice(0, this._defaultNav.length);
       if (this._userType.isAdmin) {
-        this.nav = this._adminNav.slice(0, this._defaultNav.length);;
+        this.nav = this._adminNav.slice(0, this._adminNav.length);;
       }
       else if (this._userType.isStudent) {
-        this.nav = this._studentNav.slice(0, this._defaultNav.length);
+        this.nav = this._studentNav.slice(0, this._studentNav.length);
       }
     }, (error) => console.error(error), () => {
       if (this._userType.isAdmin) {
-        this.nav = this._adminNav.slice(0, this._defaultNav.length);
+        this.nav = this._adminNav.slice(0, this._adminNav.length);
       }
       else if (this._userType.isStudent) {
-        this.nav = this._studentNav.slice(0, this._defaultNav.length);
+        this.nav = this._studentNav.slice(0, this._studentNav.length);
       }
       else {
         this.nav = this._defaultNav.slice(0, this._defaultNav.length);

@@ -5,7 +5,7 @@ export interface Registration {
     password: string|null,
     sYear: Date|null,
     referencedBy: string|null,
-    mobileNumber: string,
-    whatsAPPNumber: string,
-    emailId:string
+    mobileNumber: string|null,
+    whatsAPPNumber: string|null,
+    emailId:string|null
 }

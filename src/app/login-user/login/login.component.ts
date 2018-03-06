@@ -31,14 +31,14 @@ export class LoginComponent implements OnInit {
   ngAfterViewInit() {
     this.spinnerService.hide();
   }
+  
   register() {
     this.router.navigate(['/register/user'], { replaceUrl: true });
   }
 
   onSubmit() {
     if (this.loginForm.valid) {
-      this.login.validateUser({ userName: this.loginForm.get('userName').value, password: this.loginForm.get('password').value })
-      .subscribe();
+      this.login.validateUser({ userName: this.loginForm.get('userName').value, password: this.loginForm.get('password').value });
     }
   }
 
