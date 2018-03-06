@@ -39,9 +39,9 @@
         <div class="menu-icn__topbar"></div>
         <div class="menu-icn__botbar"></div>
       </div>
-      <ul class="nav__list" *ngFor="let navItem of nav">
-        <li class="nav__item">
-          <a [routerLink]="navItem.link" routerLinkActive="w--current" [routerLinkActiveOptions]=" {exact:navItem.exact}" class="nav__link w-inline-block w--current ">
+      <ul class="nav__list">
+        <li class="nav__item" *ngFor="let navItem of nav">
+          <a [routerLink]="navItem.link" routerLinkActive="w--current" [routerLinkActiveOptions]=" {exact:navItem.exact}" class="nav__link w-inline-block">
             <div>{{navItem.name}}</div>
             <div class="bar--purple link__bar "></div>
           </a>

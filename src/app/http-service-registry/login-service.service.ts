@@ -19,7 +19,9 @@ export class LoginService {
 
   private _userProfile: Profile;
   private _userToken: string;
-  private _userType: BehaviorSubject<UserType> = new BehaviorSubject<UserType>({ isAdmin: false, isStudent: false });;
+  private _userType: BehaviorSubject<UserType> = new BehaviorSubject<UserType>({ isAdmin: false, isStudent: false });
+
+  private _localHost: string = "http://localhost:5000/mdservice";
 
   constructor(private http: Http) {
 
@@ -28,7 +30,7 @@ export class LoginService {
   validateUser(user: Login): Observable<ResponseMessage> {
     const headers = new Headers();
     headers.append('Content-Type', 'application/vnd.api+json');
-    return this.http.post('/mdservice/api/Auth/Login', JSON.stringify(user), new RequestOptions({ headers: headers })).map((response: Response) => {
+    return this.http.post(this._localHost + '/api/Auth/Login', JSON.stringify(user), new RequestOptions({ headers: headers })).map((response: Response) => {
       let rslt = response.json();
       let respMes: ResponseMessage = { message: 'logged in successfully', metadata: rslt['id'], status_code: response.status };
       this._userProfile.user = rslt['profile'];
@@ -37,7 +39,7 @@ export class LoginService {
     }
     ).catch((error) =>
       Observable.throw(error.json())
-    );
+      );
   }
 
   getUserToken(): string {
