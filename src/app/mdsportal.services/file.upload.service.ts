@@ -9,8 +9,16 @@ export class FileUploadService {
   UploadFile(file: File) {
 
     let formData: FormData = new FormData;
-    formData.append('fileKey', file, file.name);
-    this.http.post('http://localhost:62700/api/upload-document', formData);
+    formData.append('Document', file);
+    this.http.post('http://localhost:62699/mdservice/api/uploaddocument/upload', formData)
+    .subscribe(
+      res=>{
+          console.log(res);
+      },
+      err=>{
+        console.log(err);
+      }
+    )
 
   }
 }
