@@ -14,5 +14,6 @@ export class DataService {
   changeQuestion(ques : QuestionSet){
     this.selectedQuestion.next(ques);
   }
+  
 
 }

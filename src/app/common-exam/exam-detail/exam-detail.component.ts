@@ -24,7 +24,9 @@ export class ExamDetailComponent implements OnInit {
     // const id = this.route.snapshot.paramMap.get['id'];
     let newQuest = this.dataService.currentQuestion.subscribe(ques => this.Question = ques);
     console.log(newQuest);
-    this.service.getSelectedQuestion(this.Question.question_index).subscribe(ques => this.Question = ques);
+    if (this.Question !== null) {
+      this.service.getSelectedQuestion(this.Question.question_index).subscribe(ques => this.Question = ques);
+    }
   }
 
 }
