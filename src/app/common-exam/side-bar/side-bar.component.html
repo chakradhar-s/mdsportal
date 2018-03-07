@@ -1,0 +1,98 @@
+<div class="left-container">
+  <div class="container">
+    <!-- <div>
+        <a href="#" class="btn btn-circle btn-primary noHover">C</a>
+        <a href="#" class="btn btn-circle btn-default noHover">I</a>
+        <a href="#" class="btn btn-circle btn-info">R</a>
+        <a href="#" class="btn btn-circle btn-success">C</a>
+        <a href="#" class="btn btn-circle btn-warning">L</a>
+        <a href="#" class="btn btn-circle btn-danger">E</a>
+        
+        <a href="#" class="btn btn-circle btn-primary">B</a>
+        <a href="#" class="btn btn-circle btn-default">U</a>
+        <a href="#" class="btn btn-circle btn-info">T</a>
+        <a href="#" class="btn btn-circle btn-success">T</a>
+        <a href="#" class="btn btn-circle btn-warning">O</a>
+        <a href="#" class="btn btn-circle btn-danger">N</a>
+        <a href="#" class="btn btn-circle btn-primary">S</a>
+      </div> -->
+      <p *ngIf="SelectedQuestion">
+{{SelectedQuestion.question_text}}
+      </p>
+    <div id="accordion" role="tablist" aria-multiselectable="true">
+      <div class="card">
+        <div class="card-header" role="tab" id="headingOne">
+          <h5 class="mb-0">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Section #1
+            </a>
+          </h5>
+        </div>
+
+        <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+          <div class="card-block">
+            <a class="btn btn-circle btn-default noHover"
+             *ngFor="let Question of Questions" (click)="setSelected(Question)">
+                {{Question.question_index}}
+            </a>
+            <!-- <a href="#" class="btn btn-circle btn-default noHover">I</a>
+            <a href="#" class="btn btn-circle btn-info">R</a>
+            <a href="#" class="btn btn-circle btn-success">C</a>
+            <a href="#" class="btn btn-circle btn-warning">L</a>
+            <a href="#" class="btn btn-circle btn-danger">E</a>
+            <a href="#" class="btn btn-circle btn-info">R</a>
+            <a href="#" class="btn btn-circle btn-success">C</a>
+            <a href="#" class="btn btn-circle btn-warning">L</a>
+            <a href="#" class="btn btn-circle btn-danger">E</a>
+            <a href="#" class="btn btn-circle btn-info">R</a>
+            <a href="#" class="btn btn-circle btn-success">C</a>
+            <a href="#" class="btn btn-circle btn-warning">L</a>
+            <a href="#" class="btn btn-circle btn-danger">E</a> -->
+          </div>
+        </div>
+      </div>
+      <!-- <div class="card">
+        <div class="card-header" role="tab" id="headingTwo">
+          <h5 class="mb-0">
+            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Section #2
+            </a>
+          </h5>
+        </div>
+        <div id="collapseTwo" class="collapse show" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="card-block">
+            <a href="#" class="btn btn-circle btn-info">R</a>
+            <a href="#" class="btn btn-circle btn-success">C</a>
+            <a href="#" class="btn btn-circle btn-warning">L</a>
+            <a href="#" class="btn btn-circle btn-danger">E</a>
+            <a href="#" class="btn btn-circle btn-info">R</a>
+            <a href="#" class="btn btn-circle btn-success">C</a>
+            <a href="#" class="btn btn-circle btn-warning">L</a>
+            <a href="#" class="btn btn-circle btn-danger">E</a>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" role="tab" id="headingThree">
+          <h5 class="mb-0">
+            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Section #3
+            </a>
+          </h5>
+        </div>
+        <div id="collapseThree" class="collapse show" role="tabpanel" aria-labelledby="headingThree">
+          <div class="card-block">
+            <a href="#" class="btn btn-circle btn-info">R</a>
+            <a href="#" class="btn btn-circle btn-success">C</a>
+            <a href="#" class="btn btn-circle btn-warning">L</a>
+            <a href="#" class="btn btn-circle btn-danger">E</a>
+            <a href="#" class="btn btn-circle btn-info">R</a>
+            <a href="#" class="btn btn-circle btn-success">C</a>
+            <a href="#" class="btn btn-circle btn-warning">L</a>
+            <a href="#" class="btn btn-circle btn-danger">E</a>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</div>
