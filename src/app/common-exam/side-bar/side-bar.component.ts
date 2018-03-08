@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { QuestionSet } from '../../models/question-set';
 import { Observable } from 'rxjs/Observable';
-import { DataService } from '../../services/data.service';
+import { DataService } from '../../http-service-registry/services/data.service';
 
 @Component({
   selector: 'exam-side-bar',

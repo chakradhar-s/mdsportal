@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
-import { LoginService } from './http-service-registry/login-service.service';
+import { LoginService } from './http-service-registry/services/login-service.service';
 
 
 

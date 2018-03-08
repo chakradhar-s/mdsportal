@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { QuestionSet } from '../models/question-set';
+import { QuestionSet } from '../../models/question-set';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()

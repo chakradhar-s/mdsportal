@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Nav } from '../models/nav.interface';
-import { LoginService } from '../http-service-registry/login-service.service';
+import { LoginService } from '../http-service-registry/services/login-service.service';
 import { UserType } from '../models/user.type.interface';
 
 @Component({

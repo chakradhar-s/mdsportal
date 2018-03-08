@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ExamService } from '../../services/exam.service';
+import { ExamService } from '../../http-service-registry/services/exam.service';
 import { QuestionSet } from '../../models/question-set';
-import { DataService } from '../../services/data.service';
+import { DataService } from '../../http-service-registry/services/data.service';
 
 @Component({
   selector: 'exam-detail',

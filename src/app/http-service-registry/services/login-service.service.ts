@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Router } from '@angular/router';
 
-import { Login } from '../models/login.interface';
-import { Profile } from '../models/profile.interface';
-import { ResponseMessage } from '../models/response.message.interface';
-import { UserType } from '../models/user.type.interface';
+import { Login } from '../../models/login.interface';
+import { Profile } from '../../models/profile.interface';
+import { ResponseMessage } from '../../models/response.message.interface';
+import { UserType } from '../../models/user.type.interface';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -27,8 +27,8 @@ export class LoginService {
 
   }
 
-  private _proxyHost: string = "http://localhost:5000";
-
+  //private _proxyHost: string = "http://localhost:5000";
+  private _proxyHost: string = "/";
   private login(user: Login) {
     const headers = new Headers();
     headers.append('Content-Type', 'application/vnd.api+json');
@@ -78,14 +78,14 @@ export class LoginService {
   }
 
   reloadUser() {
-    if(window.localStorage.getItem('jwt-access-mds')){
+    if (window.localStorage.getItem('jwt-access-mds')) {
       let rslt = JSON.parse(window.localStorage.getItem('jwt-access-mds'));
       let respMes: ResponseMessage = { message: 'logged in successfully', metadata: rslt['id'], status_code: rslt['status'] || '' };
       this._userProfile.user = rslt['profile'];
       this._userType.next({ isAdmin: rslt['isAdmin'], isStudent: rslt['isStudent'] });
       this._userToken = rslt['access_token'];
       this._userId.next(rslt['id'] || '');
-    }    
+    }
   }
 
 }
