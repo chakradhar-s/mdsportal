@@ -16,6 +16,13 @@ import { ScheduleModule } from './schedule/schedule.module';
 
 import { HttpServiceRegistryModule } from './http-service-registry/http-service-registry.module';
 
+import { SideBarComponent } from './common-exam/side-bar/side-bar.component';
+import { ExamService } from './services/exam.service';
+import { ExamDetailComponent } from './common-exam/exam-detail/exam-detail.component';
+import { DataService } from './services/data.service';
+import { HttpModule } from '@angular/http';
+
+
 import { DataTablesModule } from 'angular-datatables';
 
 const myRoots: Routes = [
@@ -57,7 +64,11 @@ const myRoots: Routes = [
   {
     path: 's-strategy',
     loadChildren: 'app/s-strategy/s-strategy.module#SStrategyModule'
-  }
+  },
+  {
+    path: 'demo-exam',
+    loadChildren: 'app/demo-exam/demo-exam.module#DemoExamModule'
+  },
 ];
 
 
@@ -71,6 +82,7 @@ const myRoots: Routes = [
   imports: [
     BrowserModule,
     DataTablesModule,
+    HttpModule,
     NgbModule.forRoot(),
     Ng4LoadingSpinnerModule.forRoot(),
     HttpServiceRegistryModule,
@@ -79,5 +91,6 @@ const myRoots: Routes = [
   providers: [],
   bootstrap: [AppComponent],
   exports: [HttpServiceRegistryModule]
+  providers: [ExamService, DataService]
 })
 export class AppModule { }
