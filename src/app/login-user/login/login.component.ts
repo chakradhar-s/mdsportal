@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { FormBuilder, FormGroup, FormArray, Validators, AbstractControl } from '@angular/forms';
+
+import { UserLoginValidators } from './login-user.validators';
+import { LoginService } from '../../http-service-registry/login-service.service';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +14,15 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router,private spinnerService: Ng4LoadingSpinnerService) { }
+  public loginForm = this.fb.group({
+    userName: ['',
+      [Validators.required,
+      UserLoginValidators.validUserName]],
+    password: ['',
+      [Validators.required]]
+  });
+
+  constructor(private router: Router, private spinnerService: Ng4LoadingSpinnerService, private fb: FormBuilder, private login: LoginService) { }
 
   ngOnInit() {
     this.spinnerService.show();
@@ -19,7 +31,31 @@ export class LoginComponent implements OnInit {
   ngAfterViewInit() {
     this.spinnerService.hide();
   }
-  register(){
+  
+  register() {
     this.router.navigate(['/register/user'], { replaceUrl: true });
   }
+
+  onSubmit() {
+    if (this.loginForm.valid) {
+      this.login.validateUser({ userName: this.loginForm.get('userName').value, password: this.loginForm.get('password').value });
+    }
+  }
+
+  get invalid() {
+    return (
+      this.loginForm.get('userName').hasError('invalidUserName') &&
+      this.loginForm.get('userName').dirty &&
+      !this.required('userName')
+    );
+  }
+
+  required(name: string) {
+    return (
+      this.loginForm.get(`${name}`).hasError('required') &&
+      this.loginForm.get(`${name}`).touched
+    );
+  }
+
+
 }
