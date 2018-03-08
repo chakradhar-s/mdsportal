@@ -3,7 +3,9 @@ import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
 import { Routes, RouterModule } from '@angular/router';
 
-import { LoginService } from './login-service.service';
+import { LoginService } from './services/login-service.service';
+import { ExamService } from './services/exam.service';
+import { DataService } from './services/data.service';
 
 @NgModule({
   imports: [
@@ -12,6 +14,6 @@ import { LoginService } from './login-service.service';
     RouterModule
   ],
   declarations: [],
-  providers: [LoginService]
+  providers: [LoginService, ExamService, DataService]
 })
 export class HttpServiceRegistryModule { }

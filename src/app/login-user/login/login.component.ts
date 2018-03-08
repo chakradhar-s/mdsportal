@@ -5,7 +5,7 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { FormBuilder, FormGroup, FormArray, Validators, AbstractControl } from '@angular/forms';
 
 import { UserLoginValidators } from './login-user.validators';
-import { LoginService } from '../../http-service-registry/login-service.service';
+import { LoginService } from '../../http-service-registry/services/login-service.service';
 
 @Component({
   selector: 'app-login',

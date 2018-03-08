@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { QuestionSet } from '../models/question-set';
-import { ExamService } from '../services/exam.service';
+import { ExamService } from '../http-service-registry/services/exam.service';
 import { Observable } from 'rxjs/Observable';
-import { DataService } from '../services/data.service';
+import { DataService } from '../http-service-registry/services/data.service';
 
 @Component({
   selector: 'app-demo-exam',
@@ -10,8 +10,8 @@ import { DataService } from '../services/data.service';
   styleUrls: ['./demo-exam.component.scss']
 })
 export class DemoExamComponent implements OnInit {
-  public Questions: QuestionSet[];
-  public SelectedQuestion: Observable<QuestionSet>;
+  public questions: QuestionSet[];
+  public selectedQuestion: Observable<QuestionSet>;
 
   constructor(
     private service: ExamService,
@@ -21,8 +21,8 @@ export class DemoExamComponent implements OnInit {
   getQuestion(): void {
     // this.Questions = this.service.getQuestions();
     this.service.getQuestions().subscribe(ques => {
-      this.Questions = ques;
-      this.dataService.changeQuestion(this.Questions[0]);
+      this.questions = ques;
+      this.dataService.changeQuestion(this.questions[0]);
     });
 
     // this.data.changeQuestion(question);
@@ -33,7 +33,7 @@ export class DemoExamComponent implements OnInit {
   }
 
   questionChanged(obj: QuestionSet): void {
-    this.SelectedQuestion.subscribe()
+    this.selectedQuestion.subscribe();
   }
 
 }
