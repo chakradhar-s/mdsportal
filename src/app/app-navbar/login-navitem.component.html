@@ -1,0 +1,17 @@
+<div class="user-area user-show">
+  <a href="#">
+    <img src="{{profileDetails.image_path}}" alt="User Avatar" class="user-avatar rounded-circle">
+  </a>
+  <ul class="user-menu">
+    <li *ngFor="let navItem of profileDetails.nav_items" (click)="takeroute(navItem.link,$event)">
+      <a>      
+        {{navItem.name}}
+      </a>
+    </li>  
+    <li>
+      <a href="#">        
+        Logout
+      </a>
+    </li>
+  </ul>
+</div>

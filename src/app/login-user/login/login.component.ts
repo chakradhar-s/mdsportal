@@ -19,7 +19,8 @@ export class LoginComponent implements OnInit {
       [Validators.required,
       UserLoginValidators.validUserName]],
     password: ['',
-      [Validators.required]]
+      [Validators.required,
+        UserLoginValidators.validPassword]]
   });
 
   constructor(private router: Router, private spinnerService: Ng4LoadingSpinnerService, private fb: FormBuilder, private login: LoginService) { }
@@ -47,6 +48,14 @@ export class LoginComponent implements OnInit {
       this.loginForm.get('userName').hasError('invalidUserName') &&
       this.loginForm.get('userName').dirty &&
       !this.required('userName')
+    );
+  }
+
+  get passvalid(){
+    return (
+      this.loginForm.get('password').hasError('invalidPassword') &&
+      this.loginForm.get('password').dirty &&
+      !this.required('password')
     );
   }
 

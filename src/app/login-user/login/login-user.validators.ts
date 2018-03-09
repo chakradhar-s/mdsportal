@@ -6,5 +6,9 @@ export class UserLoginValidators {
         const valid = regexp.test(control.value);
         return valid ? null : { invalidUserName: true };
     }
-    
+    static validPassword(control: AbstractControl) {
+        const regexp = /^.{4,}$/i;
+        const valid = regexp.test(control.value);
+        return valid ? null : { invalidPassword: true };
+    }
 }

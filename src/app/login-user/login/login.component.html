@@ -20,6 +20,9 @@
                 <div class="error" *ngIf="required('password')">
                   Password is required
                 </div>
+                <div class="error" *ngIf="passvalid">
+                  Minimum 4 Characters are required
+                </div>
               </div>
               <div class="form-group d-flex align-items-center justify-content-between">
                 <a href="#" class="forgot-pass">Forgot password</a>

@@ -27,8 +27,8 @@ export class LoginService {
 
   }
 
-  //private _proxyHost: string = "http://localhost:5000";
-  private _proxyHost: string = "/";
+  private _proxyHost: string = "http://localhost:5000";
+  //private _proxyHost: string = "/";
   private login(user: Login) {
     const headers = new Headers();
     headers.append('Content-Type', 'application/vnd.api+json');

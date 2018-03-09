@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -10,6 +11,7 @@ import { AppComponent } from './app.component';
 import { AppNavbarComponent } from './app-navbar/app-navbar.component';
 import { AppFooterComponent } from './app-footer/app-footer.component';
 import { AppHomeComponent } from './app-home/app-home.component';
+import {LoginNavItem} from './app-navbar/login-navitem.component';
 
 import { ContactUsModule } from './contact-us/contact-us.module';
 import { ScheduleModule } from './schedule/schedule.module';
@@ -75,10 +77,12 @@ const myRoots: Routes = [
     AppComponent,
     AppNavbarComponent,
     AppFooterComponent,
-    AppHomeComponent
+    AppHomeComponent,
+    LoginNavItem
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     DataTablesModule,
     HttpModule,
     NgbModule.forRoot(),
