@@ -10,6 +10,34 @@
       </div>   
     </div>
 
+
+ <div>
+
+  <p-table [columns]="columns" [value]="questionPaperGroup" [(selection)]="selectedQuestionGroup" dataKey="question_paper_id">
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th style="width: 2.25em">
+                <p-tableHeaderCheckbox (click)="CheckBoxAllSelectHndlr($event,checked)"></p-tableHeaderCheckbox>
+            </th>
+            <th *ngFor="let col of columns">
+                {{col.header}}
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr [pSelectableRow]="rowData">
+            <td>
+                <p-tableCheckbox [checked]="rowData.is_active" (click)="CheckBoxAllSelectHndlr($event,checked)" [value]="rowData"></p-tableCheckbox>
+            </td>
+            <td *ngFor="let col of columns">
+                {{rowData[col.field]}}
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+ </div>
+
 </div>
 
 </div>

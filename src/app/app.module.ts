@@ -20,6 +20,8 @@ import { FileUploadService } from './mdsportal.services/file.upload.service';
 import {FileUploadModule} from 'primeng/fileupload';
 
 import { HttpClientModule } from '@angular/common/http';
+import { TableModule } from 'primeng/table';
+import { QuestionpaperService } from './mdsportal.services/questionpaper.service'; 
 
 const myRoots: Routes = [
   {
@@ -77,9 +79,10 @@ const myRoots: Routes = [
     RouterModule.forRoot(myRoots),
     BrowserAnimationsModule,
     FileUploadModule,
-    HttpClientModule
+    HttpClientModule,
+    TableModule
   ],
-  providers: [FileUploadService],
+  providers: [FileUploadService,QuestionpaperService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
