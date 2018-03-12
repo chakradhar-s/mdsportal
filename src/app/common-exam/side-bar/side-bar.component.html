@@ -32,8 +32,9 @@
         <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
           <div class="card-block">
             <a class="btn btn-circle btn-default noHover"
-             *ngFor="let Question of Questions" (click)="setSelected(Question)">
-                {{Question.question_index}}
+             *ngFor="let Question of Questions; index as i" (click)="setSelected(Question)">
+                {{i+1}}
+                <!-- {{Question.question_index}} -->
             </a>
             <!-- <a href="#" class="btn btn-circle btn-default noHover">I</a>
             <a href="#" class="btn btn-circle btn-info">R</a>

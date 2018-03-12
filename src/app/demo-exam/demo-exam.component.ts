@@ -3,6 +3,7 @@ import { QuestionSet } from '../models/question-set';
 import { ExamService } from '../http-service-registry/services/exam.service';
 import { Observable } from 'rxjs/Observable';
 import { DataService } from '../http-service-registry/services/data.service';
+import { AnswerSet } from '../models/answer-set';
 
 @Component({
   selector: 'app-demo-exam',
@@ -12,6 +13,7 @@ import { DataService } from '../http-service-registry/services/data.service';
 export class DemoExamComponent implements OnInit {
   public questions: QuestionSet[];
   public selectedQuestion: Observable<QuestionSet>;
+  public selectedAnswer : AnswerSet;
 
   constructor(
     private service: ExamService,
@@ -34,6 +36,17 @@ export class DemoExamComponent implements OnInit {
 
   questionChanged(obj: QuestionSet): void {
     this.selectedQuestion.subscribe();
+  }
+
+  saveAndNext():void{
+
+  }
+
+  save():void{
+    console.log('save triggered');
+    this.dataService.currentAnswer.subscribe(next => this.selectedAnswer = next);
+    console.log(this.selectedAnswer);
+    this.service.insertOrUpdateAnswer(this.selectedAnswer);
   }
 
 }
