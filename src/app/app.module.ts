@@ -18,6 +18,8 @@ import { ScheduleModule } from './schedule/schedule.module';
 
 import { HttpServiceRegistryModule } from './http-service-registry/http-service-registry.module';
 
+import { AppUtilityModule } from './app-utility/app-utility.module';
+
 import { SideBarComponent } from './common-exam/side-bar/side-bar.component';
 import { ExamDetailComponent } from './common-exam/exam-detail/exam-detail.component';
 import { HttpModule } from '@angular/http';
@@ -84,6 +86,7 @@ const myRoots: Routes = [
     BrowserModule,
     CommonModule,
     DataTablesModule,
+    AppUtilityModule,
     HttpModule,
     NgbModule.forRoot(),
     Ng4LoadingSpinnerModule.forRoot(),

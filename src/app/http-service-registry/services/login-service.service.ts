@@ -67,14 +67,13 @@ export class LoginService {
   sendResetPassword(userName: string) {
     const headers = new Headers();
     headers.append('Content-Type', 'application/vnd.api+json');
-    return this.http.post(`${this._proxyHost}/mdservice/api/User/ResetPassword`,
+    return this.http.post(`${this._proxyHost}/mdservice/api/Users/ResetPassword`,
       JSON.stringify({ mailId: userName }),
       new RequestOptions({ headers: headers })).map((response: Response) =>
         response.json()
       ).catch((error) => {
         return Observable.throw(error);
-      });
-    
+      });    
   }
 
   get userToken(): string {
