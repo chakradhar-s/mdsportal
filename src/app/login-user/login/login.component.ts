@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.spinnerService.show();
+    this.login.loginPageRedirect(true);
   }
 
   ngAfterViewInit() {

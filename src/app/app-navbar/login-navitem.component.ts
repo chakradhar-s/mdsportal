@@ -16,11 +16,15 @@ export class LoginNavItem {
   profileDetails: ProfileAccordion;
   
   constructor(private route: ActivatedRoute,
-    private router: Router, ) {
+    private router: Router,private _login: LoginService ) {
 
   }
 
   public takeroute(link, event) {
     this.router.navigate([link]);
+  }
+
+  public logoff(){
+    this._login.logoff();
   }
 }

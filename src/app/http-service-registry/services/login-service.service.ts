@@ -22,9 +22,10 @@ export class LoginService {
   private _userToken: string = "";
   private _userType: BehaviorSubject<UserType> = new BehaviorSubject<UserType>({ isAdmin: false, isStudent: false });
   private _userId: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  private _loginPageRedirection: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private http: Http, private router: Router) {
-
+    
   }
 
   private _proxyHost: string = "http://localhost:5000";
@@ -50,7 +51,8 @@ export class LoginService {
       this._userToken = rslt['access_token'];
       this._userId.next(rslt['id'] || '');
       window.localStorage.setItem('jwt-access-mds', JSON.stringify(res));
-      this.router.navigate(['/register/user'], { replaceUrl: true });
+      this.router.navigate(['/home'], { replaceUrl: true });
+      this._loginPageRedirection.next(false);
     }, (error) => console.error(error), () => {
 
     });
@@ -86,6 +88,26 @@ export class LoginService {
       this._userToken = rslt['access_token'];
       this._userId.next(rslt['id'] || '');
     }
+    else {
+      this.logoff();
+    }
   }
 
+  get pageRedirectedToLogin() {
+    return this._loginPageRedirection.asObservable();
+  }
+
+  loginPageRedirect(off: boolean) {
+    this._loginPageRedirection.next(off);
+  }
+
+  logoff() {
+    window.localStorage.setItem('jwt-access-mds', '{}');
+    this._userId.next('');
+    this._userProfile.user = { college: '', emailId: '', firstName: '', lastName: '', mobileNumber: '', password: '', referencedBy: '', sYear: null, whatsAPPNumber: '' };
+    this._userType.next({ isAdmin: false, isStudent: false });
+    this._userToken = '';
+    this._userId.next('');
+    this.router.navigate(['/home']);
+  }
 }

@@ -1,4 +1,4 @@
-<header class="header" data-color="black">
+<header class="header" data-color="black" *ngIf="!isLoginPage">
   <div class="header__inner w-clearfix">
     <div class="header__brand">
       <div class="header__logo w-embed">
@@ -55,5 +55,5 @@
     </nav>
   </div>
 </header>
-<div class="sub-header ">
+<div class="sub-header" *ngIf="!isLoginPage">
 </div>
