@@ -7,6 +7,11 @@
             <h3 class="card-title text-left mb-3">Login</h3>
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
               <div class="form-group">
+                <p class="error" *ngIf="inValidCredentials"> 
+                  Invalid Credentials
+                </p>
+              </div>
+              <div class="form-group">
                 <input class="form-control p_input" placeholder="Email Id or Mobile Number" type="text" formControlName="userName">
                 <div class="error" *ngIf="required('userName')">
                   Username is required
@@ -25,7 +30,7 @@
                 </div>
               </div>
               <div class="form-group d-flex align-items-center justify-content-between">
-                <a href="#" class="forgot-pass">Forgot password</a>
+                <a routerLink="/login/user/forgot_password" class="forgot-pass">Forgot password</a>
               </div>
               <div class="text-center">
                 <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary btn-block enter-btn">LOG IN</button>

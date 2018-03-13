@@ -11,4 +11,9 @@ export class UserLoginValidators {
         const valid = regexp.test(control.value);
         return valid ? null : { invalidPassword: true };
     }
+    static validEmailId(control: AbstractControl){
+        const regexp = /(?:(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,}))/i;
+        const valid = regexp.test(control.value);
+        return valid ? null : { invalidEmailId: true };
+    }
 }

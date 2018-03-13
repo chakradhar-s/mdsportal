@@ -10,7 +10,7 @@ import { UserType } from '../../models/user.type.interface';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import 'rxjs/observable/throw';
+import 'rxjs/add/observable/throw';
 //import { HexBase64BinaryEncoding } from 'crypto';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
@@ -23,9 +23,10 @@ export class LoginService {
   private _userType: BehaviorSubject<UserType> = new BehaviorSubject<UserType>({ isAdmin: false, isStudent: false });
   private _userId: BehaviorSubject<string> = new BehaviorSubject<string>('');
   private _loginPageRedirection: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private _invalidCredentials: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private http: Http, private router: Router) {
-    
+
   }
 
   private _proxyHost: string = "http://localhost:5000";
@@ -37,8 +38,9 @@ export class LoginService {
       JSON.stringify(user),
       new RequestOptions({ headers: headers })).map((response: Response) =>
         response.json()
-      ).catch((error) =>
-        Observable.throw(error)
+      ).catch((error) => {
+        return Observable.throw(error);
+      }
       );
   }
 
@@ -53,9 +55,26 @@ export class LoginService {
       window.localStorage.setItem('jwt-access-mds', JSON.stringify(res));
       this.router.navigate(['/home'], { replaceUrl: true });
       this._loginPageRedirection.next(false);
-    }, (error) => console.error(error), () => {
+    }, (error) => {
+        if (!error['ok'] && error['status'] == 401) {
+          this._invalidCredentials.next(true);
+        }
+      }, () => {
 
-    });
+      });
+  }
+
+  sendResetPassword(userName: string) {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/vnd.api+json');
+    return this.http.post(`${this._proxyHost}/mdservice/api/User/ResetPassword`,
+      JSON.stringify({ mailId: userName }),
+      new RequestOptions({ headers: headers })).map((response: Response) =>
+        response.json()
+      ).catch((error) => {
+        return Observable.throw(error);
+      });
+    
   }
 
   get userToken(): string {
@@ -72,6 +91,10 @@ export class LoginService {
 
   get userId() {
     return this._userType.asObservable();
+  }
+
+  get onLoginFail() {
+    return this._invalidCredentials.asObservable();
   }
 
   logOut() {

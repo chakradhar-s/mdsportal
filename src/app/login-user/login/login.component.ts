@@ -20,20 +20,25 @@ export class LoginComponent implements OnInit {
       UserLoginValidators.validUserName]],
     password: ['',
       [Validators.required,
-        UserLoginValidators.validPassword]]
+      UserLoginValidators.validPassword]]
   });
+
+  public inValidCredentials: boolean = false;
 
   constructor(private router: Router, private spinnerService: Ng4LoadingSpinnerService, private fb: FormBuilder, private login: LoginService) { }
 
   ngOnInit() {
     this.spinnerService.show();
     this.login.loginPageRedirect(true);
+    this.login.onLoginFail.subscribe((fail: boolean) => {
+      this.inValidCredentials = fail;
+    });
   }
 
   ngAfterViewInit() {
     this.spinnerService.hide();
   }
-  
+
   register() {
     this.router.navigate(['/register/user'], { replaceUrl: true });
   }
@@ -45,6 +50,7 @@ export class LoginComponent implements OnInit {
   }
 
   get invalid() {
+    this.inValidCredentials = false;
     return (
       this.loginForm.get('userName').hasError('invalidUserName') &&
       this.loginForm.get('userName').dirty &&
@@ -52,7 +58,8 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  get passvalid(){
+  get passvalid() {
+    this.inValidCredentials = false;
     return (
       this.loginForm.get('password').hasError('invalidPassword') &&
       this.loginForm.get('password').dirty &&
@@ -60,7 +67,7 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  required(name: string) {
+  required(name: string) {   
     return (
       this.loginForm.get(`${name}`).hasError('required') &&
       this.loginForm.get(`${name}`).touched
