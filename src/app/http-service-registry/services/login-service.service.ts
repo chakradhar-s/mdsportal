@@ -18,7 +18,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 @Injectable()
 export class LoginService {
 
-  private _userProfile: Profile = { user: { college: '', emailId: '', firstName: '', lastName: '', mobileNumber: '', password: '', referencedBy: '', sYear: null, whatsAPPNumber: '' } };
+  private _userProfile: Profile = { user: { college: '', emailId: '', firstName: '', lastName: '', mobileNumber: '', state: '', password: '', referencedBy: '', sYear: null, whatsAPPNumber: '' } };
   private _userToken: string = "";
   private _userType: BehaviorSubject<UserType> = new BehaviorSubject<UserType>({ isAdmin: false, isStudent: false });
   private _userId: BehaviorSubject<string> = new BehaviorSubject<string>('');
@@ -56,12 +56,12 @@ export class LoginService {
       this.router.navigate(['/home'], { replaceUrl: true });
       this._loginPageRedirection.next(false);
     }, (error) => {
-        if (!error['ok'] && error['status'] == 401) {
-          this._invalidCredentials.next(true);
-        }
-      }, () => {
+      if (!error['ok'] && error['status'] == 401) {
+        this._invalidCredentials.next(true);
+      }
+    }, () => {
 
-      });
+    });
   }
 
   sendResetPassword(userName: string) {
@@ -73,7 +73,7 @@ export class LoginService {
         response.json()
       ).catch((error) => {
         return Observable.throw(error);
-      });    
+      });
   }
 
   get userToken(): string {

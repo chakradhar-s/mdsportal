@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, FormArray, Validators, AbstractControl } from '
 
 import { UserLoginValidators } from '../login-user/login/login-user.validators';
 import { LoginService } from '../http-service-registry/services/login-service.service';
+import { SignUpService } from '../http-service-registry/services/signup-service';
 
 @Component({
   selector: 'app-register-user',
@@ -22,11 +23,13 @@ export class RegisterUserComponent implements OnInit, AfterViewInit {
       [Validators.required]],
     college: ['',
       [Validators.required]],
+    sYear: ['',
+    ],
+    state: ['',
+    ],
     password: ['',
       [Validators.required,
       UserLoginValidators.validPassword]],
-    sYear: ['',
-    ],
     referencedBy: ['',
     ],
     mobileNumber: ['',
@@ -39,12 +42,12 @@ export class RegisterUserComponent implements OnInit, AfterViewInit {
     ],
     emailId: ['',
       [Validators.required,
-      UserLoginValidators.validPassword]
+      UserLoginValidators.validEmailId]
     ]
   });
 
-  constructor(private router: Router, private spinnerService: Ng4LoadingSpinnerService, private fb: FormBuilder, private login: LoginService) {
-   
+  constructor(private router: Router, private spinnerService: Ng4LoadingSpinnerService, private fb: FormBuilder, private login: LoginService, private signup: SignUpService) {
+
   }
 
   ngOnInit() {
@@ -55,7 +58,7 @@ export class RegisterUserComponent implements OnInit, AfterViewInit {
     this.spinnerService.hide();
   }
 
-  invalid(name: string) {    
+  invalid(name: string) {
     return (
       this.registerForm.get(`${name}`).hasError('invalidMobileNumber') &&
       this.registerForm.get(`${name}`).dirty &&
@@ -63,7 +66,7 @@ export class RegisterUserComponent implements OnInit, AfterViewInit {
     );
   }
 
-  get passvalid() {    
+  get passvalid() {
     return (
       this.registerForm.get('password').hasError('invalidPassword') &&
       this.registerForm.get('password').dirty &&
@@ -71,7 +74,15 @@ export class RegisterUserComponent implements OnInit, AfterViewInit {
     );
   }
 
-  required(name: string) {   
+  get emailvalid() {
+    return (
+      this.registerForm.get('emailId').hasError('invalidEmailId') &&
+      this.registerForm.get('emailId').dirty &&
+      !this.required('emailId')
+    );
+  }
+
+  required(name: string) {
     return (
       this.registerForm.get(`${name}`).hasError('required') &&
       this.registerForm.get(`${name}`).touched
@@ -80,7 +91,15 @@ export class RegisterUserComponent implements OnInit, AfterViewInit {
 
   onSubmit() {
     if (this.registerForm.valid) {
-     
+      this.spinnerService.show();
+      this.signup.registerUser(this.registerForm.value).subscribe((result) => {
+
+      }, (error) => {
+
+      }, () => {
+        this.login.validateUser({ userName: this.registerForm.get('emailId').value, password: this.registerForm.get('password').value });
+
+      });
     }
   }
 
