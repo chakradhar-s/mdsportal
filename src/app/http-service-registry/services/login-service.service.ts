@@ -126,7 +126,7 @@ export class LoginService {
   logoff() {
     window.localStorage.setItem('jwt-access-mds', '{}');
     this._userId.next('');
-    this._userProfile.user = { college: '', emailId: '', firstName: '', lastName: '', mobileNumber: '', password: '', referencedBy: '', sYear: null, whatsAPPNumber: '' };
+    this._userProfile.user = { college: '', emailId: '', firstName: '', lastName: '', mobileNumber: '', password: '', referencedBy: '', sYear: null, state: '', whatsAPPNumber: '' };
     this._userType.next({ isAdmin: false, isStudent: false });
     this._userToken = '';
     this._userId.next('');

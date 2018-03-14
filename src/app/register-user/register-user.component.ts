@@ -6,7 +6,7 @@ import { FormBuilder, FormGroup, FormArray, Validators, AbstractControl } from '
 
 import { UserLoginValidators } from '../login-user/login/login-user.validators';
 import { LoginService } from '../http-service-registry/services/login-service.service';
-import { SignUpService } from '../http-service-registry/services/signup-service';
+import { SignUpService } from '../http-service-registry/services/signup.service';
 
 @Component({
   selector: 'app-register-user',
@@ -43,7 +43,10 @@ export class RegisterUserComponent implements OnInit, AfterViewInit {
     emailId: ['',
       [Validators.required,
       UserLoginValidators.validEmailId]
-    ]
+    ],
+    declarationAcceptance: this.fb.group({
+      is_accepted: [false, [Validators.required,this.userAcceptance.bind(this)]]
+    })
   });
 
   constructor(private router: Router, private spinnerService: Ng4LoadingSpinnerService, private fb: FormBuilder, private login: LoginService, private signup: SignUpService) {
@@ -88,6 +91,20 @@ export class RegisterUserComponent implements OnInit, AfterViewInit {
       this.registerForm.get(`${name}`).touched
     );
   }
+
+  userAcceptance(control: AbstractControl) {
+    return control.value ? null : { notaccepted: true };
+  }
+
+  get validAcceptance(){
+    return (
+      this.registerForm.get('declarationAcceptance').get('is_accepted').hasError('notaccepted') &&
+      this.registerForm.get('declarationAcceptance').get('is_accepted').dirty &&
+      !(this.registerForm.get('declarationAcceptance').get('is_accepted').hasError('required') &&
+      this.registerForm.get('declarationAcceptance').get('is_accepted').touched)
+    );
+  }
+
 
   onSubmit() {
     if (this.registerForm.valid) {
