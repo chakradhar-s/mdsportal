@@ -23,14 +23,14 @@ export class AppNavbarComponent implements OnInit {
     { exact: true, link: '/testimonials', name: 'Results' },
     { exact: true, link: '/payment', name: 'Payment  |  Schedule & PP Books' },
     { exact: true, link: '/s-strategy', name: 'Sashi' },
-    { exact: true, link: '/contactus', name: 'Demo Exam' },
+    { exact: true, link: '/demo-exam', name: 'Demo Exam' },
     { exact: true, link: '/login/user', name: 'Login' },
     { exact: true, link: '/contactus', name: 'Contact Us' }];
 
     this._studentNav = [{ exact: true, link: '/home', name: 'Home' },
     { exact: true, link: '/payment', name: 'Payment  |  Schedule & PP Books' },
     { exact: true, link: '/s-strategy', name: 'Sashi' },
-    { exact: true, link: '/contactus', name: 'Demo Exam' },
+    { exact: true, link: '/demo-exam', name: 'Demo Exam' },
     { exact: true, link: '/contactus', name: 'Take Exam' }];
 
     this._adminNav = [{ exact: true, link: '/home', name: 'Home' },
@@ -38,7 +38,7 @@ export class AppNavbarComponent implements OnInit {
     { exact: true, link: '/testimonials', name: 'Results' },
     { exact: true, link: '/payment/student', name: 'Payment  |  Schedule & PP Books' },
     { exact: true, link: '/s-strategy', name: 'Sashi' },
-    { exact: true, link: '/contactus', name: 'Demo Exam' },
+    { exact: true, link: '/demo-exam', name: 'Demo Exam' },
     { exact: true, link: '/register/user', name: 'Register'},
     { exact: true, link: '/contactus', name: 'Contact Us' }];
   }
