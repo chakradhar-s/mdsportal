@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
@@ -12,7 +12,7 @@ import { LoginService } from '../../http-service-registry/services/login-service
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit,AfterViewInit {
 
   public loginForm = this.fb.group({
     userName: ['',
