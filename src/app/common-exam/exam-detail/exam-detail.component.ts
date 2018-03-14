@@ -13,7 +13,7 @@ import { RelExamAnswer } from '../../models/rel-exam-answer';
 })
 export class ExamDetailComponent implements OnInit {
   @Input() Question: QuestionSet
-  private sessionId : string = "d91bc146-7252-7442-4f2b-94eb16f00899";
+  private sessionId : string = "1908d1b0-276e-11e8-bd47-0252c1ad21ae";
   constructor(private route: ActivatedRoute,
     private service: ExamService,
     private dataService: DataService
