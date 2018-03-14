@@ -4,6 +4,7 @@ import { ExamService } from '../http-service-registry/services/exam.service';
 import { Observable } from 'rxjs/Observable';
 import { DataService } from '../http-service-registry/services/data.service';
 import { AnswerSet } from '../models/answer-set';
+import { RelExamAnswer } from '../models/rel-exam-answer';
 
 @Component({
   selector: 'app-demo-exam',
@@ -13,7 +14,7 @@ import { AnswerSet } from '../models/answer-set';
 export class DemoExamComponent implements OnInit {
   public questions: QuestionSet[];
   public selectedQuestion: Observable<QuestionSet>;
-  public selectedAnswer : AnswerSet;
+  public selectedAnswer : RelExamAnswer;
 
   constructor(
     private service: ExamService,

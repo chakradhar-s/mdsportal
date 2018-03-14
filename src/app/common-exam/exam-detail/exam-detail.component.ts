@@ -4,6 +4,7 @@ import { ExamService } from '../../http-service-registry/services/exam.service';
 import { QuestionSet, OptionSet } from '../../models/question-set';
 import { DataService } from '../../http-service-registry/services/data.service';
 import { AnswerSet } from '../../models/answer-set';
+import { RelExamAnswer } from '../../models/rel-exam-answer';
 
 @Component({
   selector: 'exam-detail',
@@ -12,9 +13,11 @@ import { AnswerSet } from '../../models/answer-set';
 })
 export class ExamDetailComponent implements OnInit {
   @Input() Question: QuestionSet
+  private sessionId : string = "d91bc146-7252-7442-4f2b-94eb16f00899";
   constructor(private route: ActivatedRoute,
     private service: ExamService,
-    private dataService: DataService) { }
+    private dataService: DataService
+  ) {  }
 
   ngOnInit() {
     this.getSelectedQuestion();
@@ -33,7 +36,7 @@ export class ExamDetailComponent implements OnInit {
   }
 
   setAnswer(option:OptionSet): void {
-    let answerObj = new AnswerSet(option.question_id,option.option_id); 
+    let answerObj = new RelExamAnswer(this.sessionId ,option.question_id,option.option_id); 
     this.dataService.changeAnswer(answerObj);
   }
 
