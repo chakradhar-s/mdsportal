@@ -21,8 +21,8 @@ export class RegisterUserComponent implements OnInit, AfterViewInit {
       [Validators.required]],
     lastName: ['',
       [Validators.required]],
-    college: ['',
-      [Validators.required]],
+    college: [''
+    ],
     sYear: ['',
     ],
     state: ['',
@@ -45,7 +45,7 @@ export class RegisterUserComponent implements OnInit, AfterViewInit {
       UserLoginValidators.validEmailId]
     ],
     declarationAcceptance: this.fb.group({
-      is_accepted: [false, [Validators.required,this.userAcceptance.bind(this)]]
+      is_accepted: [false, [Validators.required, this.userAcceptance.bind(this)]]
     })
   });
 
@@ -96,12 +96,11 @@ export class RegisterUserComponent implements OnInit, AfterViewInit {
     return control.value ? null : { notaccepted: true };
   }
 
-  get validAcceptance(){
+  get validAcceptance() {
     return (
-      this.registerForm.get('declarationAcceptance').get('is_accepted').hasError('notaccepted') &&
-      this.registerForm.get('declarationAcceptance').get('is_accepted').dirty &&
-      !(this.registerForm.get('declarationAcceptance').get('is_accepted').hasError('required') &&
-      this.registerForm.get('declarationAcceptance').get('is_accepted').touched)
+      this.registerForm.get('declarationAcceptance.is_accepted').hasError('notaccepted') &&
+      this.registerForm.get('declarationAcceptance.is_accepted').dirty &&
+      !this.required("declarationAcceptance.is_accepted")
     );
   }
 

@@ -20,7 +20,11 @@ export class ForgotPasswordComponent implements OnInit {
       UserLoginValidators.validEmailId]]   
   });
 
-  constructor(private router: Router, private spinnerService: Ng4LoadingSpinnerService, private fb: FormBuilder, private login: LoginService) { }
+  public loginservice: LoginService;
+
+  constructor(private router: Router, private spinnerService: Ng4LoadingSpinnerService, private fb: FormBuilder, private login: LoginService) { 
+    this.loginservice = login;
+  }
 
   ngOnInit() {
     this.spinnerService.show();

@@ -29,7 +29,7 @@ export class SignUpService {
 
         const headers = new Headers();
         headers.append('Content-Type', 'application/vnd.api+json');
-        return this.http.post(`${this._proxyHost}/mdservice/api/Users/Register`,
+        return this.http.post(`${this._proxyHost}/mdservice/api/Users`,
             JSON.stringify(user),
             new RequestOptions({ headers: headers })).map((response: Response) => {
                return response.json();               

@@ -6,12 +6,14 @@ import { LoginComponent } from './login/login.component';
 import { LoginUserRoutingModule } from './login-user-routing.module';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { PasswordLinkComponent } from './password-link/password-link.component';
+import { GuardHubModule } from '../guard-hub/guard-hub.module';
 
 @NgModule({
   imports: [
     CommonModule,
     LoginUserRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    GuardHubModule
   ],
   declarations: [LoginComponent, ForgotPasswordComponent, PasswordLinkComponent]
 })

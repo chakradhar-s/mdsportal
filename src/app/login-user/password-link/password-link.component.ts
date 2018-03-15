@@ -10,8 +10,11 @@ import { LoginService } from '../../http-service-registry/services/login-service
   styleUrls: ['./password-link.component.scss']
 })
 export class PasswordLinkComponent implements OnInit {
+  public loginservice: LoginService;
 
-  constructor(private router: Router, private spinnerService: Ng4LoadingSpinnerService, private login: LoginService) { }
+  constructor(private router: Router, private spinnerService: Ng4LoadingSpinnerService, private login: LoginService) { 
+    this.loginservice = login;
+  }
 
   ngOnInit() {
     this.spinnerService.show();

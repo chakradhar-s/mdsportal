@@ -1,4 +1,4 @@
-import { Component, OnInit,AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
@@ -12,7 +12,7 @@ import { LoginService } from '../../http-service-registry/services/login-service
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit,AfterViewInit {
+export class LoginComponent implements OnInit, AfterViewInit {
 
   public loginForm = this.fb.group({
     userName: ['',
@@ -25,7 +25,11 @@ export class LoginComponent implements OnInit,AfterViewInit {
 
   public inValidCredentials: boolean = false;
 
-  constructor(private router: Router, private spinnerService: Ng4LoadingSpinnerService, private fb: FormBuilder, private login: LoginService) { }
+  public loginservice: LoginService;
+
+  constructor(private router: Router, private spinnerService: Ng4LoadingSpinnerService, private fb: FormBuilder, private login: LoginService) {
+    this.loginservice = login;
+  }
 
   ngOnInit() {
     this.spinnerService.show();
@@ -67,7 +71,7 @@ export class LoginComponent implements OnInit,AfterViewInit {
     );
   }
 
-  required(name: string) {   
+  required(name: string) {
     return (
       this.loginForm.get(`${name}`).hasError('required') &&
       this.loginForm.get(`${name}`).touched
