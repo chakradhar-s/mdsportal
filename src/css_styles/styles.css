@@ -3912,3 +3912,8 @@ input[type=month] {
     color:#fff;
     background-color:#007bff
    }
+
+   .scroll-bar-div{
+    overflow-y: auto;
+    height: 530px;
+  }
