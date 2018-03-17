@@ -13,7 +13,7 @@ import { RelExamAnswer } from '../../models/rel-exam-answer';
 })
 export class ExamDetailComponent implements OnInit {
   @Input() Question: QuestionSet
-  private sessionId : string = "1908d1b0-276e-11e8-bd47-0252c1ad21ae";
+  private sessionId : string = "d91bc146-7252-7442-4f2b-94eb16f00899";
   constructor(private route: ActivatedRoute,
     private service: ExamService,
     private dataService: DataService
@@ -36,7 +36,7 @@ export class ExamDetailComponent implements OnInit {
   }
 
   setAnswer(option:OptionSet): void {
-    let answerObj = new RelExamAnswer(this.sessionId ,option.question_id,option.option_id); 
+    let answerObj = new RelExamAnswer(this.sessionId ,option.question_id,option.option_id,1); 
     this.dataService.changeAnswer(answerObj);
   }
 

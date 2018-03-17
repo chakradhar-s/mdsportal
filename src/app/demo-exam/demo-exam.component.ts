@@ -4,7 +4,7 @@ import { ExamService } from '../http-service-registry/services/exam.service';
 import { Observable } from 'rxjs/Observable';
 import { DataService } from '../http-service-registry/services/data.service';
 import { AnswerSet } from '../models/answer-set';
-import { RelExamAnswer } from '../models/rel-exam-answer';
+import { RelExamAnswer, StatusId } from '../models/rel-exam-answer';
 
 @Component({
   selector: 'app-demo-exam',
@@ -40,14 +40,17 @@ export class DemoExamComponent implements OnInit {
   }
 
   saveAndNext():void{
-
-  }
-
-  save():void{
     console.log('save triggered');
     this.dataService.currentAnswer.subscribe(next => this.selectedAnswer = next);
     console.log(this.selectedAnswer);
-    this.service.insertOrUpdateAnswer(this.selectedAnswer);
+    this.service.insertOrUpdateAnswer(this.selectedAnswer,StatusId.Answered);
+  }
+
+  saveAndMark():void{
+    console.log('save and mark for review triggered');
+    this.dataService.currentAnswer.subscribe(next => this.selectedAnswer = next);
+    console.log(this.selectedAnswer);
+    this.service.insertOrUpdateAnswer(this.selectedAnswer,StatusId.Marked_For_Review);
   }
 
 }
