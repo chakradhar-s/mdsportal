@@ -18,7 +18,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 @Injectable()
 export class LoginService {
 
-  private _userProfile: Profile = { user: { college: '', emailId: '', firstName: '', lastName: '', mobileNumber: '', state: '', password: '', referencedBy: '', sYear: null, whatsAPPNumber: '' } };
+  private _userProfile: Profile = { user: { collegeName: '', emailId: '', firstName: '', lastName: '', mobileNumber: '', state: '', password: '', referencedBy: '', sYear: null, whatsAPPNumber: '' } };
   private _userToken: string = "";
   private _userType: BehaviorSubject<UserType> = new BehaviorSubject<UserType>({ isAdmin: false, isStudent: false });
   private _userId: BehaviorSubject<string> = new BehaviorSubject<string>('');
@@ -55,6 +55,7 @@ export class LoginService {
       window.localStorage.setItem('jwt-access-mds', JSON.stringify(res));
       this.router.navigate(['/home'], { replaceUrl: true });
       this._loginPageRedirection.next(false);
+      window.location.reload();
     }, (error) => {
       if (!error['ok'] && error['status'] == 401) {
         this._invalidCredentials.next(true);
@@ -126,7 +127,7 @@ export class LoginService {
   logoff() {
     window.localStorage.setItem('jwt-access-mds', '{}');
     this._userId.next('');
-    this._userProfile.user = { college: '', emailId: '', firstName: '', lastName: '', mobileNumber: '', password: '', referencedBy: '', sYear: null, state: '', whatsAPPNumber: '' };
+    this._userProfile.user = { collegeName: '', emailId: '', firstName: '', lastName: '', mobileNumber: '', password: '', referencedBy: '', sYear: null, state: '', whatsAPPNumber: '' };
     this._userType.next({ isAdmin: false, isStudent: false });
     this._userToken = '';
     this._userId.next('');

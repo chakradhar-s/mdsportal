@@ -71,6 +71,10 @@ const myRoots: Routes = [
     path: 'demo-exam',
     loadChildren: 'app/demo-exam/demo-exam.module#DemoExamModule'
   },
+  {
+    path: 'view-user',
+    loadChildren: 'app/user-profile/user-profile.module#UserProfileModule'
+  },
 ];
 
 
