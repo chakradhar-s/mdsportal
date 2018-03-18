@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { QuestionSet } from '../models/question-set';
+import { QuestionSet, QuestionOutput } from '../models/question-set';
 import { ExamService } from '../http-service-registry/services/exam.service';
 import { Observable } from 'rxjs/Observable';
 import { DataService } from '../http-service-registry/services/data.service';
@@ -12,9 +12,9 @@ import { RelExamAnswer, StatusId } from '../models/rel-exam-answer';
   styleUrls: ['./demo-exam.component.scss']
 })
 export class DemoExamComponent implements OnInit {
-  public questions: QuestionSet[];
-  public selectedQuestion: Observable<QuestionSet>;
-  public selectedAnswer : RelExamAnswer;
+  questions: QuestionOutput[];
+  public selectedQuestion: Observable<QuestionOutput>;
+  public selectedAnswer: RelExamAnswer;
 
   constructor(
     private service: ExamService,
@@ -22,35 +22,45 @@ export class DemoExamComponent implements OnInit {
 
   }
   getQuestion(): void {
-    // this.Questions = this.service.getQuestions();
-    this.service.getQuestions().subscribe(ques => {
+    this.service.getQuestions()
+    // .map(ques => {
+    //   let d =  ques;
+    //   return d;
+    // }) 
+    .subscribe(ques => {
+      debugger;
       this.questions = ques;
-      this.dataService.changeQuestion(this.questions[0]);
+      // console.log(this.questions);
+      //this.dataService.changeQuestion(this.questions[0]);
     });
-
+    console.log('demo exam logging ' + this.questions);
     // this.data.changeQuestion(question);
     // this.dataService.currentQuestion.subscribe(cur => this.SelectedQuestion = cur);
   }
   ngOnInit() {
     this.getQuestion();
+    console.log('demo exam log ' + this.questions);
+
   }
 
-  questionChanged(obj: QuestionSet): void {
+  questionChanged(obj: QuestionOutput): void {
     this.selectedQuestion.subscribe();
   }
 
-  saveAndNext():void{
-    console.log('save triggered');
-    this.dataService.currentAnswer.subscribe(next => this.selectedAnswer = next);
-    console.log(this.selectedAnswer);
-    this.service.insertOrUpdateAnswer(this.selectedAnswer,StatusId.Answered);
+  test():void{
+    
   }
 
-  saveAndMark():void{
-    console.log('save and mark for review triggered');
+  saveAndNext(): void {
+    console.log('save triggered');
     this.dataService.currentAnswer.subscribe(next => this.selectedAnswer = next);
-    console.log(this.selectedAnswer);
-    this.service.insertOrUpdateAnswer(this.selectedAnswer,StatusId.Marked_For_Review);
+    this.service.insertOrUpdateAnswer(this.selectedAnswer, StatusId.Answered);
+    this.service.updateQuestion(this.selectedAnswer.QuestionId,this.selectedAnswer);
+  }
+
+  saveAndMark(): void {
+    this.dataService.currentAnswer.subscribe(next => this.selectedAnswer = next);
+    this.service.insertOrUpdateAnswer(this.selectedAnswer, StatusId.Marked_For_Review);
   }
 
 }

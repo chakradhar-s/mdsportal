@@ -3,9 +3,9 @@
 </h1>
 <div class="scroll-bar-div">
 <fieldset *ngIf="Question">
-  <legend>{{Question.question_text}}</legend>
+  <legend>{{Question.questions.question_text}}</legend>
   <!-- <input type="radio" value="test"/> -->
-  <span *ngFor="let option of Question.optionSet">
+  <span *ngFor="let option of Question.questions.optionSet">
   <div class="radio radio-primary" >
     <input type="radio" name="radio1" id="{{option.option_id}}" value="{{option.option_id}}" (change)="setAnswer(option)">
     <label for="{{option.option_id}}">
