@@ -15,7 +15,7 @@ import { SignUpService } from '../../http-service-registry/services/signup.servi
 })
 export class ProfileComponent implements OnInit {
 
-  public registerForm = this.fb.group({
+  public profileForm = this.fb.group({
     firstName: ['',
       [Validators.required]],
     lastName: ['',
@@ -56,24 +56,24 @@ export class ProfileComponent implements OnInit {
 
   invalid(name: string) {
     return (
-      this.registerForm.get(`${name}`).hasError('invalidMobileNumber') &&
-      this.registerForm.get(`${name}`).dirty &&
+      this.profileForm.get(`${name}`).hasError('invalidMobileNumber') &&
+      this.profileForm.get(`${name}`).dirty &&
       !this.required(`${name}`)
     );
   }
 
   get emailvalid() {
     return (
-      this.registerForm.get('emailId').hasError('invalidEmailId') &&
-      this.registerForm.get('emailId').dirty &&
+      this.profileForm.get('emailId').hasError('invalidEmailId') &&
+      this.profileForm.get('emailId').dirty &&
       !this.required('emailId')
     );
   }
 
   required(name: string) {
     return (
-      this.registerForm.get(`${name}`).hasError('required') &&
-      this.registerForm.get(`${name}`).touched
+      this.profileForm.get(`${name}`).hasError('required') &&
+      this.profileForm.get(`${name}`).touched
     );
   }
 
@@ -83,17 +83,17 @@ export class ProfileComponent implements OnInit {
 
   get validAcceptance() {
     return (
-      this.registerForm.get('declarationAcceptance.is_accepted').hasError('notaccepted') &&
-      this.registerForm.get('declarationAcceptance.is_accepted').dirty &&
+      this.profileForm.get('declarationAcceptance.is_accepted').hasError('notaccepted') &&
+      this.profileForm.get('declarationAcceptance.is_accepted').dirty &&
       !this.required("declarationAcceptance.is_accepted")
     );
   }
 
 
   onSubmit() {
-    if (this.registerForm.valid) {
+    if (this.profileForm.valid) {
       this.spinnerService.show();
-      this.signup.registerUser(this.registerForm.value).subscribe((result) => {
+      this.signup.registerUser(this.profileForm.value).subscribe((result) => {
 
       }, (error) => {
         this.spinnerService.hide();
