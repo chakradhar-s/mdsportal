@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
@@ -12,26 +12,37 @@ import { LoginService } from '../../http-service-registry/services/login-service
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, AfterViewInit {
 
   public loginForm = this.fb.group({
     userName: ['',
       [Validators.required,
       UserLoginValidators.validUserName]],
     password: ['',
-      [Validators.required]]
+      [Validators.required,
+      UserLoginValidators.validPassword]]
   });
 
-  constructor(private router: Router, private spinnerService: Ng4LoadingSpinnerService, private fb: FormBuilder, private login: LoginService) { }
+  public inValidCredentials: boolean = false;
+
+  public loginservice: LoginService;
+
+  constructor(private router: Router, private spinnerService: Ng4LoadingSpinnerService, private fb: FormBuilder, private login: LoginService) {
+    this.loginservice = login;
+  }
 
   ngOnInit() {
     this.spinnerService.show();
+    this.login.loginPageRedirect(true);
+    this.login.onLoginFail.subscribe((fail: boolean) => {
+      this.inValidCredentials = fail;
+    });
   }
 
   ngAfterViewInit() {
     this.spinnerService.hide();
   }
-  
+
   register() {
     this.router.navigate(['/register/user'], { replaceUrl: true });
   }
@@ -43,10 +54,20 @@ export class LoginComponent implements OnInit {
   }
 
   get invalid() {
+    this.inValidCredentials = false;
     return (
       this.loginForm.get('userName').hasError('invalidUserName') &&
       this.loginForm.get('userName').dirty &&
       !this.required('userName')
+    );
+  }
+
+  get passvalid() {
+    this.inValidCredentials = false;
+    return (
+      this.loginForm.get('password').hasError('invalidPassword') &&
+      this.loginForm.get('password').dirty &&
+      !this.required('password')
     );
   }
 

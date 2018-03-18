@@ -4,17 +4,16 @@ import { Router } from '@angular/router';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { FormBuilder, FormGroup, FormArray, Validators, AbstractControl } from '@angular/forms';
 
-import { UserLoginValidators } from '../login-user/login/login-user.validators';
-import { LoginService } from '../http-service-registry/services/login-service.service';
-import { SignUpService } from '../http-service-registry/services/signup.service';
+import { UserLoginValidators } from '../../login-user/login/login-user.validators';
+import { LoginService } from '../../http-service-registry/services/login-service.service';
+import { SignUpService } from '../../http-service-registry/services/signup.service';
 
 @Component({
-  selector: 'app-register-user',
-  templateUrl: './register-user.component.html',
-  styleUrls: ['./register-user.component.scss']
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.scss']
 })
-export class RegisterUserComponent implements OnInit, AfterViewInit {
-  private acceptUserAggrement: boolean = false;
+export class ProfileComponent implements OnInit {
 
   public registerForm = this.fb.group({
     firstName: ['',
@@ -27,9 +26,6 @@ export class RegisterUserComponent implements OnInit, AfterViewInit {
     ],
     state: ['',
     ],
-    password: ['',
-      [Validators.required,
-      UserLoginValidators.validPassword]],
     referencedBy: ['',
     ],
     mobileNumber: ['',
@@ -52,11 +48,8 @@ export class RegisterUserComponent implements OnInit, AfterViewInit {
   constructor(private router: Router, private spinnerService: Ng4LoadingSpinnerService, private fb: FormBuilder, private login: LoginService, private signup: SignUpService) {
 
   }
-
   ngOnInit() {
-    this.spinnerService.show();
   }
-
   ngAfterViewInit() {
     this.spinnerService.hide();
   }
@@ -66,14 +59,6 @@ export class RegisterUserComponent implements OnInit, AfterViewInit {
       this.registerForm.get(`${name}`).hasError('invalidMobileNumber') &&
       this.registerForm.get(`${name}`).dirty &&
       !this.required(`${name}`)
-    );
-  }
-
-  get passvalid() {
-    return (
-      this.registerForm.get('password').hasError('invalidPassword') &&
-      this.registerForm.get('password').dirty &&
-      !this.required('password')
     );
   }
 
@@ -115,9 +100,6 @@ export class RegisterUserComponent implements OnInit, AfterViewInit {
 
       }, () => {
         this.spinnerService.hide();
-        console.log({ userName: this.registerForm.get('emailId').value, password: this.registerForm.get('password').value });
-        this.login.validateUser({ userName: this.registerForm.get('emailId').value, password: this.registerForm.get('password').value });
-
       });
     }
   }
@@ -125,5 +107,4 @@ export class RegisterUserComponent implements OnInit, AfterViewInit {
   cancel(){
     this.router.navigate(['/home']);
   }
-
 }

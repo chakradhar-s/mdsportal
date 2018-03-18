@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -10,11 +11,14 @@ import { AppComponent } from './app.component';
 import { AppNavbarComponent } from './app-navbar/app-navbar.component';
 import { AppFooterComponent } from './app-footer/app-footer.component';
 import { AppHomeComponent } from './app-home/app-home.component';
+import {LoginNavItem} from './app-navbar/login-navitem.component';
 
 import { ContactUsModule } from './contact-us/contact-us.module';
 import { ScheduleModule } from './schedule/schedule.module';
 
 import { HttpServiceRegistryModule } from './http-service-registry/http-service-registry.module';
+
+import { AppUtilityModule } from './app-utility/app-utility.module';
 
 import { SideBarComponent } from './common-exam/side-bar/side-bar.component';
 import { ExamDetailComponent } from './common-exam/exam-detail/exam-detail.component';
@@ -67,6 +71,10 @@ const myRoots: Routes = [
     path: 'demo-exam',
     loadChildren: 'app/demo-exam/demo-exam.module#DemoExamModule'
   },
+  {
+    path: 'view-user',
+    loadChildren: 'app/user-profile/user-profile.module#UserProfileModule'
+  },
 ];
 
 
@@ -75,11 +83,14 @@ const myRoots: Routes = [
     AppComponent,
     AppNavbarComponent,
     AppFooterComponent,
-    AppHomeComponent
+    AppHomeComponent,
+    LoginNavItem
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     DataTablesModule,
+    AppUtilityModule,
     HttpModule,
     NgbModule.forRoot(),
     Ng4LoadingSpinnerModule.forRoot(),
