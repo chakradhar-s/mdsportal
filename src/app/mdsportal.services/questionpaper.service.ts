@@ -10,8 +10,12 @@ export class QuestionpaperService {
 
 
   GetAllQuestionSet(): Observable<QuestionPaper[]> {
-   return this.http.get<QuestionPaper[]>("http://localhost:62700/mdservice/api/uploaddocument/all-questions");
+   return this.http.get<QuestionPaper[]>("http://localhost:62699/mdservice/api/uploaddocument/all-questions");
   }
   
+  EnableOrDisableQuestionPapers(questionArray : QuestionPaper[]) : Observable<any>{
+    return this.http.post('http://localhost:62699/mdservice/api/uploaddocument/activate-questions',questionArray);
+  }
 
+  
 }

@@ -17,7 +17,7 @@
     <ng-template pTemplate="header" let-columns>
         <tr>
             <th style="width: 2.25em">
-                <p-tableHeaderCheckbox (click)="CheckBoxAllSelectHndlr($event,checked)"></p-tableHeaderCheckbox>
+                    <input type="checkbox" [checked]="allChecked" (change)="CheckBoxAllSelectHndlr($event)">
             </th>
             <th *ngFor="let col of columns">
                 {{col.header}}
@@ -27,7 +27,7 @@
     <ng-template pTemplate="body" let-rowData let-columns="columns">
         <tr [pSelectableRow]="rowData">
             <td>
-                <p-tableCheckbox [checked]="rowData.is_active" (click)="CheckBoxAllSelectHndlr($event,checked)" [value]="rowData"></p-tableCheckbox>
+               <input type="checkbox" [checked]="rowData.is_active" (change)="IsActiveCheckHndlr($event,rowData)">
             </td>
             <td *ngFor="let col of columns">
                 {{rowData[col.field]}}
