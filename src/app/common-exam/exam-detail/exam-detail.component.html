@@ -1,0 +1,22 @@
+<h1>
+  Exam details
+</h1>
+
+<fieldset *ngIf="Question">
+  <legend>{{Question.question_text}}</legend>
+  <!-- <input type="radio" value="test"/> -->
+  <span *ngFor="let option of Question.optionSet">
+  <div class="radio radio-primary" >
+    <input type="radio" name="radio1" id="{{option.option_id}}" value="{{option.option_id}}">
+    <label for="{{option.option_id}}">
+      {{option.option_text}}
+    </label>
+  </div>
+</span>
+  <!-- <div class="radio radio-primary">
+    <input type="radio" name="radio1" id="radio2" value="option2">
+    <label for="radio2">
+      Small
+    </label>
+  </div> -->
+</fieldset>

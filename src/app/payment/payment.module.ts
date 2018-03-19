@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { ScheduleModule } from '../schedule/schedule.module';
+
 import { PaymentRoutingModule } from './payment-routing.module';
 import { PaymentComponent } from './payment.component';
 
@@ -10,7 +12,8 @@ import { PaymentComponent } from './payment.component';
   imports: [
     CommonModule,
     PaymentRoutingModule,
-    NgbTabsetModule
+    NgbTabsetModule,
+    ScheduleModule
   ],
   declarations: [PaymentComponent]
 })

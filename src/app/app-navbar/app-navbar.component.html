@@ -40,57 +40,57 @@
         <div class="menu-icn__botbar"></div>
       </div>
       <ul class="nav__list">
-        <li class="nav__item">
-          <a routerLink='/home' class="nav__link w-inline-block w--current" data-ix="link-line-hover">
-            <div>Home</div>
-            <div class="bar--purple link__bar"></div>
+        <li class="nav__item" *ngFor="let navItem of nav">
+          <a [routerLink]="navItem.link" routerLinkActive="w--current" [routerLinkActiveOptions]=" {exact:navItem.exact}" class="nav__link w-inline-block">
+            <div>{{navItem.name}}</div>
+            <div class="bar--purple link__bar "></div>
           </a>
         </li>
-        <li class="nav__item">
-          <a routerLink='/about' class="nav__link w-inline-block" data-ix="link-line-hover">
+        <!-- <li class="nav__item ">
+          <a routerLink='/about' class="nav__link w-inline-block ">
             <div>About us</div>
-            <div class="bar--purple link__bar"></div>
+            <div class="bar--purple link__bar "></div>
           </a>
         </li>
-        <li class="nav__item">
-          <a routerLink='/testimonials' class="nav__link w-inline-block" data-ix="link-line-hover">
+        <li class="nav__item ">
+          <a routerLink='/testimonials' class="nav__link w-inline-block ">
             <div>Results</div>
-            <div class="link__bar"></div>
+            <div class="link__bar "></div>
           </a>
         </li>
-        <li class="nav__item">
-          <a routerLink='/payment' class="nav__link w-inline-block" data-ix="link-line-hover">
+        <li class="nav__item ">
+          <a routerLink='/payment' class="nav__link w-inline-block ">
             <div>Payment&nbsp;&nbsp;|&nbsp;&nbsp;Schedule &amp; PP Books</div>
-            <div class="bar--cyan link__bar"></div>
+            <div class="bar--cyan link__bar "></div>
           </a>
         </li>
-        <li class="nav__item">
-          <a routerLink='/s-strategy' class="nav__link w-inline-block" data-ix="link-line-hover">
+        <li class="nav__item ">
+          <a routerLink='/s-strategy' class="nav__link w-inline-block ">
             <div>Sashi</div>
-            <div class="bar--cyan link__bar"></div>
+            <div class="bar--cyan link__bar "></div>
           </a>
         </li>
-        <li class="nav__item">
-          <a routerLink='/contactus' class="nav__link w-inline-block" data-ix="link-line-hover">
+        <li class="nav__item ">
+          <a routerLink='/contactus' class="nav__link w-inline-block ">
             <div>Demo Exam</div>
-            <div class="link__bar"></div>
+            <div class="link__bar "></div>
           </a>
         </li>
-        <li class="nav__item">
-          <a routerLink='/login/user' class="nav__link w-inline-block" data-ix="link-line-hover">
+        <li class="nav__item ">
+          <a routerLink='/login/user' class="nav__link w-inline-block ">
             <div>Login</div>
-            <div class="link__bar"></div>
+            <div class="link__bar "></div>
           </a>
         </li>
-        <li class="nav__item">
-          <a routerLink='/contactus' class="nav__link w-inline-block" data-ix="link-line-hover">
-            <div>CONTACT US</div>
-            <div class="link__bar"></div>
+        <li class="nav__item ">
+          <a routerLink='/contactus' class="nav__link w-inline-block ">
+            <div>Contact Us/div>
+              <div class="link__bar "></div>
           </a>
-        </li>
+        </li> -->
       </ul>
     </nav>
-  </div>
+    </div>
 </header>
-<div class="sub-header">
+<div class="sub-header ">
 </div>

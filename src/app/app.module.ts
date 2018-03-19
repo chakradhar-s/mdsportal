@@ -11,6 +11,16 @@ import { AppNavbarComponent } from './app-navbar/app-navbar.component';
 import { AppFooterComponent } from './app-footer/app-footer.component';
 import { AppHomeComponent } from './app-home/app-home.component';
 
+import { ContactUsModule } from './contact-us/contact-us.module';
+import { ScheduleModule } from './schedule/schedule.module';
+
+import { HttpServiceRegistryModule } from './http-service-registry/http-service-registry.module';
+
+import { SideBarComponent } from './common-exam/side-bar/side-bar.component';
+import { ExamDetailComponent } from './common-exam/exam-detail/exam-detail.component';
+import { HttpModule } from '@angular/http';
+
+
 import { DataTablesModule } from 'angular-datatables';
 import { QuestionpaperComponent } from './questionpaper/questionpaper.component';
 
@@ -39,6 +49,11 @@ const myRoots: Routes = [
     loadChildren: 'app/contact-us/contact-us.module#ContactUsModule'
   },
   {
+    path: 'schedule-pp-books',
+    loadChildren: 'app/schedule/schedule.module#ScheduleModule'
+  },
+  { path: '', component: AppHomeComponent },
+  {
     path: 'register/user',
     loadChildren: 'app/register-user/register-user.module#RegisterUserModule'
   },
@@ -59,9 +74,14 @@ const myRoots: Routes = [
     loadChildren: 'app/s-strategy/s-strategy.module#SStrategyModule'
   },
   {
+ question_upload_feature
     path: 'question-upload',
     component: QuestionpaperComponent
   }
+  {
+    path: 'demo-exam',
+    loadChildren: 'app/demo-exam/demo-exam.module#DemoExamModule'
+  },
 ];
 
 
@@ -69,11 +89,14 @@ const myRoots: Routes = [
   declarations: [
     AppComponent,
     AppNavbarComponent,
-    AppFooterComponent, AppHomeComponent, QuestionpaperComponent
+    AppFooterComponent, 
+    AppHomeComponent, 
+    QuestionpaperComponent
   ],
   imports: [
     BrowserModule,
     DataTablesModule,
+    HttpModule,
     NgbModule.forRoot(),
     Ng4LoadingSpinnerModule.forRoot(),
     RouterModule.forRoot(myRoots),
@@ -84,5 +107,11 @@ const myRoots: Routes = [
   ],
   providers: [FileUploadService,QuestionpaperService],
   bootstrap: [AppComponent]
+    HttpServiceRegistryModule,
+    RouterModule.forRoot(myRoots)
+  ],
+  providers: [],
+  bootstrap: [AppComponent],
+  exports: [HttpServiceRegistryModule]
 })
 export class AppModule { }

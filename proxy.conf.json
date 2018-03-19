@@ -1,0 +1,10 @@
+{
+  "/mdservice": {
+    "target": "http://localhost:5000",
+    "pathRewrite": {
+      "^/mdservice": ""
+    },
+    "secure": false,  
+    "logLevel": "info"
+  }
+}
