@@ -23,7 +23,9 @@
       "styles": [
         "sass_styles/style.scss",
         "../node_modules/datatables.net-dt/css/jquery.dataTables.css",
-        "../node_modules/font-awesome/scss/font-awesome.scss"
+        "../node_modules/font-awesome/scss/font-awesome.scss",
+        "../node_modules/primeng/resources/themes/omega/theme.css",
+        "../node_modules/primeng/resources/primeng.min.css"
       ],
       "stylePreprocessorOptions": {
         "includePaths": [
