@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -10,11 +11,14 @@ import { AppComponent } from './app.component';
 import { AppNavbarComponent } from './app-navbar/app-navbar.component';
 import { AppFooterComponent } from './app-footer/app-footer.component';
 import { AppHomeComponent } from './app-home/app-home.component';
+import { LoginNavItem } from './app-navbar/login-navitem.component';
 
 import { ContactUsModule } from './contact-us/contact-us.module';
 import { ScheduleModule } from './schedule/schedule.module';
 
 import { HttpServiceRegistryModule } from './http-service-registry/http-service-registry.module';
+
+import { AppUtilityModule } from './app-utility/app-utility.module';
 
 import { SideBarComponent } from './common-exam/side-bar/side-bar.component';
 import { ExamDetailComponent } from './common-exam/exam-detail/exam-detail.component';
@@ -32,6 +36,16 @@ import {FileUploadModule} from 'primeng/fileupload';
 import { HttpClientModule } from '@angular/common/http';
 import { TableModule } from 'primeng/table';
 import { QuestionpaperService } from './mdsportal.services/questionpaper.service'; 
+
+import {LoginUserModule } from './login-user/login-user.module';
+import {RegisterUserModule} from './register-user/register-user.module';
+import {UserProfileModule} from './user-profile/user-profile.module';
+
+import { GuardHubModule } from './guard-hub/guard-hub.module';
+import { AuthGuard } from './guard-hub/auth/auth.guard';
+import { ViewResolve } from './guard-hub/resolve/view.resolve';
+
+import { ViewUserGuard } from './guard-hub/view-user/view-user.guard';
 
 const myRoots: Routes = [
   {
@@ -52,15 +66,7 @@ const myRoots: Routes = [
     path: 'schedule-pp-books',
     loadChildren: 'app/schedule/schedule.module#ScheduleModule'
   },
-  { path: '', component: AppHomeComponent },
-  {
-    path: 'register/user',
-    loadChildren: 'app/register-user/register-user.module#RegisterUserModule'
-  },
-  {
-    path: 'login/user',
-    loadChildren: 'app/login-user/login-user.module#LoginUserModule'
-  },
+  { path: '', component: AppHomeComponent },  
   {
     path: 'payment',
     loadChildren: 'app/payment/payment.module#PaymentModule'
@@ -81,7 +87,7 @@ const myRoots: Routes = [
   {
     path: 'demo-exam',
     loadChildren: 'app/demo-exam/demo-exam.module#DemoExamModule'
-  },
+  } 
 ];
 
 
@@ -89,14 +95,21 @@ const myRoots: Routes = [
   declarations: [
     AppComponent,
     AppNavbarComponent,
-    AppFooterComponent, 
-    AppHomeComponent, 
+    AppFooterComponent,
+    AppHomeComponent,
+    LoginNavItem,
     QuestionpaperComponent
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     DataTablesModule,
+    AppUtilityModule,
     HttpModule,
+    LoginUserModule,
+    RegisterUserModule,
+    UserProfileModule,
+    GuardHubModule,
     NgbModule.forRoot(),
     Ng4LoadingSpinnerModule.forRoot(),
     RouterModule.forRoot(myRoots),

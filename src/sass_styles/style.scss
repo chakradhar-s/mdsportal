@@ -6,6 +6,7 @@
 @import "~compass-mixins/lib/animate";
 @import "~bootstrap/scss/bootstrap";
 @import "~perfect-scrollbar/src/css/main";
+@import "~bootstrap/scss/mixins/breakpoints";
 @import "mixins/background";
 @import "mixins/animation";
 @import "mixins/font_import";
@@ -24,5 +25,9 @@
 @import "components/cards";
 @import "components/tables";
 @import "components/ChartJs";
+@import "components/dropdowns";
 @import "themes";
 @import "papertiger.scss";
+@import "form-error.scss";
+@import "login-nav.scss";
+@import "responsive";

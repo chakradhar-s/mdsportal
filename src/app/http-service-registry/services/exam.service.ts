@@ -10,10 +10,10 @@ import { Http, Response, RequestOptions, Headers } from '@angular/http';
 @Injectable()
 export class ExamService {
 
-  // private _localHost: string = "http://localhost:5000/mdservice";
+  private _localHost: string = "http://localhost:5000/";
   //private _localHost: string = "http://localhost:62699/mdservice";
-  private _localHost: string = "/mdservice";
-  private _activeQuestionPaper_id: string = "51b60fc8-df2d-2dd2-0ab3-b5ee1b2b8060"; // here need to keep active question_paper_id during deployment
+  //private _localHost: string = "/mdservice";
+  private _activeQuestionPaper_id: string = "0fbb86f6-cece-4c32-b795-4ecae57080e7"; // here need to keep active question_paper_id during deployment
   // private _activeQuestionPaper_id : string = "8d695fb2-d0b7-0ac8-087a-ae11eca6e346";
 
   constructor(private http: Http) { }
@@ -22,7 +22,7 @@ export class ExamService {
 
     const headers = new Headers();
     headers.append('Content-Type', 'application/vnd.api+json');
-    return this.http.get(this._localHost + '/api/DemoExam/GetQuestionPaper/' + this._activeQuestionPaper_id,
+    return this.http.get(this._localHost + 'mdservice/api/DemoExam/GetQuestionPaper/' + this._activeQuestionPaper_id,
       new RequestOptions({ headers: headers }))
       .map((response: Response) => {
         let rslt = response.json();

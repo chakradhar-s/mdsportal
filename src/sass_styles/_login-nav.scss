@@ -1,0 +1,103 @@
+
+@include media-breakpoint-down(xl) {	
+	.user-area {
+		padding-right: 20px;
+		width: initial !important;
+		.user-info {
+			display: none;
+		}
+	}
+}
+
+@include media-breakpoint-down(lg) {	
+	.user-area {
+		padding-right: 20px;
+		width: initial !important;
+		.user-info {
+			display: none;
+		}
+	}	
+}
+
+.user-area {
+    float: right;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    > a:before {
+        content: "\f0d7";        
+        background: #f1f2f7;
+        border-radius: 50%;
+        color: #8c8c8c;
+        font-size: 11px;
+        height: 20px;
+        width: 20px;
+        line-height: 23px;
+        text-align: center;
+        right: 0;
+        top: 50%;
+        margin-top: -11px;
+        position: absolute;
+    }
+    .user-menu {
+        background: #fff;
+        font-family: 'Open Sans';
+        top: 40px;
+        height: auto;
+        opacity: 0;
+        margin: 0;
+        padding: 15px 10px 10px;
+        position: absolute;
+        width: 100%;
+        z-index: 999;
+        right: 0;
+        min-width: 150px;
+
+        -webkit-transition: all .25s ease;
+        -moz-transition: all .25s ease;
+        -ms-transition: all .25s ease;
+        -o-transition: all .25s ease;
+        transition: all .25s ease;
+        li {
+            display: block;
+            font-size: 14px;
+            line-height: 22px;
+            padding: 5px 0;
+            a {
+                color: #010101;
+                font-size: 14px;
+            }
+        }
+    }
+    &:hover {
+        overflow: visible;
+        .user-menu {
+            opacity: 1;
+        }
+    }
+    .user-avatar {
+        float: right;
+        margin-right: 35px;
+        width: 40px;
+    }
+    .user-info .name {
+        color: #8c8c8c;
+        font-size: 14px;
+        position: relative;
+        text-transform: uppercase;
+    }
+    .count {
+        background: #d9534f;
+        border-radius: 50%;
+        color: #fff;
+        font-family: 'Open Sans';
+        font-size: 9px;
+        font-weight: 700;
+        float: right;
+        height: 20px;
+        width: 20px;
+        line-height: 20px;
+        text-align: center;
+    }
+}
+
