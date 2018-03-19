@@ -15,6 +15,7 @@ export class AppNavbarComponent implements OnInit {
   public loggedIn: boolean;
   public profileaccordion: ProfileAccordion;
   public isLoginPage: boolean = false;
+  public userName: string = "";
 
   private readonly _defaultNav: Nav[];
   private readonly _studentNav: Nav[];
@@ -53,7 +54,7 @@ export class AppNavbarComponent implements OnInit {
 
     this._login.pageRedirectedToLogin.subscribe((loginPage) => {
       this.isLoginPage = loginPage;
-    });
+    });   
 
     this._login.userType.subscribe((uType) => {
       this._userType = uType;
@@ -70,6 +71,7 @@ export class AppNavbarComponent implements OnInit {
           this.nav = this._studentNav.slice(0, this._studentNav.length);
         }
         this.fillUserProfile();
+        this.userName=this._login.userProfile.user.firstName;
       }
       else if (!this.loggedIn) {
         this.nav = this._defaultNav.slice(0, this._defaultNav.length);
@@ -108,5 +110,44 @@ export class AppNavbarComponent implements OnInit {
   public unfillUserProfile() {
     this.profileaccordion = { image_default: true, image_path: "", nav_items: [{ link: '', exact: false, name: '' }] };
   }
+
+  public toggleTop(event) {
+
+    const parent = this.getClosest(event.currentTarget, "html");
+    if (event.currentTarget.classList.contains("toggled")) {
+      event.currentTarget.classList.remove("toggled");
+      parent.classList.remove("topbar_open");
+    }
+    else {
+      event.currentTarget.classList.add("toggled");
+      parent.classList.add("topbar_open");
+    }
+
+  }
+
+  private getClosest(elem, selector) {
+    // Element.matches() polyfill
+    if (!Element.prototype.matches) {
+      Element.prototype.matches =
+        Element.prototype['matchesSelector'] ||
+        Element.prototype['mozMatchesSelector'] ||
+        Element.prototype.msMatchesSelector ||
+        Element.prototype['oMatchesSelector'] ||
+        Element.prototype.webkitMatchesSelector ||
+        function (s) {
+          var matches = (this.document || this.ownerDocument).querySelectorAll(s),
+            i = matches.length;
+          while (--i >= 0 && matches.item(i) !== this) { }
+          return i > -1;
+        };
+    }
+
+    // Get the closest matching element
+    for (; elem && elem !== document; elem = elem.parentNode) {
+      if (elem.matches(selector)) return elem;
+    }
+    return null;
+
+  };
 
 }

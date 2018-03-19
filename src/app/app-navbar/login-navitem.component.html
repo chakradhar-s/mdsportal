@@ -1,7 +1,7 @@
 <li class="nav-item dropdown">
-  <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
+  <a class="dropdown-toggle profile-pic" data-toggle="dropdown" aria-expanded="false">
     <img src="{{profileDetails.image_path}}" alt="user-img" width="36" class="img-circle">
-    <span>Hizrian</span>
+    <span>{{userName||''}}</span>
   </a>
   <ul class="dropdown-menu dropdown-user">
     <li>
@@ -17,9 +17,9 @@
       </div>
     </li>
     <div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="#" *ngFor="let navItem of profileDetails.nav_items" (click)="takeroute(navItem.link,$event)">
-      <i class="ti-user"></i> {{navItem.name}}</a>   
-    <a class="dropdown-item" href="#"  (click)="logoff()">
+    <a class="dropdown-item" *ngFor="let navItem of profileDetails.nav_items" (click)="takeroute(navItem.link,$event)">
+      <i class="ti-user"></i> {{navItem.name}}</a>
+    <a class="dropdown-item" (click)="logoff()">
       <i class="fa fa-power-off"></i> Logout</a>
   </ul>
   <!-- /.dropdown-user -->

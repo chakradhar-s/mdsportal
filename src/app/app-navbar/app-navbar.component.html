@@ -34,7 +34,7 @@
       aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button> -->
-    <button class="topbar-toggler more">
+    <button class="topbar-toggler more" (click)="toggleTop($event)">
       <i class="fa fa-ellipsis-v"></i>
     </button>
   </div>
@@ -47,7 +47,7 @@
         </a>
       </div>
       <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
-        <app-login-item *ngIf="loggedIn" [profileDetails]="profileaccordion"></app-login-item>
+        <app-login-item *ngIf="loggedIn" [profileDetails]="profileaccordion" [userName]="userName"></app-login-item>
       </ul>
     </div>
   </nav>

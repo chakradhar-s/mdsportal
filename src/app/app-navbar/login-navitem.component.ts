@@ -14,6 +14,9 @@ import { Router, ActivatedRoute, Params, NavigationExtras } from '@angular/route
 export class LoginNavItem {
   @Input()
   profileDetails: ProfileAccordion;
+
+  @Input()
+  userName: string;
   
   constructor(private route: ActivatedRoute,
     private router: Router,private _login: LoginService ) {
