@@ -112,7 +112,6 @@ export class RegisterUserComponent implements OnInit, AfterViewInit {
 
       }, (error) => {
         this.spinnerService.hide();
-
       }, () => {
         this.spinnerService.hide();
         console.log({ userName: this.registerForm.get('emailId').value, password: this.registerForm.get('password').value });

@@ -5,11 +5,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UserProfileRoutingModule } from './user-profile-routing.module';
 import { ProfileComponent } from './profile/profile.component';
 
+import { GuardHubModule } from '../guard-hub/guard-hub.module';
+
 @NgModule({
   imports: [
     CommonModule,
     UserProfileRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    GuardHubModule
   ],
   declarations: [ProfileComponent]
 })

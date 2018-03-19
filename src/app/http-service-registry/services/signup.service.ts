@@ -26,15 +26,26 @@ export class SignUpService {
     //private _proxyHost: string = "/";   
 
     registerUser(user: Registration) {
-
         const headers = new Headers();
-        headers.append('Content-Type', 'application/vnd.api+json');
+        headers.append('Content-Type', 'application/json');
         if (window.localStorage.getItem('jwt-access-mds')) {
             let rslt = JSON.parse(window.localStorage.getItem('jwt-access-mds'));
             headers.append('Authorization', 'bearer ' + rslt.access_token);
         }
         return this.http.post(`${this._proxyHost}/mdservice/api/Users`,
-            JSON.stringify(user),
+            JSON.stringify({
+                firstName: user.firstName,
+                lastName: user.lastName,
+                collegeName: user.collegeName,
+                emailId: user.emailId,
+                whatsAPPNumber: user.whatsAPPNumber,
+                mobileNumber: user.mobileNumber,
+                referencedBy: user.referencedBy,
+                password: user.password,
+                state: user.state,
+                sYear: user.sYear,
+                AcceptedAgreement: user['declarationAcceptance']['is_accepted']
+            }),
             new RequestOptions({ headers: headers })).map((response: Response) => {
                 return response.json();
             }).catch((error) => {

@@ -29,7 +29,7 @@ export class AppNavbarComponent implements OnInit {
     { exact: true, link: '/s-strategy', name: 'svc' },
     { exact: true, link: '/demo-exam', name: 'Demo Exam' },
     { exact: true, link: '/contactus', name: 'Contact Us' },
-    { exact: true, link: '/login/user', name: 'Login' }
+    { exact: true, link: '/login', name: 'Login' }
     ];
 
     this._studentNav = [{ exact: true, link: '/home', name: 'Home' },

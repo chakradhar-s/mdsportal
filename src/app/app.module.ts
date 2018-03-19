@@ -27,6 +27,10 @@ import { HttpModule } from '@angular/http';
 
 import { DataTablesModule } from 'angular-datatables';
 
+import {LoginUserModule } from './login-user/login-user.module';
+import {RegisterUserModule} from './register-user/register-user.module';
+import {UserProfileModule} from './user-profile/user-profile.module';
+
 import { GuardHubModule } from './guard-hub/guard-hub.module';
 import { AuthGuard } from './guard-hub/auth/auth.guard';
 import { ViewResolve } from './guard-hub/resolve/view.resolve';
@@ -52,15 +56,7 @@ const myRoots: Routes = [
     path: 'schedule-pp-books',
     loadChildren: 'app/schedule/schedule.module#ScheduleModule'
   },
-  { path: '', component: AppHomeComponent },
-  {
-    path: 'register/user',
-    loadChildren: 'app/register-user/register-user.module#RegisterUserModule'
-  },
-  {
-    path: 'login/user',
-    loadChildren: 'app/login-user/login-user.module#LoginUserModule'
-  },
+  { path: '', component: AppHomeComponent },  
   {
     path: 'payment',
     loadChildren: 'app/payment/payment.module#PaymentModule'
@@ -76,14 +72,7 @@ const myRoots: Routes = [
   {
     path: 'demo-exam',
     loadChildren: 'app/demo-exam/demo-exam.module#DemoExamModule'
-  },
-  {
-    path: 'view-user/:id',
-    loadChildren: 'app/user-profile/user-profile.module#UserProfileModule',
-    canLoad: [AuthGuard],
-    canActivate: [ViewUserGuard],
-    resolve: { user: ViewResolve }
-  },
+  } 
 ];
 
 
@@ -101,6 +90,9 @@ const myRoots: Routes = [
     DataTablesModule,
     AppUtilityModule,
     HttpModule,
+    LoginUserModule,
+    RegisterUserModule,
+    UserProfileModule,
     GuardHubModule,
     NgbModule.forRoot(),
     Ng4LoadingSpinnerModule.forRoot(),

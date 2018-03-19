@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   register() {
-    this.router.navigate(['/register/user'], { replaceUrl: true });
+    this.router.navigate(['/register'], { replaceUrl: true });
   }
 
   onSubmit() {

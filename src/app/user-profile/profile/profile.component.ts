@@ -109,4 +109,8 @@ export class ProfileComponent implements OnInit {
   cancel() {
     this.router.navigate(['/home']);
   }
+
+  managePassword(){
+    
+  }
 }

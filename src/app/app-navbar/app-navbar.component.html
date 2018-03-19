@@ -28,24 +28,25 @@
             stroke="none" fill="#ffad00" fill-rule="evenodd" />
         </g>
       </svg> -->
+      DEV
     </a>
-    <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-controls="sidebar"
+    <!-- <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-controls="sidebar"
       aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
-    </button>
+    </button> -->
     <button class="topbar-toggler more">
-      <i class="la la-ellipsis-v"></i>
+      <i class="fa fa-ellipsis-v"></i>
     </button>
   </div>
   <nav class="navbar navbar-header navbar-expand-lg">
     <div class="container-fluid">
+      <div class=".col-sm-2" *ngFor="let navItem of nav;let i = index">
+        <a [routerLink]="navItem.link" routerLinkActive="w--current" [routerLinkActiveOptions]=" {exact:navItem.exact}" class="nav-link">
+          {{navItem.name}}
+          <!-- <div class="bar--purple link__bar "></div> -->
+        </a>
+      </div>
       <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
-        <li class="nav__item" *ngFor="let navItem of nav;let i = index">
-          <a [routerLink]="navItem.link" routerLinkActive="w--current" [routerLinkActiveOptions]=" {exact:navItem.exact}" class="nav__link w-inline-block">
-            <div>{{navItem.name}}</div>
-            <div class="bar--purple link__bar "></div>
-          </a>
-        </li>
         <app-login-item *ngIf="loggedIn" [profileDetails]="profileaccordion"></app-login-item>
       </ul>
     </div>

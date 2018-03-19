@@ -9,8 +9,7 @@ import { LoginGuard } from '../guard-hub/login/login.guard';
 
 const routes: Routes = [
 
-  { path: "", component: LoginComponent, canDeactivate: [LoginGuard] },
-
+  { path: "login", component: LoginComponent, canDeactivate: [LoginGuard] },
   { path: "forgot_password", component: ForgotPasswordComponent, canDeactivate: [LoginGuard] },
   { path: "password_link", component: PasswordLinkComponent, canDeactivate: [LoginGuard] }
 
