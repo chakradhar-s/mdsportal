@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { FormBuilder, FormGroup, FormArray, Validators, AbstractControl } from '@angular/forms';
@@ -7,6 +8,8 @@ import { FormBuilder, FormGroup, FormArray, Validators, AbstractControl } from '
 import { UserLoginValidators } from '../../login-user/login/login-user.validators';
 import { LoginService } from '../../http-service-registry/services/login-service.service';
 import { SignUpService } from '../../http-service-registry/services/signup.service';
+
+import { Registration } from '../../models/registration.interface';
 
 @Component({
   selector: 'app-profile',
@@ -16,6 +19,8 @@ import { SignUpService } from '../../http-service-registry/services/signup.servi
 export class ProfileComponent implements OnInit {
 
   public profileForm = this.fb.group({
+    userId: ['',
+      [Validators.required]],
     firstName: ['',
       [Validators.required]],
     lastName: ['',
@@ -39,16 +44,26 @@ export class ProfileComponent implements OnInit {
     emailId: ['',
       [Validators.required,
       UserLoginValidators.validEmailId]
-    ],
-    declarationAcceptance: this.fb.group({
-      is_accepted: [false, [Validators.required, this.userAcceptance.bind(this)]]
-    })
+    ]
   });
 
-  constructor(private router: Router, private spinnerService: Ng4LoadingSpinnerService, private fb: FormBuilder, private login: LoginService, private signup: SignUpService) {
+  constructor(private router: Router, private route: ActivatedRoute, private spinnerService: Ng4LoadingSpinnerService, private fb: FormBuilder, private login: LoginService, private signup: SignUpService) {
 
   }
+
   ngOnInit() {
+    this.route.data.subscribe((data) => {
+      const user = data["user"];    
+      this.profileForm.get('userId').setValue(user.userId);
+      this.profileForm.get('firstName').setValue(user.firstName);
+      this.profileForm.get('lastName').setValue(user.lastName);
+      this.profileForm.get('collegeName').setValue(user.collegeName);
+      this.profileForm.get('sYear').setValue(user.sYear);
+      this.profileForm.get('state').setValue(user.referredBy);
+      this.profileForm.get('mobileNumber').setValue(user.mobileNumber);
+      this.profileForm.get('whatsAPPNumber').setValue(user.whatsAPPNumber);
+      this.profileForm.get('emailId').setValue(user.emailId);
+    });
   }
   ngAfterViewInit() {
     this.spinnerService.hide();
@@ -77,23 +92,10 @@ export class ProfileComponent implements OnInit {
     );
   }
 
-  userAcceptance(control: AbstractControl) {
-    return control.value ? null : { notaccepted: true };
-  }
-
-  get validAcceptance() {
-    return (
-      this.profileForm.get('declarationAcceptance.is_accepted').hasError('notaccepted') &&
-      this.profileForm.get('declarationAcceptance.is_accepted').dirty &&
-      !this.required("declarationAcceptance.is_accepted")
-    );
-  }
-
-
   onSubmit() {
     if (this.profileForm.valid) {
       this.spinnerService.show();
-      this.signup.registerUser(this.profileForm.value).subscribe((result) => {
+      this.signup.updateRegisterUser(this.profileForm.value).subscribe((result) => {
 
       }, (error) => {
         this.spinnerService.hide();
@@ -104,7 +106,7 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  cancel(){
+  cancel() {
     this.router.navigate(['/home']);
   }
 }

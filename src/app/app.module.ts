@@ -11,7 +11,7 @@ import { AppComponent } from './app.component';
 import { AppNavbarComponent } from './app-navbar/app-navbar.component';
 import { AppFooterComponent } from './app-footer/app-footer.component';
 import { AppHomeComponent } from './app-home/app-home.component';
-import {LoginNavItem} from './app-navbar/login-navitem.component';
+import { LoginNavItem } from './app-navbar/login-navitem.component';
 
 import { ContactUsModule } from './contact-us/contact-us.module';
 import { ScheduleModule } from './schedule/schedule.module';
@@ -26,6 +26,12 @@ import { HttpModule } from '@angular/http';
 
 
 import { DataTablesModule } from 'angular-datatables';
+
+import { GuardHubModule } from './guard-hub/guard-hub.module';
+import { AuthGuard } from './guard-hub/auth/auth.guard';
+import { ViewResolve } from './guard-hub/resolve/view.resolve';
+
+import { ViewUserGuard } from './guard-hub/view-user/view-user.guard';
 
 const myRoots: Routes = [
   {
@@ -72,8 +78,11 @@ const myRoots: Routes = [
     loadChildren: 'app/demo-exam/demo-exam.module#DemoExamModule'
   },
   {
-    path: 'view-user',
-    loadChildren: 'app/user-profile/user-profile.module#UserProfileModule'
+    path: 'view-user/:id',
+    loadChildren: 'app/user-profile/user-profile.module#UserProfileModule',
+    canLoad: [AuthGuard],
+    canActivate: [ViewUserGuard],
+    resolve: { user: ViewResolve }
   },
 ];
 
@@ -92,6 +101,7 @@ const myRoots: Routes = [
     DataTablesModule,
     AppUtilityModule,
     HttpModule,
+    GuardHubModule,
     NgbModule.forRoot(),
     Ng4LoadingSpinnerModule.forRoot(),
     HttpServiceRegistryModule,

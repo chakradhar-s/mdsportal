@@ -8,14 +8,13 @@ import { PasswordLinkComponent } from './password-link/password-link.component';
 import { LoginGuard } from '../guard-hub/login/login.guard';
 
 const routes: Routes = [
-  {
-    path: "", children: [
-      { path: "", component: LoginComponent, canDeactivate: [LoginGuard] },
-      { path: "forgot_password", component: ForgotPasswordComponent, canDeactivate: [LoginGuard]  },
-      { path: "password_link", component: PasswordLinkComponent, canDeactivate: [LoginGuard]  }
-    ],
 
-  }];
+  { path: "", component: LoginComponent, canDeactivate: [LoginGuard] },
+
+  { path: "forgot_password", component: ForgotPasswordComponent, canDeactivate: [LoginGuard] },
+  { path: "password_link", component: PasswordLinkComponent, canDeactivate: [LoginGuard] }
+
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

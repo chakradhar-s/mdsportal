@@ -29,15 +29,51 @@ export class SignUpService {
 
         const headers = new Headers();
         headers.append('Content-Type', 'application/vnd.api+json');
+        if (window.localStorage.getItem('jwt-access-mds')) {
+            let rslt = JSON.parse(window.localStorage.getItem('jwt-access-mds'));
+            headers.append('Authorization', 'bearer ' + rslt.access_token);
+        }
         return this.http.post(`${this._proxyHost}/mdservice/api/Users`,
             JSON.stringify(user),
             new RequestOptions({ headers: headers })).map((response: Response) => {
-               return response.json();               
+                return response.json();
             }).catch((error) => {
                 return Observable.throw(error);
-            });            
+            });
 
     }
 
-    
+    updateRegisterUser(user: Registration) {
+        const headers = new Headers();
+        headers.append('Content-Type', 'application/vnd.api+json');
+        if (window.localStorage.getItem('jwt-access-mds')) {
+            let rslt = JSON.parse(window.localStorage.getItem('jwt-access-mds'));
+            headers.append('Authorization', 'bearer ' + rslt.access_token);
+        }
+        return this.http.put(`${this._proxyHost}/mdservice/api/Users`,
+            JSON.stringify(user),
+            new RequestOptions({ headers: headers })).map((response: Response) => {
+                return response.json();
+            }).catch((error) => {
+                return Observable.throw(error);
+            });
+    }
+
+    getRegisterUser(id: string) {
+        console.log("signup service " + id);
+        const headers = new Headers();
+        headers.append('Content-Type', 'application/vnd.api+json');
+        if (window.localStorage.getItem('jwt-access-mds')) {
+            let rslt = JSON.parse(window.localStorage.getItem('jwt-access-mds'));
+            headers.append('Authorization', 'bearer ' + rslt.access_token);
+        }
+        return this.http.get(`${this._proxyHost}/mdservice/api/Users/${id}`,
+            new RequestOptions({ headers: headers })).map((response: Response) => {
+                return response.json();
+            }).catch((error) => {
+                return Observable.throw(error);
+            });
+    }
+
+
 }

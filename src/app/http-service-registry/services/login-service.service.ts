@@ -25,6 +25,8 @@ export class LoginService {
   private _loginPageRedirection: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private _invalidCredentials: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
+  public isAdmin = false;
+  public isStudent = false;
   constructor(private http: Http, private router: Router) {
 
   }
@@ -50,12 +52,15 @@ export class LoginService {
       let respMes: ResponseMessage = { message: 'logged in successfully', metadata: rslt['id'], status_code: res.status };
       this._userProfile.user = rslt['profile'];
       this._userType.next({ isAdmin: rslt['isAdmin'], isStudent: rslt['isStudent'] });
+      this.isAdmin = rslt['isAdmin'];
+      this.isStudent = rslt['isStudent'];
       this._userToken = rslt['access_token'];
       this._userId.next(rslt['id'] || '');
       window.localStorage.setItem('jwt-access-mds', JSON.stringify(res));
-      this.router.navigate(['/home'], { replaceUrl: true });
+      console.log(new Date(), "login service");
+      this.router.navigate([`/view-user/${rslt['id']}`], { replaceUrl: true });
       this._loginPageRedirection.next(false);
-      window.location.reload();
+      // window.location.reload();
     }, (error) => {
       if (!error['ok'] && error['status'] == 401) {
         this._invalidCredentials.next(true);
@@ -90,7 +95,7 @@ export class LoginService {
   }
 
   get userId() {
-    return this._userType.asObservable();
+    return this._userId.asObservable();
   }
 
   get onLoginFail() {
