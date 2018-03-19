@@ -26,6 +26,16 @@ import { HttpModule } from '@angular/http';
 
 
 import { DataTablesModule } from 'angular-datatables';
+import { QuestionpaperComponent } from './questionpaper/questionpaper.component';
+
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
+import { FileUploadService } from './mdsportal.services/file.upload.service';
+import {FileUploadModule} from 'primeng/fileupload';
+
+import { HttpClientModule } from '@angular/common/http';
+import { TableModule } from 'primeng/table';
+import { QuestionpaperService } from './mdsportal.services/questionpaper.service'; 
 
 import {LoginUserModule } from './login-user/login-user.module';
 import {RegisterUserModule} from './register-user/register-user.module';
@@ -70,6 +80,11 @@ const myRoots: Routes = [
     loadChildren: 'app/s-strategy/s-strategy.module#SStrategyModule'
   },
   {
+ question_upload_feature
+    path: 'question-upload',
+    component: QuestionpaperComponent
+  }
+  {
     path: 'demo-exam',
     loadChildren: 'app/demo-exam/demo-exam.module#DemoExamModule'
   } 
@@ -82,7 +97,8 @@ const myRoots: Routes = [
     AppNavbarComponent,
     AppFooterComponent,
     AppHomeComponent,
-    LoginNavItem
+    LoginNavItem,
+    QuestionpaperComponent
   ],
   imports: [
     BrowserModule,
@@ -96,6 +112,14 @@ const myRoots: Routes = [
     GuardHubModule,
     NgbModule.forRoot(),
     Ng4LoadingSpinnerModule.forRoot(),
+    RouterModule.forRoot(myRoots),
+    BrowserAnimationsModule,
+    FileUploadModule,
+    HttpClientModule,
+    TableModule
+  ],
+  providers: [FileUploadService,QuestionpaperService],
+  bootstrap: [AppComponent]
     HttpServiceRegistryModule,
     RouterModule.forRoot(myRoots)
   ],
