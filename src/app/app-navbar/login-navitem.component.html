@@ -1,18 +1,18 @@
 <li class="nav-item dropdown">
-  <a class="dropdown-toggle profile-pic" data-toggle="dropdown" aria-expanded="false">
+  <a (click)="showStyle = !showStyle;" class="dropdown-toggle profile-pic" aria-expanded="false">
     <img src="{{profileDetails.image_path}}" alt="user-img" width="36" class="img-circle">
     <span>{{userName||''}}</span>
   </a>
-  <ul class="dropdown-menu dropdown-user">
+  <ul [ngClass]="{'show': showStyle,'hide': !showStyle  }"class="dropdown-menu dropdown-user">
     <li>
       <div class="user-box">
         <div class="u-img">
           <img src="{{profileDetails.image_path}}" alt="user">
         </div>
         <div class="u-text">
-          <h4>Hizrian</h4>
+          <h4>{{userName||''}}</h4>
           <p class="text-muted">hello@themekita.com</p>
-          <a href="profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a>
+          <a  class="btn btn-rounded btn-danger btn-sm">View Profile</a>
         </div>
       </div>
     </li>

@@ -17,17 +17,20 @@ export class LoginNavItem {
 
   @Input()
   userName: string;
-  
+
+  public showStyle: boolean = false;
+
   constructor(private route: ActivatedRoute,
-    private router: Router,private _login: LoginService ) {
+    private router: Router, private _login: LoginService) {
 
   }
 
   public takeroute(link, event) {
+    this.showStyle=!this.showStyle;
     this.router.navigate([link]);
   }
 
-  public logoff(){
+  public logoff() {
     this._login.logoff();
   }
 }

@@ -80,10 +80,9 @@ const myRoots: Routes = [
     loadChildren: 'app/s-strategy/s-strategy.module#SStrategyModule'
   },
   {
- question_upload_feature
     path: 'question-upload',
     component: QuestionpaperComponent
-  }
+  },
   {
     path: 'demo-exam',
     loadChildren: 'app/demo-exam/demo-exam.module#DemoExamModule'
@@ -116,14 +115,11 @@ const myRoots: Routes = [
     BrowserAnimationsModule,
     FileUploadModule,
     HttpClientModule,
+    HttpServiceRegistryModule,
+    RouterModule.forRoot(myRoots),
     TableModule
   ],
   providers: [FileUploadService,QuestionpaperService],
-  bootstrap: [AppComponent]
-    HttpServiceRegistryModule,
-    RouterModule.forRoot(myRoots)
-  ],
-  providers: [],
   bootstrap: [AppComponent],
   exports: [HttpServiceRegistryModule]
 })
