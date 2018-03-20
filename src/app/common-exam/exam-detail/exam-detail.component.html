@@ -2,22 +2,37 @@
   Exam details
 </h1>
 <div class="scroll-bar-div">
-<fieldset *ngIf="Question">
-  <legend>{{Question.questions.question_text}}</legend>
-  <!-- <input type="radio" value="test"/> -->
-  <span *ngFor="let option of Question.questions.optionSet">
-  <div class="radio radio-primary" >
-    <input type="radio" name="radio1" id="{{option.option_id}}" value="{{option.option_id}}" (change)="setAnswer(option)">
-    <label for="{{option.option_id}}">
-      {{option.option_text}}
-    </label>
-  </div>
-</span>
-  <!-- <div class="radio radio-primary">
+  <fieldset *ngIf="Question">
+    <legend>{{Question.questions.question_text}}</legend>
+    <!-- <input type="radio" value="test"/> -->
+    <span *ngFor="let option of Question.questions.optionSet">
+      <div class="radio radio-primary">
+
+        <!-- <span *ngIf="Question.selectedAnswer == null"> -->
+          <input type="radio" name="radio1" 
+            id="{{option.option_id}}" 
+            [value]="option.option_id" 
+            
+            (change)="setAnswer(option)">
+        <!-- </span> -->
+
+        <!-- <span *ngIf="Question.selectedAnswer">
+          <input type="radio" name="radio1" id="{{option.option_id}}" 
+          [value]="option.option_id"
+          [checked]="Question.selectedAnswer.selectedOptionId == option.option_id" 
+            (change)="setAnswer(option)">
+        </span> -->
+
+        <label for="{{option.option_id}}">
+          {{option.option_text}}
+        </label>
+      </div>
+    </span>
+    <!-- <div class="radio radio-primary">
     <input type="radio" name="radio1" id="radio2" value="option2">
     <label for="radio2">
       Small
     </label>
   </div> -->
-</fieldset>
+  </fieldset>
 </div>

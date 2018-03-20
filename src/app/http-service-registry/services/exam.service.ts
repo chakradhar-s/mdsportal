@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { QuestionSet, QuestionOutput, QuestionResult } from '../../models/question-set';
-import { QUESTION_SET } from '../../models/mock-content';
+// import { QUESTION_SET } from '../../models/mock-content';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import 'rxjs/add/operator/map';
@@ -16,9 +16,9 @@ export class ExamService {
   // private _localHost: string = "http://localhost:5000/mdservice";
   private _localHost: string = "http://localhost:62699/mdservice";
   // private _localHost: string = "/mdservice";
-  private _activeQuestionPaper_id: string = "19e77789-3537-e1cb-c6c1-9e6fe5d263af"; // here need to keep active question_paper_id during deployment
+  private _activeQuestionPaper_id: string = "0fbb86f6-cece-4c32-b795-4ecae57080e7"; // here need to keep active question_paper_id during deployment
   // private _activeQuestionPaper_id : string = "0fbb86f6-cece-4c32-b795-4ecae57080e7";
-  private _activeSession_id: string = "d91bc146-7252-7442-4f2b-94eb16f00899";
+  private _activeSession_id: string = "1908d1b0-276e-11e8-bd47-0252c1ad21ae";
   private _testObservable : Observable<QuestionOutput[]>;
 
   constructor(private http: Http) { }
@@ -45,7 +45,7 @@ export class ExamService {
     let d = this.getQuestions()
       .map(x =>
         x.map(j =>
-          j.questionResult.findIndex (x => x.question_id == ques_id)
+          j.questionResult.findIndex (x => x.questionId == ques_id)
           
           // .map(q => {
           //   if (q.question_id == ques_id) {
@@ -61,7 +61,7 @@ export class ExamService {
       .map(res => {
         let q = res.map(d => {
           debugger;
-          return d.questionResult.find(j => j.question_id == id)
+          return d.questionResult.find(j => j.questionId == id)
         });
         return q[0];
         //  let ar =  res.forEach(item => {

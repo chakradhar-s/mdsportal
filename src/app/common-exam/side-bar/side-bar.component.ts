@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { QuestionSet, QuestionOutput } from '../../models/question-set';
+import { QuestionSet, QuestionOutput, QuestionResult } from '../../models/question-set';
 import { Observable } from 'rxjs/Observable';
 import { DataService } from '../../http-service-registry/services/data.service';
 
@@ -10,7 +10,7 @@ import { DataService } from '../../http-service-registry/services/data.service';
 })
 export class SideBarComponent implements OnInit {
  @Input() Questions : QuestionOutput[];
- SelectedQuestion : QuestionOutput;
+ SelectedQuestion : QuestionResult;
 
   constructor(private data : DataService) { }
 
@@ -20,7 +20,7 @@ export class SideBarComponent implements OnInit {
     console.log('side bar logged ' + this.Questions);
   }
 
-  setSelected(question : QuestionOutput ) : void {
+  setSelected(question : QuestionResult ) : void {
     console.log('side bar selected ' + question);
     // this.SelectedQuestion = question;
     this.data.changeQuestion(question);

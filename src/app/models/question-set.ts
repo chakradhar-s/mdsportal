@@ -14,10 +14,11 @@ export class OptionSet {
     public option_id: string;
     public question_id: string;
     public option_text: string;
+    public option_checked : boolean;
 }
 
 export class QuestionResult {
-    public question_id: string;
+    public questionId: string;
     public questions: QuestionSet;
     public selectedAnswer: RelExamAnswer;
 }
