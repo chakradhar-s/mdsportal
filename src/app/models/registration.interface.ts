@@ -8,5 +8,6 @@ export interface Registration {
     mobileNumber: string | null,
     whatsAPPNumber: string | null,
     emailId: string | null,
-    password: string | null
+    password: string | null,
+    userId: string | null
 }

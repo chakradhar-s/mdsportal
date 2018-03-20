@@ -9,7 +9,7 @@ import { ViewUserGuard } from '../guard-hub/view-user/view-user.guard';
 
 const routes: Routes = [
   {
-    path: 'view-user/:id',
+    path: 'view-users/:id',
     component: ProfileComponent,
     canLoad: [AuthGuard],
     canActivate: [ViewUserGuard],

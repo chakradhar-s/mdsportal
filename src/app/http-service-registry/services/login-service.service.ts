@@ -18,7 +18,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 @Injectable()
 export class LoginService {
 
-  private _userProfile: Profile = { user: { collegeName: '', emailId: '', firstName: '', lastName: '', mobileNumber: '', state: '', password: '', referencedBy: '', sYear: null, whatsAPPNumber: '' } };
+  private _userProfile: Profile = { user: { userId: '', collegeName: '', emailId: '', firstName: '', lastName: '', mobileNumber: '', state: '', password: '', referencedBy: '', sYear: null, whatsAPPNumber: '' } };
   private _userToken: string = "";
   private _userType: BehaviorSubject<UserType> = new BehaviorSubject<UserType>({ isAdmin: false, isStudent: false });
   private _userId: BehaviorSubject<string> = new BehaviorSubject<string>('');
@@ -51,6 +51,7 @@ export class LoginService {
       let rslt = res;
       let respMes: ResponseMessage = { message: 'logged in successfully', metadata: rslt['id'], status_code: res.status };
       this._userProfile.user = rslt['profile'];
+      this._userProfile.user.userId = rslt['id'] || '';
       this._userType.next({ isAdmin: rslt['isAdmin'], isStudent: rslt['isStudent'] });
       this.isAdmin = rslt['isAdmin'];
       this.isStudent = rslt['isStudent'];
@@ -58,7 +59,7 @@ export class LoginService {
       this._userId.next(rslt['id'] || '');
       window.localStorage.setItem('jwt-access-mds', JSON.stringify(res));
       console.log(new Date(), "login service");
-      this.router.navigate([`/view-user/${rslt['id']}`], { replaceUrl: true });
+      this.router.navigate(['view-users', rslt['id']], { replaceUrl: true });
       this._loginPageRedirection.next(false);
       // window.location.reload();
     }, (error) => {
@@ -132,7 +133,7 @@ export class LoginService {
   logoff() {
     window.localStorage.setItem('jwt-access-mds', '{}');
     this._userId.next('');
-    this._userProfile.user = { collegeName: '', emailId: '', firstName: '', lastName: '', mobileNumber: '', password: '', referencedBy: '', sYear: null, state: '', whatsAPPNumber: '' };
+    this._userProfile.user = { userId: '', collegeName: '', emailId: '', firstName: '', lastName: '', mobileNumber: '', password: '', referencedBy: '', sYear: null, state: '', whatsAPPNumber: '' };
     this._userType.next({ isAdmin: false, isStudent: false });
     this._userToken = '';
     this._userId.next('');

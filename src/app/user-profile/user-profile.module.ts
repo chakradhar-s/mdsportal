@@ -6,13 +6,15 @@ import { UserProfileRoutingModule } from './user-profile-routing.module';
 import { ProfileComponent } from './profile/profile.component';
 
 import { GuardHubModule } from '../guard-hub/guard-hub.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
     CommonModule,
     UserProfileRoutingModule,
     ReactiveFormsModule,
-    GuardHubModule
+    GuardHubModule,
+    NgbModule
   ],
   declarations: [ProfileComponent]
 })

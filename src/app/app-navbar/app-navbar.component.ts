@@ -4,6 +4,8 @@ import { LoginService } from '../http-service-registry/services/login-service.se
 import { UserType } from '../models/user.type.interface';
 import { ProfileAccordion } from '../models/profile-accordion.interface';
 
+import { Registration } from '../models/registration.interface';
+
 @Component({
   selector: 'app-app-navbar',
   templateUrl: './app-navbar.component.html',
@@ -15,7 +17,7 @@ export class AppNavbarComponent implements OnInit {
   public loggedIn: boolean;
   public profileaccordion: ProfileAccordion;
   public isLoginPage: boolean = false;
-  public userName: string = "";
+  public userName: Registration;
 
   private readonly _defaultNav: Nav[];
   private readonly _studentNav: Nav[];
@@ -71,7 +73,7 @@ export class AppNavbarComponent implements OnInit {
           this.nav = this._studentNav.slice(0, this._studentNav.length);
         }
         this.fillUserProfile();
-        this.userName=this._login.userProfile.user.firstName;
+        this.userName=this._login.userProfile.user;
       }
       else if (!this.loggedIn) {
         this.nav = this._defaultNav.slice(0, this._defaultNav.length);
