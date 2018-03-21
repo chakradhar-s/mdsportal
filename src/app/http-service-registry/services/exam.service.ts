@@ -53,10 +53,9 @@ export class ExamService {
     headers.append('Content-Type', 'application/vnd.api+json');
     return this.http.get(this._localHost + '/api/DemoExam/GetQuestionPaperCombo/',
       new RequestOptions({ headers: headers }))
-      .map((response: Response) => {
-        let rslt = response.json();
-        return rslt;
-      })
+      .map((response: Response) =>
+        response.json()
+      )
       .catch((error) =>
         Observable.throw(error)
       );

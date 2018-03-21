@@ -22,6 +22,7 @@ import { HttpModule } from '@angular/http';
 
 
 import { DataTablesModule } from 'angular-datatables';
+import { StartPageComponent } from './common-exam/start/start-page/start-page.component';
 
 const myRoots: Routes = [
   {
@@ -75,7 +76,8 @@ const myRoots: Routes = [
     AppComponent,
     AppNavbarComponent,
     AppFooterComponent,
-    AppHomeComponent
+    AppHomeComponent,
+    StartPageComponent
   ],
   imports: [
     BrowserModule,

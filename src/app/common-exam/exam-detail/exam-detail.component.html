@@ -9,8 +9,7 @@
       <div class="radio radio-primary">
 
         <!-- <span *ngIf="Question.selectedAnswer == null"> -->
-          <input type="radio" name="radio1" formControlName="selectedOptionId"
-            (change)="setAnswer(option)">
+        <input type="radio" name="radio1" formControlName="selectedOptionId" (change)="setAnswer(option)">
         <!-- </span> -->
 
         <!-- <span *ngIf="Question.selectedAnswer">
@@ -35,39 +34,40 @@
 </div>
 
 <div class="scroll-bar-div" [formGroup]="parent">
-    <div formArrayName="questionAnswer">
-      <div
-        *ngFor="let item of questionanswers; let i = index;">        
-        <fieldset [formGroupName]="i">
-          <legend class="stock-product__name">
-            {{ questionByQuestionId(item.value.questionId) }}
-          </legend>
-          <span *ngFor="let option of questionanswers">
-              <div class="radio radio-primary">
-        
-                <!-- <span *ngIf="Question.selectedAnswer == null"> -->
-                  <input type="radio" name="radio1" formControlName="selectedOptionId"
-                    (change)="setAnswer(option)">
-                <!-- </span> -->
-        
-                <!-- <span *ngIf="Question.selectedAnswer">
+  <div formArrayName="questionAnswer">
+    <div *ngFor="let item of questionanswers; let i = index;">
+      <fieldset [formGroupName]="i">
+        <legend class="stock-product__name">
+          {{ questionByQuestionId(item.value.questionId) }}
+        </legend>
+        <span *ngFor="let option of questionanswers">
+          <div class="radio radio-primary">
+
+            <!-- <span *ngIf="Question.selectedAnswer == null"> -->
+            <input type="radio" name="radio1" formControlName="selectedOptionId" (change)="setAnswer(option)">
+            <!-- </span> -->
+
+            <!-- <span *ngIf="Question.selectedAnswer">
                   <input type="radio" name="radio1" id="{{option.option_id}}" 
                   [value]="option.option_id"
                   [checked]="Question.selectedAnswer.selectedOptionId == option.option_id" 
                     (change)="setAnswer(option)">
                 </span> -->
-        
-                <label for="{{option.option_id}}">
-                  {{option.option_text}}
-                </label>
-              </div>
-            </span>
-          <button 
-            type="button"
-            (click)="onRemove(item, i)">
-            Remove
-          </button>
-        </fieldset>
-      </div>
+
+            <label for="{{option.option_id}}">
+              {{option.option_text}}
+            </label>
+          </div>
+        </span>
+        <button type="button" (click)="onRemove(item, i)">
+          Remove
+        </button>
+      </fieldset>
     </div>
   </div>
+</div>
+
+<div class="row">
+  <button class="btn btn-success" (click)="saveAndNext()">Save and Next</button>
+  <button class="btn btn-warning" (click)="saveAndMark()">Save and mark it for review</button>
+</div>

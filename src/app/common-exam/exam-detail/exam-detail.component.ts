@@ -13,8 +13,6 @@ import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
   styleUrls: ['./exam-detail.component.scss']
 })
 export class ExamDetailComponent implements OnInit {
-  @Input() Questions: QuestionOutput[];
-  @Input() Question: QuestionResult;
   @Input() parent: FormGroup;
   @Input() map: Map<string, QuestionSet>;
 
@@ -33,7 +31,7 @@ export class ExamDetailComponent implements OnInit {
 
   private answers: AnswerSet;
 
-  getSelectedQuestion(): void {
+  /* getSelectedQuestion(): void {
     // const id = +this.route.snapshot.paramMap.get('id');
     // const id = this.route.snapshot.paramMap.get['id'];
     let newQuest = this.dataService.currentQuestion.subscribe(ques => {
@@ -63,7 +61,7 @@ export class ExamDetailComponent implements OnInit {
     // if (this.Question !== null) {
     //   this.service.getSelectedQuestion(this.Question[0].question_id).subscribe(ques => this.Question = ques.questions[0]);
     // }
-  }
+  } */
 
 
 
@@ -77,7 +75,7 @@ export class ExamDetailComponent implements OnInit {
     }
     this.AnswersList.push(answerObj)
     // this.service.updateQuestion(option.question_id, answerObj);
-    this.Question.selectedAnswer = answerObj;
+   // this.Question.selectedAnswer = answerObj;
   }
 
   get questionanswers() {

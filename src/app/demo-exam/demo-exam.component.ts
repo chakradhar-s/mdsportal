@@ -14,10 +14,10 @@ import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 })
 export class DemoExamComponent implements OnInit {
 
-  questions: QuestionOutput[];
-  public selectedQuestion: Observable<QuestionOutput>;
-  public selectedAnswer: RelExamAnswer;
-
+  private questions: QuestionOutput[];
+  //public selectedQuestion: Observable<QuestionOutput>;
+  //public selectedAnswer: RelExamAnswer;
+  public questionAnswerMap: Map<string, QuestionSet>;
 
   form = this.fb.group({
     questionAnswer: this.fb.array([])
@@ -39,7 +39,14 @@ export class DemoExamComponent implements OnInit {
       .subscribe(ques => {
         debugger;
         this.questions = ques;
-        this.questions.forEach(item => this.addQuestionAnswer(item));
+        const ehjd = [];
+        this.questions.forEach(item => {
+          ehjd.push(item.questionResult.map<[string, QuestionSet]>(jr => {
+            return [jr.questionId, jr.questions];
+          }));
+          this.addQuestionAnswer(item);
+        });
+        this.questionAnswerMap = new Map<string, QuestionSet>(ehjd);
         // console.log(this.questions);
         //this.dataService.changeQuestion(this.questions[0]);
       });
@@ -53,15 +60,15 @@ export class DemoExamComponent implements OnInit {
 
   }
 
-  questionChanged(obj: QuestionOutput): void {
+  /* questionChanged(obj: QuestionOutput): void {
     this.selectedQuestion.subscribe();
-  }
+  } */
 
   test(): void {
 
   }
 
-  saveAndNext(): void {
+  /* saveAndNext(): void {
     console.log('save triggered');
     this.dataService.currentAnswer.subscribe(next => this.selectedAnswer = next);
     this.service.insertOrUpdateAnswer(this.selectedAnswer, StatusId.Answered);
@@ -71,12 +78,12 @@ export class DemoExamComponent implements OnInit {
   saveAndMark(): void {
     this.dataService.currentAnswer.subscribe(next => this.selectedAnswer = next);
     this.service.insertOrUpdateAnswer(this.selectedAnswer, StatusId.Marked_For_Review);
-  }
+  } */
 
   addQuestionAnswer(groupedQuestions: QuestionOutput): any {
     const control = this.form.get('questionAnswer') as FormArray;
-    groupedQuestions.questionResult.forEach(item => { 
-      control.push(this.createQuestionMap(item.selectedAnswer)) 
+    groupedQuestions.questionResult.forEach(item => {
+      control.push(this.createQuestionMap(item.selectedAnswer))
     });
   }
 
