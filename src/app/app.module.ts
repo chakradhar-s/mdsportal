@@ -21,7 +21,6 @@ import { HttpServiceRegistryModule } from './http-service-registry/http-service-
 import { AppUtilityModule } from './app-utility/app-utility.module';
 
 import { SideBarComponent } from './common-exam/side-bar/side-bar.component';
-import { ExamDetailComponent } from './common-exam/exam-detail/exam-detail.component';
 import { HttpModule } from '@angular/http';
 
 
