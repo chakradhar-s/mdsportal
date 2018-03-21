@@ -7,13 +7,6 @@
             <h3 class="card-title text-left mb-3">Profile</h3>
             <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
               <div class="row">
-                <div class="col align-self-center">
-                  <p *ngFor="let alert of alerts">
-                    <ngb-alert [type]="alert.type" (close)="closeAlert(alert)">{{ alert.message }}</ngb-alert>
-                  </p>
-                </div>
-              </div>
-              <div class="row">
                 <div class="col-md-6">
                   <div class="form-group row">
                     <label class="col-sm-4 col-form-label">First Name</label>
@@ -119,6 +112,13 @@
                       <input class="form-control p_input" type="text">
                     </div>
                   </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col align-self-center">
+                  <p *ngFor="let alert of alerts">
+                    <ngb-alert [type]="alert.type" (close)="closeAlert(alert)">{{ alert.message }}</ngb-alert>
+                  </p>
                 </div>
               </div>
               <div class="text-center">
