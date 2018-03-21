@@ -4,7 +4,8 @@ import { ExamService } from '../../http-service-registry/services/exam.service';
 import { QuestionSet, OptionSet, QuestionOutput, QuestionResult } from '../../models/question-set';
 import { DataService } from '../../http-service-registry/services/data.service';
 import { AnswerSet } from '../../models/answer-set';
-import { RelExamAnswer } from '../../models/rel-exam-answer';
+import { RelExamAnswer } from '../../models/rel-exam-answer.interface';
+import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'exam-detail',
@@ -14,16 +15,20 @@ import { RelExamAnswer } from '../../models/rel-exam-answer';
 export class ExamDetailComponent implements OnInit {
   @Input() Questions: QuestionOutput[];
   @Input() Question: QuestionResult;
-  public checkedBool : boolean;
+  @Input() parent: FormGroup;
+  @Input() map: Map<string, QuestionSet>;
+
+
+  public checkedBool: boolean;
   public AnswersList: Array<RelExamAnswer> = [];
-  private sessionId : string = "d91bc146-7252-7442-4f2b-94eb16f00899";
+  private sessionId: string = "d91bc146-7252-7442-4f2b-94eb16f00899";
   constructor(private route: ActivatedRoute,
     private service: ExamService,
     private dataService: DataService
-  ) {  }
+  ) { }
 
   ngOnInit() {
-    this.getSelectedQuestion();
+    // this.getSelectedQuestion();
   }
 
   private answers: AnswerSet;
@@ -31,26 +36,26 @@ export class ExamDetailComponent implements OnInit {
   getSelectedQuestion(): void {
     // const id = +this.route.snapshot.paramMap.get('id');
     // const id = this.route.snapshot.paramMap.get['id'];
-    let newQuest = this.dataService.currentQuestion.subscribe(ques =>{ 
-      debugger; 
-      if(ques !== null){
-        let ans : RelExamAnswer;
+    let newQuest = this.dataService.currentQuestion.subscribe(ques => {
+      debugger;
+      if (ques !== null) {
+        let ans: RelExamAnswer;
         this.AnswersList.forEach(element => {
-          if(element.QuestionId == ques.questionId){
+          if (element.questionId == ques.questionId) {
             ans = element;
           }
         });
         // let ans = this.AnswersList.forEach(x => {if(x.QuestionId == ques.question_id) return x;});
         this.Question = ques;
-        if(ans != null){
-        this.Question.selectedAnswer = ans;
-        this.Question.questions.optionSet.forEach(element => {
-          if(element.option_id == ans.SelectedOptionId)
-            element.option_checked = true;
-          else 
-            element.option_checked = false;
-        });
-        // this.Question.questions.optionSet.
+        if (ans != null) {
+          this.Question.selectedAnswer = ans;
+          this.Question.questions.optionSet.forEach(element => {
+            if (element.option_id == ans.selectedOptionId)
+              element.option_checked = true;
+            else
+              element.option_checked = false;
+          });
+          // this.Question.questions.optionSet.
         }
       }
     });
@@ -60,19 +65,31 @@ export class ExamDetailComponent implements OnInit {
     // }
   }
 
-  
 
-  setAnswer(option:OptionSet): void {
+
+  setAnswer(option: OptionSet): void {
     debugger;
-    let answerObj = new RelExamAnswer(this.sessionId ,option.question_id,option.option_id,1); 
+    let answerObj: RelExamAnswer = { questionId: option.question_id, selectedOptionId: option.option_id, selectedOptionStatusId: 1 };
     this.dataService.changeAnswer(answerObj);
-    var answeredIndex  = this.AnswersList.findIndex(x => x.QuestionId == option.question_id);
-    if(answeredIndex >= 0){
-      this.AnswersList.splice(answeredIndex,1);
+    var answeredIndex = this.AnswersList.findIndex(x => x.questionId == option.question_id);
+    if (answeredIndex >= 0) {
+      this.AnswersList.splice(answeredIndex, 1);
     }
-      this.AnswersList.push(answerObj)
+    this.AnswersList.push(answerObj)
     // this.service.updateQuestion(option.question_id, answerObj);
     this.Question.selectedAnswer = answerObj;
+  }
+
+  get questionanswers() {
+    return (this.parent.get('questionAnswer') as FormArray).controls;
+  }
+
+  public questionByQuestionId(questionId: string) {
+    this.map.get(questionId).question_text;
+  }
+
+  public optionsByQuestionId(questionId: string) {
+    this.map.get(questionId).optionSet;
   }
 
 }

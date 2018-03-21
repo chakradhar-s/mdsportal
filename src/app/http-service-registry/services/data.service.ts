@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { QuestionSet, QuestionOutput, QuestionResult } from '../../models/question-set';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 // import { AnswerSet } from '../../models/answer-set';
-import { RelExamAnswer } from '../../models/rel-exam-answer';
+import { RelExamAnswer } from '../../models/rel-exam-answer.interface';
 
 @Injectable()
 export class DataService {
@@ -21,7 +21,7 @@ export class DataService {
 
   changeAnswer(ans : RelExamAnswer){
     debugger;
-    console.log('changed answer to so and so' + ans.QuestionId + '|' + ans.SelectedOptionId);
+    console.log('changed answer to so and so' + ans.questionId + '|' + ans.selectedOptionId);
     this.selectedAnswer.next(ans);
   }
   

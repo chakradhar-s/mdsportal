@@ -2,17 +2,14 @@
   Exam details
 </h1>
 <div class="scroll-bar-div">
-  <fieldset *ngIf="Question">
+  <fieldset *ngIf="parent">
     <legend>{{Question.questions.question_text}}</legend>
     <!-- <input type="radio" value="test"/> -->
-    <span *ngFor="let option of Question.questions.optionSet">
+    <span *ngFor="let option of questionanswers">
       <div class="radio radio-primary">
 
         <!-- <span *ngIf="Question.selectedAnswer == null"> -->
-          <input type="radio" name="radio1" 
-            id="{{option.option_id}}" 
-            [value]="option.option_id" 
-            
+          <input type="radio" name="radio1" formControlName="selectedOptionId"
             (change)="setAnswer(option)">
         <!-- </span> -->
 
@@ -36,3 +33,41 @@
   </div> -->
   </fieldset>
 </div>
+
+<div class="scroll-bar-div" [formGroup]="parent">
+    <div formArrayName="questionAnswer">
+      <div
+        *ngFor="let item of questionanswers; let i = index;">        
+        <fieldset [formGroupName]="i">
+          <legend class="stock-product__name">
+            {{ questionByQuestionId(item.value.questionId) }}
+          </legend>
+          <span *ngFor="let option of questionanswers">
+              <div class="radio radio-primary">
+        
+                <!-- <span *ngIf="Question.selectedAnswer == null"> -->
+                  <input type="radio" name="radio1" formControlName="selectedOptionId"
+                    (change)="setAnswer(option)">
+                <!-- </span> -->
+        
+                <!-- <span *ngIf="Question.selectedAnswer">
+                  <input type="radio" name="radio1" id="{{option.option_id}}" 
+                  [value]="option.option_id"
+                  [checked]="Question.selectedAnswer.selectedOptionId == option.option_id" 
+                    (change)="setAnswer(option)">
+                </span> -->
+        
+                <label for="{{option.option_id}}">
+                  {{option.option_text}}
+                </label>
+              </div>
+            </span>
+          <button 
+            type="button"
+            (click)="onRemove(item, i)">
+            Remove
+          </button>
+        </fieldset>
+      </div>
+    </div>
+  </div>

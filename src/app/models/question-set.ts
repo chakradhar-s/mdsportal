@@ -1,4 +1,4 @@
-import { RelExamAnswer } from "./rel-exam-answer";
+import { RelExamAnswer } from "./rel-exam-answer.interface";
 
 export class QuestionSet {
 

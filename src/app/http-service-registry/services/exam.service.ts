@@ -8,26 +8,50 @@ import 'rxjs/add/operator/catch';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 // import { AnswerSet } from '../../models/answer-set';
 import { HttpClient } from '@angular/common/http';
-import { RelExamAnswer, StatusId } from '../../models/rel-exam-answer';
+import { RelExamAnswer, StatusId } from '../../models/rel-exam-answer.interface';
 
 @Injectable()
 export class ExamService {
 
-  // private _localHost: string = "http://localhost:5000/mdservice";
-  private _localHost: string = "http://localhost:62699/mdservice";
+  private _localHost: string = "http://localhost:5000/mdservice";
+  //private _localHost: string = "http://localhost:62699/mdservice";
   // private _localHost: string = "/mdservice";
   private _activeQuestionPaper_id: string = "0fbb86f6-cece-4c32-b795-4ecae57080e7"; // here need to keep active question_paper_id during deployment
   // private _activeQuestionPaper_id : string = "0fbb86f6-cece-4c32-b795-4ecae57080e7";
-  private _activeSession_id: string = "1908d1b0-276e-11e8-bd47-0252c1ad21ae";
-  private _testObservable : Observable<QuestionOutput[]>;
+  //private _activeSession_id: string = "1908d1b0-276e-11e8-bd47-0252c1ad21ae";
+  private _activeSession_id: string = "";
 
-  constructor(private http: Http) { }
+  private _testObservable: Observable<QuestionOutput[]>;
+
+  constructor(private http: Http, ) { }
+
+  startSession() {
+    const headers = new Headers();
+    if (window.localStorage.getItem('jwt-access-mds')) {
+      let rslt = JSON.parse(window.localStorage.getItem('jwt-access-mds'));
+      headers.append('Authorization', 'bearer ' + rslt.access_token);
+    }
+    headers.append('Content-Type', 'application/vnd.api+json');
+    this.http.post(this._localHost + '/api/exam/startsession',
+      JSON.stringify({ questionPaperId: this._activeQuestionPaper_id, examType: 0 }),
+      new RequestOptions({ headers: headers })).subscribe((resl) => {
+        var result = resl.json();
+        this._activeSession_id = result["exam_token"];
+      }, (error) => {
+
+      }, () => {
+
+      });
+  }
 
   getQuestions(): Observable<QuestionOutput[]> {
 
     const headers = new Headers();
+    if (this._activeSession_id.length > 0) {
+      headers.append('Authorization', 'bearer ' + this._activeSession_id);
+    }
     headers.append('Content-Type', 'application/vnd.api+json');
-    return this.http.get(this._localHost + '/api/DemoExam/GetQuestionPaperCombo/' + this._activeQuestionPaper_id + '/' + this._activeSession_id,
+    return this.http.get(this._localHost + '/api/DemoExam/GetQuestionPaperCombo/',
       new RequestOptions({ headers: headers }))
       .map((response: Response) => {
         let rslt = response.json();
@@ -45,8 +69,8 @@ export class ExamService {
     let d = this.getQuestions()
       .map(x =>
         x.map(j =>
-          j.questionResult.findIndex (x => x.questionId == ques_id)
-          
+          j.questionResult.findIndex(x => x.questionId == ques_id)
+
           // .map(q => {
           //   if (q.question_id == ques_id) {
           //     q.selectedAnswer = ans
@@ -80,7 +104,7 @@ export class ExamService {
     try {
       debugger;
       const headers = new Headers();
-      ans.SelectedOptionStatusId = statusId;
+      ans.selectedOptionStatusId = statusId;
       let data = JSON.stringify(ans);
       headers.append('Content-Type', 'application/vnd.api+json');
       let test = this.http.post(this._localHost + '/api/DemoExam/Save', data,
