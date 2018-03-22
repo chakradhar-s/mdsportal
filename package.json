@@ -10,11 +10,6 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "apps": {
-    "scripts": [
-      "./js_scripts/owl.carousel.min.js"
-    ]
-  },
   "private": true,
   "dependencies": {
     "@angular/animations": "^5.2.5",
@@ -37,6 +32,7 @@
     "ng4-loading-spinner": "^1.1.1",
     "perfect-scrollbar": "0.7.1",
     "popper.js": "^1.13.0",
+    "primeng": "^5.2.0",
     "rxjs": "^5.5.6",
     "vanilla-tilt": "^1.4.1",
     "zone.js": "^0.8.19"

@@ -32,6 +32,7 @@ export class ExamService {
       headers.append('Authorization', 'bearer ' + rslt.access_token);
     }
     headers.append('Content-Type', 'application/vnd.api+json');
+
     this.http.post(this._localHost + '/api/exam/startsession',
       JSON.stringify({ questionPaperId: this._activeQuestionPaper_id, examType: 0 }),
       new RequestOptions({ headers: headers })).subscribe((resl) => {
