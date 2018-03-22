@@ -1,33 +1,39 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
-@import "variables";
+@import "ready/variables";
 @import "~compass-mixins/lib/compass";
 @import "~compass-mixins/lib/animate";
 @import "~bootstrap/scss/bootstrap";
 @import "~perfect-scrollbar/src/css/main";
 @import "~bootstrap/scss/mixins/breakpoints";
-@import "mixins/background";
-@import "mixins/animation";
-@import "mixins/font_import";
-@import "mixins/misc";
-@import "reset";
-@import "sidebar";
-@import "navbar";
-@import "inputs";
-@import "background";
-@import "icons";
-@import "typography";
-@import "reset";
-@import "misc";
-@import "footer";
-@import "layouts";
-@import "components/cards";
-@import "components/tables";
-@import "components/ChartJs";
-@import "components/dropdowns";
-@import "themes";
-@import "papertiger.scss";
-@import "form-error.scss";
-@import "login-nav.scss";
-@import "responsive";
+
+//Mixins
+
+@import "ready/mixins/animation";
+@import "ready/mixins/background";
+@import "ready/mixins/font_import";
+@import "ready/mixins/misc";
+
+//icons
+@import "ready/icons";
+
+//reset
+@import "ready/reset";
+
+//paper tiger
+@import "ready/papertiger";
+
+//layouts
+@import "ready/layouts";
+
+
+//components
+@import "ready/components";
+
+//responsive
+@import "ready/responsive";
+
+@import "ready/form-error";
+@import "ready/login-nav";
+

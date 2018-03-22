@@ -1,4 +1,17 @@
 /*     Responsive     */
+@media screen and (max-width: 700px) {
+  .row-card-no-pd {
+    [class*=col-] .card:after {
+      width: 0px !important;
+    }
+    .card {
+      border-bottom-width: 1px;
+      &:last-child {
+        border-bottom-width: 0px;
+      }
+    }
+  }
+}
 
 @media screen and (min-width: 992px) {
   .main-header .logo-header {
@@ -87,7 +100,7 @@
     border-top: 1px solid #eee;
     position: absolute;
     width: 100%;
-    background: $white;
+    background: $white-color;
     transform: translate3d(0, -200px, 0) !important;
     transition: all .5s;
   }

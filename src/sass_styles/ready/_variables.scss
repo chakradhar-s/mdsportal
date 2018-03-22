@@ -19,15 +19,6 @@ $teal:    #58d8a3;
 $cyan:    #17a2b8;
 $white:   #ffffff;
 
-$body-text-color: #575962;
-$transparent-bg : transparent;
-$default-color : #607D8B;
-$primary-color : #1D62F0;
-$info-color : #23CCEF;
-$success-color : #59d05d;
-$warning-color : #fbad4c;
-$danger-color : #ff646d;
-
 $colors: (
   blue: $blue,
   indigo: $indigo,
@@ -73,6 +64,19 @@ $popins : 'Poppins', sans-serif;
 $source_sans : 'Source Sans Pro', sans-serif;
 $gudea : 'Gudea', sans-serif;
 
+
+//Ready 
+
+$body-text-color: #575962;
+$white-color: #ffffff;
+$black-color: #333333;
+$transparent-bg : transparent;
+$default-color : #607D8B;
+$primary-color : #1D62F0;
+$info-color : #23CCEF;
+$success-color : #59d05d;
+$warning-color : #fbad4c;
+$danger-color : #ff646d;
 
 $font-weight-light : lighter;
 $font-weight-normal : 400;

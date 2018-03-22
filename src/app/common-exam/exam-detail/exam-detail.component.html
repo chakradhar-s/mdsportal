@@ -41,12 +41,14 @@
         <legend>
           {{ questionByQuestionId(item.value.questionId).question_text }}
         </legend>
-        <span *ngFor="let option of optionsByQuestionId(item.value.questionId)">
-          <div class="radio radio-primary">
+        <div class="form-group">
+          <div class="form-radio" *ngFor="let option of optionsByQuestionId(item.value.questionId)">
             <label>
-              <input type="radio" formControlName="selectedOptionId" [value]="option.option_id"> {{option.option_text }}
+              <input formControlName="selectedOptionId" value="{{option.option_id}}" type="radio"> {{option.option_text }}
+              <i class="input-helper"></i>
             </label>
-
+          </div>
+        </div>
             <!-- <span *ngIf="Question.selectedAnswer == null"> -->
 
             <!-- </span> -->
@@ -57,8 +59,7 @@
                   [checked]="Question.selectedAnswer.selectedOptionId == option.option_id" 
                     (change)="setAnswer(option)">
                 </span> -->
-          </div>
-        </span>
+       
         <!-- <button type="button" (click)="onRemove(item, i)">
           Remove
         </button> -->

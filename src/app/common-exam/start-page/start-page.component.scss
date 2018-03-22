@@ -1,0 +1,16 @@
+.content {
+  flex: 1;
+  display: flex;
+  overflow: auto;
+}
+
+.box {
+  min-height: -webkit-min-content;
+  display: flex;
+}
+
+.column {
+  padding: 20px;
+  border-right: 1px solid #999;
+  overflow-y: auto;
+}
