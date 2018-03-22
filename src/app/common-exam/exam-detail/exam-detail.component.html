@@ -38,13 +38,13 @@
   <div formArrayName="questionAnswer">
     <div *ngFor="let item of questionanswers; let i = index;">
       <fieldset [formGroupName]="i">
-        <legend class="stock-product__name">
-          {{ questionByQuestionId(item.value.questionId) }}
+        <legend>
+          {{ questionByQuestionId(item.value.questionId).question_text }}
         </legend>
         <span *ngFor="let option of optionsByQuestionId(item.value.questionId)">
           <div class="radio radio-primary">
             <label>
-              <input type="radio" name="radio1" formControlName="selectedOptionId" [value]="option.value.option_id"> {{option.value.option_text }}
+              <input type="radio" formControlName="selectedOptionId" [value]="option.option_id"> {{option.option_text }}
             </label>
 
             <!-- <span *ngIf="Question.selectedAnswer == null"> -->

@@ -12,6 +12,7 @@ export class SideBarComponent implements OnInit {
  @Input() Questions : QuestionOutput[];
  SelectedQuestion : QuestionResult;
 
+ 
   constructor(private data : DataService) { }
 
   ngOnInit() {

@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/mergeMap';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 // import { AnswerSet } from '../../models/answer-set';
 import { HttpClient } from '@angular/common/http';
@@ -25,7 +26,7 @@ export class ExamService {
 
   constructor(private http: Http, ) { }
 
-  startSession() {
+  startSession(examType: number) {
     const headers = new Headers();
     if (window.localStorage.getItem('jwt-access-mds')) {
       let rslt = JSON.parse(window.localStorage.getItem('jwt-access-mds'));
@@ -33,19 +34,16 @@ export class ExamService {
     }
     headers.append('Content-Type', 'application/vnd.api+json');
 
-    this.http.post(this._localHost + '/api/exam/startsession',
-      JSON.stringify({ questionPaperId: this._activeQuestionPaper_id, examType: 0 }),
-      new RequestOptions({ headers: headers })).subscribe((resl) => {
-        var result = resl.json();
-        this._activeSession_id = result["exam_token"];
-      }, (error) => {
-
-      }, () => {
-
+    return this.http.post(this._localHost + '/api/exam/startsession',
+      JSON.stringify({ questionPaperId: this._activeQuestionPaper_id, "examType": examType }),
+      new RequestOptions({ headers: headers }))
+      .flatMap(token => {
+        this._activeSession_id = (token.json())["exam_token"];
+        return this.getQuestions();
       });
   }
 
-  getQuestions(): Observable<QuestionOutput[]> {
+  private getQuestions(): Observable<QuestionOutput[]> {
 
     const headers = new Headers();
     if (this._activeSession_id.length > 0) {
@@ -54,9 +52,7 @@ export class ExamService {
     headers.append('Content-Type', 'application/vnd.api+json');
     return this.http.get(this._localHost + '/api/DemoExam/GetQuestionPaperCombo/',
       new RequestOptions({ headers: headers }))
-      .map((response: Response) =>
-        response.json()
-      )
+      .map((response: Response) => response.json())
       .catch((error) =>
         Observable.throw(error)
       );
@@ -69,7 +65,7 @@ export class ExamService {
     let d = this.getQuestions()
       .map(x =>
         x.map(j =>
-          j.questionResult.findIndex(x => x.questionId == ques_id)
+          j.questionsResult.findIndex(x => x.questionId == ques_id)
 
           // .map(q => {
           //   if (q.question_id == ques_id) {
@@ -85,7 +81,7 @@ export class ExamService {
       .map(res => {
         let q = res.map(d => {
           debugger;
-          return d.questionResult.find(j => j.questionId == id)
+          return d.questionsResult.find(j => j.questionId == id)
         });
         return q[0];
         //  let ar =  res.forEach(item => {

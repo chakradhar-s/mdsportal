@@ -25,5 +25,5 @@ export class QuestionResult {
 
 export class QuestionOutput {
     public subject: string;
-    public questionResult: QuestionResult[];
+    public questionsResult: QuestionResult[];
 }

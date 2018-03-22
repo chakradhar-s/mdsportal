@@ -80,16 +80,19 @@ export class ExamDetailComponent implements OnInit {
    // this.Question.selectedAnswer = answerObj;
   }
 
-  get questionanswers() {
+  get questionanswers() {     
+    console.log((this.parent.get('questionAnswer') as FormArray).controls,"details component");
     return (this.parent.get('questionAnswer') as FormArray).controls;
   }
 
   public questionByQuestionId(questionId: string) {
-    this.map.get(questionId).question_text;
+    console.log(this.map.get(questionId),"details component questions");
+   return this.map.get(questionId);
   }
 
   public optionsByQuestionId(questionId: string) {
-    this.map.get(questionId).optionSet;
+    console.log(this.map.get(questionId).optionSet,"details component options");
+   return this.map.get(questionId).optionSet;
   }
 
 }

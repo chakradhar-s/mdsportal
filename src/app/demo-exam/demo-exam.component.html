@@ -106,8 +106,15 @@
     <!--<exam-side-bar [Questions]="questions"></exam-side-bar>-->
     <div class="col-md-6">
       <form [formGroup]="form">
+        <div class="row">
+          <div class="col-md-12">
+            <start-page *ngIf="startPage" [parent]="form" (started)="startSession($event)"></start-page>
+          </div>
+        </div>
         <div class="row questions-window">
-          <exam-detail [parent]="form" [map]="questionAnswerMap"></exam-detail>
+          <div class="col-md-12">
+            <exam-detail *ngIf="!startPage" [parent]="form" [map]="questionAnswerMap"></exam-detail>
+          </div>
         </div>
       </form>
       <!-- <div class="custom-controls-stacked">

@@ -110,7 +110,7 @@
       </ol>
 
       <div class="row">
-        <div class="small-12 columns layout-btn-margin-top-15">
+        <div class="col-md-12">
           <button id="confirm" type="button" name="Save" (click)="move(wizard.Step2)" class="primary layout-margin-left-0 right">
             Next
             <span class="glyph-chevron-next"></span>
@@ -194,7 +194,7 @@
         <br>
         <label class="" id="highlightDisclaimer" style="line-height:16px;margin-bottom: 0;padding-left: 0;">
           <span style=" vertical-align:top">
-            <input type="checkbox" name="checkedIn" formControlName="disclaimer" style="margin-top:2px;float:left" required> </span>
+            <input type="checkbox" name="checkedIn" formControlName="disclaimer" style="margin-top:2px;float:left"> </span>
           <span style="width:98%;display:none;margin-left: 1.5em;" id="agreementMessageDef"></span>
           <span style="width: 98%; display: block; margin-left: 1.5em;" id="agreementMessageCustom">
             <span class="cusInstText1">
@@ -231,11 +231,12 @@
 
 
     <div class="row">
-      <div class="small-12 columns layout-btn-margin-top-15">
+      <div class="col-md-12">
         <button type="button" (click)="move(wizard.Step1)" class="secondary layout-margin-left-0">
           <span class="glyph-chevron-previous"></span>
+          Previous
         </button>
-        <button type="button" name="done" [disabled]="!disclaimer" (click)="start()" class="primary layout-margin-left-0 right">
+        <button type="button" name="done" [disabled]="!parent.get('start.disclaimer').value" (click)="start()" class="primary layout-margin-left-0 right">
           I am ready to begin
         </button>
       </div>

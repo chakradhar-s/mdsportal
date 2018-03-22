@@ -7,7 +7,7 @@ enum StartPageWizard {
 }
 
 @Component({
-  selector: 'app-start-page',
+  selector: 'start-page',
   templateUrl: './start-page.component.html',
   styleUrls: ['./start-page.component.scss']
 })
@@ -18,11 +18,14 @@ export class StartPageComponent implements OnInit {
 
   wizard = StartPageWizard;
   currentStep: number;
-  public disclaimer: boolean = false;
+
   constructor() { }
 
   ngOnInit() {
     this.currentStep = this.wizard.Step1;
+   
+    // this.parent.get("start.disclaimer").valueChanges
+    //   .subscribe(r => console.log(r));
   }
 
   move(step: number) {
