@@ -62,3 +62,8 @@
     border-color: #428bca; }
   .radio-primary input[type="radio"]:checked + label::after {
     background-color: #428bca; }
+
+    .scroll-bar-div{
+      overflow-y: auto;
+      height: 530px;
+    }

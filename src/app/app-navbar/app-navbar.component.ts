@@ -38,6 +38,7 @@ export class AppNavbarComponent implements OnInit {
     this._studentNav = [{ exact: true, link: '/home', name: 'Home' },
     { exact: true, link: '/payment', name: 'Payment  |  Schedule & PP Books' },
     { exact: true, link: '/s-strategy', name: 'DEV' },
+
     { exact: true, link: '/demo-exam', name: 'Demo Exam' },
     { exact: true, link: '/contactus', name: 'Take Exam' }];
 

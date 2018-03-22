@@ -2,21 +2,72 @@
   Exam details
 </h1>
 
-<fieldset *ngIf="Question">
-  <legend>{{Question.question_text}}</legend>
-  <!-- <input type="radio" value="test"/> -->
-  <span *ngFor="let option of Question.optionSet">
-  <div class="radio radio-primary" >
-    <input type="radio" name="radio1" id="{{option.option_id}}" value="{{option.option_id}}">
-    <label for="{{option.option_id}}">
-      {{option.option_text}}
-    </label>
-  </div>
-</span>
-  <!-- <div class="radio radio-primary">
+<!-- <div class="scroll-bar-div">
+  <fieldset *ngIf="parent">
+    <legend>{{Question.questions.question_text}}</legend> -->
+<!-- <input type="radio" value="test"/> -->
+<!-- <span *ngFor="let option of questionanswers">
+      <div class="radio radio-primary">-->
+
+<!-- <span *ngIf="Question.selectedAnswer == null"> -->
+<!--   <input type="radio" name="radio1" formControlName="selectedOptionId" (change)="setAnswer(option)">-->
+<!-- </span> -->
+
+<!-- <span *ngIf="Question.selectedAnswer">
+          <input type="radio" name="radio1" id="{{option.option_id}}" 
+          [value]="option.option_id"
+          [checked]="Question.selectedAnswer.selectedOptionId == option.option_id" 
+            (change)="setAnswer(option)">
+        </span> -->
+
+<!--  <label for="{{option.option_id}}">
+          {{option.option_text}}
+        </label>
+      </div>
+    </span>-->
+<!-- <div class="radio radio-primary">
     <input type="radio" name="radio1" id="radio2" value="option2">
     <label for="radio2">
       Small
     </label>
   </div> -->
-</fieldset>
+<!-- </fieldset>
+</div>-->
+
+<div class="scroll-bar-div" [formGroup]="parent">
+  <div formArrayName="questionAnswer">
+    <div *ngFor="let item of questionanswers; let i = index;">
+      <fieldset [formGroupName]="i">
+        <legend class="stock-product__name">
+          {{ questionByQuestionId(item.value.questionId) }}
+        </legend>
+        <span *ngFor="let option of optionsByQuestionId(item.value.questionId)">
+          <div class="radio radio-primary">
+            <label>
+              <input type="radio" name="radio1" formControlName="selectedOptionId" [value]="option.value.option_id"> {{option.value.option_text }}
+            </label>
+
+            <!-- <span *ngIf="Question.selectedAnswer == null"> -->
+
+            <!-- </span> -->
+
+            <!-- <span *ngIf="Question.selectedAnswer">
+                  <input type="radio" name="radio1" id="{{option.option_id}}" 
+                  [value]="option.option_id"
+                  [checked]="Question.selectedAnswer.selectedOptionId == option.option_id" 
+                    (change)="setAnswer(option)">
+                </span> -->
+          </div>
+        </span>
+        <!-- <button type="button" (click)="onRemove(item, i)">
+          Remove
+        </button> -->
+      </fieldset>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <button class="btn btn-success">Save and Next</button>
+  <button class="btn btn-warning">Save and mark it for review</button>
+</div>

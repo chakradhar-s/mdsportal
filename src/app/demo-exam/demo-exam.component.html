@@ -103,11 +103,13 @@
         </div>
       </div>
     </div> -->
-    <exam-side-bar [Questions]="questions"></exam-side-bar>
+    <!--<exam-side-bar [Questions]="questions"></exam-side-bar>-->
     <div class="col-md-6">
-      <div class="row questions-window">
-        <exam-detail></exam-detail>
-      </div>
+      <form [formGroup]="form">
+        <div class="row questions-window">
+          <exam-detail [parent]="form" [map]="questionAnswerMap"></exam-detail>
+        </div>
+      </form>
       <!-- <div class="custom-controls-stacked">
           <label class="custom-control custom-radio">
             <input id="radioStacked1" name="radio-stacked" type="radio" class="custom-control-input">
@@ -120,10 +122,6 @@
             <span class="custom-control-description">Or toggle this other custom radio</span>
           </label>
         </div> -->
-      <div class="row">
-        <button class="btn btn-success">Save</button>
-        <button class="btn btn-warning">Save and mark it for review</button>
-      </div>
     </div>
   </div>
   <!-- <div class="row fluid">
@@ -136,4 +134,3 @@
 
 
 </div>
-
