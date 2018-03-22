@@ -1,18 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+
 import { DemoExamRoutingModule } from './demo-exam-routing.module';
 import { DemoExamComponent } from './demo-exam.component';
-import { SideBarModule } from '../common-exam/side-bar/side-bar.module';
-import { ExamDetailModule } from '../common-exam/exam-detail/exam-detail.module';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {CommonExamModule } from '../common-exam/common-exam.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    DemoExamRoutingModule,
-    SideBarModule,
-    ExamDetailModule,
-    NgbModule
+    DemoExamRoutingModule,   
+    CommonExamModule,
+    ReactiveFormsModule
   ],
   declarations: [DemoExamComponent]
 })

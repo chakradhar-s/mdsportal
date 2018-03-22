@@ -1,11 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ExamService } from '../../http-service-registry/services/exam.service';
+import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+
 import { QuestionSet, OptionSet, QuestionOutput, QuestionResult } from '../../models/question-set';
-import { DataService } from '../../http-service-registry/services/data.service';
 import { AnswerSet } from '../../models/answer-set';
 import { RelExamAnswer } from '../../models/rel-exam-answer.interface';
-import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+
+import { DataService } from '../../http-service-registry/services/data.service';
+import { ExamService } from '../../http-service-registry/services/exam.service';
 
 @Component({
   selector: 'exam-detail',

@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { QuestionSet, QuestionOutput } from '../models/question-set';
+import { FormBuilder, FormGroup, FormArray, Validators, AbstractControl } from '@angular/forms';
+
 import { ExamService } from '../http-service-registry/services/exam.service';
 import { Observable } from 'rxjs/Observable';
 import { DataService } from '../http-service-registry/services/data.service';
 import { AnswerSet } from '../models/answer-set';
 import { RelExamAnswer, StatusId } from '../models/rel-exam-answer.interface';
-import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+
 
 @Component({
   selector: 'app-demo-exam',
@@ -20,6 +22,7 @@ export class DemoExamComponent implements OnInit {
   public questionAnswerMap: Map<string, QuestionSet>;
 
   form = this.fb.group({
+    start: this.fb.group({ disclaimer: ['', [Validators.required]] }),
     questionAnswer: this.fb.array([])
   })
 

@@ -15,9 +15,9 @@
       <ngb-accordion #acc="ngbAccordion" [closeOthers]="true">
         <ngb-panel title="{{item.subject}}" *ngFor="let item of Questions" >
           <ng-template ngbPanelContent>
-            <a class="btn btn-circle btn-default noHover" *ngFor="let Question of item.questionsResult; index as i" (click)="setSelected(Question)">
+           <!--  <a class="btn btn-circle btn-default noHover" *ngFor="let Question of item.questionsResult; index as i" (click)="setSelected(Question)">
               {{i+1}} 
-            </a>
+            </a> -->
           </ng-template>
         </ngb-panel>
       </ngb-accordion>
