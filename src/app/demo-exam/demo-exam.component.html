@@ -1,45 +1,17 @@
 <div class="row">
-    <div class="col-md-12">
-        <div class="img-block"></div>
-        <div class="title-container">
-          <h1 class="">TEST CONTENT</h1>
-          <p>Roll No: Test no.</p>
-          <p>Test</p>
-          <p>Test</p>
-        </div>
-        <!-- <div class="clear-fix">
-              <div class="float-left">Flex item</div>
-              <div class="float-right">Flex item</div>
-              <div class="p-2">Flex item</div>
-            </div> -->
-      </div>
-      <div class="col-md-12">
-        <!--<exam-side-bar [Questions]="questions"></exam-side-bar>-->
-        <div class="col-md-10">
-          <form [formGroup]="form">
-            <div class="row">
-              <div class="col-md-12">
-                <start-page *ngIf="startPage" [parent]="form" (started)="startSession($event)"></start-page>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <exam-detail *ngIf="!startPage" [parent]="form" [map]="questionAnswerMap"></exam-detail>
-              </div>
-            </div>
-          </form>
-          <!-- <div class="custom-controls-stacked">
-                    <label class="custom-control custom-radio">
-                      <input id="radioStacked1" name="radio-stacked" type="radio" class="custom-control-input">
-                      <span class="custom-control-indicator"></span>
-                      <span class="custom-control-description">Toggle this custom radio</span>
-                    </label>
-                    <label class="custom-control custom-radio">
-                      <input id="radioStacked2" name="radio-stacked" type="radio" class="custom-control-input">
-                      <span class="custom-control-indicator"></span>
-                      <span class="custom-control-description">Or toggle this other custom radio</span>
-                    </label>
-                  </div> -->
+  <div class="col-md-12">
+    <!--<exam-side-bar [Questions]="questions"></exam-side-bar>-->
+    <form [formGroup]="form">
+      <div class="row">
+        <div class="col-md-12">
+          <start-page *ngIf="startPage" [parent]="form" (started)="startSession($event)"></start-page>
         </div>
       </div>
+      <div class="row">
+        <div class="col-md-12">
+          <exam-detail *ngIf="!startPage" [parent]="form" [map]="questionAnswerMap"></exam-detail>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>

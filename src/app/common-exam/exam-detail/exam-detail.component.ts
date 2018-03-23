@@ -4,10 +4,12 @@ import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 
 import { QuestionSet, OptionSet, QuestionOutput, QuestionResult } from '../../models/question-set';
 import { AnswerSet } from '../../models/answer-set';
-import { RelExamAnswer } from '../../models/rel-exam-answer.interface';
+import { RelExamAnswer, StatusId } from '../../models/rel-exam-answer.interface';
 
 import { DataService } from '../../http-service-registry/services/data.service';
 import { ExamService } from '../../http-service-registry/services/exam.service';
+
+import "rxjs/add/operator/debounceTime";
 
 @Component({
   selector: 'exam-detail',
@@ -18,6 +20,8 @@ export class ExamDetailComponent implements OnInit {
   @Input() parent: FormGroup;
   @Input() map: Map<string, QuestionSet>;
 
+  public answerStatus = StatusId;
+  public currentCounter: number = 0;
 
   public checkedBool: boolean;
   public AnswersList: Array<RelExamAnswer> = [];
@@ -29,6 +33,16 @@ export class ExamDetailComponent implements OnInit {
 
   ngOnInit() {
     // this.getSelectedQuestion();
+    this.answerStatus.Marked_For_Review;
+
+    this.questionanswers.forEach((groups, index) => {
+      debugger;
+      groups.valueChanges.debounceTime(800).subscribe(r => {
+        console.log(r);
+      });
+    });
+    //.valueChanges.debounceTime(800).subscribe(r => console.log(r));
+
   }
 
   private answers: AnswerSet;
@@ -77,22 +91,28 @@ export class ExamDetailComponent implements OnInit {
     }
     this.AnswersList.push(answerObj)
     // this.service.updateQuestion(option.question_id, answerObj);
-   // this.Question.selectedAnswer = answerObj;
+    // this.Question.selectedAnswer = answerObj;
   }
 
-  get questionanswers() {     
-    console.log((this.parent.get('questionAnswer') as FormArray).controls,"details component");
+  get questionanswers() {
     return (this.parent.get('questionAnswer') as FormArray).controls;
   }
 
   public questionByQuestionId(questionId: string) {
-    console.log(this.map.get(questionId),"details component questions");
-   return this.map.get(questionId);
+    return this.map.get(questionId);
   }
 
   public optionsByQuestionId(questionId: string) {
-    console.log(this.map.get(questionId).optionSet,"details component options");
-   return this.map.get(questionId).optionSet;
+    return this.map.get(questionId).optionSet;
+  }
+
+  public clearResponse(item, i) {
+    item.get("selectedOptionId").setValue('');
+    //(this.parent.get('questionAnswer') as FormArray).get(`${i}.selectedOptionId`).setValue('');
+  }
+
+  public show(questionNum: number) {
+    this.currentCounter = questionNum;
   }
 
 }

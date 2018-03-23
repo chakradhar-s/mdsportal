@@ -33,42 +33,51 @@
   </div> -->
 <!-- </fieldset>
 </div>-->
-
-<div class="scroll-bar-div" [formGroup]="parent">
-  <div formArrayName="questionAnswer">
-    <div *ngFor="let item of questionanswers; let i = index;">
-      <fieldset [formGroupName]="i">
-        <legend>
-          {{ questionByQuestionId(item.value.questionId).question_text }}
-        </legend>
-        <div class="form-group">
-          <div class="form-radio" *ngFor="let option of optionsByQuestionId(item.value.questionId)">
-            <label>
-              <input formControlName="selectedOptionId" value="{{option.option_id}}" type="radio"> {{option.option_text }}
-              <i class="input-helper"></i>
-            </label>
+<div class="row">
+    <div class="col scroll-bar-div" [formGroup]="parent">
+        <div formArrayName="questionAnswer">
+          <div *ngFor="let item of questionanswers; let i = index;">
+            <fieldset [formGroupName]="i" [ngClass]="{'hide': !(currentCounter==i) }">
+              <legend>
+                {{ questionByQuestionId(item.value.questionId).question_text }}
+              </legend>
+              <div class="form-group">
+                <div class="form-radio" *ngFor="let option of optionsByQuestionId(item.value.questionId)">
+                  <label>
+                    <input formControlName="selectedOptionId" value="{{option.option_id}}" type="radio"> {{option.option_text }}
+                    <i class="input-helper"></i>
+                  </label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <button type="button" class="btn btn-primary mr-2" *ngIf="i!=0" (click)="show(i-1)">Previous</button>
+                  <button type="button" class="btn btn-primary mr-2" *ngIf="i!=questionanswers.length-1" (click)="show(i+1)">Next</button>
+                  <button type="button" class="btn btn-warning">
+                    <input style="width:0;height:0" formControlName="selectedOptionStatusId" value="answerStatus.Marked_For_Review" type="checkbox"> Mark it for review
+                  </button>
+                  <button type="button" class="btn btn-info mr-2" (click)="clearResponse(item,i)">Clear the response</button>
+                </div> 
+              </div>
+              <!-- <span *ngIf="Question.selectedAnswer == null"> -->
+      
+              <!-- </span> -->
+      
+              <!-- <span *ngIf="Question.selectedAnswer">
+                        <input type="radio" name="radio1" id="{{option.option_id}}" 
+                        [value]="option.option_id"
+                        [checked]="Question.selectedAnswer.selectedOptionId == option.option_id" 
+                          (change)="setAnswer(option)">
+                      </span> -->
+      
+              <!-- <button type="button" (click)="onRemove(item, i)">
+                Remove
+              </button> -->
+            </fieldset>
           </div>
         </div>
-            <!-- <span *ngIf="Question.selectedAnswer == null"> -->
-
-            <!-- </span> -->
-
-            <!-- <span *ngIf="Question.selectedAnswer">
-                  <input type="radio" name="radio1" id="{{option.option_id}}" 
-                  [value]="option.option_id"
-                  [checked]="Question.selectedAnswer.selectedOptionId == option.option_id" 
-                    (change)="setAnswer(option)">
-                </span> -->
-       
-        <!-- <button type="button" (click)="onRemove(item, i)">
-          Remove
-        </button> -->
-      </fieldset>
-    </div>
-  </div>
-</div>
-
-<div class="row">
-  <button class="btn btn-success">Save and Next</button>
-  <button class="btn btn-warning">Save and mark it for review</button>
+      </div>
+      <div class="col-2">
+          <button *ngFor="let item of questionanswers; let i = index;" type="button" (click)="show(i)" class="btn btn-primary btn-sm">{{i+1}}</button>
+      </div>
 </div>
