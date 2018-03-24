@@ -1,13 +1,22 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { QuestionSet, QuestionOutput, QuestionResult } from '../models/question-set';
 import { FormBuilder, FormGroup, FormArray, Validators, AbstractControl } from '@angular/forms';
+import { Router } from '@angular/router';
+
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+
+import { NgbModal, NgbActiveModal, NgbModalOptions, ModalDismissReasons,NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 import { ExamService } from '../http-service-registry/services/exam.service';
-import { Observable } from 'rxjs/Observable';
 import { DataService } from '../http-service-registry/services/data.service';
 import { AnswerSet } from '../models/answer-set';
 import { RelExamAnswer, StatusId } from '../models/rel-exam-answer.interface';
 import { templateJitUrl } from '@angular/compiler';
+import { Alert } from '../models/alert.interface';
+
+import { LoginService } from '../http-service-registry/services/login-service.service';
 
 
 @Component({
@@ -23,6 +32,9 @@ export class DemoExamComponent implements OnInit, OnDestroy {
   public questionAnswerMap: Map<string, QuestionSet>;
   public startPage: boolean = true;
   public sessionSubscription;
+  public alerts: Array<Alert> = [];
+  private _userId: string = '';
+  private mmodal:NgbModalRef;
 
   form = this.fb.group({
     start: this.fb.group({ disclaimer: [false, [Validators.required]] }),
@@ -32,8 +44,13 @@ export class DemoExamComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private service: ExamService,
-    private dataService: DataService) {
-
+    private dataService: DataService,
+    private modalService: NgbModal,
+    private router: Router,
+    private loginService: LoginService) {
+    loginService.userId.subscribe((id) => {
+      this._userId = id;
+    });
   }
 
   // getQuestion(): void {
@@ -67,7 +84,9 @@ export class DemoExamComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.sessionSubscription.unsubscribe();
+    if (this.sessionSubscription) {
+      this.sessionSubscription.unsubscribe();
+    }
   }
 
   /* questionChanged(obj: QuestionOutput): void {
@@ -113,7 +132,7 @@ export class DemoExamComponent implements OnInit, OnDestroy {
       for (let i = 0; i < queriesFormat.length; i++) {
         let temp3 = queriesFormat[i].questionsResult.map<[string, QuestionSet]>(jr => {
           return [jr.questionId, jr.questions];
-        });      
+        });
         ehjd.push(new Map<string, QuestionSet>(temp3));
         this.addQuestionAnswer(queriesFormat[i]);
       }
@@ -123,13 +142,13 @@ export class DemoExamComponent implements OnInit, OnDestroy {
       //   }));
       //   this.addQuestionAnswer(item);
       // });
-      this.questionAnswerMap = new Map(); 
-      ehjd.forEach(item=>{
-        item.forEach((bonf,ji)=>{
-          this.questionAnswerMap.set(ji,bonf);
-        })        
-        });
-          
+      this.questionAnswerMap = new Map();
+      ehjd.forEach(item => {
+        item.forEach((bonf, ji) => {
+          this.questionAnswerMap.set(ji, bonf);
+        })
+      });
+
       this.questions.concat(quest);
       this.startPage = false;
     }, () => {
@@ -137,7 +156,33 @@ export class DemoExamComponent implements OnInit, OnDestroy {
     }, () => {
 
     });
-
   }
 
+  onSubmit(content) {
+    let ngbModalOptions: NgbModalOptions = {
+      backdrop: 'static',
+      keyboard: false
+    };
+    this.mmodal = this.modalService.open(content);
+    this.mmodal.result.then((result) => {
+
+    }, (reason) => {
+
+    });
+  }
+
+  navigate() {
+    this.mmodal.close();
+    this.router.navigate(['view-results', this._userId], { replaceUrl: true });   
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
 }

@@ -1,0 +1,100 @@
+.exam-content {
+  flex: 1;
+  display: flex;
+  overflow: auto;
+}
+
+.sm-text {
+  font-size: 0.8em;
+}
+
+.exam-box {
+  min-height: -webkit-min-content;
+  min-height: -moz-min-content;
+  min-height: -ms-min-content;
+  min-height: -o-min-content;
+  min-height: min-content;
+  display: flex;
+}
+
+.question-num {
+  border-bottom: 1px solid #dbdbdb;
+  font-weight: bold;
+  padding: 3px;
+  text-align: left;
+}
+
+.exam-column {
+  padding: 20px;
+}
+
+.inner-content {
+  height: 17rem;
+}
+
+.exam-side-bar {
+  .exam-content {
+    padding: 0;
+  }
+  .exam-column {
+    padding: 0;
+  }
+  button,
+  [type='button'] {
+    width: 2.3em;
+    height: 2.2em;
+    font-size: 1.4em;
+    text-align: center;
+  }
+  button.answered,
+  [type='button'].answered {
+    background: url("../../../assets/images/questions-sprite.png") no-repeat scroll 0 0 transparent;
+    background-position-x: 0px;
+    background-position-y: 0px;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-weight: bold;
+    line-height: 43px;
+    background-position: -4px -5px;
+    border-style: none;
+  }
+  button.ansreview_marked_consideredwered:hover,
+  [type='button'].review_marked_considered:hover {
+    background-position: -66px -178px;
+  }
+  button.ansreview_marked_consideredwered,
+  [type='button'].review_marked_considered {
+    background: url("../../../assets/images/questions-sprite.png") no-repeat scroll 0 0 transparent;
+    background-position-x: 0px;
+    background-position-y: 0px;
+    color: #FFFFFF;
+    cursor: pointer;
+    float: left;
+    font-weight: bold;
+    background-position: -66px -178px;
+    height: 53px;
+    width: 49px;
+    line-height: 51px;
+    border-style: none;
+  }
+  button.review,
+  [type='button'].review {
+    background: url("../../../assets/images/questions-sprite.png") no-repeat scroll 0 0 transparent;
+    background-position-x: 0px;
+    background-position-y: 0px;
+    color: #FFFFFF;
+    cursor: pointer;
+    float: left;
+    font-weight: bold;
+    line-height: 50px;
+    background-position: -108px -1px;
+    border-style: none;
+  }
+  button.review:hover,
+  [type='button'].review:hover {
+    background-position: -108px -122px;
+  }
+  .inner-content {
+    height: 14rem;
+  }
+}

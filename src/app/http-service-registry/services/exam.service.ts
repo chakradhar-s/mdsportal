@@ -17,7 +17,7 @@ export class ExamService {
   private _localHost: string = "http://localhost:5000/mdservice";
   //private _localHost: string = "http://localhost:62699/mdservice";
   // private _localHost: string = "/mdservice";
-  private _activeQuestionPaper_id: string = "0fbb86f6-cece-4c32-b795-4ecae57080e7"; // here need to keep active question_paper_id during deployment
+  private _activeQuestionPaper_id: string = "1ca48a34-3866-034a-c953-6a324a64feb0"; // here need to keep active question_paper_id during deployment
   // private _activeQuestionPaper_id : string = "0fbb86f6-cece-4c32-b795-4ecae57080e7";
   //private _activeSession_id: string = "1908d1b0-276e-11e8-bd47-0252c1ad21ae";
   private _activeSession_id: string = "";
@@ -96,16 +96,16 @@ export class ExamService {
     // return this.getQuestions().map(ques => ques.find(t => t.question_index === id));
   }
 
-  insertOrUpdateAnswer(ans: RelExamAnswer, statusId: StatusId): void {
+  insertOrUpdateAnswer(ans: RelExamAnswer) {
     try {
-      debugger;
       const headers = new Headers();
-      ans.selectedOptionStatusId = statusId;
-      let data = JSON.stringify(ans);
+      if (this._activeSession_id.length > 0) {
+        headers.append('Authorization', 'bearer ' + this._activeSession_id);
+      }
       headers.append('Content-Type', 'application/vnd.api+json');
-      let test = this.http.post(this._localHost + '/api/DemoExam/Save', data,
-        new RequestOptions({ headers: headers })).subscribe(res => console.log(res));
-      console.log(test)
+      let data = JSON.stringify(ans);
+      return this.http.post(this._localHost + '/api/DemoExam/Save', data,
+        new RequestOptions({ headers: headers }));
     }
     catch (error) {
       debugger;

@@ -7,6 +7,7 @@ import { ProfileComponent } from './profile/profile.component';
 
 import { GuardHubModule } from '../guard-hub/guard-hub.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ResultsComponent } from './results/results.component';
 
 @NgModule({
   imports: [
@@ -16,6 +17,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     GuardHubModule,
     NgbModule
   ],
-  declarations: [ProfileComponent]
+  declarations: [ProfileComponent, ResultsComponent]
 })
 export class UserProfileModule { }

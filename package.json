@@ -21,6 +21,7 @@
     "@angular/platform-browser": "^5.2.5",
     "@angular/platform-browser-dynamic": "^5.2.5",
     "@angular/router": "^5.2.5",
+    "@fortawesome/fontawesome-free-webfonts": "^1.0.4",
     "@ng-bootstrap/ng-bootstrap": "^1.0.1",
     "angular-datatables": "^5.0.0",
     "bootstrap": "^4.0.0",

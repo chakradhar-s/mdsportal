@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -13,6 +13,7 @@ import {CommonExamModule } from '../common-exam/common-exam.module';
     CommonExamModule,
     ReactiveFormsModule
   ],
-  declarations: [DemoExamComponent]
+  declarations: [DemoExamComponent],
+  schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class DemoExamModule { }

@@ -2,6 +2,10 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+
 import { QuestionSet, OptionSet, QuestionOutput, QuestionResult } from '../../models/question-set';
 import { AnswerSet } from '../../models/answer-set';
 import { RelExamAnswer, StatusId } from '../../models/rel-exam-answer.interface';
@@ -36,9 +40,13 @@ export class ExamDetailComponent implements OnInit {
     this.answerStatus.Marked_For_Review;
 
     this.questionanswers.forEach((groups, index) => {
-      debugger;
       groups.valueChanges.debounceTime(800).subscribe(r => {
-        console.log(r);
+        const sestatus: number = r.selectedOptionId.length > 0 ? this.answerStatus.Answered : r.selectedOptionStatusId;
+        this.service.insertOrUpdateAnswer({
+          questionId: r.questionId,
+          selectedOptionId: r.selectedOptionId,
+          selectedOptionStatusId: sestatus
+        }).subscribe();
       });
     });
     //.valueChanges.debounceTime(800).subscribe(r => console.log(r));
@@ -46,40 +54,6 @@ export class ExamDetailComponent implements OnInit {
   }
 
   private answers: AnswerSet;
-
-  /* getSelectedQuestion(): void {
-    // const id = +this.route.snapshot.paramMap.get('id');
-    // const id = this.route.snapshot.paramMap.get['id'];
-    let newQuest = this.dataService.currentQuestion.subscribe(ques => {
-      debugger;
-      if (ques !== null) {
-        let ans: RelExamAnswer;
-        this.AnswersList.forEach(element => {
-          if (element.questionId == ques.questionId) {
-            ans = element;
-          }
-        });
-        // let ans = this.AnswersList.forEach(x => {if(x.QuestionId == ques.question_id) return x;});
-        this.Question = ques;
-        if (ans != null) {
-          this.Question.selectedAnswer = ans;
-          this.Question.questions.optionSet.forEach(element => {
-            if (element.option_id == ans.selectedOptionId)
-              element.option_checked = true;
-            else
-              element.option_checked = false;
-          });
-          // this.Question.questions.optionSet.
-        }
-      }
-    });
-    console.log('selected question : ' + newQuest);
-    // if (this.Question !== null) {
-    //   this.service.getSelectedQuestion(this.Question[0].question_id).subscribe(ques => this.Question = ques.questions[0]);
-    // }
-  } */
-
-
 
   setAnswer(option: OptionSet): void {
     debugger;
@@ -113,6 +87,22 @@ export class ExamDetailComponent implements OnInit {
 
   public show(questionNum: number) {
     this.currentCounter = questionNum;
+  }
+
+  public statusofitem(item): string {
+    const optionValue = item.get("selectedOptionId").value;
+    const statusValue = item.get("selectedOptionStatusId").value;
+    if (optionValue.length > 0) {
+      if (statusValue == this.answerStatus.Marked_For_Review){
+        "review_marked_considered";
+      }else if(statusValue==this.answerStatus.Unseen){
+        "answered";
+      }
+    }
+    else if(statusValue == this.answerStatus.Marked_For_Review){
+      "review";
+    }
+    return "";
   }
 
 }
