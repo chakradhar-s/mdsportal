@@ -1,14 +1,25 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<app-app-navbar>
-</app-app-navbar>
+<div class="wrapper">
+  <app-app-navbar>
+  </app-app-navbar>
+
+  <main role="main" class="main-panel">
+
+    <div class="content">
+      <div class="container-fluid">
+        <h4 class="page-title">Dashboard</h4>
+        <router-outlet></router-outlet>
+      </div>
+
+      <app-app-footer>
+      </app-app-footer>
+    </div>
+
+
+
+  </main>
+</div>
+
+
 
 <ng4-loading-spinner [threshold]="2000"> </ng4-loading-spinner>
-
-
-<main class="main" role="main">
-
-<router-outlet></router-outlet>  
-
-  <app-app-footer>
-  </app-app-footer>
-</main>

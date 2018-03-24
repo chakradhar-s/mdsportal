@@ -4,6 +4,8 @@ import { LoginService } from '../http-service-registry/services/login-service.se
 import { UserType } from '../models/user.type.interface';
 import { ProfileAccordion } from '../models/profile-accordion.interface';
 
+import { Registration } from '../models/registration.interface';
+
 @Component({
   selector: 'app-app-navbar',
   templateUrl: './app-navbar.component.html',
@@ -15,7 +17,7 @@ export class AppNavbarComponent implements OnInit {
   public loggedIn: boolean;
   public profileaccordion: ProfileAccordion;
   public isLoginPage: boolean = false;
-  public userName: string = "";
+  public userName: Registration;
 
   private readonly _defaultNav: Nav[];
   private readonly _studentNav: Nav[];
@@ -27,7 +29,7 @@ export class AppNavbarComponent implements OnInit {
     { exact: true, link: '/about', name: 'About us' },
     { exact: true, link: '/testimonials', name: 'Results' },
     { exact: true, link: '/payment', name: 'Payment  |  Schedule & PP Books' },
-    { exact: true, link: '/s-strategy', name: 'svc' },
+    { exact: true, link: '/s-strategy', name: 'DEV' },
     { exact: true, link: '/demo-exam', name: 'Demo Exam' },
     { exact: true, link: '/contactus', name: 'Contact Us' },
     { exact: true, link: '/login', name: 'Login' }
@@ -35,7 +37,8 @@ export class AppNavbarComponent implements OnInit {
 
     this._studentNav = [{ exact: true, link: '/home', name: 'Home' },
     { exact: true, link: '/payment', name: 'Payment  |  Schedule & PP Books' },
-    { exact: true, link: '/s-strategy', name: 'svc' },
+    { exact: true, link: '/s-strategy', name: 'DEV' },
+
     { exact: true, link: '/demo-exam', name: 'Demo Exam' },
     { exact: true, link: '/contactus', name: 'Take Exam' }];
 
@@ -43,7 +46,7 @@ export class AppNavbarComponent implements OnInit {
     { exact: true, link: '/about', name: 'About us' },
     { exact: true, link: '/testimonials', name: 'Results' },
     { exact: true, link: '/payment/student', name: 'Payment  |  Schedule & PP Books' },
-    { exact: true, link: '/s-strategy', name: 'svc' },
+    { exact: true, link: '/s-strategy', name: 'DEV' },
     { exact: true, link: '/demo-exam', name: 'Demo Exam' },
     { exact: true, link: '/contactus', name: 'Contact Us' }];
 
@@ -71,7 +74,7 @@ export class AppNavbarComponent implements OnInit {
           this.nav = this._studentNav.slice(0, this._studentNav.length);
         }
         this.fillUserProfile();
-        this.userName=this._login.userProfile.user.firstName;
+        this.userName=this._login.userProfile.user;
       }
       else if (!this.loggedIn) {
         this.nav = this._defaultNav.slice(0, this._defaultNav.length);
@@ -102,7 +105,8 @@ export class AppNavbarComponent implements OnInit {
     }
 
     else if (this._userType.isAdmin) {
-      this.profileaccordion.nav_items = [{ name: 'MyAccount', exact: false, link: '/user/account' }, { name: 'MyResults', exact: false, link: '/user/results' }];
+      this.profileaccordion.nav_items = [{ name: 'MyAccount', exact: false, link: '/user/account' }, { name: 'MyResults', exact: false, link: '/user/results' },
+      { name: 'Upload a question paper', exact: false, link: '/question-upload' }];
     }
 
   }

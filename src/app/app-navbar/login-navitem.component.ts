@@ -7,6 +7,8 @@ import { ProfileAccordion } from '../models/profile-accordion.interface';
 
 import { Router, ActivatedRoute, Params, NavigationExtras } from '@angular/router';
 
+import { Registration } from '../models/registration.interface';
+
 @Component({
   selector: 'app-login-item',
   templateUrl: './login-navitem.component.html'
@@ -16,18 +18,21 @@ export class LoginNavItem {
   profileDetails: ProfileAccordion;
 
   @Input()
-  userName: string;
-  
+  user: Registration;
+
+  public showStyle: boolean = false;
+
   constructor(private route: ActivatedRoute,
-    private router: Router,private _login: LoginService ) {
+    private router: Router, private _login: LoginService) {
 
   }
 
   public takeroute(link, event) {
+    this.showStyle=!this.showStyle;
     this.router.navigate([link]);
   }
 
-  public logoff(){
+  public logoff() {
     this._login.logoff();
   }
 }

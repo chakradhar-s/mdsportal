@@ -48,7 +48,7 @@
     }
     .notif-icon {
       &.notif-default, &.notif-primary, &.notif-info, &.notif-success, &.notif-warning, &.notif-danger {
-        color: $white !important;
+        color: $white-color !important;
       }
       &.notif-default {
         background: $default-color !important;

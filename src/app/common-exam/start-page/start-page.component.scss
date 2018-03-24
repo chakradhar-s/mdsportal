@@ -1,0 +1,22 @@
+.content {
+  flex: 1;
+  display: flex;
+  overflow: auto;
+}
+
+.box {
+  min-height: -webkit-min-content;
+  min-height: -moz-min-content;
+  min-height: -ms-min-content;
+  min-height: -o-min-content;
+  min-height: min-content;
+  display: flex;
+}
+
+.column {
+  padding: 20px;
+}
+
+.inner-content {
+  height: 34rem;
+}

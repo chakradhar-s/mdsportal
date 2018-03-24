@@ -112,10 +112,17 @@
                       <input class="form-control p_input" type="text">
                     </div>
                   </div>
-                </div>               
+                </div>
+              </div>
+              <div class="row">
+                <div class="col align-self-center">
+                  <p *ngFor="let alert of alerts" class="text-center">
+                    <ngb-alert [type]="alert.type" (close)="closeAlert(alert)">{{ alert.message }}</ngb-alert>
+                  </p>
+                </div>
               </div>
               <div class="text-center">
-                  <button type="button" (click)="managePassword()" class="btn btn-success btn-lg success-btn">Manage Password</button>
+                <button type="button" (click)="managePassword()" class="btn btn-success btn-lg success-btn">Manage Password</button>
                 <button type="submit" [disabled]="profileForm.invalid" class="btn btn-primary btn-lg enter-btn">submit</button>
                 <button type="button" (click)="cancel()" class="btn btn-secondary btn-lg secondary-btn">cancel</button>
               </div>

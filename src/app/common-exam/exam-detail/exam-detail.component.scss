@@ -1,64 +1,100 @@
+.exam-content {
+  flex: 1;
+  display: flex;
+  overflow: auto;
+}
 
-.radio {
-    padding-left: 20px; }
-  .radio label {
-    display: inline-block;
-    position: relative;
-    padding-left: 5px; }
-  .radio label::before {
-    content: "";
-    display: inline-block;
-    position: absolute;
-    width: 17px;
-    height: 17px;
-    left: 0;
-    margin-left: -20px;
-    border: 1px solid #cccccc;
-    border-radius: 50%;
-    background-color: #fff;
-    -webkit-transition: border 0.15s ease-in-out;
-    -o-transition: border 0.15s ease-in-out;
-    transition: border 0.15s ease-in-out; }
-  .radio label::after {
-    display: inline-block;
-    position: absolute;
-    content: " ";
-    width: 11px;
-    height: 11px;
-    left: 3px;
-    top: 3px;
-    margin-left: -20px;
-    border-radius: 50%;
-    background-color: #555555;
-    -webkit-transform: scale(0, 0);
-    -ms-transform: scale(0, 0);
-    -o-transform: scale(0, 0);
-    transform: scale(0, 0);
-    -webkit-transition: -webkit-transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
-    -moz-transition: -moz-transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
-    -o-transition: -o-transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
-    transition: transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33); }
-  .radio input[type="radio"] {
-    opacity: 0; }
-  .radio input[type="radio"]:focus + label::before {
-    outline: thin dotted;
-    outline: 5px auto -webkit-focus-ring-color;
-    outline-offset: -2px; }
-  .radio input[type="radio"]:checked + label::after {
-    -webkit-transform: scale(1, 1);
-    -ms-transform: scale(1, 1);
-    -o-transform: scale(1, 1);
-    transform: scale(1, 1); }
-  .radio input[type="radio"]:disabled + label {
-    opacity: 0.65; }
-  .radio input[type="radio"]:disabled + label::before {
-    cursor: not-allowed; }
-  .radio.radio-inline {
-    margin-top: 0; }
-  
-  .radio-primary input[type="radio"] + label::after {
-    background-color: #428bca; }
-  .radio-primary input[type="radio"]:checked + label::before {
-    border-color: #428bca; }
-  .radio-primary input[type="radio"]:checked + label::after {
-    background-color: #428bca; }
+.sm-text {
+  font-size: 0.8em;
+}
+
+.exam-box {
+  min-height: -webkit-min-content;
+  min-height: -moz-min-content;
+  min-height: -ms-min-content;
+  min-height: -o-min-content;
+  min-height: min-content;
+  display: flex;
+}
+
+.question-num {
+  border-bottom: 1px solid #dbdbdb;
+  font-weight: bold;
+  padding: 3px;
+  text-align: left;
+}
+
+.exam-column {
+  padding: 20px;
+}
+
+.inner-content {
+  height: 17rem;
+}
+
+.exam-side-bar {
+  .exam-content {
+    padding: 0;
+  }
+  .exam-column {
+    padding: 0;
+  }
+  button,
+  [type='button'] {
+    width: 2.3em;
+    height: 2.2em;
+    font-size: 1.4em;
+    text-align: center;
+  }
+  button.answered,
+  [type='button'].answered {
+    background: url("../../../assets/images/questions-sprite.png") no-repeat scroll 0 0 transparent;
+    background-position-x: 0px;
+    background-position-y: 0px;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-weight: bold;
+    line-height: 43px;
+    background-position: -4px -5px;
+    border-style: none;
+  }
+  button.ansreview_marked_consideredwered:hover,
+  [type='button'].review_marked_considered:hover {
+    background-position: -66px -178px;
+  }
+  button.ansreview_marked_consideredwered,
+  [type='button'].review_marked_considered {
+    background: url("../../../assets/images/questions-sprite.png") no-repeat scroll 0 0 transparent;
+    background-position-x: 0px;
+    background-position-y: 0px;
+    color: #FFFFFF;
+    cursor: pointer;
+    float: left;
+    font-weight: bold;
+    background-position: -66px -178px;
+    height: 53px;
+    width: 49px;
+    line-height: 51px;
+    border-style: none;
+  }
+  button.review,
+  [type='button'].review {
+    background: url("../../../assets/images/questions-sprite.png") no-repeat scroll 0 0 transparent;
+    background-position-x: 0px;
+    background-position-y: 0px;
+    color: #FFFFFF;
+    cursor: pointer;
+    float: left;
+    font-weight: bold;
+    line-height: 50px;
+    background-position: -108px -1px;
+    border-style: none;
+  }
+  button.review:hover,
+  [type='button'].review:hover {
+    background-position: -108px -122px;
+  }
+  .inner-content {
+    height: 14rem;
+  }
+}

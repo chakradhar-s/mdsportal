@@ -10,6 +10,8 @@ import { LoginService } from '../../http-service-registry/services/login-service
 import { SignUpService } from '../../http-service-registry/services/signup.service';
 
 import { Registration } from '../../models/registration.interface';
+import { Alert } from '../../models/alert.interface';
+
 
 @Component({
   selector: 'app-profile',
@@ -47,13 +49,15 @@ export class ProfileComponent implements OnInit {
     ]
   });
 
+  public alerts: Array<Alert> = [];
+
   constructor(private router: Router, private route: ActivatedRoute, private spinnerService: Ng4LoadingSpinnerService, private fb: FormBuilder, private login: LoginService, private signup: SignUpService) {
 
   }
 
   ngOnInit() {
     this.route.data.subscribe((data) => {
-      const user = data["user"];    
+      const user = data["user"];
       this.profileForm.get('userId').setValue(user.userId);
       this.profileForm.get('firstName').setValue(user.firstName);
       this.profileForm.get('lastName').setValue(user.lastName);
@@ -96,9 +100,18 @@ export class ProfileComponent implements OnInit {
     if (this.profileForm.valid) {
       this.spinnerService.show();
       this.signup.updateRegisterUser(this.profileForm.value).subscribe((result) => {
-
+        this.alerts = [{
+          id: 1,
+          type: 'success',
+          message: 'Details are saved successfully!',
+        }];
       }, (error) => {
         this.spinnerService.hide();
+        this.alerts = [{
+          id: 1,
+          type: 'danger',
+          message: 'Save Failed',
+        }];
 
       }, () => {
         this.spinnerService.hide();
@@ -110,7 +123,13 @@ export class ProfileComponent implements OnInit {
     this.router.navigate(['/home']);
   }
 
-  managePassword(){
-    
+  managePassword() {
+
   }
+
+  public closeAlert(alert: Alert) {
+    const index: number = this.alerts.indexOf(alert);
+    this.alerts.splice(index, 1);
+  }
+
 }
