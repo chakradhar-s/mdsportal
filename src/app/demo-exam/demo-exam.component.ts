@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { QuestionSet, QuestionOutput, QuestionResult } from '../models/question-set';
 import { FormBuilder, FormGroup, FormArray, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -25,7 +25,7 @@ import { LoginService } from '../http-service-registry/services/login-service.se
   styleUrls: ['./demo-exam.component.scss']
 })
 export class DemoExamComponent implements OnInit, OnDestroy {
-
+  @Output() endExamEvent = new EventEmitter<boolean>();
   private questions: QuestionOutput[] = [];
   //public selectedQuestion: Observable<QuestionOutput>;
   //public selectedAnswer: RelExamAnswer;
@@ -35,6 +35,7 @@ export class DemoExamComponent implements OnInit, OnDestroy {
   public alerts: Array<Alert> = [];
   private _userId: string = '';
   private mmodal:NgbModalRef;
+  
 
   form = this.fb.group({
     start: this.fb.group({ disclaimer: [false, [Validators.required]] }),
@@ -93,8 +94,9 @@ export class DemoExamComponent implements OnInit, OnDestroy {
     this.selectedQuestion.subscribe();
   } */
 
-  test(): void {
-
+  test($event): void {
+console.log('test event triggered;');
+console.log($event);
   }
 
   /* saveAndNext(): void {
@@ -170,6 +172,8 @@ export class DemoExamComponent implements OnInit, OnDestroy {
 
     });
   }
+
+  
 
   navigate() {
     this.mmodal.close();

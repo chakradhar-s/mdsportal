@@ -22,7 +22,7 @@
             </button>
           </div>
         </ng-template>
-    <form [formGroup]="form" (ngSubmit)="onSubmit(content)">
+    <form [formGroup]="form" (ngSubmit)="onSubmit(content)" >
       <div class="row">
         <div class="col-md-12">
           <start-page *ngIf="startPage" [parent]="form" (started)="startSession($event)"></start-page>
@@ -30,7 +30,7 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <exam-detail *ngIf="!startPage" [parent]="form" [map]="questionAnswerMap"></exam-detail>
+          <exam-detail *ngIf="!startPage" [parent]="form" [map]="questionAnswerMap" (endExamEvent)="onSubmit(content)" ></exam-detail>
         </div>
       </div>
     </form>

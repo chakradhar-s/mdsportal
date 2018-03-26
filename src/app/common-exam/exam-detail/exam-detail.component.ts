@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 
@@ -23,6 +23,7 @@ import "rxjs/add/operator/debounceTime";
 export class ExamDetailComponent implements OnInit {
   @Input() parent: FormGroup;
   @Input() map: Map<string, QuestionSet>;
+  @Output() endExamEvent = new EventEmitter<boolean>();
 
   public answerStatus = StatusId;
   public currentCounter: number = 0;
@@ -103,6 +104,10 @@ export class ExamDetailComponent implements OnInit {
       "review";
     }
     return "";
+  }
+
+  public triggerEndExam(event){
+    this.endExamEvent.emit(true);
   }
 
 }

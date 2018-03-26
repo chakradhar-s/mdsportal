@@ -110,12 +110,13 @@ const myRoots: Routes = [
     GuardHubModule,
     NgbModule.forRoot(),
     Ng4LoadingSpinnerModule.forRoot(),
-    RouterModule.forRoot(myRoots),
+    RouterModule.forRoot(myRoots
+      // , { enableTracing: true } //--> uncomment this for debugging
+    ),
     BrowserAnimationsModule,
     FileUploadModule,
     HttpClientModule,
     HttpServiceRegistryModule,
-    RouterModule.forRoot(myRoots),
     TableModule
   ],
   providers: [FileUploadService,QuestionpaperService],
