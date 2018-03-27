@@ -27,3 +27,10 @@ export class QuestionOutput {
     public subject: string;
     public questionsResult: QuestionResult[];
 }
+
+export class UserResult{
+    public  questionPaperName : string;
+    public  sessionId : string;
+    public  result : number;
+    public  attemptedDate : string;
+}

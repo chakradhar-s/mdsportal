@@ -1,0 +1,36 @@
+import { Injectable } from '@angular/core';
+import { LoginService } from './login-service.service';
+import { RequestOptions, Http, Response, Headers } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+
+@Injectable()
+export class UserResultsService {
+
+  private _localHost: string = "http://localhost:5000/mdservice";
+  private _userId: string;
+
+  constructor(
+    private loginService: LoginService,
+    private http: Http) {
+    loginService.userId.subscribe((id) => {
+      this._userId = id;
+    });
+  }
+
+  GetResults(): any {
+    const headers = new Headers();
+    if (window.localStorage.getItem('jwt-access-mds')) {
+      let rslt = JSON.parse(window.localStorage.getItem('jwt-access-mds'));
+      headers.append('Authorization', 'bearer ' + rslt.access_token);
+    }
+    headers.append('Content-Type', 'application/vnd.api+json');
+
+    return this.http.get(this._localHost + '/api/DemoExam/GetResults/' + this._userId,
+      new RequestOptions({ headers: headers }))
+      .map((response: Response) => response.json())
+      .catch((error) =>
+        Observable.throw(error)
+      );
+  }
+
+}

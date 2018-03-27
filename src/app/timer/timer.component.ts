@@ -25,7 +25,7 @@ export class TimerComponent implements OnInit {
   clockDisplay: string;
   rintervalId = 0;
   message = '';
-  rDuration = 20 * 60;
+  rDuration = 1 * 60;
   rSeconds = "";
   rMinutes = "";
   rDisplay: string;
