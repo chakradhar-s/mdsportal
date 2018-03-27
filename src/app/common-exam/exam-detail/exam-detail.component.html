@@ -1,103 +1,105 @@
 <app-timer>
 </app-timer>
 
-
 <div class="row">
   <div class="questionTypeCont col-12">
     <span class="questiontype-details">
       <span class="questionType">Question Type :</span>MCQ</span>
   </div>
-  <div id="Questn_Innr_Div_section col-12">
+  <div id="questn-innr-div-section col-12">
     <div id="Subjt_Div"></div>
-    <div id="Subdetail_Div">
-      <div style="float:right;margin-right:5px;"></div>
-    </div>
+    <!--float left -->
+    <div id="Subdetail_Div"></div>
+    <!--float right -->
   </div>
-  <div class="col-12">
-    <div class="row">
-      <div class="col scroll-bar-div" [formGroup]="parent">
-        <div formArrayName="questionAnswer">
-          <div *ngFor="let item of questionanswers; let i = index;">
-            <fieldset [formGroupName]="i" [ngClass]="{'hide': !(currentCounter==i) }">
-              <div class="question-num">
-                <b>
-                  <span>Question No</span>{{i+1}}</b>
-              </div>
-              <div class="exam-content">
-                <div class="exam-box">
-                  <div class="exam-column">
-                    <div class="inner-content">
-                      <legend>
-                        {{ questionByQuestionId(item.value.questionId).question_text }}
-                      </legend>
-                      <div class="form-group">
-                        <div class="form-radio" *ngFor="let option of optionsByQuestionId(item.value.questionId)">
-                          <label>
-                            <input formControlName="selectedOptionId" value="{{option.option_id}}" type="radio"> {{option.option_text }}
-                            <i class="input-helper"></i>
-                          </label>
-                        </div>
+</div>
+<div class="col-12">
+  <div class="row">
+    <div class="col scroll-bar-div" [formGroup]="parent">
+      <div formArrayName="questionAnswer">
+        <div *ngFor="let item of questionanswers; let i = index;">
+          <fieldset [formGroupName]="i" [ngClass]="{'hide': !(currentCounter==i) }">
+            <div class="question-num">
+              <b>
+                <span>Question No</span>{{i+1}}</b>
+            </div>
+            <div class="exam-content">
+              <div class="exam-box">
+                <div class="exam-column">
+                  <div class="inner-content">
+                    <legend>
+                      {{ questionByQuestionId(item.value.questionId).question_text }}
+                    </legend>
+                    <div class="form-group">
+                      <div class="form-radio" *ngFor="let option of optionsByQuestionId(item.value.questionId)">
+                        <label>
+                          <input formControlName="selectedOptionId" value="{{option.option_id}}" type="radio"> {{option.option_text }}
+                          <i class="input-helper"></i>
+                        </label>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <button type="button" class="btn btn-primary mr-2" *ngIf="i!=0" (click)="show(i-1)">Previous</button>
-                  <button type="button" class="btn btn-primary mr-2" *ngIf="i!=questionanswers.length-1" (click)="show(i+1)">Next</button>
-                  <button type="button" class="btn btn-warning">
-                    <input style="opacity:0; position:absolute; left:9999px;width:0;height:0" formControlName="selectedOptionStatusId" value="answerStatus.Marked_For_Review"
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <button type="button" class="btn btn-primary mr-2" *ngIf="i!=0" (click)="show(i-1)">Previous</button>
+                <button type="button" class="btn btn-primary mr-2" *ngIf="i!=questionanswers.length-1" (click)="show(i+1)">Next</button>
+                <button type="button" class="btn btn-warning">
+                  <label>
+                    <input style="opacity:0; position:absolute; left:9999px;width:0;height:0" (change)="reviewTrigger(item,$event)" [checked]="item.value.selectedOptionId == answerStatus.Marked_For_Review"
                       type="checkbox"> Mark it for review
-                  </button>
-                  <button type="button" class="btn btn-info mr-2" (click)="clearResponse(item,i)">Clear the response</button>
-                  <button type="submit" class="btn btn-sucess mr-2">Submit</button>
-                </div>
-              </div>
-            </fieldset>
-          </div>
-        </div>
-
-      </div>
-      <div class="col-3 exam-side-bar">
-        <div class="row">
-          <div class="col-6">
-            <span class="sm-text answeredLabel" id="">0 Answered</span>
-          </div>
-          <div class="col-6">
-            <span class="sm-text notAnsweredLabel" id="">0 Answered</span>
-          </div>
-          <!-- Force next columns to break to new line -->
-          <div class="w-100"></div>
-          <div class="col-6">
-            <span class="sm-text markedLabel" id="">0 Marked for Review
-            </span>
-          </div>
-          <div class="col-6">
-            <span class="sm-text markedAndAnsweredLabel" id="">
-              Answered &amp; Marked for Review (will be considered for evaluation)
-            </span>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-12">
-            <div class="header-0"></div>
-            <div class="subheader-0" id="chooseQuestion">Choose a Question</div>
-          </div>
-        </div>
-        <div class="exam-content">
-          <div class="exam-box">
-            <div class="exam-column">
-              <div class="inner-content">
-                <button *ngFor="let item of questionanswers; let i = index;" type="button" (click)="show(i)" class="btn btn-sm mx-1 my-1"
-                  [ngClass]="statusofitem(item)">{{i+1}}
+                  </label>
                 </button>
+                <button type="button" class="btn btn-info mr-2" (click)="clearResponse(item,i)">Clear the response</button>
+                <button type="submit" class="btn btn-sucess mr-2">Submit</button>
               </div>
             </div>
-            <div>
+          </fieldset>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-3 exam-side-bar">
+      <div class="row">
+        <div class="col-6">
+          <span class="sm-text answeredLabel">{{answerCount}} &nbsp;Answered</span>
+        </div>
+        <div class="col-6">
+          <span class="sm-text notAnsweredLabel">{{someStatus.length-answerCount-answermarkedForReviewCount}} &nbsp;Not Answered</span>
+        </div>
+        <!-- Force next columns to break to new line -->
+        <div class="w-100"></div>
+        <div class="col-12">
+          <span class="sm-text markedLabel">{{markedForReviewCount}} &nbsp;Marked for Review
+          </span>
+        </div>
+        <div class="w-100"></div>
+        <div class="col-12">
+          <span class="sm-text markedAndAnsweredLabel">
+            {{answermarkedForReviewCount}} &nbsp;Answered &amp; Marked for Review (will be considered for evaluation)
+          </span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="header-0"></div>
+          <div class="subheader-0" id="chooseQuestion">Choose a Question</div>
+        </div>
+      </div>
+      <div class="exam-content">
+        <div class="exam-box">
+          <div class="exam-column">
+            <div class="inner-content">
+              <button *ngFor="let item of someStatus; let i = index;" type="button" (click)="show(i)" class="btn btn-sm mx-1 my-1" [ngClass]="item">{{i+1}}
+              </button>
             </div>
+          </div>
+          <div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>

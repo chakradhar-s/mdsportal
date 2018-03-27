@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, group } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 
@@ -14,6 +14,7 @@ import { DataService } from '../../http-service-registry/services/data.service';
 import { ExamService } from '../../http-service-registry/services/exam.service';
 
 import "rxjs/add/operator/debounceTime";
+import { FormControl } from '@angular/forms/src/model';
 
 @Component({
   selector: 'exam-detail',
@@ -26,9 +27,10 @@ export class ExamDetailComponent implements OnInit {
 
   public answerStatus = StatusId;
   public currentCounter: number = 0;
+  public buttonsStatus: Map<string, string> = new Map<string, string>();
+  public someStatus: string[] = [];
 
   public checkedBool: boolean;
-  public AnswersList: Array<RelExamAnswer> = [];
   private sessionId: string = "d91bc146-7252-7442-4f2b-94eb16f00899";
   constructor(private route: ActivatedRoute,
     private service: ExamService,
@@ -40,36 +42,36 @@ export class ExamDetailComponent implements OnInit {
     this.answerStatus.Marked_For_Review;
 
     this.questionanswers.forEach((groups, index) => {
-      groups.valueChanges.debounceTime(800).subscribe(r => {
+      this.buttonsStatus.set(groups.get('questionId').value, this.statusofitem(groups.value));
+      groups.valueChanges.debounceTime(800).subscribe(r => {        
         const sestatus: number = r.selectedOptionId.length > 0 ? this.answerStatus.Answered : r.selectedOptionStatusId;
-        this.service.insertOrUpdateAnswer({
+        const shallowValue = {
           questionId: r.questionId,
           selectedOptionId: r.selectedOptionId,
-          selectedOptionStatusId: sestatus
-        }).subscribe();
+          selectedOptionStatusId: r.selectedOptionStatusId
+        };
+        this.buttonsStatus.set(r.questionId, this.statusofitem(shallowValue));
+        this.answersStatus();
+        this.service.insertOrUpdateAnswer(shallowValue).subscribe();
       });
     });
+    this.answersStatus();
+
     //.valueChanges.debounceTime(800).subscribe(r => console.log(r));
 
   }
 
   private answers: AnswerSet;
 
-  setAnswer(option: OptionSet): void {
-    debugger;
-    let answerObj: RelExamAnswer = { questionId: option.question_id, selectedOptionId: option.option_id, selectedOptionStatusId: 1 };
-    this.dataService.changeAnswer(answerObj);
-    var answeredIndex = this.AnswersList.findIndex(x => x.questionId == option.question_id);
-    if (answeredIndex >= 0) {
-      this.AnswersList.splice(answeredIndex, 1);
-    }
-    this.AnswersList.push(answerObj)
-    // this.service.updateQuestion(option.question_id, answerObj);
-    // this.Question.selectedAnswer = answerObj;
-  }
-
   get questionanswers() {
     return (this.parent.get('questionAnswer') as FormArray).controls;
+  }
+
+  private answersStatus() {
+    this.someStatus = [];
+    this.buttonsStatus.forEach(element => {
+      this.someStatus.push(element);
+    });
   }
 
   public questionByQuestionId(questionId: string) {
@@ -90,19 +92,40 @@ export class ExamDetailComponent implements OnInit {
   }
 
   public statusofitem(item): string {
-    const optionValue = item.get("selectedOptionId").value;
-    const statusValue = item.get("selectedOptionStatusId").value;
+    const optionValue = item.selectedOptionId;
+    const statusValue = item.selectedOptionStatusId;
     if (optionValue.length > 0) {
-      if (statusValue == this.answerStatus.Marked_For_Review){
-        "review_marked_considered";
-      }else if(statusValue==this.answerStatus.Unseen){
-        "answered";
+      if (statusValue == this.answerStatus.Marked_For_Review) {
+        return "review_marked_considered";
+      } else {
+        return "answered";
       }
     }
-    else if(statusValue == this.answerStatus.Marked_For_Review){
-      "review";
+    else if (statusValue == this.answerStatus.Marked_For_Review) {
+      return "review";
     }
     return "";
+  }
+
+  public get markedForReviewCount() {
+    return this.someStatus.filter(t => t == "review").length;
+  }
+
+  public get answermarkedForReviewCount() {
+    return this.someStatus.filter(t => t == "review_marked_considered").length;
+  }
+
+  public get answerCount() {
+    return this.someStatus.filter(t => t == "answered").length;
+  }
+
+  public reviewTrigger(questionSe: FormGroup, changeEvent) {
+    if (changeEvent.currentTarget.checked) {
+      questionSe.get('selectedOptionStatusId').setValue(this.answerStatus.Marked_For_Review);
+    }
+    else{
+      questionSe.get('selectedOptionStatusId').setValue(this.answerStatus.Visited);
+    }
   }
 
 }

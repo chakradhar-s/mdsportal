@@ -20,7 +20,6 @@ import { HttpServiceRegistryModule } from './http-service-registry/http-service-
 
 import { AppUtilityModule } from './app-utility/app-utility.module';
 
-import { SideBarComponent } from './common-exam/side-bar/side-bar.component';
 import { HttpModule } from '@angular/http';
 
 
