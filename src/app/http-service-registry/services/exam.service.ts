@@ -15,7 +15,7 @@ export class ExamService {
   private _localHost: string = "http://localhost:5000/mdservice";
 
   // private _activeQuestionPaper_id: string = "1ca48a34-3866-034a-c953-6a324a64feb0"; // here need to keep active question_paper_id during deployment
-  private _activeQuestionPaper_id: string = "19e77789-3537-e1cb-c6c1-9e6fe5d263af";
+  private _activeQuestionPaper_id: string = "2073d3fb-09ef-e068-62f6-6b262b211797";
   private _activeSession_id: string = "";
   private _testObservable: Observable<QuestionOutput[]>;
 

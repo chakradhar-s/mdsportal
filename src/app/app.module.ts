@@ -45,6 +45,7 @@ import { AuthGuard } from './guard-hub/auth/auth.guard';
 import { ViewResolve } from './guard-hub/resolve/view.resolve';
 
 import { ViewUserGuard } from './guard-hub/view-user/view-user.guard';
+import { MainExamComponent } from './main-exam/main-exam.component';
 
 const myRoots: Routes = [
   {
@@ -85,7 +86,11 @@ const myRoots: Routes = [
   {
     path: 'demo-exam',
     loadChildren: 'app/demo-exam/demo-exam.module#DemoExamModule'
-  } 
+  },
+  {
+    path: 'main-exam',
+    loadChildren: 'app/main-exam/main-exam.module#MainExamModule'
+  }
 ];
 
 
