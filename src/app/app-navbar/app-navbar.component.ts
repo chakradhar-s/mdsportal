@@ -42,6 +42,7 @@ export class AppNavbarComponent implements OnInit {
 
     { exact: true, link: '/main-exam', name: 'Main Exam' },
     { exact: true, link: '/demo-exam', name: 'Demo Exam' },
+    { exact: true, link: '/main-exam', name: 'Main Exam' },
     { exact: true, link: '/contactus', name: 'Take Exam' }];
 
     this._adminNav = [{ exact: true, link: '/home', name: 'Home' },
