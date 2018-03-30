@@ -16,15 +16,15 @@ export class QuestionpaperService {
 
   constructor(private http: HttpClient) { }
 
-  private _localHost: string = "http://localhost:5000/";
+  private _localHost: string = "http://localhost:5000/mdservice/api";
   //private _localHost: string = "http://localhost:62699/";
 
   GetAllQuestionSet(): Observable<QuestionPaper[]> {
-    return this.http.get<QuestionPaper[]>(`${this._localHost}mdservice/api/uploaddocument/all-questions`);
+    return this.http.get<QuestionPaper[]>(`${this._localHost}/uploaddocument/all-questions`);
   }
 
   getAvailableQuestionPapers(): Observable<qp[]> {
-    return this.http.get(`${this._localHost}mdservice/api/uploaddocument/all-questions`).map((response) => {
+    return this.http.get(`${this._localHost}/uploaddocument/all-questions`).map((response) => {
       return response;
     }).catch((error) => {
       return Observable.throw(error);
@@ -32,7 +32,7 @@ export class QuestionpaperService {
   }
 
   EnableOrDisableQuestionPapers(questionArray: QuestionPaper[]): Observable<any> {
-    return this.http.post(`${this._localHost}mdservice/api/uploaddocument/activate-questions`, questionArray);
+    return this.http.post(`${this._localHost}/uploaddocument/activate-questions`, questionArray);
   }
 
 

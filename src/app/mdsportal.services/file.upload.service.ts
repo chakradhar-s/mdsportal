@@ -6,13 +6,13 @@ export class FileUploadService {
 
   constructor(private http: HttpClient) { }
 
-  private _localHost: string = "http://localhost:5000/";
+  private _localHost: string = "http://localhost:5000/mdservice/api";
 
   UploadFile(file: File) {
 
     let formData: FormData = new FormData;
     formData.append('Document', file);
-    this.http.post(`${this._localHost}mdservice/api/uploaddocument/upload`, formData)
+    this.http.post(`${this._localHost}/uploaddocument/upload`, formData)
     .subscribe(
       res=>{
           console.log(res);

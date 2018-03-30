@@ -35,12 +35,12 @@ export class LoginService {
 
   }
 
-  private _proxyHost: string = "http://localhost:5000";
+  private _proxyHost: string = "http://localhost:5000/mdservice/api";
   //private _proxyHost: string = "/";
   private login(user: Login) {
     const headers = new Headers();
     headers.append('Content-Type', 'application/vnd.api+json');
-    return this.http.post(`${this._proxyHost}/mdservice/api/Auth/Login`,
+    return this.http.post(`${this._proxyHost}/Auth/Login`,
       JSON.stringify(user),
       new RequestOptions({ headers: headers })).map((response: Response) =>
         response.json()
@@ -93,7 +93,7 @@ export class LoginService {
   sendResetPassword(userName: string) {
     const headers = new Headers();
     headers.append('Content-Type', 'application/vnd.api+json');
-    return this.http.post(`${this._proxyHost}/mdservice/api/Users/ResetPassword`,
+    return this.http.post(`${this._proxyHost}/Users/ResetPassword`,
       JSON.stringify({ mailId: userName }),
       new RequestOptions({ headers: headers })).map((response: Response) =>
         response.json()

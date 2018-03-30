@@ -22,7 +22,7 @@ export class SignUpService {
 
     }
 
-    private _proxyHost: string = "http://localhost:5000";
+    private _proxyHost: string = "http://localhost:5000/mdservice/api";
     //private _proxyHost: string = "/";   
 
     registerUser(user: Registration) {
@@ -32,7 +32,7 @@ export class SignUpService {
             let rslt = JSON.parse(window.localStorage.getItem('jwt-access-mds'));
             headers.append('Authorization', 'bearer ' + rslt.access_token);
         }
-        return this.http.post(`${this._proxyHost}/mdservice/api/Users`,
+        return this.http.post(`${this._proxyHost}/Users`,
             JSON.stringify({
                 firstName: user.firstName,
                 lastName: user.lastName,
@@ -61,7 +61,7 @@ export class SignUpService {
             let rslt = JSON.parse(window.localStorage.getItem('jwt-access-mds'));
             headers.append('Authorization', 'bearer ' + rslt.access_token);
         }
-        return this.http.put(`${this._proxyHost}/mdservice/api/Users`,
+        return this.http.put(`${this._proxyHost}/Users`,
             JSON.stringify(user),
             new RequestOptions({ headers: headers })).map((response: Response) => {
                 return response.json();
@@ -78,7 +78,7 @@ export class SignUpService {
             let rslt = JSON.parse(window.localStorage.getItem('jwt-access-mds'));
             headers.append('Authorization', 'bearer ' + rslt.access_token);
         }
-        return this.http.get(`${this._proxyHost}/mdservice/api/Users/${id}`,
+        return this.http.get(`${this._proxyHost}/Users/${id}`,
             new RequestOptions({ headers: headers })).map((response: Response) => {
                 return response.json();
             }).catch((error) => {

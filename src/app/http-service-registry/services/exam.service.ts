@@ -14,7 +14,7 @@ import { RelExamAnswer, StatusId } from '../../models/rel-exam-answer.interface'
 @Injectable()
 export class ExamService {
 
-  private _localHost: string = "http://localhost:5000/mdservice";
+  private _localHost: string = "http://localhost:5000/mdservice/api";
   //private _localHost: string = "http://localhost:62699/mdservice";
   // private _localHost: string = "/mdservice";
 
