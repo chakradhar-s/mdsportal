@@ -17,7 +17,7 @@ export class ExamService {
   private _localHost: string = "http://localhost:5000/mdservice";
   //private _localHost: string = "http://localhost:62699/mdservice";
   // private _localHost: string = "/mdservice";
- 
+
   // private _activeQuestionPaper_id : string = "0fbb86f6-cece-4c32-b795-4ecae57080e7";
   //private _activeSession_id: string = "1908d1b0-276e-11e8-bd47-0252c1ad21ae";
   private _activeSession_id: string = "";
@@ -28,8 +28,11 @@ export class ExamService {
 
   startSession(examType: number, questionPaper_id: string) {
     const headers = new Headers();
-    if (window.localStorage.getItem('jwt-access-mds')) {
+    if (examType == 1 && window.localStorage.getItem('jwt-access-mds')) {
       let rslt = JSON.parse(window.localStorage.getItem('jwt-access-mds'));
+      headers.append('Authorization', 'bearer ' + rslt.access_token);
+    }else if(examType == 0 && window.localStorage.getItem('jwt-demo-access-mds')){
+      let rslt = JSON.parse(window.localStorage.getItem('jwt-demo-access-mds'));
       headers.append('Authorization', 'bearer ' + rslt.access_token);
     }
     headers.append('Content-Type', 'application/vnd.api+json');

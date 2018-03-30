@@ -173,8 +173,14 @@ export class DemoExamComponent implements OnInit, OnDestroy {
   }
 
   public loginSubmit() {
-    this.loginPage = false;
-    this.startPage = true;
+    if (this.loginForm.valid) {
+      this.loginService.validateDemoUser({ userName: this.loginForm.get('userName').value, password: this.loginForm.get('password').value });
+      this.loginService.demoUserId.subscribe(() => {
+        this.loginPage = false;
+        this.startPage = true;
+      });
+
+    }
   }
 
 }
