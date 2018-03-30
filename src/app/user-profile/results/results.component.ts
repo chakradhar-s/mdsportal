@@ -8,7 +8,7 @@ import { UserResult } from '../../models/question-set';
   styleUrls: ['./results.component.scss']
 })
 export class ResultsComponent implements OnInit {
-
+  public selectedRecord : any;
   public results: UserResult[];
   public columns: any;
   constructor(
@@ -22,10 +22,28 @@ export class ResultsComponent implements OnInit {
     }, err => {
       console.log(err);
     });
-    this.columns = [{ field: "questionPaperName", header: "Question Paper name" },
-    { field: "sessionId", header: "Session id" },
-    { field: "result", header: "Result scored" },
-    { field: "attemptedDate", header: "Date of attempt" }];
+    this.columns = [{ field: "questionPaperName", header: "Question Paper name", class:"col-md-3" },
+    { field: "sessionId", header: "Session id", class:"col-md-3" },
+    { field: "result", header: "Result scored", class:"col-md-1" },
+    { field: "attemptedDate", header: "Date of attempt", class:"col-md-3" },
+    { field: "",header:"", class:"col-md-2"}];
   }
+
+  showRank(object : any):void{
+    debugger;
+    // alert(sessionId);
+    console.log(object.sessionId);
+    if(object != null){
+    this.resultService.getRank(object.sessionId)
+    .subscribe((res) => {
+      this.selectedRecord = res;
+      this.selectedRecord.questionPaperName = object.questionPaperName
+      this.selectedRecord.attemptedDate = object.attemptedDate;
+    }, err => {
+      console.log(err);
+    });
+    }
+  }
+
 
 }

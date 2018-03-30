@@ -32,5 +32,5 @@ export class UserResult{
     public  questionPaperName : string;
     public  sessionId : string;
     public  result : number;
-    public  attemptedDate : string;
+    public  attemptedDate : Date;
 }

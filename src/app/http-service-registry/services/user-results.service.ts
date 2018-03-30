@@ -33,4 +33,22 @@ export class UserResultsService {
       );
   }
 
+  getRank(sessionId : string): any {
+    debugger;
+    const headers = new Headers();
+    if (window.localStorage.getItem('jwt-access-mds')) {
+      let rslt = JSON.parse(window.localStorage.getItem('jwt-access-mds'));
+      headers.append('Authorization', 'bearer ' + rslt.access_token);
+    }
+    headers.append('Content-Type', 'application/vnd.api+json');
+    let url = this._localHost + `/api/DemoExam/Rank/${sessionId}`;
+    
+    return this.http.get(url,
+      new RequestOptions({ headers: headers }))
+      .map((response: Response) =>  response.json())
+      .catch((error) =>
+        Observable.throw(error)
+      );
+  };
+
 }
