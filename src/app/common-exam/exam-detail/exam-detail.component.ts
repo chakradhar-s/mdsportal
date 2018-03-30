@@ -31,7 +31,7 @@ export class ExamDetailComponent implements OnInit {
   public someStatus: string[] = [];
 
   public checkedBool: boolean;
-  private sessionId: string = "d91bc146-7252-7442-4f2b-94eb16f00899";
+
   constructor(private route: ActivatedRoute,
     private service: ExamService,
     private dataService: DataService
@@ -59,9 +59,7 @@ export class ExamDetailComponent implements OnInit {
 
     //.valueChanges.debounceTime(800).subscribe(r => console.log(r));
 
-  }
-
-  private answers: AnswerSet;
+  }  
 
   get questionanswers() {
     return (this.parent.get('questionAnswer') as FormArray).controls;

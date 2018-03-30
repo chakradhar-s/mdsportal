@@ -1,13 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { QuestionSet, QuestionOutput, QuestionResult } from '../models/question-set';
 import { FormBuilder, FormGroup, FormArray, Validators, AbstractControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/catch';
 
-import { NgbModal, NgbActiveModal, NgbModalOptions, ModalDismissReasons,NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbActiveModal, NgbModalOptions, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 import { ExamService } from '../http-service-registry/services/exam.service';
 import { DataService } from '../http-service-registry/services/data.service';
@@ -17,6 +18,7 @@ import { templateJitUrl } from '@angular/compiler';
 import { Alert } from '../models/alert.interface';
 
 import { LoginService } from '../http-service-registry/services/login-service.service';
+import { UserLoginValidators } from '../login-user/login/login-user.validators';
 
 
 @Component({
@@ -27,21 +29,32 @@ import { LoginService } from '../http-service-registry/services/login-service.se
 export class DemoExamComponent implements OnInit, OnDestroy {
 
   private questions: QuestionOutput[] = [];
-  //public selectedQuestion: Observable<QuestionOutput>;
-  //public selectedAnswer: RelExamAnswer;
   public questionAnswerMap: Map<string, QuestionSet>;
-  public startPage: boolean = true;
+  public startPage: boolean = false;
+  public loginPage: boolean = true;
   public sessionSubscription;
   public alerts: Array<Alert> = [];
   private _userId: string = '';
-  private mmodal:NgbModalRef;
+  private mmodal: NgbModalRef;
+  private _activeQuestionPaper: string = '';
+  public inValidCredentials: boolean = false;
 
   form = this.fb.group({
     start: this.fb.group({ disclaimer: [false, [Validators.required]] }),
     questionAnswer: this.fb.array([])
-  })
+  });
+
+  public loginForm = this.fb.group({
+    userName: ['1111122222',
+      [Validators.required,
+      UserLoginValidators.validUserName]],
+    password: ['1111',
+      [Validators.required,
+      UserLoginValidators.validPassword]]
+  });
 
   constructor(
+    private route: ActivatedRoute,
     private fb: FormBuilder,
     private service: ExamService,
     private dataService: DataService,
@@ -51,35 +64,14 @@ export class DemoExamComponent implements OnInit, OnDestroy {
     loginService.userId.subscribe((id) => {
       this._userId = id;
     });
-  }
 
-  // getQuestion(): void {
-  //   this.service.getQuestions()
-  //     // .map(ques => {
-  //     //   let d =  ques;
-  //     //   return d;
-  //     // }) 
-  //     .subscribe(ques => {
-  //       debugger;
-  //       this.questions = ques;
-  //       const ehjd = [];
-  //       this.questions.forEach(item => {
-  //         ehjd.push(item.questionResult.map<[string, QuestionSet]>(jr => {
-  //           return [jr.questionId, jr.questions];
-  //         }));
-  //         this.addQuestionAnswer(item);
-  //       });
-  //       this.questionAnswerMap = new Map<string, QuestionSet>(ehjd);
-  //       // console.log(this.questions);
-  //       //this.dataService.changeQuestion(this.questions[0]);
-  //     });
-  //   console.log('demo exam logging ' + this.questions);
-  //   // this.data.changeQuestion(question);
-  //   // this.dataService.currentQuestion.subscribe(cur => this.SelectedQuestion = cur);
-  // }
+  }
 
   ngOnInit() {
     console.log('demo exam log ' + this.questions);
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      this._activeQuestionPaper = params.get('paperid');
+    });
 
   }
 
@@ -88,26 +80,6 @@ export class DemoExamComponent implements OnInit, OnDestroy {
       this.sessionSubscription.unsubscribe();
     }
   }
-
-  /* questionChanged(obj: QuestionOutput): void {
-    this.selectedQuestion.subscribe();
-  } */
-
-  test(): void {
-
-  }
-
-  /* saveAndNext(): void {
-    console.log('save triggered');
-    this.dataService.currentAnswer.subscribe(next => this.selectedAnswer = next);
-    this.service.insertOrUpdateAnswer(this.selectedAnswer, StatusId.Answered);
-    this.service.updateQuestion(this.selectedAnswer.questionId, this.selectedAnswer);
-  }
-
-  saveAndMark(): void {
-    this.dataService.currentAnswer.subscribe(next => this.selectedAnswer = next);
-    this.service.insertOrUpdateAnswer(this.selectedAnswer, StatusId.Marked_For_Review);
-  } */
 
   addQuestionAnswer(groupedQuestions: QuestionOutput): any {
     const control = this.form.get('questionAnswer') as FormArray;
@@ -125,10 +97,11 @@ export class DemoExamComponent implements OnInit, OnDestroy {
   }
 
   startSession(starts: boolean) {
-    this.sessionSubscription = this.service.startSession(0).subscribe((quest: QuestionOutput[]) => {
+    this.sessionSubscription = this.service.startSession(0, this._activeQuestionPaper).subscribe((quest: QuestionOutput[]) => {
       const queriesFormat: QuestionOutput[] = quest;
-      console.log(queriesFormat);
+
       const ehjd = [];
+
       for (let i = 0; i < queriesFormat.length; i++) {
         let temp3 = queriesFormat[i].questionsResult.map<[string, QuestionSet]>(jr => {
           return [jr.questionId, jr.questions];
@@ -136,12 +109,7 @@ export class DemoExamComponent implements OnInit, OnDestroy {
         ehjd.push(new Map<string, QuestionSet>(temp3));
         this.addQuestionAnswer(queriesFormat[i]);
       }
-      // this.questions.forEach(item => {
-      //   ehjd.push(item.questionResult.map<[string, QuestionSet]>(jr => {
-      //     return [jr.questionId, jr.questions];
-      //   }));
-      //   this.addQuestionAnswer(item);
-      // });
+
       this.questionAnswerMap = new Map();
       ehjd.forEach(item => {
         item.forEach((bonf, ji) => {
@@ -150,7 +118,20 @@ export class DemoExamComponent implements OnInit, OnDestroy {
       });
 
       this.questions.concat(quest);
+
+      this.alerts = [];
       this.startPage = false;
+      if (!this.questionAnswerMap.size) {
+        this.startPage = true;
+        this.alerts = [{
+          id: 1,
+          type: 'warning',
+          message: 'Soory, question paper is invalid, please report it to an adminstrator/support team for this test!',
+        }];
+
+        document.querySelector("body").scrollTo(0, 0);
+      }
+
     }, () => {
       this.startPage = true;
     }, () => {
@@ -173,7 +154,7 @@ export class DemoExamComponent implements OnInit, OnDestroy {
 
   navigate() {
     this.mmodal.close();
-    this.router.navigate(['view-results', this._userId], { replaceUrl: true });   
+    this.router.navigate(['/view-results', this._userId], { replaceUrl: true });
   }
 
   private getDismissReason(reason: any): string {
@@ -185,4 +166,15 @@ export class DemoExamComponent implements OnInit, OnDestroy {
       return `with: ${reason}`;
     }
   }
+
+  public closeAlert(alert: Alert) {
+    const index: number = this.alerts.indexOf(alert);
+    this.alerts.splice(index, 1);
+  }
+
+  public loginSubmit() {
+    this.loginPage = false;
+    this.startPage = true;
+  }
+
 }

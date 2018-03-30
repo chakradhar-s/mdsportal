@@ -1,43 +1,39 @@
-
-
 <div class=container>
-<div class="row">
-  <div class=""> 
+  <div class="row">
+    <div class="">
       <div class="form-group">
         <label for="exampleInputFile">Upload File</label>
-        <input type="file" class="form-control-file" id="exampleInputFile"  (change)="onUpload($event)" aria-describedby="fileHelp">
+        <input type="file" class="form-control-file" id="exampleInputFile" (change)="onUpload($event)" aria-describedby="fileHelp">
         <small id="fileHelp" class="form-text text-muted">Upload Question Paper</small>
-      </div>   
+      </div>
     </div>
 
-
- <div>
-
-  <p-table [columns]="columns" [value]="questionPaperGroup" [(selection)]="selectedQuestionGroup" dataKey="question_paper_id">
-    <ng-template pTemplate="header" let-columns>
-        <tr>
+    <div>
+      <p-table [paginator]="true" [rows]="10" [columns]="columns" [value]="questionPaperGroup" [(selection)]="selectedQuestionGroup"
+        dataKey="question_paper_id">
+        <ng-template pTemplate="header" let-columns>
+          <tr>
             <th style="width: 2.25em">
-                    <input type="checkbox" [checked]="allChecked" (change)="CheckBoxAllSelectHndlr($event)">
+              <input type="checkbox" [checked]="allChecked" (change)="CheckBoxAllSelectHndlr($event)">
             </th>
             <th *ngFor="let col of columns">
-                {{col.header}}
+              {{col.header}}
             </th>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-rowData let-columns="columns">
-        <tr [pSelectableRow]="rowData">
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+          <tr [pSelectableRow]="rowData">
             <td>
-               <input type="checkbox" [checked]="rowData.is_active" (change)="IsActiveCheckHndlr($event,rowData)">
+              <input type="checkbox" [checked]="rowData.isActive" (change)="IsActiveCheckHndlr($event,rowData)">
             </td>
             <td *ngFor="let col of columns">
-                {{rowData[col.field]}}
+              {{rowData[col.field]}}
             </td>
-        </tr>
-    </ng-template>
-</p-table>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
 
- </div>
-
-</div>
+  </div>
 
 </div>

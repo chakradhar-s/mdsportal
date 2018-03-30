@@ -1,33 +1,58 @@
 <div class="row">
   <div class="col-md-12">
-    <!--<exam-side-bar [Questions]="questions"></exam-side-bar>-->
-    <!-- <div class="row">
-      <div class="col align-self-center">
-        <p *ngFor="let alert of alerts" class="text-center">
-          <ngb-alert [type]="alert.type" (close)="closeAlert(alert)">{{ alert.message }}</ngb-alert>
-        </p>
+    <ng-template #content let-c="close" let-d="dismiss">
+      <div class="modal-header">
+        <h4 class="modal-title">Exam</h4>
       </div>
-    </div> -->
-      <ng-template #content let-c="close" let-d="dismiss">
-          <div class="modal-header">
-            <h4 class="modal-title">Exam</h4>
+      <div class="modal-body">
+        <p>Your answers were submitted&hellip;</p>
+        <button type="button" (click)="navigate()">
+          <span aria-hidden="true">OK</span>
+        </button>
+      </div>
+    </ng-template>
+
+    <div class="row align-items-center align-items-center auth-pages" *ngIf="loginPage">
+      <div class="col-lg-4 mx-auto">
+        <div class="card">
+          <div class="card-body px-5 py-5">
+            <h3 class="card-title text-left mb-3">Login</h3>
+            <form [formGroup]="loginForm" (ngSubmit)="loginSubmit()">
+              <div class="form-group">
+                <p class="error" *ngIf="inValidCredentials">
+                  Invalid Credentials
+                </p>
+              </div>
+              <div class="form-group">
+                <label>
+                  UserName: {{loginForm.get('userName').value}}
+                </label>
+              </div>
+              <div class="text-center">
+                <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary btn-block enter-btn">LOG IN</button>
+              </div>
+            </form>
           </div>
-          <div class="modal-body">
-            <p>Your answers were submitted&hellip;</p>
-            <button type="button" (click)="navigate()">
-              <span aria-hidden="true">OK</span>
-            </button>
-          </div>
-        </ng-template>
+        </div>
+      </div>
+    </div>
+
     <form [formGroup]="form" (ngSubmit)="onSubmit(content)">
       <div class="row">
-        <div class="col-md-12">
+        <div class="col align-self-center">
+          <p *ngFor="let alert of alerts" class="text-center">
+            <ngb-alert [type]="alert.type" (close)="closeAlert(alert)">{{ alert.message }}</ngb-alert>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
           <start-page *ngIf="startPage" [parent]="form" (started)="startSession($event)"></start-page>
         </div>
       </div>
       <div class="row">
-        <div class="col-md-12">
-          <exam-detail *ngIf="!startPage" [parent]="form" [map]="questionAnswerMap"></exam-detail>
+        <div class="col-12">
+          <exam-detail *ngIf="!startPage && questionAnswerMap && questionAnswerMap.size>=1" [parent]="form" [map]="questionAnswerMap"></exam-detail>
         </div>
       </div>
     </form>

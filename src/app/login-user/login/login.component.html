@@ -1,42 +1,41 @@
 <div class="row align-items-center align-items-center auth-pages">
   <div class="col-lg-4 mx-auto">
-      <div class="card">
-          <div class="card-body px-5 py-5">
-            <h3 class="card-title text-left mb-3">Login</h3>
-            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-              <div class="form-group">
-                <p class="error" *ngIf="inValidCredentials">
-                  Invalid Credentials
-                </p>
-              </div>
-              <div class="form-group">
-                <input class="form-control p_input" placeholder="Email Id or Mobile Number" type="text" formControlName="userName">
-                <div class="error" *ngIf="required('userName')">
-                  Username is required
-                </div>
-                <div class="error" *ngIf="invalid">
-                  Invalid Username
-                </div>
-              </div>
-              <div class="form-group">
-                <input class="form-control p_input" placeholder="Password" type="password" formControlName="password">
-                <div class="error" *ngIf="required('password')">
-                  Password is required
-                </div>
-                <div class="error" *ngIf="passvalid">
-                  Minimum 4 Characters are required
-                </div>
-              </div>
-              <div class="form-group d-flex align-items-center justify-content-between">
-                <a routerLink="/forgot_password" class="forgot-pass">Forgot password</a>
-              </div>
-              <div class="text-center">
-                <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary btn-block enter-btn">LOG IN</button>
-              </div>
-              <p class="Or-login-with my-3 curs-pointer" (click)="register()">Or Register new user</p>
-            </form>
+    <div class="card">
+      <div class="card-body px-5 py-5">
+        <h3 class="card-title text-left mb-3">Login</h3>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <p class="error" *ngIf="inValidCredentials">
+              Invalid Credentials
+            </p>
           </div>
-        </div>
+          <div class="form-group">
+            <input class="form-control p_input" placeholder="Email Id or Mobile Number" type="text" formControlName="userName">
+            <div class="error" *ngIf="required('userName')">
+              Username is required
+            </div>
+            <div class="error" *ngIf="invalid">
+              Invalid Username
+            </div>
+          </div>
+          <div class="form-group">
+            <input class="form-control p_input" placeholder="Password" type="password" formControlName="password">
+            <div class="error" *ngIf="required('password')">
+              Password is required
+            </div>
+            <div class="error" *ngIf="passvalid">
+              Minimum 4 Characters are required
+            </div>
+          </div>
+          <div class="form-group d-flex align-items-center justify-content-between">
+            <a routerLink="/forgot_password" class="forgot-pass">Forgot password</a>
+          </div>
+          <div class="text-center">
+            <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary btn-block enter-btn">LOG IN</button>
+          </div>
+          <p class="Or-login-with my-3 curs-pointer" (click)="register()">Or Register new user</p>
+        </form>
+      </div>
+    </div>
   </div>
-  
 </div>

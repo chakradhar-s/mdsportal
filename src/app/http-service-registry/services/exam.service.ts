@@ -17,16 +17,16 @@ export class ExamService {
   private _localHost: string = "http://localhost:5000/mdservice";
   //private _localHost: string = "http://localhost:62699/mdservice";
   // private _localHost: string = "/mdservice";
-  private _activeQuestionPaper_id: string = "1ca48a34-3866-034a-c953-6a324a64feb0"; // here need to keep active question_paper_id during deployment
+ 
   // private _activeQuestionPaper_id : string = "0fbb86f6-cece-4c32-b795-4ecae57080e7";
   //private _activeSession_id: string = "1908d1b0-276e-11e8-bd47-0252c1ad21ae";
   private _activeSession_id: string = "";
 
   private _testObservable: Observable<QuestionOutput[]>;
 
-  constructor(private http: Http, ) { }
+  constructor(private http: Http) { }
 
-  startSession(examType: number) {
+  startSession(examType: number, questionPaper_id: string) {
     const headers = new Headers();
     if (window.localStorage.getItem('jwt-access-mds')) {
       let rslt = JSON.parse(window.localStorage.getItem('jwt-access-mds'));
@@ -35,7 +35,7 @@ export class ExamService {
     headers.append('Content-Type', 'application/vnd.api+json');
 
     return this.http.post(this._localHost + '/api/exam/startsession',
-      JSON.stringify({ questionPaperId: this._activeQuestionPaper_id, "examType": examType }),
+      JSON.stringify({ questionPaperId: questionPaper_id, "examType": examType }),
       new RequestOptions({ headers: headers }))
       .flatMap(token => {
         this._activeSession_id = (token.json())["exam_token"];
