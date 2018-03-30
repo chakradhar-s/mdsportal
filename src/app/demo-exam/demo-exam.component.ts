@@ -11,7 +11,6 @@ import 'rxjs/add/operator/catch';
 import { NgbModal, NgbActiveModal, NgbModalOptions, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 import { ExamService } from '../http-service-registry/services/exam.service';
-import { DataService } from '../http-service-registry/services/data.service';
 import { AnswerSet } from '../models/answer-set';
 import { RelExamAnswer, StatusId } from '../models/rel-exam-answer.interface';
 import { templateJitUrl } from '@angular/compiler';
@@ -57,7 +56,6 @@ export class DemoExamComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private service: ExamService,
-    private dataService: DataService,
     private modalService: NgbModal,
     private router: Router,
     private loginService: LoginService) {

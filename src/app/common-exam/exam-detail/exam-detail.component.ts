@@ -10,7 +10,6 @@ import { QuestionSet, OptionSet, QuestionOutput, QuestionResult } from '../../mo
 import { AnswerSet } from '../../models/answer-set';
 import { RelExamAnswer, StatusId } from '../../models/rel-exam-answer.interface';
 
-import { DataService } from '../../http-service-registry/services/data.service';
 import { ExamService } from '../../http-service-registry/services/exam.service';
 
 import "rxjs/add/operator/debounceTime";
@@ -33,8 +32,7 @@ export class ExamDetailComponent implements OnInit {
   public checkedBool: boolean;
 
   constructor(private route: ActivatedRoute,
-    private service: ExamService,
-    private dataService: DataService
+    private service: ExamService
   ) { }
 
   ngOnInit() {
