@@ -4,8 +4,8 @@ import { Alert } from '../models/alert.interface';
 import { NgbModalRef, NgbModal, NgbModalOptions, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormArray, Validators } from '@angular/forms';
 import { ExamService } from '../http-service-registry/services/exam.service';
-import { DataService } from '../http-service-registry/services/data.service';
-import { Router } from '@angular/router';
+
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { LoginService } from '../http-service-registry/services/login-service.service';
 import { RelExamAnswer } from '../models/rel-exam-answer.interface';
 
@@ -17,14 +17,13 @@ import { RelExamAnswer } from '../models/rel-exam-answer.interface';
 export class MainExamComponent implements OnInit {
   @Output() endExamEvent = new EventEmitter<boolean>();
   private questions: QuestionOutput[] = [];
-  //public selectedQuestion: Observable<QuestionOutput>;
-  //public selectedAnswer: RelExamAnswer;
   public questionAnswerMap: Map<string, QuestionSet>;
   public startPage: boolean = true;
   public sessionSubscription;
   public alerts: Array<Alert> = [];
   private _userId: string = '';
   private mmodal: NgbModalRef;
+  private _activeQuestionPaper: string = '';
 
 
   form = this.fb.group({
@@ -32,9 +31,9 @@ export class MainExamComponent implements OnInit {
     questionAnswer: this.fb.array([])
   })
   constructor(
+    private route: ActivatedRoute,
     private fb: FormBuilder,
     private service: ExamService,
-    private dataService: DataService,
     private modalService: NgbModal,
     private router: Router,
     private loginService: LoginService
@@ -45,7 +44,9 @@ export class MainExamComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      this._activeQuestionPaper = params.get('paperid');
+    });
   }
 
   ngOnDestroy() {
@@ -70,7 +71,7 @@ export class MainExamComponent implements OnInit {
   }
 
   startSession(starts: boolean) {
-    this.sessionSubscription = this.service.startSession(0).subscribe((quest: QuestionOutput[]) => {
+    this.sessionSubscription = this.service.startSession(0, this._activeQuestionPaper).subscribe((quest: QuestionOutput[]) => {
       const queriesFormat: QuestionOutput[] = quest;
       console.log(queriesFormat);
       const ehjd = [];
@@ -113,7 +114,7 @@ export class MainExamComponent implements OnInit {
 
   navigate() {
     this.mmodal.close();
-    this.router.navigate(['view-results', this._userId], { replaceUrl: true });   
+    this.router.navigate(['view-results', this._userId], { replaceUrl: true });
   }
 
   private getDismissReason(reason: any): string {

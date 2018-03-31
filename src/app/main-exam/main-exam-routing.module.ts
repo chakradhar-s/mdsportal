@@ -5,8 +5,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MainExamComponent } from './main-exam.component';
 
 const routes: Routes = [
-  { path: '', component: MainExamComponent },
-  { path: 'detail/:id', component: ExamDetailComponent }
+  { path: '', component: MainExamComponent }
 ];
 
 @NgModule({

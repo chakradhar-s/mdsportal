@@ -91,7 +91,11 @@ const myRoots: Routes = [
   {
     path: 'taketest',
     loadChildren: 'app/take-exam/take-exam.module#TakeExamModule'
-  }
+  },
+  {
+    path: 'main-exam/:paperid',
+    loadChildren: 'app/main-exam/main-exam.module#MainExamModule'
+  },
 ];
 
 

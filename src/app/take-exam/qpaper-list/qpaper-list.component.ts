@@ -28,7 +28,7 @@ export class QpaperListComponent implements OnInit {
 
   onRowSelect(event) {
     console.log(event.data.questionPaperId);
-    this.router.navigate(['/demo-exam', event.data.questionPaperId], { replaceUrl: true });
+    this.router.navigate(['/main-exam', event.data.questionPaperId], { replaceUrl: true });
   }
 
 }
