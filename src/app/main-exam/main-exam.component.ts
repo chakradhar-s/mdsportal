@@ -9,6 +9,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { LoginService } from '../http-service-registry/services/login-service.service';
 import { RelExamAnswer } from '../models/rel-exam-answer.interface';
 
+
 @Component({
   selector: 'app-main-exam',
   templateUrl: './main-exam.component.html',
@@ -91,9 +92,27 @@ export class MainExamComponent implements OnInit {
       });
 
       this.questions.concat(quest);
+      this.alerts = [];
       this.startPage = false;
-    }, () => {
+      if (!this.questionAnswerMap.size) {
+        this.startPage = true;
+        this.alerts = [{
+          id: 1,
+          type: 'warning',
+          message: 'Soory, question paper is invalid, please report it to an adminstrator/support team for this test!',
+        }];
+
+        document.querySelector("body").scrollTo(0, 0);
+      }
+
+    }, (error) => {
       this.startPage = true;
+      this.alerts = [{
+        id: 1,
+        type: 'danger',
+        message: error.json().error,
+      }];
+
     }, () => {
 
     });
@@ -125,5 +144,10 @@ export class MainExamComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
+  }
+
+  public closeAlert(alert: Alert) {
+    const index: number = this.alerts.indexOf(alert);
+    this.alerts.splice(index, 1);
   }
 }

@@ -1,8 +1,9 @@
-<app-timer (endExamEvent)="triggerEndExam($event)">
+<app-timer (endExamEvent)="triggerEndExam($event)" [timerCount]="timerCount">
 </app-timer>
 
 <div class="row">
   <div class="questionTypeCont col-12">
+      <h3>Don't refresh the page after a exam is started.</h3>
     <span class="questiontype-details">
       <span class="questionType">Question Type :</span>MCQ</span>
   </div>

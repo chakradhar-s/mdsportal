@@ -128,6 +128,7 @@ export class DemoExamComponent implements OnInit, OnDestroy {
         }];
 
         document.querySelector("body").scrollTo(0, 0);
+        window.scrollTo(0, 0);
       }
 
     }, () => {
@@ -150,7 +151,7 @@ export class DemoExamComponent implements OnInit, OnDestroy {
     });
   }
 
-  
+
 
   navigate() {
     this.mmodal.close();

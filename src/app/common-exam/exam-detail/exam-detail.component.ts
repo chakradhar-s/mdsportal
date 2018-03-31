@@ -24,6 +24,7 @@ export class ExamDetailComponent implements OnInit {
   @Input() parent: FormGroup;
   @Input() map: Map<string, QuestionSet>;
   @Output() endExamEvent = new EventEmitter<boolean>();
+  @Input() timerCount: FormGroup;
 
   public answerStatus = StatusId;
   public currentCounter: number = 0;
@@ -42,7 +43,7 @@ export class ExamDetailComponent implements OnInit {
 
     this.questionanswers.forEach((groups, index) => {
       this.buttonsStatus.set(groups.get('questionId').value, this.statusofitem(groups.value));
-      groups.valueChanges.debounceTime(800).subscribe(r => {        
+      groups.valueChanges.debounceTime(800).subscribe(r => {
         const sestatus: number = r.selectedOptionId.length > 0 ? this.answerStatus.Answered : r.selectedOptionStatusId;
         const shallowValue = {
           questionId: r.questionId,
@@ -58,7 +59,7 @@ export class ExamDetailComponent implements OnInit {
 
     //.valueChanges.debounceTime(800).subscribe(r => console.log(r));
 
-  }  
+  }
 
   get questionanswers() {
     return (this.parent.get('questionAnswer') as FormArray).controls;
@@ -103,7 +104,7 @@ export class ExamDetailComponent implements OnInit {
     }
     return "";
   }
-  
+
   public get markedForReviewCount() {
     return this.someStatus.filter(t => t == "review").length;
   }
@@ -120,12 +121,12 @@ export class ExamDetailComponent implements OnInit {
     if (changeEvent.currentTarget.checked) {
       questionSe.get('selectedOptionStatusId').setValue(this.answerStatus.Marked_For_Review);
     }
-    else{
+    else {
       questionSe.get('selectedOptionStatusId').setValue(this.answerStatus.Visited);
     }
   }
 
-  public triggerEndExam(event){
+  public triggerEndExam(event) {
     this.endExamEvent.emit(true);
   }
 }

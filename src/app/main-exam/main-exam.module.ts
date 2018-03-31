@@ -5,12 +5,15 @@ import { CommonExamModule } from '../common-exam/common-exam.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MainExamComponent } from './main-exam.component';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   imports: [
     CommonModule,
     MainExamRoutingModule,
     CommonExamModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   declarations: [MainExamComponent],
   schemas:[CUSTOM_ELEMENTS_SCHEMA]

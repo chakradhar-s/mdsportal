@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'app-timer',
@@ -7,6 +7,8 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class TimerComponent implements OnInit {
   @Output() endExamEvent = new EventEmitter<boolean>();
+
+  @Input() timerCount: number;
 
   constructor() { }
 
@@ -18,14 +20,14 @@ export class TimerComponent implements OnInit {
   }
   timeString: string;
   // duration = 10*60;
-  fduration = 20 * 60;
+  fduration = this.timerCount * 60;
   fseconds = "";
   fintervalId;
   fminutes = "";
   clockDisplay: string;
   rintervalId = 0;
   message = '';
-  rDuration = 1 * 60;
+  rDuration = this.timerCount * 60;
   rSeconds = "";
   rMinutes = "";
   rDisplay: string;
@@ -62,7 +64,7 @@ export class TimerComponent implements OnInit {
     clearInterval(this.rintervalId);
   }
 
-  endEmitter(){
+  endEmitter() {
     this.endExamEvent.emit(true);
   }
 
@@ -88,16 +90,16 @@ export class TimerComponent implements OnInit {
         this.clearTimer();
         this.endEmitter();
       }
-      else{
+      else {
         if (this.rCounter > 60) {
           this.rSeconds = ("0" + (60 - (this.rCounter % 60))).slice(-2);
         }
         else {
           this.rSeconds = ("0" + (60 - this.rCounter)).slice(-2);
         }
-        this.rMinutes = ("0" + Math.ceil((this.rDuration - this.rCounter-60) / 60)).slice(-2);
-      }      
-     
+        this.rMinutes = ("0" + Math.ceil((this.rDuration - this.rCounter - 60) / 60)).slice(-2);
+      }
+
       this.rDisplay = this.rMinutes + " : " + this.rSeconds;
     }, 1000);
   }
