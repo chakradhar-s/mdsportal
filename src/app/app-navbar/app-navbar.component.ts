@@ -39,7 +39,7 @@ export class AppNavbarComponent implements OnInit {
     { exact: true, link: '/payment', name: 'Payment  |  Schedule & PP Books' },
     { exact: true, link: '/s-strategy', name: 'DEV' },
     { exact: true, link: '/demo-exam/410b088a-6fae-42ae-9bf9-283aa438a890', name: 'Demo Exam' },
-    { exact: true, link: '/contactus', name: 'Take Exam' }];
+    { exact: true, link: '/contactus', name: 'Contact Us' }];
 
     this._adminNav = [{ exact: true, link: '/home', name: 'Home' },
     { exact: true, link: '/about', name: 'About us' },

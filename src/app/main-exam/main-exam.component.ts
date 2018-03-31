@@ -103,6 +103,7 @@ export class MainExamComponent implements OnInit {
         }];
 
         document.querySelector("body").scrollTo(0, 0);
+        window.scrollTo(0, 0);
       }
 
     }, (error) => {

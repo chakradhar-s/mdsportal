@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class UserResultsService {
 
-  private _localHost: string = "http://localhost:5000/mdservice/api";
+  private _localHost: string = "https://ec2-52-66-160-163.ap-south-1.compute.amazonaws.com/mdservice/api";
   private _userId: string;
 
   constructor(
