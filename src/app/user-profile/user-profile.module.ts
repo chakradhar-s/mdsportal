@@ -8,6 +8,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { GuardHubModule } from '../guard-hub/guard-hub.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ResultsComponent } from './results/results.component';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { ResultsComponent } from './results/results.component';
     UserProfileRoutingModule,
     ReactiveFormsModule,
     GuardHubModule,
+    TableModule,
     NgbModule
   ],
   declarations: [ProfileComponent, ResultsComponent]

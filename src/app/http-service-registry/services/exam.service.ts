@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
 import { QuestionSet, QuestionOutput, QuestionResult } from '../../models/question-set';
-// import { QUESTION_SET } from '../../models/mock-content';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/mergeMap';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
-// import { AnswerSet } from '../../models/answer-set';
 import { HttpClient } from '@angular/common/http';
 import { RelExamAnswer, StatusId } from '../../models/rel-exam-answer.interface';
 
@@ -16,12 +14,8 @@ export class ExamService {
 
   private _localHost: string = "http://localhost:5000/mdservice/api";
   //private _localHost: string = "http://localhost:62699/mdservice";
-  // private _localHost: string = "/mdservice";
 
-  // private _activeQuestionPaper_id : string = "0fbb86f6-cece-4c32-b795-4ecae57080e7";
-  //private _activeSession_id: string = "1908d1b0-276e-11e8-bd47-0252c1ad21ae";
   private _activeSession_id: string = "";
-
   private _testObservable: Observable<QuestionOutput[]>;
 
   constructor(private http: Http) { }
@@ -62,19 +56,10 @@ export class ExamService {
   };
 
   updateQuestion(ques_id: string, ans: RelExamAnswer): void {
-    // var ques_id;
-    // var ans;
-    debugger;
     let d = this.getQuestions()
       .map(x =>
         x.map(j =>
           j.questionsResult.findIndex(x => x.questionId == ques_id)
-
-          // .map(q => {
-          //   if (q.question_id == ques_id) {
-          //     q.selectedAnswer = ans
-          //   }
-          // })
         )
       );
   }
@@ -87,16 +72,10 @@ export class ExamService {
           return d.questionsResult.find(j => j.questionId == id)
         });
         return q[0];
-        //  let ar =  res.forEach(item => {
-        //    if( item.questionResult.map(x => x.fin question_id == id))
-        //  let d = item.questionResult.find(fil => fil.question_id == id)
-        // })
       })
       .catch((error) =>
         Observable.throw(error)
       );
-
-    // return this.getQuestions().map(ques => ques.find(t => t.question_index === id));
   }
 
   insertOrUpdateAnswer(ans: RelExamAnswer) {
@@ -114,23 +93,8 @@ export class ExamService {
       debugger;
       console.log(error)
     }
-    // this.http.post(this._localHost + '/api/DemoExam/Save',
-    //   new RequestOptions({ headers: headers,body:ans }))
-    //   .map((response: Response) => {
-    //     let rslt = response.json();
-    //     // return rslt;
-    //   })
-    //   .catch((error) =>
-    //     Observable.throw(error)
-    //   );
-    // this.httpClient.post(this._localHost + '/api/DemoExam/Save',JSON.stringify(ans),null)
-    // this.http.post(`${this._localHost}/api/DemoExam/Save`,
-    // JSON.stringify(ans),
-    // new RequestOptions({ headers: headers })).map((response: Response) =>
-    //   response.json()
-    // ).catch((error) =>
-    //   Observable.throw(error)
-    // );
   }
+
+   
 
 }

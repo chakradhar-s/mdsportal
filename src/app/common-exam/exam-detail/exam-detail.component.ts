@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, group } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 
@@ -23,6 +23,7 @@ import { FormControl } from '@angular/forms/src/model';
 export class ExamDetailComponent implements OnInit {
   @Input() parent: FormGroup;
   @Input() map: Map<string, QuestionSet>;
+  @Output() endExamEvent = new EventEmitter<boolean>();
 
   public answerStatus = StatusId;
   public currentCounter: number = 0;
@@ -102,7 +103,7 @@ export class ExamDetailComponent implements OnInit {
     }
     return "";
   }
-
+  
   public get markedForReviewCount() {
     return this.someStatus.filter(t => t == "review").length;
   }
@@ -124,4 +125,8 @@ export class ExamDetailComponent implements OnInit {
     }
   }
 
+  public triggerEndExam(event){
+    this.endExamEvent.emit(true);
+  }
 }
+

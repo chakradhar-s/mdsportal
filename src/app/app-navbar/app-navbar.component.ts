@@ -38,7 +38,6 @@ export class AppNavbarComponent implements OnInit {
     this._studentNav = [{ exact: true, link: '/home', name: 'Home' },
     { exact: true, link: '/payment', name: 'Payment  |  Schedule & PP Books' },
     { exact: true, link: '/s-strategy', name: 'DEV' },
-
     { exact: true, link: '/demo-exam/410b088a-6fae-42ae-9bf9-283aa438a890', name: 'Demo Exam' },
     { exact: true, link: '/contactus', name: 'Take Exam' }];
 
@@ -47,7 +46,7 @@ export class AppNavbarComponent implements OnInit {
     { exact: true, link: '/testimonials', name: 'Results' },
     { exact: true, link: '/payment', name: 'Payment  |  Schedule & PP Books' },
     { exact: true, link: '/s-strategy', name: 'DEV' },
-    { exact: true, link: '/demo-exam/410b088a-6fae-42ae-9bf9-283aa438a890', name: 'Demo Exam' },
+    { exact: true, link: '/demo-exam/410b088a-6fae-42ae-9bf9-283aa438a890', name: 'Demo Exam' },    
     { exact: true, link: '/contactus', name: 'Contact Us' }];
 
     this.profileaccordion = { image_default: true, image_path: "", nav_items: [{ link: '', exact: false, name: '' }] };

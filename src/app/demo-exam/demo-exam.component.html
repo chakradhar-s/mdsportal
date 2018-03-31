@@ -52,7 +52,7 @@
       </div>
       <div class="row">
         <div class="col-12">
-          <exam-detail *ngIf="!startPage && questionAnswerMap && questionAnswerMap.size>=1" [parent]="form" [map]="questionAnswerMap"></exam-detail>
+          <exam-detail *ngIf="!startPage && questionAnswerMap && questionAnswerMap.size>=1" [parent]="form" [map]="questionAnswerMap" (endExamEvent)="onSubmit(content)"></exam-detail>
         </div>
       </div>
     </form>

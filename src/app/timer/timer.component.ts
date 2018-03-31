@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-timer',
@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./timer.component.scss']
 })
 export class TimerComponent implements OnInit {
+  @Output() endExamEvent = new EventEmitter<boolean>();
 
   constructor() { }
 
   ngOnInit() {
+    debugger;
     console.log(this.fminutes + " : " + this.fseconds);
     this.tickTick();
     this.start();
@@ -23,7 +25,7 @@ export class TimerComponent implements OnInit {
   clockDisplay: string;
   rintervalId = 0;
   message = '';
-  rDuration = 20 * 60;
+  rDuration = 1 * 60;
   rSeconds = "";
   rMinutes = "";
   rDisplay: string;
@@ -60,6 +62,10 @@ export class TimerComponent implements OnInit {
     clearInterval(this.rintervalId);
   }
 
+  endEmitter(){
+    this.endExamEvent.emit(true);
+  }
+
   ngOnDestroy() {
     this.clearTimer();
   }
@@ -80,6 +86,7 @@ export class TimerComponent implements OnInit {
       if (this.rCounter === this.rDuration) {
         this.message = 'Blast off!';
         this.clearTimer();
+        this.endEmitter();
       }
       else{
         if (this.rCounter > 60) {

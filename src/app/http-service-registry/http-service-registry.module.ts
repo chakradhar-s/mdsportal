@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginService } from './services/login-service.service';
 import { ExamService } from './services/exam.service';
 import {  SignUpService} from './services/signup.service';
+import { UserResultsService } from './services/user-results.service';
 
 @NgModule({
   imports: [
@@ -14,6 +15,6 @@ import {  SignUpService} from './services/signup.service';
     RouterModule
   ],
   declarations: [],
-  providers: [LoginService, ExamService,SignUpService]
+  providers: [LoginService, ExamService,SignUpService,UserResultsService]
 })
 export class HttpServiceRegistryModule { }

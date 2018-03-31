@@ -44,6 +44,7 @@ import { AuthGuard } from './guard-hub/auth/auth.guard';
 import { ViewResolve } from './guard-hub/resolve/view.resolve';
 
 import { ViewUserGuard } from './guard-hub/view-user/view-user.guard';
+import { MainExamComponent } from './main-exam/main-exam.component';
 
 import { } from "./demo-exam/demo-exam.module"
 
@@ -115,12 +116,13 @@ const myRoots: Routes = [
     GuardHubModule,
     NgbModule.forRoot(),
     Ng4LoadingSpinnerModule.forRoot(),
-    RouterModule.forRoot(myRoots),
+    RouterModule.forRoot(myRoots
+      // , { enableTracing: true } //--> uncomment this for debugging
+    ),
     BrowserAnimationsModule,
     FileUploadModule,
     HttpClientModule,
     HttpServiceRegistryModule,
-    RouterModule.forRoot(myRoots),
     TableModule
   ],
   providers: [FileUploadService, QuestionpaperService],

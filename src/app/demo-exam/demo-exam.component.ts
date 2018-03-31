@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { QuestionSet, QuestionOutput, QuestionResult } from '../models/question-set';
 import { FormBuilder, FormGroup, FormArray, Validators, AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
@@ -26,7 +26,7 @@ import { UserLoginValidators } from '../login-user/login/login-user.validators';
   styleUrls: ['./demo-exam.component.scss']
 })
 export class DemoExamComponent implements OnInit, OnDestroy {
-
+  @Output() endExamEvent = new EventEmitter<boolean>();
   private questions: QuestionOutput[] = [];
   public questionAnswerMap: Map<string, QuestionSet>;
   public startPage: boolean = false;
@@ -149,6 +149,8 @@ export class DemoExamComponent implements OnInit, OnDestroy {
 
     });
   }
+
+  
 
   navigate() {
     this.mmodal.close();
