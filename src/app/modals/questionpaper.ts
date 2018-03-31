@@ -1,11 +1,11 @@
 export class QuestionPaper{
-    question_paper_id : string;
-    file_name:string;
-    is_active:boolean;
+    questionPaperId : string;
+    fileName:string;
+    isActive:boolean;
 
     constructor(){
-        this.question_paper_id="";
-        this.file_name="";
-        this.is_active=false;
+        this.questionPaperId="";
+        this.fileName="";
+        this.isActive=false;
     }
 }

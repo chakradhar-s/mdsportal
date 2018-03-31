@@ -8,6 +8,22 @@
   font-size: 0.8em;
 }
 
+.questn-innr-div-section{
+  background: #4e85c5 none repeat scroll 0 0;
+  color: #fff;
+  height: 41px;
+  line-height: 41px;
+}
+
+fieldset {
+  border: 1px solid #dbdbdb;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: auto;
+  padding-bottom: auto;
+  margin: auto;
+}
+
 .exam-box {
   min-height: -webkit-min-content;
   min-height: -moz-min-content;
@@ -71,9 +87,7 @@
     cursor: pointer;
     float: left;
     font-weight: bold;
-    background-position: -66px -178px;
-    height: 53px;
-    width: 49px;
+    background-position: -66px -178px;    
     line-height: 51px;
     border-style: none;
   }

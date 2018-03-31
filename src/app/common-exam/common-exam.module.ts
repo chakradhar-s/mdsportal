@@ -5,7 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { ExamDetailComponent } from './exam-detail/exam-detail.component';
-import { SideBarComponent } from './side-bar/side-bar.component';
+
 import { StartPageComponent } from './start-page/start-page.component';
 
 import { TimerModule } from '../timer/timer.module'
@@ -17,8 +17,8 @@ import { TimerModule } from '../timer/timer.module'
     NgbModule,
     TimerModule
   ],
-  declarations: [ExamDetailComponent, SideBarComponent, StartPageComponent],
-  exports: [ExamDetailComponent, SideBarComponent, StartPageComponent],
+  declarations: [ExamDetailComponent, StartPageComponent],
+  exports: [ExamDetailComponent, StartPageComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class CommonExamModule { }

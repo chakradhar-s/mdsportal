@@ -27,9 +27,9 @@ export class QuestionpaperComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.columns = [{ field: "question_paper_id", header: "Question Paper ID" },
-    { field: "is_active", header: "Is Active" },
-    { field: "file_name", header: "File Name" }];
+    this.columns = [{ field: "questionPaperId", header: "Question Paper ID" },
+    { field: "isActive", header: "Is Active" },
+    { field: "fileName", header: "File Name" }];
 
    this.questionService.GetAllQuestionSet()
   .subscribe(res=>{ this.questionPaperGroup = res;},err=>{console.log(err);});
@@ -51,7 +51,7 @@ export class QuestionpaperComponent implements OnInit {
 
   CheckBoxAllSelectHndlr(event){
    this.allChecked = event.target.checked;
-    this.questionPaperGroup.map(function(s){ s.is_active = event.target.checked });
+    this.questionPaperGroup.map(function(s){ s.isActive = event.target.checked });
     this.questionService.EnableOrDisableQuestionPapers(this.questionPaperGroup)
       .subscribe(res=>{
        console.log(res);
@@ -61,7 +61,7 @@ export class QuestionpaperComponent implements OnInit {
   }
 
   IsActiveCheckHndlr(event,rowData){
-    rowData.is_active = event.target.checked;
+    rowData.isActive = event.target.checked;
     this.AllTrueOrAllFalse();
     this.questionService.EnableOrDisableQuestionPapers([rowData])
     .subscribe(res=>{
@@ -72,8 +72,8 @@ export class QuestionpaperComponent implements OnInit {
   }
 
   AllTrueOrAllFalse(){
-    var trueCount = this.questionPaperGroup.filter(function(s){ if(s.is_active) return s.is_active; });
-    var falseCount = this.questionPaperGroup.filter(function(s){ if(!s.is_active) return s.is_active; });
+    var trueCount = this.questionPaperGroup.filter(function(s){ if(s.isActive) return s.isActive; });
+    var falseCount = this.questionPaperGroup.filter(function(s){ if(!s.isActive) return s.isActive; });
 
     if(trueCount.length == this.questionPaperGroup.length)
        this.allChecked = true;

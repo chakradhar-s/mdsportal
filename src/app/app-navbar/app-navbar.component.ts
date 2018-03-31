@@ -30,8 +30,7 @@ export class AppNavbarComponent implements OnInit {
     { exact: true, link: '/testimonials', name: 'Results' },
     { exact: true, link: '/payment', name: 'Payment  |  Schedule & PP Books' },
     { exact: true, link: '/s-strategy', name: 'DEV' },
-    { exact: true, link: '/demo-exam', name: 'Demo Exam' },
-    { exact: true, link: '/main-exam', name: 'Main Exam' },
+    { exact: true, link: '/demo-exam/410b088a-6fae-42ae-9bf9-283aa438a890', name: 'Demo Exam' },
     { exact: true, link: '/contactus', name: 'Contact Us' },
     { exact: true, link: '/login', name: 'Login' }
     ];
@@ -39,19 +38,15 @@ export class AppNavbarComponent implements OnInit {
     this._studentNav = [{ exact: true, link: '/home', name: 'Home' },
     { exact: true, link: '/payment', name: 'Payment  |  Schedule & PP Books' },
     { exact: true, link: '/s-strategy', name: 'DEV' },
-
-    { exact: true, link: '/main-exam', name: 'Main Exam' },
-    { exact: true, link: '/demo-exam', name: 'Demo Exam' },
-    { exact: true, link: '/main-exam', name: 'Main Exam' },
+    { exact: true, link: '/demo-exam/410b088a-6fae-42ae-9bf9-283aa438a890', name: 'Demo Exam' },
     { exact: true, link: '/contactus', name: 'Take Exam' }];
 
     this._adminNav = [{ exact: true, link: '/home', name: 'Home' },
     { exact: true, link: '/about', name: 'About us' },
     { exact: true, link: '/testimonials', name: 'Results' },
-    { exact: true, link: '/payment/student', name: 'Payment  |  Schedule & PP Books' },
+    { exact: true, link: '/payment', name: 'Payment  |  Schedule & PP Books' },
     { exact: true, link: '/s-strategy', name: 'DEV' },
-    { exact: true, link: '/demo-exam', name: 'Demo Exam' },
-    { exact: true, link: '/main-exam', name: 'Main Exam' },
+    { exact: true, link: '/demo-exam/410b088a-6fae-42ae-9bf9-283aa438a890', name: 'Demo Exam' },    
     { exact: true, link: '/contactus', name: 'Contact Us' }];
 
     this.profileaccordion = { image_default: true, image_path: "", nav_items: [{ link: '', exact: false, name: '' }] };
@@ -61,7 +56,7 @@ export class AppNavbarComponent implements OnInit {
 
     this._login.pageRedirectedToLogin.subscribe((loginPage) => {
       this.isLoginPage = loginPage;
-    });   
+    });
 
     this._login.userType.subscribe((uType) => {
       this._userType = uType;
@@ -78,7 +73,7 @@ export class AppNavbarComponent implements OnInit {
           this.nav = this._studentNav.slice(0, this._studentNav.length);
         }
         this.fillUserProfile();
-        this.userName=this._login.userProfile.user;
+        this.userName = this._login.userProfile.user;
       }
       else if (!this.loggedIn) {
         this.nav = this._defaultNav.slice(0, this._defaultNav.length);
@@ -105,12 +100,19 @@ export class AppNavbarComponent implements OnInit {
     }
 
     if (this._userType.isStudent) {
-      this.profileaccordion.nav_items = [{ name: 'MyAccount', exact: false, link: '/user/account' }, { name: 'MyResults', exact: false, link: '/user/results' }];
+      this.profileaccordion.nav_items = [
+        { exact: true, link: '/taketest', name: 'Take a Exam' },
+        { name: 'MyAccount', exact: false, link: '/user/account' },
+        { name: 'MyResults', exact: false, link: '/user/results' }
+      ];
     }
 
     else if (this._userType.isAdmin) {
-      this.profileaccordion.nav_items = [{ name: 'MyAccount', exact: false, link: '/user/account' }, { name: 'MyResults', exact: false, link: '/user/results' },
-      { name: 'Upload a question paper', exact: false, link: '/question-upload' }];
+      this.profileaccordion.nav_items = [
+        { exact: true, link: '/taketest', name: 'Take a Exam' },
+        { name: 'MyAccount', exact: false, link: '/user/account' },
+        { name: 'MyResults', exact: false, link: '/user/results' },
+        { name: 'Upload a question paper', exact: false, link: '/question-upload' }];
     }
 
   }

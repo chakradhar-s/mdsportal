@@ -1,0 +1,21 @@
+<p>
+  qpaper-list works!
+</p>
+
+<p-table [paginator]="true" [rows]="10" [columns]="cols" [value]="papers" selectionMode="single" [(selection)]="selectedPaper" dataKey="questionPaperId"
+  (onRowSelect)="onRowSelect($event)">
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th *ngFor="let col of columns">
+        {{col.header}}
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-columns="columns">
+    <tr [pSelectableRow]="rowData">
+      <td *ngFor="let col of columns">
+        {{rowData[col.field]}}
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

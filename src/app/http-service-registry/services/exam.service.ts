@@ -12,25 +12,27 @@ import { RelExamAnswer, StatusId } from '../../models/rel-exam-answer.interface'
 @Injectable()
 export class ExamService {
 
-  private _localHost: string = "http://localhost:5000/mdservice";
+  private _localHost: string = "http://localhost:5000/mdservice/api";
+  //private _localHost: string = "http://localhost:62699/mdservice";
 
-  // private _activeQuestionPaper_id: string = "1ca48a34-3866-034a-c953-6a324a64feb0"; // here need to keep active question_paper_id during deployment
-  private _activeQuestionPaper_id: string = "567a8125-307a-7878-6a01-e805af1560c4";
   private _activeSession_id: string = "";
   private _testObservable: Observable<QuestionOutput[]>;
 
-  constructor(private http: Http, ) { }
+  constructor(private http: Http) { }
 
-  startSession(examType: number) {
+  startSession(examType: number, questionPaper_id: string) {
     const headers = new Headers();
-    if (window.localStorage.getItem('jwt-access-mds')) {
+    if (examType == 1 && window.localStorage.getItem('jwt-access-mds')) {
       let rslt = JSON.parse(window.localStorage.getItem('jwt-access-mds'));
+      headers.append('Authorization', 'bearer ' + rslt.access_token);
+    }else if(examType == 0 && window.localStorage.getItem('jwt-demo-access-mds')){
+      let rslt = JSON.parse(window.localStorage.getItem('jwt-demo-access-mds'));
       headers.append('Authorization', 'bearer ' + rslt.access_token);
     }
     headers.append('Content-Type', 'application/vnd.api+json');
 
     return this.http.post(this._localHost + '/api/exam/startsession',
-      JSON.stringify({ questionPaperId: this._activeQuestionPaper_id, "examType": examType }),
+      JSON.stringify({ questionPaperId: questionPaper_id, "examType": examType }),
       new RequestOptions({ headers: headers }))
       .flatMap(token => {
         this._activeSession_id = (token.json())["exam_token"];

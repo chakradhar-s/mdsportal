@@ -1,6 +1,4 @@
 <div [formGroup]="parent">
-    <app-timer>
-      </app-timer>
   <div id="firstPage" style="overflow:hidden;padding-left:13px" [ngClass]="{'show': currentStep==wizard.Step1 , 'hide': currentStep!=wizard.Step1}">
     <span style="float:right;display:none;padding:2px;">
       <span class="viewIn">View in :</span>&nbsp;
@@ -244,7 +242,7 @@
     </div>
     <div class="row">
       <div class="col align-self-center" style="margin-top:1rem;">
-        <button type="button" (click)="move(wizard.Step1)" class="btn btn-primary">         
+        <button type="button" (click)="move(wizard.Step1)" class="btn btn-primary">
           Previous
           <i class="fa fa-chevron-left"></i>
         </button>

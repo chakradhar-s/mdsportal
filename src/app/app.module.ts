@@ -20,25 +20,24 @@ import { HttpServiceRegistryModule } from './http-service-registry/http-service-
 
 import { AppUtilityModule } from './app-utility/app-utility.module';
 
-import { SideBarComponent } from './common-exam/side-bar/side-bar.component';
 import { HttpModule } from '@angular/http';
 
 
 import { DataTablesModule } from 'angular-datatables';
 import { QuestionpaperComponent } from './questionpaper/questionpaper.component';
 
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FileUploadService } from './mdsportal.services/file.upload.service';
-import {FileUploadModule} from 'primeng/fileupload';
+import { FileUploadModule } from 'primeng/fileupload';
 
 import { HttpClientModule } from '@angular/common/http';
 import { TableModule } from 'primeng/table';
-import { QuestionpaperService } from './mdsportal.services/questionpaper.service'; 
+import { QuestionpaperService } from './mdsportal.services/questionpaper.service';
 
-import {LoginUserModule } from './login-user/login-user.module';
-import {RegisterUserModule} from './register-user/register-user.module';
-import {UserProfileModule} from './user-profile/user-profile.module';
+import { LoginUserModule } from './login-user/login-user.module';
+import { RegisterUserModule } from './register-user/register-user.module';
+import { UserProfileModule } from './user-profile/user-profile.module';
 
 import { GuardHubModule } from './guard-hub/guard-hub.module';
 import { AuthGuard } from './guard-hub/auth/auth.guard';
@@ -46,6 +45,8 @@ import { ViewResolve } from './guard-hub/resolve/view.resolve';
 
 import { ViewUserGuard } from './guard-hub/view-user/view-user.guard';
 import { MainExamComponent } from './main-exam/main-exam.component';
+
+import { } from "./demo-exam/demo-exam.module"
 
 const myRoots: Routes = [
   {
@@ -66,7 +67,7 @@ const myRoots: Routes = [
     path: 'schedule-pp-books',
     loadChildren: 'app/schedule/schedule.module#ScheduleModule'
   },
-  { path: '', component: AppHomeComponent },  
+  { path: '', component: AppHomeComponent },
   {
     path: 'payment',
     loadChildren: 'app/payment/payment.module#PaymentModule'
@@ -84,12 +85,12 @@ const myRoots: Routes = [
     component: QuestionpaperComponent
   },
   {
-    path: 'demo-exam',
+    path: 'demo-exam/:paperid',
     loadChildren: 'app/demo-exam/demo-exam.module#DemoExamModule'
   },
   {
-    path: 'main-exam',
-    loadChildren: 'app/main-exam/main-exam.module#MainExamModule'
+    path: 'taketest',
+    loadChildren: 'app/take-exam/take-exam.module#TakeExamModule'
   }
 ];
 
@@ -124,7 +125,7 @@ const myRoots: Routes = [
     HttpServiceRegistryModule,
     TableModule
   ],
-  providers: [FileUploadService,QuestionpaperService],
+  providers: [FileUploadService, QuestionpaperService],
   bootstrap: [AppComponent],
   exports: [HttpServiceRegistryModule]
 })
