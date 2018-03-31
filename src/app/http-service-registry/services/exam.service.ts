@@ -31,7 +31,7 @@ export class ExamService {
     }
     headers.append('Content-Type', 'application/vnd.api+json');
 
-    return this.http.post(this._localHost + '/api/exam/startsession',
+    return this.http.post(this._localHost + '/exam/startsession',
       JSON.stringify({ questionPaperId: questionPaper_id, "examType": examType }),
       new RequestOptions({ headers: headers }))
       .flatMap(token => {

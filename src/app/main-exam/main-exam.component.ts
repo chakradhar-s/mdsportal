@@ -71,7 +71,7 @@ export class MainExamComponent implements OnInit {
   }
 
   startSession(starts: boolean) {
-    this.sessionSubscription = this.service.startSession(0, this._activeQuestionPaper).subscribe((quest: QuestionOutput[]) => {
+    this.sessionSubscription = this.service.startSession(1, this._activeQuestionPaper).subscribe((quest: QuestionOutput[]) => {
       const queriesFormat: QuestionOutput[] = quest;
       console.log(queriesFormat);
       const ehjd = [];
