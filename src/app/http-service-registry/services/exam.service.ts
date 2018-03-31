@@ -25,12 +25,11 @@ export class ExamService {
     if (examType == 1 && window.localStorage.getItem('jwt-access-mds')) {
       let rslt = JSON.parse(window.localStorage.getItem('jwt-access-mds'));
       headers.append('Authorization', 'bearer ' + rslt.access_token);
-    }else if(examType == 0 && window.localStorage.getItem('jwt-demo-access-mds')){
+    } else if (examType == 0 && window.localStorage.getItem('jwt-demo-access-mds')) {
       let rslt = JSON.parse(window.localStorage.getItem('jwt-demo-access-mds'));
       headers.append('Authorization', 'bearer ' + rslt.access_token);
     }
     headers.append('Content-Type', 'application/vnd.api+json');
-debugger;
     return this.http.post(this._localHost + '/exam/startsession',
       JSON.stringify({ questionPaperId: questionPaper_id, "examType": examType }),
       new RequestOptions({ headers: headers }))
@@ -95,6 +94,6 @@ debugger;
     }
   }
 
-   
+
 
 }
