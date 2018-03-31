@@ -1,52 +1,17 @@
 <div class="container page-wrapper">
   <h1>Results</h1>
-  <!-- <div class="row">
-    <div class="col-lg-12 col-md-6">
-      <div class="panel panel-green">
-        <div class="panel-heading">
-          <div class="row">
-            <div class="col-xs-3">
-              <i class="fa fa-tasks fa-5x"></i>
-            </div>
-            <div class="col-xs-9 text-center">
-              <div class="huge">12</div>
-              <div *ngIf="selectedRecord">
-                <h1>Paper Name : {{selectedRecord.questionPaperName}}</h1>
-                <h2>Rank acheived :{{selectedRecord.rank}}</h2>
-                <h3>Score : {{selectedRecord.score}}</h3>
-                <p>AttemptedDate : {{selectedRecord.attemptedDate | date:'full'}}}</p>
-
-              </div>
-            </div>
-          </div>
-        </div>
-        <a href="#">
-          <div class="panel-footer">
-            <span class="pull-left">View Details</span>
-            <span class="pull-right">
-              <i class="fa fa-arrow-circle-right"></i>
-            </span>
-            <div class="clearfix"></div>
-          </div>
-        </a>
-      </div>
-    </div>
-  </div> -->
-
-  <div class="row" *ngIf="selectedRecord">
+  <div class="row" *ngIf="selectedRecord && togglePanel">
     <div class="card text-center">
       <div class="card-header">
           Results details
       </div>
       <div class="card-body">
         <h5 class="card-title">Paper Name : {{selectedRecord.questionPaperName}}</h5>
-        <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
         <div >
-            
             <h2>Rank acheived :{{selectedRecord.rank}}</h2>
             <h3>Score : {{selectedRecord.score}}</h3>
           </div>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <a class="btn btn-primary" (click)="toggleRankPanel">Close</a>
       </div>
       <div class="card-footer text-muted">
           AttemptedDate : {{selectedRecord.attemptedDate | date:'full'}}}
@@ -63,19 +28,7 @@
           </th>
         </tr>
       </ng-template>
-      <!-- <ng-template pTemplate="body" let-rowData let-columns="columns">
-      <tr [pSelectableRow]="rowData">
-        <td *ngFor="let col of columns">
-          {{rowData[col.field]}}
-        </td>
-      </tr>
-    </ng-template> -->
       <ng-template pTemplate="body" let-rowData>
-        <!-- <tr [pSelectableRow]="rowData">
-        <td *ngFor="let col of columns">
-          {{rowData[col.field]}}
-        </td>
-      </tr> -->
         <tr>
           <td>{{rowData.questionPaperName}}</td>
           <td>{{rowData.sessionId}}</td>
@@ -84,9 +37,6 @@
           <td>
             <button class="btn btn-success" (click)="showRank(rowData)">Show Rank</button>
           </td>
-          <!-- <td>{{rowData.questionPaperName}}</td>
-        <td>{{rowData.questionPaperName}}</td> -->
-
         </tr>
       </ng-template>
     </p-table>

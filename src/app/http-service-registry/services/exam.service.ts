@@ -30,8 +30,8 @@ export class ExamService {
       headers.append('Authorization', 'bearer ' + rslt.access_token);
     }
     headers.append('Content-Type', 'application/vnd.api+json');
-
-    return this.http.post(this._localHost + '/api/exam/startsession',
+debugger;
+    return this.http.post(this._localHost + '/exam/startsession',
       JSON.stringify({ questionPaperId: questionPaper_id, "examType": examType }),
       new RequestOptions({ headers: headers }))
       .flatMap(token => {
@@ -47,7 +47,7 @@ export class ExamService {
       headers.append('Authorization', 'bearer ' + this._activeSession_id);
     }
     headers.append('Content-Type', 'application/vnd.api+json');
-    return this.http.get(this._localHost + '/api/DemoExam/GetQuestionPaperCombo/',
+    return this.http.get(this._localHost + '/DemoExam/GetQuestionPaperCombo/',
       new RequestOptions({ headers: headers }))
       .map((response: Response) => response.json())
       .catch((error) =>
@@ -86,7 +86,7 @@ export class ExamService {
       }
       headers.append('Content-Type', 'application/vnd.api+json');
       let data = JSON.stringify(ans);
-      return this.http.post(this._localHost + '/api/DemoExam/Save', data,
+      return this.http.post(this._localHost + '/DemoExam/Save', data,
         new RequestOptions({ headers: headers }));
     }
     catch (error) {

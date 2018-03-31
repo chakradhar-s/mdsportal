@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class UserResultsService {
 
-  private _localHost: string = "http://localhost:5000/mdservice";
+  private _localHost: string = "http://localhost:5000/mdservice/api";
   private _userId: string;
 
   constructor(
@@ -25,7 +25,7 @@ export class UserResultsService {
     }
     headers.append('Content-Type', 'application/vnd.api+json');
 
-    return this.http.get(this._localHost + '/api/DemoExam/GetResults/' + this._userId,
+    return this.http.get(this._localHost + '/DemoExam/GetResults/' + this._userId,
       new RequestOptions({ headers: headers }))
       .map((response: Response) => response.json())
       .catch((error) =>
@@ -41,7 +41,7 @@ export class UserResultsService {
       headers.append('Authorization', 'bearer ' + rslt.access_token);
     }
     headers.append('Content-Type', 'application/vnd.api+json');
-    let url = this._localHost + `/api/DemoExam/Rank/${sessionId}`;
+    let url = this._localHost + `/DemoExam/Rank/${sessionId}`;
     
     return this.http.get(url,
       new RequestOptions({ headers: headers }))
