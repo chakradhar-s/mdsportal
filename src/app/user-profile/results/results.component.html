@@ -1,6 +1,6 @@
 <div class="container page-wrapper">
   <h1>Results</h1>
-  <div class="row" *ngIf="selectedRecord && togglePanel">
+  <!-- <div class="row" *ngIf="selectedRecord && togglePanel">
     <div class="card text-center">
       <div class="card-header">
           Results details
@@ -11,19 +11,19 @@
             <h2>Rank acheived :{{selectedRecord.rank}}</h2>
             <h3>Score : {{selectedRecord.score}}</h3>
           </div>
-        <a class="btn btn-primary" (click)="toggleRankPanel">Close</a>
+        <a class="btn btn-primary" (click)="toggleRankPanel()">Close</a>
       </div>
       <div class="card-footer text-muted">
           AttemptedDate : {{selectedRecord.attemptedDate | date:'full'}}}
       </div>
     </div>
-  </div>
+  </div> -->
   <div class="row">
     <p-table [columns]="columns" [value]="results" dataKey="SessionId" [paginator]="true" [rows]="10" selectionMode="single"
       [(selection)]="selectedRecord">
       <ng-template pTemplate="header" let-columns>
         <tr>
-          <th *ngFor="let col of columns" class="{{col.class}}">
+          <th *ngFor="let col of columns" [style.width]="col.width">
             {{col.header}}
           </th>
         </tr>
@@ -31,11 +31,16 @@
       <ng-template pTemplate="body" let-rowData>
         <tr>
           <td>{{rowData.questionPaperName}}</td>
-          <td>{{rowData.sessionId}}</td>
+          <!-- <td>{{rowData.sessionId}}</td> -->
           <td>{{rowData.result}}</td>
           <td>{{rowData.attemptedDate | date:'full'}}</td>
           <td>
+            <span *ngIf="!rowData.rank">
             <button class="btn btn-success" (click)="showRank(rowData)">Show Rank</button>
+          </span>
+          <span *ngIf="rowData.rank">
+            {{rowData.rank}}
+          </span>
           </td>
         </tr>
       </ng-template>

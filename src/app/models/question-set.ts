@@ -33,4 +33,5 @@ export class UserResult{
     public  sessionId : string;
     public  result : number;
     public  attemptedDate : Date;
+    public  rank : number;
 }

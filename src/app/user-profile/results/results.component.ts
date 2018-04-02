@@ -23,11 +23,11 @@ export class ResultsComponent implements OnInit {
     }, err => {
       console.log(err);
     });
-    this.columns = [{ field: "questionPaperName", header: "Question Paper name", class: "col-md-3" },
-    { field: "sessionId", header: "Session id", class: "col-md-3" },
-    { field: "result", header: "Result scored", class: "col-md-1" },
-    { field: "attemptedDate", header: "Date of attempt", class: "col-md-3" },
-    { field: "", header: "", class: "col-md-2" }];
+    this.columns = [{ field: "questionPaperName", header: "Question Paper name", width: '40%' },
+    // { field: "sessionId", header: "Session id", class: "col-md-3" },
+    { field: "result", header: "Score Obtained", width: '10%' },
+    { field: "attemptedDate", header: "Date of attempt", width: '30%' },
+    { field: "rank", header: "Rank details", width: '20%' }];
   }
 
   showRank(object: any): void {
@@ -39,6 +39,7 @@ export class ResultsComponent implements OnInit {
           this.selectedRecord.questionPaperName = object.questionPaperName
           this.selectedRecord.attemptedDate = object.attemptedDate;
           this.togglePanel = true;
+          this.results.find(x=> x.sessionId == object.sessionId).rank = res.rank;
         }, err => {
           console.log(err);
         });
@@ -46,6 +47,7 @@ export class ResultsComponent implements OnInit {
   }
 
   toggleRankPanel(): void {
+    debugger;
     this.togglePanel = false;
   }
 
