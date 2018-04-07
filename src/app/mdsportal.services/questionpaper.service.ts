@@ -16,8 +16,9 @@ export class QuestionpaperService {
 
   constructor(private http: HttpClient) { }
 
-  private _localHost: string = "https://ec2-52-66-160-163.ap-south-1.compute.amazonaws.com/mdservice/api";
-  //private _localHost: string = "http://localhost:62699/";
+  // private _localHost: string = "https://ec2-52-66-160-163.ap-south-1.compute.amazonaws.com/mdservice/api";
+  private _localHost: string = "http://localhost:5000/mdservice";
+  // private _localHost: string = "http://localhost:62699/mdservice";
 
   GetAllQuestionSet(): Observable<QuestionPaper[]> {
     return this.http.get<QuestionPaper[]>(`${this._localHost}/uploaddocument/all-questions`);

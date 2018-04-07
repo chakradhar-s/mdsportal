@@ -65,21 +65,25 @@
   <div class="col-3 exam-side-bar">
     <div class="row">
       <div class="col-6">
-        <span class="sm-text answeredLabel">{{answerCount}} &nbsp;Answered</span>
+          <button class="small-ans-box answered">{{answerCount}}</button>
+        <span class="sm-text answeredLabel"> &nbsp;Answered</span>
       </div>
       <div class="col-6">
-        <span class="sm-text notAnsweredLabel">{{someStatus.length-answerCount-answermarkedForReviewCount}} &nbsp;Not Answered</span>
+          <button class="small-ans-box visited_but_not_answered">{{someStatus.length-answerCount-answermarkedForReviewCount}}</button>
+        <span class="sm-text notAnsweredLabel"> &nbsp;Not Answered</span>
       </div>
       <!-- Force next columns to break to new line -->
       <div class="w-100"></div>
       <div class="col-12">
-        <span class="sm-text markedLabel">{{markedForReviewCount}} &nbsp;Marked for Review
+          <button class="small-ans-box review">{{markedForReviewCount}}</button>
+        <span class="sm-text markedLabel"> &nbsp;Marked for Review
         </span>
       </div>
       <div class="w-100"></div>
       <div class="col-12">
+          <button class="small-ans-box ansreview_marked_consideredwered">{{answermarkedForReviewCount}}</button>
         <span class="sm-text markedAndAnsweredLabel">
-          {{answermarkedForReviewCount}} &nbsp;Answered &amp; Marked for Review (will be considered for evaluation)
+           &nbsp;Answered &amp; Marked for Review (will be considered for evaluation)
         </span>
       </div>
     </div>

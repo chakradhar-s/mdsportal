@@ -4,6 +4,11 @@
   overflow: auto;
 }
 
+.firstPageContent, .secondPageContent{
+  font-family: serif;
+  line-height: normal;
+}
+
 .box {
   min-height: -webkit-min-content;
   min-height: -moz-min-content;
@@ -20,3 +25,85 @@
 .inner-content {
   height: 34rem;
 }
+
+.small-ans-box {
+    width: 2.3em;
+    height: 2.2em;
+    font-size: 16px;
+    text-align: center;
+  }
+ .small-ans-box.answered {
+    background: url("../../../assets/images/questions-sprite.png") no-repeat scroll 0 0 transparent;
+    background-position-x: 0px;
+    background-position-y: 0px;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-weight: bold;
+    line-height: 33px;
+    background-position: -2px -52px;
+    border-style: none;
+  }
+ 
+  .small-ans-box.ansreview_marked_consideredwered {
+    background: url("../../../assets/images/questions-sprite.png") no-repeat scroll 0 0 transparent;
+    background-position-x: 0px;
+    background-position-y: 0px;
+    color: #FFFFFF;
+    cursor: pointer;
+    float: left;
+    font-weight: bold;
+    background-position: -4px -81px;    
+    line-height: 39px;
+    border-style: none;
+  }
+  .small-ans-box.review {
+    background: url("../../../assets/images/questions-sprite.png") no-repeat scroll 0 0 transparent;
+    background-position-x: 0px;
+    background-position-y: 0px;
+    color: #FFFFFF;
+    cursor: pointer;
+    float: left;
+    font-weight: bold;
+    line-height: 32px;
+    background-position: -71px -52px;
+    border-style: none;
+  }
+ 
+
+  .small-ans-box.visited_but_not_answered {
+    background: url("../../../assets/images/questions-sprite.png") no-repeat scroll 0 0 transparent;
+    background-position-x: 0px;
+    background-position-y: 0px;
+    color: #FFFFFF;
+    cursor: pointer;
+    float: left;
+    font-weight: bold;
+    line-height: 32px;
+    background-position: -38px -52px;
+    border-style: none;
+  }
+
+  .small-ans-box.not_visited {
+    background: url("../../../assets/images/questions-sprite.png") no-repeat scroll 0 0 transparent;
+    background-position-x: 0px;
+    background-position-y: 0px;
+    color: #212121;
+    cursor: pointer;
+    float: left;
+    font-weight: bold;
+    line-height: 32px;
+    background-position: -104px -52px;
+    border-style: none;
+  }
+
+  .orange_header{
+    color: white;
+    font-weight: bold;
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 3px 10px;
+    background-color: #ff6600;
+    border-radius: 5px;
+    /* float: right; */
+  }
+ 

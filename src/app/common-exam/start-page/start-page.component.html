@@ -6,13 +6,16 @@
         <option value="sysInstText1">English</option>
       </select>
     </span>
-    <div class="content">
+    <div class="content firstPageContent">
       <div class="box">
         <div class="column">
           <div class="inner-content">
-            <p class="text-center">
-              <font size="4">Please read the instructions carefully </font>
-            </p>
+            <h3 class="text-center orange_header">Instructions</h3>
+            <b>
+              <p class="text-center">
+                <font size="4">Please read the instructions carefully </font>
+              </p>
+            </b>
             <p>
               <strong>
                 <u>General Instructions:</u>
@@ -29,32 +32,32 @@
                 <table class="instruction_area" style="FONT-SIZE: 100%">
                   <tbody>
                     <tr>
-                      <td>
-                        <span class="not_visited" title="Not Visited">1</span>
+                      <td class="small-ans-box not_visited">
+                        <span title="Not Visited">1</span>
                       </td>
                       <td>This question has not been visited yet.</td>
                     </tr>
                     <tr>
-                      <td>
-                        <span class="not_answered" title="Not Answered">2</span>
+                      <td class="small-ans-box visited_but_not_answered">
+                        <span title="Not Answered">2</span>
                       </td>
                       <td>This question has been visited,but not answered.</td>
                     </tr>
                     <tr>
-                      <td>
-                        <span class="answered" title="Answered">3</span>
+                      <td class="small-ans-box answered">
+                        <span  title="Answered">3</span>
                       </td>
                       <td>This question has been answered and will be considered for evaluation.</td>
                     </tr>
                     <tr>
-                      <td>
-                        <span class="review" title="Marked for Review">4</span>
+                      <td class="small-ans-box review">
+                        <span title="Marked for Review">4</span>
                       </td>
                       <td>This question has been marked for review and has not been answered.</td>
                     </tr>
                     <tr>
-                      <td>
-                        <span class="review_marked_considered" title="Answered &amp; Marked for Review">5</span>
+                      <td class="small-ans-box ansreview_marked_consideredwered">
+                        <span title="Answered &amp; Marked for Review">5</span>
                       </td>
                       <td>This question has been answered and marked for review, which will be considered for evaluation.</td>
                     </tr>
@@ -126,17 +129,18 @@
   </div>
 
   <div [ngClass]="{'show': currentStep==wizard.Step2 , 'hide': currentStep!=wizard.Step2}">
-    <div class="content">
+    <div class="content secondPageContent">
       <div class="box">
         <div class="column">
           <div class="inner-content">
-            <p class="text-center">
+            <h3 class="orange_header text-center">Other Important Instructions</h3>
+            <!-- <p class="text-center">
               <span id="otherImpInstru">
                 <b>
                   <font id="otherInstruLabel" size="4em" color="#2F72B7">Other Important Instructions</font>
                 </b>
               </span>
-            </p>
+            </p> -->
             <br>
             <span id="secondPageLangView" style="float:right;display:none;padding:2px;">
               <span class="viewIn">View in :</span>&nbsp;
@@ -186,12 +190,13 @@
         </div>
       </div>
     </div>
-    <div class="content">
+    <hr>
+    <div class="content" style="margin-top:0px !important;">
       <div class="box">
         <div class="column">
           <div id="secondPagep2" style="max-height: 120px;">
             <div id="defaultDisclaimerDiv" formGroupName="start">
-              <div id="defaultLangOptions" style="display:none;margin-top:10px">
+              <!-- <div id="defaultLangOptions" style="display:none;margin-top:10px">
                 <span id="defLang">Choose your default language :</span>
                 <select id="defaultLanguage">
                   <option value="0">-- Select --</option>
@@ -200,13 +205,11 @@
                 <br>
                 <span class="highlightText" id="multiLangInstru">Please note all questions will appear in your default language. This language can be changed for a particular
                   question later on.</span>
-              </div>
-              <br>
-              <label class="" id="highlightDisclaimer" style="line-height:16px;margin-bottom: 0;padding-left: 0;">
-                <span style=" vertical-align:top">
-                  <input type="checkbox" name="checkedIn" formControlName="disclaimer" style="margin-top:2px;"> </span>
-                <span style="width:98%;display:none;margin-left: 1.5em;" id="agreementMessageDef"></span>
-                <span style="width: 98%; display: block; margin-left: 1.5em;" id="agreementMessageCustom">
+              </div> -->
+              <!-- <br> -->
+              <label class="" id="highlightDisclaimer" style="line-height:21px;margin-bottom: 0;padding-left: 0;">
+                  <input type="checkbox" name="checkedIn" formControlName="disclaimer" style="margin-top:2px;"> 
+                <span style="width: 98%; margin-left: 1.5em;" id="agreementMessageCustom">
                   <span class="cusInstText1">
                     <strong>NON DISCLOSURE AGREEMENT (NDA) – DEV- MDS</strong>
                     <br>
