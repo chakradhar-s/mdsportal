@@ -25,6 +25,7 @@ export class MainExamComponent implements OnInit {
   private _userId: string = '';
   private mmodal: NgbModalRef;
   private _activeQuestionPaper: string = '';
+  public timerCount : number = 120;
 
 
   form = this.fb.group({

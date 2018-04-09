@@ -20,14 +20,14 @@ export class TimerComponent implements OnInit {
   }
   timeString: string;
   // duration = 10*60;
-  fduration = typeof this.timerCount === "number" ? this.timerCount * 60 : parseInt(this.timerCount) * 60;
+  fduration = 20 * 60;
   fseconds = "";
   fintervalId;
   fminutes = "";
   clockDisplay: string;
   rintervalId = 0;
   message = '';
-  rDuration = typeof this.timerCount === "number" ? this.timerCount * 60 : parseInt(this.timerCount) * 60;
+  rDuration = 20 * 60;
   rSeconds = "";
   rMinutes = "";
   rDisplay: string;
