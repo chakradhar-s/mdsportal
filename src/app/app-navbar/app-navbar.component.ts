@@ -112,7 +112,8 @@ export class AppNavbarComponent implements OnInit {
         { exact: true, link: '/taketest', name: 'Take a Exam' },
         { name: 'MyAccount', exact: false, link: '/user/account' },
         { name: 'MyResults', exact: false, link: '/user/results' },
-        { name: 'Upload a question paper', exact: false, link: '/question-upload' }];
+        { name: 'Upload a question paper', exact: false, link: '/question-upload' },
+        { name: 'Upload questions image', exact: false, link: '/upload-questions-image' }];
     }
 
   }

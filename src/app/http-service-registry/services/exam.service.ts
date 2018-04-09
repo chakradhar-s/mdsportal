@@ -12,8 +12,8 @@ import { RelExamAnswer, StatusId } from '../../models/rel-exam-answer.interface'
 @Injectable()
 export class ExamService {
 
-  private _localHost: string = "https://ec2-52-66-160-163.ap-south-1.compute.amazonaws.com/mdservice/api";
-  //private _localHost: string = "http://localhost:62699/mdservice";
+  //private _localHost: string = "https://ec2-52-66-160-163.ap-south-1.compute.amazonaws.com/mdservice/api";
+  private _proxyHost: string = "http://localhost:5000/mdservice/api";
 
   private _activeSession_id: string = "";
   private _testObservable: Observable<QuestionOutput[]>;
@@ -30,7 +30,7 @@ export class ExamService {
       headers.append('Authorization', 'bearer ' + rslt.access_token);
     }
     headers.append('Content-Type', 'application/vnd.api+json');
-    return this.http.post(this._localHost + '/exam/startsession',
+    return this.http.post(this._proxyHost + '/exam/startsession',
       JSON.stringify({ questionPaperId: questionPaper_id, "examType": examType }),
       new RequestOptions({ headers: headers }))
       .flatMap(token => {
@@ -46,7 +46,7 @@ export class ExamService {
       headers.append('Authorization', 'bearer ' + this._activeSession_id);
     }
     headers.append('Content-Type', 'application/vnd.api+json');
-    return this.http.get(this._localHost + '/DemoExam/GetQuestionPaperCombo/',
+    return this.http.get(this._proxyHost + '/DemoExam/GetQuestionPaperCombo/',
       new RequestOptions({ headers: headers }))
       .map((response: Response) => response.json())
       .catch((error) =>
@@ -85,7 +85,7 @@ export class ExamService {
       }
       headers.append('Content-Type', 'application/vnd.api+json');
       let data = JSON.stringify(ans);
-      return this.http.post(this._localHost + '/DemoExam/Save', data,
+      return this.http.post(this._proxyHost + '/DemoExam/Save', data,
         new RequestOptions({ headers: headers }));
     }
     catch (error) {

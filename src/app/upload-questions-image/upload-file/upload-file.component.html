@@ -1,0 +1,11 @@
+<p-fileUpload name="myfile[]" url="{{host_url}}" accept="image/*" multiple="multiple" maxFileSize="1000000">
+  <ng-template pTemplate="content">
+    <ul *ngIf="uploadedFiles.length">
+      <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+    </ul>
+  </ng-template>
+</p-fileUpload>
+
+<p *ngFor="let alert of alerts" class="text-center">
+  <ngb-alert [type]="alert.type" (close)="closeAlert(alert)">{{ alert.message }}</ngb-alert>
+</p>
