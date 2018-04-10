@@ -13,9 +13,10 @@ import { LoginService } from './login-service.service';
 @Injectable()
 export class ExamService {
 
-  // private _localHost: string = "https://ec2-52-66-160-163.ap-south-1.compute.amazonaws.com/mdservice/api";
-  private _localHost: string = "http://localhost:5000/mdservice/api";
+  //private _proxyHost: string = "https://ec2-52-66-160-163.ap-south-1.compute.amazonaws.com/mdservice/api";
+  private _proxyHost: string = "http://localhost:5000/mdservice/api";
 
+  
   private _activeSession_id: string = "";
   private _testObservable: Observable<QuestionOutput[]>;
   private _userId: string;
@@ -37,7 +38,7 @@ export class ExamService {
       headers.append('Authorization', 'bearer ' + rslt.access_token);
     }
     headers.append('Content-Type', 'application/vnd.api+json');
-    return this.http.post(this._localHost + '/exam/startsession',
+    return this.http.post(this._proxyHost + '/exam/startsession',
       JSON.stringify({ questionPaperId: questionPaper_id, "examType": examType }),
       new RequestOptions({ headers: headers }))
       .flatMap(token => {
@@ -53,7 +54,7 @@ export class ExamService {
       headers.append('Authorization', 'bearer ' + this._activeSession_id);
     }
     headers.append('Content-Type', 'application/vnd.api+json');
-    return this.http.get(this._localHost + '/DemoExam/GetQuestionPaperCombo/',
+    return this.http.get(this._proxyHost + '/DemoExam/GetQuestionPaperCombo/',
       new RequestOptions({ headers: headers }))
       .map((response: Response) => response.json())
       .catch((error) =>
@@ -91,7 +92,7 @@ export class ExamService {
       }
       headers.append('Content-Type', 'application/vnd.api+json');
       let data = JSON.stringify(ans);
-      return this.http.post(this._localHost + '/DemoExam/Save', data,
+      return this.http.post(this._proxyHost + '/DemoExam/Save', data,
         new RequestOptions({ headers: headers }));
     }
     catch (error) {
@@ -107,7 +108,7 @@ export class ExamService {
         headers.append('Authorization', 'bearer ' + this._activeSession_id);
       }
       headers.append('Content-Type', 'application/vnd.api+json');
-      let url = this._localHost + '/DemoExam/Report/' + this._userId;
+      let url = this._proxyHost + '/DemoExam/Report/' + this._userId;
       let data = JSON.stringify(input);
       this.http.post(url, data,
         new RequestOptions({ headers: headers }))

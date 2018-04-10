@@ -96,6 +96,10 @@ const myRoots: Routes = [
     path: 'main-exam/:paperid',
     loadChildren: 'app/main-exam/main-exam.module#MainExamModule'
   },
+  {
+    path: 'upload-questions-image',
+    loadChildren: 'app/upload-questions-image/upload-questions-image.module#UploadQuestionsImageModule'
+  }
 ];
 
 

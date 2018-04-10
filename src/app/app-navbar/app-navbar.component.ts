@@ -112,7 +112,8 @@ debugger;
         { exact: true, link: '/taketest', name: 'Take a Exam' },
         { name: 'MyAccount', exact: false, link: '/user/account' },
         { name: 'MyResults', exact: false, link: `/view-results/${this._login.userProfile.user.userId}` },
-        { name: 'Upload a question paper', exact: false, link: '/question-upload' }];
+        { name: 'Upload a question paper', exact: false, link: '/question-upload' },
+        { name: 'Upload questions image', exact: false, link: '/upload-questions-image' }];
     }
 
   }
