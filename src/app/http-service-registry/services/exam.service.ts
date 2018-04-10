@@ -123,5 +123,10 @@ export class ExamService {
   }
 
 
+  public get activeSession(){
+    return this._activeSession_id;
+  }
+
+
 
 }
