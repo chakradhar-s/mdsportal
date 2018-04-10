@@ -94,24 +94,24 @@ export class AppNavbarComponent implements OnInit {
   }
 
   public fillUserProfile() {
-
+debugger;
     if (this.loggedIn) {
       this.profileaccordion.image_path = "assets/images/anonym-person.png";
     }
 
-    if (this._userType.isStudent) {
+    if (this._userType.isStudent && this._login.userProfile.user && this._login.userProfile.user.userId) {
       this.profileaccordion.nav_items = [
         { exact: true, link: '/taketest', name: 'Take a Exam' },
         { name: 'MyAccount', exact: false, link: '/user/account' },
-        { name: 'MyResults', exact: false, link: '/user/results' }
+        { name: 'MyResults', exact: false, link: `/view-results/${this._login.userProfile.user.userId}` }
       ];
     }
 
-    else if (this._userType.isAdmin) {
+    else if (this._userType.isAdmin && this._login.userProfile.user && this._login.userProfile.user.userId) {
       this.profileaccordion.nav_items = [
         { exact: true, link: '/taketest', name: 'Take a Exam' },
         { name: 'MyAccount', exact: false, link: '/user/account' },
-        { name: 'MyResults', exact: false, link: '/user/results' },
+        { name: 'MyResults', exact: false, link: `/view-results/${this._login.userProfile.user.userId}` },
         { name: 'Upload a question paper', exact: false, link: '/question-upload' },
         { name: 'Upload questions image', exact: false, link: '/upload-questions-image' }];
     }

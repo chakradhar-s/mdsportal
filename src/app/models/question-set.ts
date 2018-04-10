@@ -35,3 +35,11 @@ export class UserResult{
     public  attemptedDate : Date;
     public  rank : number;
 }
+
+export class ReportModel{
+    constructor(
+        public question_id: string,
+        public type_of_report_id: number,
+        public comments: string
+    ){};
+}

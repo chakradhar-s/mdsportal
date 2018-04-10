@@ -8,15 +8,22 @@ import { UserResult } from '../../models/question-set';
   styleUrls: ['./results.component.scss']
 })
 export class ResultsComponent implements OnInit {
-  public selectedRecord: any;
-  public results: UserResult[];
-  public columns: any;
-  public togglePanel: boolean;
+  public selectedRecord: any = {};
+  public currentRecord: any = {};
+  public results: UserResult[] = [];
+  public columns: any = [];
+  public togglePanel: boolean = false;
   constructor(
     private resultService: UserResultsService
   ) { }
 
   ngOnInit() {
+    debugger;
+    this.allRanks();
+    this.activeSessionRank();
+  }
+
+  allRanks() {
     this.resultService.GetResults().subscribe((res) => {
       this.results = res;
       console.log(this.results);
@@ -30,6 +37,21 @@ export class ResultsComponent implements OnInit {
     { field: "rank", header: "Rank details", width: '20%' }];
   }
 
+  activeSessionRank() {
+    debugger;
+    this.resultService.currentSessionResult()
+      .subscribe((res) => {
+        this.currentRecord = res;
+        let t = this.results.find(x => x.sessionId == res.sessionId);
+        this.currentRecord.questionPaperName = t.questionPaperName
+        this.currentRecord.attemptedDate = t.attemptedDate;
+        this.togglePanel = true;
+        this.results.find(x => x.sessionId == t.sessionId).rank = res.rank;
+      }, err => {
+        console.log(err);
+      });
+  }
+
   showRank(object: any): void {
     console.log(object.sessionId);
     if (object != null) {
@@ -38,8 +60,8 @@ export class ResultsComponent implements OnInit {
           this.selectedRecord = res;
           this.selectedRecord.questionPaperName = object.questionPaperName
           this.selectedRecord.attemptedDate = object.attemptedDate;
-          this.togglePanel = true;
-          this.results.find(x=> x.sessionId == object.sessionId).rank = res.rank;
+          // this.togglePanel = true;
+          this.results.find(x => x.sessionId == object.sessionId).rank = res.rank;
         }, err => {
           console.log(err);
         });

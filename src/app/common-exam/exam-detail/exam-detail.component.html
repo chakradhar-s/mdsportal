@@ -53,11 +53,47 @@
                     type="checkbox"> Mark it for review
                 </label>
               </button>
+              <button class="btn btn-outline-primary mb-1" type="button" (click)="openVerticallyCentered(test)">Report question</button>
               <button type="button" class="btn btn-info mr-2 mb-2" (click)="clearResponse(item,i)">Clear the response</button>
               <button type="submit" class="btn btn-sucess mr-2 mb-2">Submit</button>
             </div>
           </div>
         </fieldset>
+
+        <ng-template #test let-c="close" let-d="dismiss" id="reportModal">
+            <div class="modal-header">
+              <h4 class="modal-title">Modal title</h4>
+              <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div >
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">Question:</label>{{ questionByQuestionId(item.value.questionId).question_text }}
+                  <!-- <input type="text" class="form-control" #Question > -->
+                  <!-- <label>{{questionByQuestionId(item.value.questionId).question_text}}</label> -->
+                  
+                </div>
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">Recipient:</label>
+                  <select class="form-control" #reportType>
+                    <option *ngFor="let type of reportTypes" value="{{type.id}}" >{{type.name}}</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="message-text" class="col-form-label">Message:</label>
+                  <textarea class="form-control" #reportComment></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success" 
+              (click)="alertSubmit(item.value.questionId,reportType,reportComment.value);c('Close click');">Submit</button>
+              <button type="button" class="btn btn-light" (click)="c('Close click')">Close</button>
+            </div>
+            
+          </ng-template>
       </div>
     </div>
 
@@ -65,21 +101,25 @@
   <div class="col-3 exam-side-bar">
     <div class="row">
       <div class="col-6">
-        <span class="sm-text answeredLabel">{{answerCount}} &nbsp;Answered</span>
+          <button class="small-ans-box answered">{{answerCount}}</button>
+        <span class="sm-text answeredLabel"> &nbsp;Answered</span>
       </div>
       <div class="col-6">
-        <span class="sm-text notAnsweredLabel">{{someStatus.length-answerCount-answermarkedForReviewCount}} &nbsp;Not Answered</span>
+          <button class="small-ans-box visited_but_not_answered">{{someStatus.length-answerCount-answermarkedForReviewCount}}</button>
+        <span class="sm-text notAnsweredLabel"> &nbsp;Not Answered</span>
       </div>
       <!-- Force next columns to break to new line -->
       <div class="w-100"></div>
       <div class="col-12">
-        <span class="sm-text markedLabel">{{markedForReviewCount}} &nbsp;Marked for Review
+          <button class="small-ans-box review">{{markedForReviewCount}}</button>
+        <span class="sm-text markedLabel"> &nbsp;Marked for Review
         </span>
       </div>
       <div class="w-100"></div>
       <div class="col-12">
+          <button class="small-ans-box ansreview_marked_consideredwered">{{answermarkedForReviewCount}}</button>
         <span class="sm-text markedAndAnsweredLabel">
-          {{answermarkedForReviewCount}} &nbsp;Answered &amp; Marked for Review (will be considered for evaluation)
+           &nbsp;Answered &amp; Marked for Review (will be considered for evaluation)
         </span>
       </div>
     </div>

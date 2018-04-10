@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
-import { QuestionSet, OptionSet, QuestionOutput, QuestionResult } from '../../models/question-set';
+import { QuestionSet, OptionSet, QuestionOutput, QuestionResult, ReportModel } from '../../models/question-set';
 import { AnswerSet } from '../../models/answer-set';
 import { RelExamAnswer, StatusId } from '../../models/rel-exam-answer.interface';
 
@@ -14,6 +14,7 @@ import { ExamService } from '../../http-service-registry/services/exam.service';
 
 import "rxjs/add/operator/debounceTime";
 import { FormControl } from '@angular/forms/src/model';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'exam-detail',
@@ -24,21 +25,28 @@ export class ExamDetailComponent implements OnInit {
   @Input() parent: FormGroup;
   @Input() map: Map<string, QuestionSet>;
   @Output() endExamEvent = new EventEmitter<boolean>();
-  @Input() timerCount: FormGroup;
+  @Input() timerCount: number;
+  public reportForm : FormGroup;
 
   public answerStatus = StatusId;
   public currentCounter: number = 0;
   public buttonsStatus: Map<string, string> = new Map<string, string>();
   public someStatus: string[] = [];
+  public reportTypes = [
+    {id: 1, name: "Question is wrong"},
+    {id: 2, name: "Need clarity in question"},
+    {id: 3, name: "Question should be more explainatory"}
+  ];
+  public report: ReportModel;
 
   public checkedBool: boolean;
 
   constructor(private route: ActivatedRoute,
-    private service: ExamService
+    private service: ExamService,
+    private modalService: NgbModal
   ) { }
 
   ngOnInit() {
-    // this.getSelectedQuestion();
     this.answerStatus.Marked_For_Review;
 
     this.questionanswers.forEach((groups, index) => {
@@ -124,6 +132,15 @@ export class ExamDetailComponent implements OnInit {
     else {
       questionSe.get('selectedOptionStatusId').setValue(this.answerStatus.Visited);
     }
+  }
+
+  openVerticallyCentered(id: string) {
+    this.modalService.open(id);
+  }
+
+  alertSubmit(questionID: any, type: any, comment: any){
+    let d = new ReportModel(questionID,type.selectedOptions[0].value,comment);
+    this.service.insertQuestionReport(d);
   }
 
   public triggerEndExam(event) {

@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { LoginService } from './login-service.service';
 import { RequestOptions, Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { ExamService } from './exam.service';
+import 'rxjs/add/observable/empty';
 
 @Injectable()
 export class UserResultsService {
@@ -13,6 +15,7 @@ export class UserResultsService {
 
   constructor(
     private loginService: LoginService,
+    private examService : ExamService,
     private http: Http) {
     loginService.userId.subscribe((id) => {
       this._userId = id;
@@ -52,5 +55,24 @@ export class UserResultsService {
         Observable.throw(error)
       );
   };
+
+  currentSessionResult(): any{
+    const headers = new Headers();
+    if (this.examService.activeSession.length) {
+      headers.append('Authorization', 'bearer ' + this.examService.activeSession);
+      headers.append('Content-Type', 'application/vnd.api+json');
+      let url = this._proxyHost + `/DemoExam/Rank/current`;
+      
+      return this.http.get(url,
+        new RequestOptions({ headers: headers }))
+        .map((response: Response) =>  response.json())
+        .catch((error) =>
+          Observable.throw(error)
+        );
+    }
+
+    return Observable.empty<Response>();
+   
+  }
 
 }

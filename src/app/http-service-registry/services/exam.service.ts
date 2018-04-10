@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { QuestionSet, QuestionOutput, QuestionResult } from '../../models/question-set';
+import { QuestionSet, QuestionOutput, QuestionResult, ReportModel } from '../../models/question-set';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import 'rxjs/add/operator/map';
@@ -8,17 +8,25 @@ import 'rxjs/add/operator/mergeMap';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
 import { RelExamAnswer, StatusId } from '../../models/rel-exam-answer.interface';
+import { LoginService } from './login-service.service';
 
 @Injectable()
 export class ExamService {
 
-  //private _localHost: string = "https://ec2-52-66-160-163.ap-south-1.compute.amazonaws.com/mdservice/api";
+  //private _proxyHost: string = "https://ec2-52-66-160-163.ap-south-1.compute.amazonaws.com/mdservice/api";
   private _proxyHost: string = "http://localhost:5000/mdservice/api";
 
+  
   private _activeSession_id: string = "";
   private _testObservable: Observable<QuestionOutput[]>;
+  private _userId: string;
 
-  constructor(private http: Http) { }
+  constructor(private http: Http,
+    private loginService: LoginService) {
+    loginService.userId.subscribe((id) => {
+      this._userId = id;
+    });
+  }
 
   startSession(examType: number, questionPaper_id: string) {
     const headers = new Headers();
@@ -67,7 +75,6 @@ export class ExamService {
     return this.getQuestions()
       .map(res => {
         let q = res.map(d => {
-          debugger;
           return d.questionsResult.find(j => j.questionId == id)
         });
         return q[0];
@@ -92,6 +99,33 @@ export class ExamService {
       debugger;
       console.log(error)
     }
+  }
+
+  insertQuestionReport(input: ReportModel) {
+    try {
+      const headers = new Headers();
+      if (this._activeSession_id.length > 0) {
+        headers.append('Authorization', 'bearer ' + this._activeSession_id);
+      }
+      headers.append('Content-Type', 'application/vnd.api+json');
+      let url = this._proxyHost + '/DemoExam/Report/' + this._userId;
+      let data = JSON.stringify(input);
+      this.http.post(url, data,
+        new RequestOptions({ headers: headers }))
+        .map((response: Response) => response.json())
+        .catch((error) =>
+          Observable.throw(error)
+        )
+        .subscribe();
+    } catch (error) {
+      debugger;
+      console.log(error)
+    }
+  }
+
+
+  public get activeSession(){
+    return this._activeSession_id;
   }
 
 
