@@ -2,7 +2,7 @@
 <div class="wrapper">
   <app-app-navbar>
   </app-app-navbar>
-
+  <chat-bot *ngIf="showChat" (ChatEnable)="closeChat($event)"></chat-bot>
   <main role="main" class="main-panel">
 
     <div class="content">

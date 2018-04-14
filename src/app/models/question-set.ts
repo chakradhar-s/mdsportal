@@ -43,3 +43,18 @@ export class ReportModel{
         public comments: string
     ){};
 }
+
+export class ChatBotModel{
+
+    constructor(
+        public className : string,
+        public typeOfComment : ChatCommentTypeEnum,
+        public comment : string,
+        public imagePath : string) {
+    }
+    
+}
+export enum ChatCommentTypeEnum{
+    Comment,
+    Response
+}

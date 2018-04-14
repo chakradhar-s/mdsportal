@@ -47,6 +47,9 @@ import { ViewUserGuard } from './guard-hub/view-user/view-user.guard';
 import { MainExamComponent } from './main-exam/main-exam.component';
 
 import { } from "./demo-exam/demo-exam.module"
+import { ChatBotComponent } from './chat-bot/chat-bot.component';
+import { FormsModule } from '@angular/forms';
+import { ChatBotService } from './http-service-registry/services/chat-bot.service';
 
 const myRoots: Routes = [
   {
@@ -110,7 +113,8 @@ const myRoots: Routes = [
     AppFooterComponent,
     AppHomeComponent,
     LoginNavItem,
-    QuestionpaperComponent
+    QuestionpaperComponent,
+    ChatBotComponent
   ],
   imports: [
     BrowserModule,
@@ -131,9 +135,10 @@ const myRoots: Routes = [
     FileUploadModule,
     HttpClientModule,
     HttpServiceRegistryModule,
-    TableModule
+    TableModule,
+    FormsModule
   ],
-  providers: [FileUploadService, QuestionpaperService],
+  providers: [FileUploadService, QuestionpaperService,ChatBotService],
   bootstrap: [AppComponent],
   exports: [HttpServiceRegistryModule]
 })
