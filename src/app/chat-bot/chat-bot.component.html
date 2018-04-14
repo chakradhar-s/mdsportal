@@ -6,10 +6,10 @@
 					<p>Chat</p>
 				</div>
 				<div class="col-md-4 col-sm-6 col-xs-6 right-first-section">
-					<a (click)="toggle()"><i class="fa fa-minus" aria-hidden="true"></i></a>
+					<a (click)="toggle()"><i class="fa fa-minus" aria-hidden="true" placement="top" ngbTooltip="Minimize"></i></a>
 					<!-- <a href="#"><i class="fa fa-clone" aria-hidden="true"></i></a> -->
-					<a text="remove all messages" (click)="clearMessage()"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-					<a text="close" (click)="closeChat()"><i class="fa fa-times" aria-hidden="true"></i></a>
+					<a text="remove all messages" (click)="clearMessage()"><i class="fa fa-trash-o" aria-hidden="true" placement="top" ngbTooltip="Delete messages"></i></a>
+					<a text="close" (click)="closeChat()"><i class="fa fa-times" aria-hidden="true" placement="top" ngbTooltip="Close"></i></a>
 				</div>
 			</div>
 		</div>
@@ -32,7 +32,7 @@
 	<div class="row border-chat">
 		<div class="col-md-12 col-sm-12 col-xs-12 third-section">
 			<div class="text-bar">
-				<input type="text" placeholder="Write messege" [(ngModel)]="comment" (keyup.enter)="searchQuestion()"><a (click)="searchQuestion()"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+				<input type="text" placeholder="Write messege" [(ngModel)]="comment" (keyup.enter)="searchQuestion()"><a (click)="searchQuestion()" placement="top" ngbTooltip="send"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
 			</div>
 		</div>
 	</div>
