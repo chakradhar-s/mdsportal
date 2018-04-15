@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Complexity</h4>
+          <p class="card-category">
+          Complexity questions answered</p>
+        </div>
+        <div class="card-body">
+          <!-- <div id="monthlyChart" class="chart chart-pie"></div> -->
+          <p-chart type="doughnut" [data]="data"></p-chart>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">2018 Sales</h4>
+          <p class="card-category">
+          Number of products sold</p>
+        </div>
+        <div class="card-body">
+          <!-- <div id="salesChart" class="chart"></div> -->
+          <p-chart type="bar" [data]="barData" width="40w" height="80w"></p-chart>
+        </div>
+      </div>
+    </div>
+</div>

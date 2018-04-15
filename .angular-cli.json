@@ -41,7 +41,8 @@
         "js_scripts/mod-touch.js",
         "../node_modules/jquery/dist/jquery.js",
         "../node_modules/datatables.net/js/jquery.dataTables.js",
-        "../node_modules/vanilla-tilt/dist/vanilla-tilt.js"
+        "../node_modules/vanilla-tilt/dist/vanilla-tilt.js",
+        "../node_modules/chart.js/dist/Chart.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
