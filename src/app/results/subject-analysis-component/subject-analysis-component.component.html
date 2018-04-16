@@ -1,4 +1,13 @@
 <div class="row">
+  <div class="col-md-12">
+      <div class="card card-subject">
+        <div class="card-header">
+            <h1 class="card-title subject">{{subjectData.subject}}</h1>
+          </div>
+      </div>
+    </div>
+</div>
+<div class="row">
   <div class="col-md-6">
       <div class="card">
         <div class="card-header">
@@ -8,16 +17,16 @@
         </div>
         <div class="card-body">
           <!-- <div id="monthlyChart" class="chart chart-pie"></div> -->
-          <p-chart type="doughnut" [data]="data"></p-chart>
+          <p-chart type="pie" [data]="data"></p-chart>
         </div>
       </div>
     </div>
     <div class="col-md-6">
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title">2018 Sales</h4>
+          <h4 class="card-title">Hard, Medium, Low, Basic analysis</h4>
           <p class="card-category">
-          Number of products sold</p>
+          Correctly answered and wrongly answered details</p>
         </div>
         <div class="card-body">
           <!-- <div id="salesChart" class="chart"></div> -->

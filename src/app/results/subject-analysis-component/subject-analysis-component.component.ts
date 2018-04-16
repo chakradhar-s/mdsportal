@@ -43,7 +43,7 @@ public barData : any;
           labels: ['Hard','Medium', 'Low','Basic'],
           datasets: [
               {
-                  label: 'My First dataset',
+                  label: 'Total Questions',
                   backgroundColor: '#42A5F5',
                   borderColor: '#1E88E5',
                   data: [
@@ -53,12 +53,12 @@ public barData : any;
                     this.subjectData.totalBasicQuestions
                   ]
               },
-              {
-                  label: 'My Second dataset',
-                  backgroundColor: '#9CCC65',
-                  borderColor: '#7CB342',
-                  data: d
-              },
+            //   {
+            //       label: 'My Second dataset',
+            //       backgroundColor: '#9CCC65',
+            //       borderColor: '#7CB342',
+            //       data: d
+            //   },
 
               {
                 label: 'Correct answers',
@@ -68,13 +68,13 @@ public barData : any;
             },
             {
               label: 'Wrong answers',
-              backgroundColor: '#9CCC65',
-              borderColor: '#7CB342',
+              backgroundColor: '#ff0000',
+              borderColor: '#cc0000',
               data: this.subjectData.complexityWronglyAnswered
           }
           ]
       }
-    }, 5000);
+    }, 1000);
     
 
    }

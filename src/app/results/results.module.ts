@@ -8,6 +8,7 @@ import { TestimonialsStudentsComponent } from './testimonials-students/testimoni
 import { AppUtilityModule } from '../app-utility/app-utility.module';
 import { SubjectAnalysisComponentComponent } from './subject-analysis-component/subject-analysis-component.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CircleDrawComponent } from './circle-draw/circle-draw.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NgbModule,
     ChartModule
   ],
-  declarations: [TestimonialsStudentsComponent, SubjectAnalysisComponentComponent],
+  declarations: [TestimonialsStudentsComponent, SubjectAnalysisComponentComponent, CircleDrawComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ResultsModule { }
