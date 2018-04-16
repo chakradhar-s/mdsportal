@@ -20,6 +20,8 @@ import { Alert } from '../../models/alert.interface';
 })
 export class ProfileComponent implements OnInit {
 
+  public profileName: string = "";
+  public profileUrl: string = "";
   public profileForm = this.fb.group({
     userId: ['',
       [Validators.required]],
@@ -58,6 +60,10 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe((data) => {
       const user = data["user"];
+      this.profileName = `${user.firstName} ${user.lastName}`;
+      this.signup.getUserPic(user.userId).subscribe((re) => {
+        this.profileName = re.imageUrl;
+      });
       this.profileForm.get('userId').setValue(user.userId);
       this.profileForm.get('firstName').setValue(user.firstName);
       this.profileForm.get('lastName').setValue(user.lastName);
