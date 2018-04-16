@@ -36,11 +36,11 @@ public barData : any;
         this.subjectData.complexityAnswered.forEach(element => {
           d.push(element);
         });
-        d.push(this.subjectData.answered);
-        d.push(this.subjectData.unAnswered);
+        // d.push(this.subjectData.answered);
+        // d.push(this.subjectData.unAnswered);
         debugger;
         this.barData ={
-          labels: ['Hard','Medium', 'Low','Basic', 'Answered', 'UnAnswered'],
+          labels: ['Hard','Medium', 'Low','Basic'],
           datasets: [
               {
                   label: 'My First dataset',
@@ -50,7 +50,7 @@ public barData : any;
                     this.subjectData.totalHardQuestions,
                     this.subjectData.totalMediumQuestions,
                     this.subjectData.totalLowQuestions,
-                    this.subjectData.totalBasicQuestions, 0,0
+                    this.subjectData.totalBasicQuestions
                   ]
               },
               {
@@ -58,7 +58,20 @@ public barData : any;
                   backgroundColor: '#9CCC65',
                   borderColor: '#7CB342',
                   data: d
-              }
+              },
+
+              {
+                label: 'Correct answers',
+                backgroundColor: '#9CCC65',
+                borderColor: '#7CB342',
+                data: this.subjectData.complexityCorrectlyAnswered
+            },
+            {
+              label: 'Wrong answers',
+              backgroundColor: '#9CCC65',
+              borderColor: '#7CB342',
+              data: this.subjectData.complexityWronglyAnswered
+          }
           ]
       }
     }, 5000);
