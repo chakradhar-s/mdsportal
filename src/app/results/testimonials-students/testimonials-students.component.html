@@ -75,10 +75,10 @@
             <div class="progress-card">
               <div class="d-flex justify-content-between mb-1">
                 <span class="text-muted">Attended Exams Percentage</span>
-                <span class="text-muted fw-bold"> {{attendedExamsPercent}}%</span>
+                <span class="text-muted fw-bold"> {{attendedExamsPercent| number : '1.2-2'}}%</span>
               </div>
-              <ngb-progressbar type="info" [value]="attendedExamsPercent" [striped]="true" [animated]="true">
-                <i>{{attendedExamsPercent}}%</i>
+              <ngb-progressbar type="info" [value]="attendedExamsPercent| number : '1.2-2'" [striped]="true" [animated]="true">
+                <i>{{attendedExamsPercent| number : '1.2-2'}}%</i>
               </ngb-progressbar>
 
               <!-- <div class="progress mb-2" style="height: 7px;">
@@ -88,10 +88,10 @@
             <div class="progress-card">
               <div class="d-flex justify-content-between mb-1">
                 <span class="text-muted">Unanswered Percentage</span>
-                <span class="text-muted fw-bold"> {{unAnsweredPercent}}</span>
+                <span class="text-muted fw-bold"> {{unAnsweredPercent | number : '1.2-2'}}</span>
               </div>
-              <ngb-progressbar type="danger" [value]="unAnsweredPercent" [striped]="true" [animated]="true">
-                <i>{{unAnsweredPercent}}%</i>
+              <ngb-progressbar type="danger" [value]="unAnsweredPercent| number : '1.2-2'" [striped]="true" [animated]="true">
+                <i>{{unAnsweredPercent | number : '1.2-2'}}%</i>
               </ngb-progressbar>
 
               <!-- <div class="progress mb-2" style="height: 24px;">
@@ -101,10 +101,10 @@
             <div class="progress-card">
               <div class="d-flex justify-content-between mb-1">
                 <span class="text-muted">Answered Percentage</span>
-                <span class="text-muted fw-bold"> {{answeredPercent}}%</span>
+                <span class="text-muted fw-bold"> {{answeredPercent| number : '1.2-2'}}%</span>
               </div>
-              <ngb-progressbar type="success" [value]="answeredPercent" [striped]="true" [animated]="true">
-                <i>{{answeredPercent}}%</i>
+              <ngb-progressbar type="success" [value]="answeredPercent| number : '1.2-2'" [striped]="true" [animated]="true">
+                <i>{{answeredPercent| number : '1.2-2'}}%</i>
               </ngb-progressbar>
 
               <!-- <div class="progress mb-2" style="height: 7px;">
@@ -114,10 +114,10 @@
             <div class="progress-card">
               <div class="d-flex justify-content-between mb-1">
                 <span class="text-muted">Skipped Exams</span>
-                <span class="text-muted fw-bold"> {{skippedExamsPercent}}%</span>
+                <span class="text-muted fw-bold"> {{skippedExamsPercent| number : '1.2-2'}}%</span>
               </div>
-              <ngb-progressbar type="warning" [value]="skippedExamsPercent" [striped]="true" [animated]="true">
-                <i>{{skippedExamsPercent}}%</i>
+              <ngb-progressbar type="warning" [value]="skippedExamsPercent| number : '1.2-2'" [striped]="true" [animated]="true">
+                <i>{{skippedExamsPercent| number : '1.2-2'}}%</i>
               </ngb-progressbar>
 
               <!-- <div class="progress mb-2" style="height: 7px;">
