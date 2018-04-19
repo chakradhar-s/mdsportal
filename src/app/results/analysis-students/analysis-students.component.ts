@@ -3,11 +3,11 @@ import { ExamService } from '../../http-service-registry/services/exam.service';
 
 
 @Component({
-  selector: 'app-testimonials-students',
-  templateUrl: './testimonials-students.component.html',
-  styleUrls: ['./testimonials-students.component.scss']
+  selector: 'app-analysis-students',
+  templateUrl: './analysis-students.component.html',
+  styleUrls: ['./analysis-students.component.scss']
 })
-export class TestimonialsStudentsComponent implements OnInit {
+export class AnalysisStudentComponent implements OnInit {
 
   public result: any = {};
   public answeredPercent = 0;

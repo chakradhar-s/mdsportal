@@ -27,7 +27,7 @@ export class AppNavbarComponent implements OnInit {
   constructor(private _login: LoginService) {
     this._defaultNav = [{ exact: true, link: '/home', name: 'Home' },
     { exact: true, link: '/about', name: 'About us' },
-    { exact: true, link: '/testimonials', name: 'Results' },
+    // { exact: true, link: '/analysis', name: 'Analysis' },
     { exact: true, link: '/payment', name: 'Payment  |  Schedule & PP Books' },
     { exact: true, link: '/s-strategy', name: 'DEV' },
     { exact: true, link: '/demo-exam/410b088a-6fae-42ae-9bf9-283aa438a890', name: 'Demo Exam' },
@@ -38,12 +38,13 @@ export class AppNavbarComponent implements OnInit {
     this._studentNav = [{ exact: true, link: '/home', name: 'Home' },
     { exact: true, link: '/payment', name: 'Payment  |  Schedule & PP Books' },
     { exact: true, link: '/s-strategy', name: 'DEV' },
+    { exact: true, link: '/analysis', name: 'Analysis' },
     { exact: true, link: '/demo-exam/410b088a-6fae-42ae-9bf9-283aa438a890', name: 'Demo Exam' },
     { exact: true, link: '/contactus', name: 'Contact Us' }];
 
     this._adminNav = [{ exact: true, link: '/home', name: 'Home' },
     { exact: true, link: '/about', name: 'About us' },
-    { exact: true, link: '/testimonials', name: 'Results' },
+    { exact: true, link: '/analysis', name: 'Analysis' },
     { exact: true, link: '/payment', name: 'Payment  |  Schedule & PP Books' },
     { exact: true, link: '/s-strategy', name: 'DEV' },
     { exact: true, link: '/demo-exam/410b088a-6fae-42ae-9bf9-283aa438a890', name: 'Demo Exam' },    
