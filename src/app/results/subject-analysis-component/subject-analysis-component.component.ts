@@ -61,13 +61,13 @@ public barData : any;
             //   },
 
               {
-                label: 'Correct answers',
+                label: 'Correct answers scored',
                 backgroundColor: '#9CCC65',
                 borderColor: '#7CB342',
                 data: this.subjectData.complexityCorrectlyAnswered
             },
             {
-              label: 'Wrong answers',
+              label: 'Wrong answers scored',
               backgroundColor: '#ff0000',
               borderColor: '#cc0000',
               data: this.subjectData.complexityWronglyAnswered

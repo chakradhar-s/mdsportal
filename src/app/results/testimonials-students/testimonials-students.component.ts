@@ -35,10 +35,10 @@ export class TestimonialsStudentsComponent implements OnInit {
   }
 
   loadPercentages() {
-    this.answeredPercent = (this.result.totalAnswered / this.result.totalQuestions) * 100;
-    this.unAnsweredPercent = (this.result.totalUnAnswered / this.result.totalQuestions) * 100;
+    this.answeredPercent = (this.result.totalAnswered / (this.result.totalAnswered + this.result.totalUnAnswered)) * 100;
+    this.unAnsweredPercent = (this.result.totalUnAnswered / (this.result.totalAnswered + this.result.totalUnAnswered)) * 100;
     this.attendedExamsPercent = (this.result.totalExamsAttended / this.result.totalPapers) * 100;
-    this.skippedExamsPercent = (this.result.skippedExams / this.result.totalQuestions) * 100;
+    this.skippedExamsPercent = (this.result.skippedExams / this.result.totalPapers) * 100;
     
     this.result.subScores.forEach(element => {
       this.sum = this.sum + element.score;
