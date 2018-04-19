@@ -9,6 +9,7 @@ import { GuardHubModule } from '../guard-hub/guard-hub.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ResultsComponent } from './results/results.component';
 import { TableModule } from 'primeng/table';
+import { UploadQuestionsImageModule } from '../upload-questions-image/upload-questions-image.module';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { TableModule } from 'primeng/table';
     ReactiveFormsModule,
     GuardHubModule,
     TableModule,
-    NgbModule
+    NgbModule,
+    UploadQuestionsImageModule
   ],
   declarations: [ProfileComponent, ResultsComponent]
 })

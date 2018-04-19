@@ -244,3 +244,17 @@ body {
     align-items: center;
   }
 }
+
+.author{
+  .camer-pic{
+    display: inline-block;
+    position: relative;
+    .e51lmc {
+      background: url(../assets/images/photo_camera_white_24dp.png);
+          background-size: auto auto;
+      background-size: 24px;
+      height: 24px;
+      width: 24px;
+    }
+  }
+}
