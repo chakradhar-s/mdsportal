@@ -1,4 +1,4 @@
-<p-fileUpload name="myfile[]" url="{{host_url}}" accept="image/*" multiple="{{isMultiple}}" maxFileSize="1000000" (onBeforeUpload)="onBeforeUpload($event)" (onUpload)="onUpload($event)">
+<p-fileUpload name="myfile[]" url="{{host_url}}" accept="image/*" multiple="{{isMultiple}}" maxFileSize="1000000" (onBeforeSend)="onBeforeUpload($event)" (onUpload)="onUpload($event)">
   <ng-template pTemplate="content">
     <ul *ngIf="uploadedFiles.length">
       <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
@@ -15,7 +15,7 @@
   <div class="col-md-2" *ngFor="let item of newPaths; let i = index;">
     <div class="card">
       <div class="card-body">
-        <div id="task-complete" class="chart-circle mt-4 mb-3">
+        <div id="task-complete" class="chart-circle mt-4 mb-3">y
           <img src="{{item}}" width="90%" />
         </div>
         <div class="card-footer">

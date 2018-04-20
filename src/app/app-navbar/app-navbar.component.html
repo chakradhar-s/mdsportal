@@ -38,7 +38,7 @@
   </div>
   <nav class="navbar navbar-header navbar-expand-lg">
     <div class="container-fluid">
-      <div class=".col-sm-2" *ngFor="let navItem of nav;let i = index">
+      <div class="col-sm-2" *ngFor="let navItem of nav;let i = index">
         <a [routerLink]="[navItem.link]" routerLinkActive="w--current" [routerLinkActiveOptions]=" {exact:navItem.exact}" class="nav-link">
           {{navItem.name}}
           <!-- <div class="bar--purple link__bar "></div> -->

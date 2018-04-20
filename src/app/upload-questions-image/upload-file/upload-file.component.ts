@@ -52,6 +52,7 @@ export class UploadFileComponent implements OnInit {
     const paths: string[] = JSON.parse(event.xhr.response).pathS;
     if (!(this.upload_url && this.upload_url.length)) {
       this.newPaths = paths;
+      //todo emit output
     }
 
   }
@@ -63,7 +64,7 @@ export class UploadFileComponent implements OnInit {
 
   public onBeforeUpload(event) {
     if (window.localStorage.getItem('jwt-access-mds')) {
-      let rslt = JSON.parse(window.localStorage.getItem('jwt-access-mds'));
+      let rslt = JSON.parse(window.localStorage.getItem('jwt-access-mds'));    
       event.xhr.setRequestHeader('Authorization', 'bearer ' + rslt.access_token);
     }
   }
