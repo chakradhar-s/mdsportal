@@ -12,11 +12,14 @@ export class UploadFileComponent implements OnInit {
 
   @Input()
   upload_url: string;
+  @Input()
+  isMultiple: boolean;
   @Output()
   effPaths = new EventEmitter<Array<string>>();
 
 
   host_url: string = "http://localhost:5000/mdservice/api/UploadDocument/uploadimages";
+  //host_url: string = "https://ec2-52-66-160-163.ap-south-1.compute.amazonaws.com/mdservice/api";
   form_method: string = "";
   uploadedFiles: any[] = [];
   public alerts: Array<Alert> = [];
@@ -56,6 +59,13 @@ export class UploadFileComponent implements OnInit {
   public closeAlert(alert: Alert) {
     const index: number = this.alerts.indexOf(alert);
     this.alerts.splice(index, 1);
+  }
+
+  public onBeforeUpload(event) {
+    if (window.localStorage.getItem('jwt-access-mds')) {
+      let rslt = JSON.parse(window.localStorage.getItem('jwt-access-mds'));
+      event.xhr.setRequestHeader('Authorization', 'bearer ' + rslt.access_token);
+    }
   }
 
 }
