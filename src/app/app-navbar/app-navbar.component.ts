@@ -39,13 +39,11 @@ export class AppNavbarComponent implements OnInit {
     this._studentNav = [{ exact: true, link: '/home', name: 'Home' },
     { exact: true, link: '/payment', name: 'Payment  |  Schedule & PP Books' },
     { exact: true, link: '/s-strategy', name: 'DEV' },
-    { exact: true, link: '/analysis', name: 'Analysis' },
     { exact: true, link: '/demo-exam/410b088a-6fae-42ae-9bf9-283aa438a890', name: 'Demo Exam' },
     { exact: true, link: '/contactus', name: 'Contact Us' }];
 
     this._adminNav = [{ exact: true, link: '/home', name: 'Home' },
     { exact: true, link: '/about', name: 'About us' },
-    { exact: true, link: '/analysis', name: 'Analysis' },
     { exact: true, link: '/payment', name: 'Payment  |  Schedule & PP Books' },
     { exact: true, link: '/s-strategy', name: 'DEV' },
     { exact: true, link: '/demo-exam/410b088a-6fae-42ae-9bf9-283aa438a890', name: 'Demo Exam' },
@@ -107,16 +105,17 @@ export class AppNavbarComponent implements OnInit {
     if (this._userType.isStudent && this._login.userProfile.user && this._login.userProfile.user.userId) {
       this.profileaccordion.nav_items = [
         { exact: true, link: '/taketest', name: 'Take a Exam' },
-        { name: 'MyAccount', exact: false, link: '/user/account' },
-        { name: 'MyResults', exact: false, link: `/view-results/${this._login.userProfile.user.userId}` }
+        { name: 'MyResults', exact: false, link: `/view-results/${this._login.userProfile.user.userId}` },
+        { name: 'Analysis', exact: true, link: '/analysis' },
       ];
     }
 
     else if (this._userType.isAdmin && this._login.userProfile.user && this._login.userProfile.user.userId) {
       this.profileaccordion.nav_items = [
         { exact: true, link: '/taketest', name: 'Take a Exam' },
-        { name: 'MyAccount', exact: false, link: '/user/account' },
+
         { name: 'MyResults', exact: false, link: `/view-results/${this._login.userProfile.user.userId}` },
+        { name: 'Analysis', exact: true, link: '/analysis' },
         { name: 'Manage users', exact: false, link: `/user-management` },
         { name: 'Upload a question paper', exact: false, link: '/question-upload' },
         { name: 'Upload questions image', exact: false, link: '/upload-questions-image' }];
