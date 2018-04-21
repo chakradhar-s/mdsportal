@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 
+import { QuestionsImageService } from '../../http-service-registry/services/questions-image.service';
+
 import { Alert } from '../../models/alert.interface';
 
 @Component({
@@ -18,21 +20,28 @@ export class UploadFileComponent implements OnInit {
   effPaths = new EventEmitter<Array<string>>();
 
 
-  host_url: string = "http://localhost:5000/mdservice/api/UploadDocument/uploadimages";
-  //host_url: string = "https://ec2-52-66-160-163.ap-south-1.compute.amazonaws.com/mdservice/api";
-  form_method: string = "";
-  uploadedFiles: any[] = [];
+  public host_url: string = "http://localhost:5000/mdservice/api/UploadDocument/uploadimages";
+  //host_url: string = "https://ec2-52-66-160-163.ap-south-1.compute.amazonaws.com/mdservice/api/UploadDocument/uploadimages";
+  public form_method: string = "";
+  public uploadedFiles: any[] = [];
   public alerts: Array<Alert> = [];
+  public pastImages: string[] = [];
+  public newPaths: string[] = [];
 
-  newPaths: string[] = [];
-
-  constructor(private cd: ChangeDetectorRef) {
+  constructor(private cd: ChangeDetectorRef, private questionsImage: QuestionsImageService) {
 
   }
 
   ngOnInit() {
     if (this.upload_url && this.upload_url.length) {
       this.host_url = this.upload_url;
+    }
+    else {
+      this.questionsImage.getQuestionsImage().subscribe((t) => {
+        this.pastImages = [];
+        this.pastImages = t;
+        this.cd.detectChanges();
+      });
     }
   }
 
@@ -66,7 +75,7 @@ export class UploadFileComponent implements OnInit {
 
   public onBeforeUpload(event) {
     if (window.localStorage.getItem('jwt-access-mds')) {
-      let rslt = JSON.parse(window.localStorage.getItem('jwt-access-mds'));    
+      let rslt = JSON.parse(window.localStorage.getItem('jwt-access-mds'));
       event.xhr.setRequestHeader('Authorization', 'bearer ' + rslt.access_token);
     }
   }
