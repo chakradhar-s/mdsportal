@@ -129,5 +129,39 @@ export class ExamService {
   }
 
 
+  public  examCompleted() {
+
+    const headers = new Headers();
+    if (this._activeSession_id.length > 0) {
+      debugger;
+      headers.append('Authorization', 'bearer ' + this._activeSession_id);
+      console.log('**END EXAM**');
+    }
+    headers.append('Content-Type', 'application/vnd.api+json');
+    return this.http.post(this._proxyHost + '/DemoExam/Completed',
+      new RequestOptions({ headers: headers }))
+      .map((response: Response) => response.json())
+      .catch((error) =>
+        Observable.throw(error)
+      );
+  };
+
+
+  public getAnalytics() {
+
+    const headers = new Headers();
+    if (window.localStorage.getItem('jwt-access-mds')) {
+      let rslt = JSON.parse(window.localStorage.getItem('jwt-access-mds'));
+      headers.append('Authorization', 'bearer ' + rslt.access_token);
+    }
+    debugger;
+    headers.append('Content-Type', 'application/vnd.api+json');
+    return this.http.get(this._proxyHost + '/Analysis/GetAnalysis/',
+      new RequestOptions({ headers: headers }))
+      .map((response: Response) => response.json())
+      .catch((error) =>
+        Observable.throw(error)
+      );
+  };
 
 }

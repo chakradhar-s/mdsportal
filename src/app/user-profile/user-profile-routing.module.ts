@@ -8,6 +8,7 @@ import { ViewResolve } from '../guard-hub/resolve/view.resolve';
 import { ViewUserGuard } from '../guard-hub/view-user/view-user.guard';
 
 import {ResultsComponent} from './results/results.component';
+import { UserManagementComponent } from './user-management/user-management.component';
 
 const routes: Routes = [
   {
@@ -22,7 +23,14 @@ const routes: Routes = [
     component: ResultsComponent,
     canLoad: [AuthGuard],
     canActivate: [ViewUserGuard]
+  },
+  {
+    path: 'user-management',
+    component: UserManagementComponent,
+    canLoad: [AuthGuard],
+    canActivate: [ViewUserGuard]
   }
+
 ];
 
 @NgModule({

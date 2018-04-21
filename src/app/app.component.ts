@@ -20,7 +20,7 @@ export class AppComponent {
     router.events.forEach((event) => {
       if(event instanceof NavigationStart) {
         debugger;
-          this.showChat = !(event.url.indexOf('main-exam') > -1 || event.url.indexOf('main-exam') > -1);
+          this.showChat = !(event.url.indexOf('main-exam') > -1 || event.url.indexOf('demo-exam') > -1);
       }
     });
   }

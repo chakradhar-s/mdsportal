@@ -69,7 +69,7 @@ const myRoots: Routes = [
     loadChildren: 'app/payment/payment.module#PaymentModule'
   },
   {
-    path: 'testimonials',
+    path: 'analysis',
     loadChildren: 'app/results/results.module#ResultsModule'
   },
   {
