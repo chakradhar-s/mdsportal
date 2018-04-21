@@ -9,6 +9,8 @@ import { GuardHubModule } from '../guard-hub/guard-hub.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ResultsComponent } from './results/results.component';
 import { TableModule } from 'primeng/table';
+import { UserManagementComponent } from './user-management/user-management.component';
+import { DataTableModule } from 'primeng/datatable';
 
 @NgModule({
   imports: [
@@ -17,8 +19,9 @@ import { TableModule } from 'primeng/table';
     ReactiveFormsModule,
     GuardHubModule,
     TableModule,
-    NgbModule
+    NgbModule,
+    DataTableModule
   ],
-  declarations: [ProfileComponent, ResultsComponent]
+  declarations: [ProfileComponent, ResultsComponent, UserManagementComponent]
 })
 export class UserProfileModule { }
