@@ -52,7 +52,9 @@ export class UploadFileComponent implements OnInit {
     const paths: string[] = JSON.parse(event.xhr.response).pathS;
     if (!(this.upload_url && this.upload_url.length)) {
       this.newPaths = paths;
-      //todo emit output
+    }
+    else {
+      this.effPaths.emit(paths);
     }
 
   }

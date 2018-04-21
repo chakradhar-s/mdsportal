@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Nav } from '../models/nav.interface';
 import { LoginService } from '../http-service-registry/services/login-service.service';
+import { SignUpService } from '../http-service-registry/services/signup.service';
 import { UserType } from '../models/user.type.interface';
 import { ProfileAccordion } from '../models/profile-accordion.interface';
 
@@ -24,7 +25,7 @@ export class AppNavbarComponent implements OnInit {
   private readonly _adminNav: Nav[];
 
   private _userType: UserType;
-  constructor(private _login: LoginService) {
+  constructor(private _login: LoginService, private signup: SignUpService) {
     this._defaultNav = [{ exact: true, link: '/home', name: 'Home' },
     { exact: true, link: '/about', name: 'About us' },
     { exact: true, link: '/testimonials', name: 'Results' },
@@ -46,7 +47,7 @@ export class AppNavbarComponent implements OnInit {
     { exact: true, link: '/testimonials', name: 'Results' },
     { exact: true, link: '/payment', name: 'Payment  |  Schedule & PP Books' },
     { exact: true, link: '/s-strategy', name: 'DEV' },
-    { exact: true, link: '/demo-exam/410b088a-6fae-42ae-9bf9-283aa438a890', name: 'Demo Exam' },    
+    { exact: true, link: '/demo-exam/410b088a-6fae-42ae-9bf9-283aa438a890', name: 'Demo Exam' },
     { exact: true, link: '/contactus', name: 'Contact Us' }];
 
     this.profileaccordion = { image_default: true, image_path: "", nav_items: [{ link: '', exact: false, name: '' }] };
@@ -94,9 +95,12 @@ export class AppNavbarComponent implements OnInit {
   }
 
   public fillUserProfile() {
-debugger;
+    debugger;
     if (this.loggedIn) {
       this.profileaccordion.image_path = "assets/images/anonym-person.png";
+      this.signup.getUserPic(this._login.userProfile.user.userId).subscribe((re) => {
+        this.profileaccordion.image_path = re.imageUrl;
+      });
     }
 
     if (this._userType.isStudent && this._login.userProfile.user && this._login.userProfile.user.userId) {

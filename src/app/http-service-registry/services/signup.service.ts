@@ -93,7 +93,7 @@ export class SignUpService {
             let rslt = JSON.parse(window.localStorage.getItem('jwt-access-mds'));
             headers.append('Authorization', 'bearer ' + rslt.access_token);
         }
-        return this.http.get(`${this._proxyHost}/profilepicurl/${id}`,
+        return this.http.get(`${this._proxyHost}/users/profilepicurl/${id}`,
             new RequestOptions({ headers: headers })).map((response: Response) => {
                 return response.json();
             }).catch((error) => {

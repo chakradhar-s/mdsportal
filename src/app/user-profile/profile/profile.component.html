@@ -20,9 +20,6 @@
           </div>
         </div>
         <p class="description text-center">
-          "I like the way you work it
-          <br> No diggity
-          <br> I wanna bag it up"
         </p>
         <hr>
         <div class="text-center">
@@ -182,12 +179,11 @@
 
 <ng-template #modal_upload let-c="close" let-d="dismiss">
   <div class="modal-header">
-    <h4 class="modal-title">Modal title</h4>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
-    <app-upload-file [upload_url]="imageUploadUrl" (effPaths)="uploadedPaths(paths)"></app-upload-file>
+    <app-upload-file [upload_url]="imageUploadUrl" (effPaths)="uploadedPaths($event)"></app-upload-file>
   </div>
 </ng-template>
