@@ -91,6 +91,10 @@ const myRoots: Routes = [
   {
     path: 'main-exam/:paperid',
     loadChildren: 'app/main-exam/main-exam.module#MainExamModule'
+  },
+  {
+    path: 'forgot_password',
+    loadChildren: 'app/login-user/login-user.module#LoginUserModule'
   }
 ];
 

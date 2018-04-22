@@ -13,8 +13,8 @@ import { SignUpService } from '../../http-service-registry/services/signup.servi
 import { Registration } from '../../models/registration.interface';
 import { Alert } from '../../models/alert.interface';
 
-export const uploadUrl:string="https://ec2-52-66-160-163.ap-south-1.compute.amazonaws.com/mdservice/api/users/profilepicurl";
-//export const uploadUrl: string = "http://localhost:5000/mdservice/api/users/profilepicurl";
+// export const uploadUrl:string="https://ec2-52-66-160-163.ap-south-1.compute.amazonaws.com/mdservice/api/users/profilepicurl";
+export const uploadUrl: string = "http://localhost:5000/mdservice/api/users/profilepicurl";
 
 @Component({
   selector: 'app-profile',
@@ -143,7 +143,7 @@ export class ProfileComponent implements OnInit {
   }
 
   managePassword() {
-
+    this.router.navigate(['/forgot_password']);
   }
 
   public closeAlert(alert: Alert) {

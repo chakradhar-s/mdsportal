@@ -10,8 +10,8 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class UserManagementService {
   private userStatus: UserActiveStatus = new UserActiveStatus();
-  private _proxyHost: string = "https://ec2-52-66-160-163.ap-south-1.compute.amazonaws.com/mdservice/api";
-  //private _proxyHost: string = "http://localhost:5000/mdservice/api";
+  // private _proxyHost: string = "https://ec2-52-66-160-163.ap-south-1.compute.amazonaws.com/mdservice/api";
+  private _proxyHost: string = "http://localhost:5000/mdservice/api";
 
   constructor(private http: Http) { }
 
@@ -50,6 +50,29 @@ export class UserManagementService {
       })
       .catch((error) =>
         Observable.throw(error)
+      );
+  }
+
+  deleteUsers(userids: Array<string>) {
+    const headers = new Headers();
+    if (window.localStorage.getItem('jwt-access-mds')) {
+      let rslt = JSON.parse(window.localStorage.getItem('jwt-access-mds'));
+      headers.append('Authorization', 'bearer ' + rslt.access_token);
+    }
+    debugger;
+    headers.append('Content-Type', 'application/vnd.api+json');
+    return this.http.delete(this._proxyHost + `/Users/DeleteUsers`,
+      new RequestOptions({
+        headers: headers,
+        body: JSON.stringify({
+          "userIds": userids
+        })
+      }))
+      .map((response: Response) => { debugger; return response.json(); })
+      .catch((error) => {
+        debugger;
+        return Observable.throw(error)
+      }
       );
   }
 

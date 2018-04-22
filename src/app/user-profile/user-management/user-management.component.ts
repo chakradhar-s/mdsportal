@@ -18,7 +18,8 @@ export class UserManagementComponent implements OnInit {
   public cols: any[];
   public loading: boolean;
   public pagesToDisplay: number;
-  public loadedEvent : LazyLoadEvent;
+  public dataTableEvent : DataTableTrackEvent = {currentFilter : '', currentFirstRec: 1, currentRows : 10 };
+  // public loadedEvent : LazyLoadEvent;
   constructor(private manageService: UserManagementService,
     private confirmationService: ConfirmationService) {
       debugger;
@@ -54,7 +55,10 @@ export class UserManagementComponent implements OnInit {
     this.loading = true;
     console.log(event);
     console.log(this.selectedUsers);
-    this.loadedEvent = event;
+    this.dataTableEvent={currentFirstRec : event.first + 1, currentRows: event.rows, currentFilter :  event.globalFilter};
+    this.serviceCall();
+    
+    // this.loadedEvent = event;
     //in a real application, make a remote request to load data using state metadata from event
     //event.first = First row offset
     //event.rows = Number of rows per page
@@ -63,28 +67,46 @@ export class UserManagementComponent implements OnInit {
     //filters: FilterMetadata object having field as key and filter value, filter matchMode as value
 
     //imitate db connection over a network
-    setTimeout(() => {
-      debugger;
+ 
       // if (this.datasource) {
       //   this.users = this.datasource.slice(event.first, (event.first + event.rows));
       //   this.loading = false;
       // }
-      this.manageService.getUsers(event.first + 1, event.rows, event.globalFilter).subscribe((response: UserPaginated) => {
+      // this.manageService.getUsers(this.dataTableEvent.currentFirstRec, this.dataTableEvent.currentRows,this.dataTableEvent.currentFilter)
+      // .subscribe((response: UserPaginated) => {
+      //   console.log(response);
+      //   if (response) {
+      //     this.users = response.users;
+
+      //     this.totalRecords = response.count;
+      //     if (response.count %this.dataTableEvent.currentRows == 0)
+      //       this.pagesToDisplay = response.count /this.dataTableEvent.currentRows;
+      //     else
+      //       this.pagesToDisplay = (response.count / this.dataTableEvent.currentRows) + 1;
+      //   }
+      //   this.loading = false;
+
+      // });
+    
+
+  }
+
+  serviceCall(){
+    this.manageService.getUsers(this.dataTableEvent.currentFirstRec, this.dataTableEvent.currentRows,this.dataTableEvent.currentFilter)
+      .subscribe((response: UserPaginated) => {
         console.log(response);
         if (response) {
           this.users = response.users;
 
           this.totalRecords = response.count;
-          if (response.count % event.rows == 0)
-            this.pagesToDisplay = response.count / event.rows;
+          if (response.count % this.dataTableEvent.currentRows == 0)
+            this.pagesToDisplay = response.count /this.dataTableEvent.currentRows;
           else
-            this.pagesToDisplay = (response.count / event.rows) + 1;
+            this.pagesToDisplay = (response.count / this.dataTableEvent.currentRows) + 1;
         }
         this.loading = false;
 
       });
-    }, 1000);
-
   }
 
   confirm() {
@@ -108,7 +130,8 @@ export class UserManagementComponent implements OnInit {
     });
     this.manageService.deleteUsers(userIdList).subscribe(() => {
       debugger;
-      this.loadUsersLazy(this.loadedEvent);
+      // this.loadUsersLazy(this.loadedEvent);
+      this.serviceCall();
     }, (error: Error) => {
       debugger;
       console.log(error);
@@ -120,5 +143,11 @@ export class UserManagementComponent implements OnInit {
 export interface UserPaginated {
   count: number;
   users: any[];
+}
+
+export interface DataTableTrackEvent{
+  currentFirstRec : number;
+  currentRows : number;
+  currentFilter : any;
 }
 
