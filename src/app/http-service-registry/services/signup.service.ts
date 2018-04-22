@@ -23,7 +23,7 @@ export class SignUpService {
     }
 
     //private _proxyHost: string = "https://ec2-52-66-160-163.ap-south-1.compute.amazonaws.com/mdservice/api";
-    private _proxyHost: string = "http://localhost:5000/mdservice/api";  
+    private _proxyHost: string = "http://localhost:5000/mdservice/api";
 
 
     registerUser(user: Registration) {
@@ -72,7 +72,6 @@ export class SignUpService {
     }
 
     getRegisterUser(id: string) {
-        console.log("signup service " + id);
         const headers = new Headers();
         headers.append('Content-Type', 'application/vnd.api+json');
         if (window.localStorage.getItem('jwt-access-mds')) {
@@ -80,6 +79,21 @@ export class SignUpService {
             headers.append('Authorization', 'bearer ' + rslt.access_token);
         }
         return this.http.get(`${this._proxyHost}/Users/${id}`,
+            new RequestOptions({ headers: headers })).map((response: Response) => {
+                return response.json();
+            }).catch((error) => {
+                return Observable.throw(error);
+            });
+    }
+
+    getUserPic(id: string) {
+        const headers = new Headers();
+        headers.append('Content-Type', 'application/vnd.api+json');
+        if (window.localStorage.getItem('jwt-access-mds')) {
+            let rslt = JSON.parse(window.localStorage.getItem('jwt-access-mds'));
+            headers.append('Authorization', 'bearer ' + rslt.access_token);
+        }
+        return this.http.get(`${this._proxyHost}/users/profilepicurl/${id}`,
             new RequestOptions({ headers: headers })).map((response: Response) => {
                 return response.json();
             }).catch((error) => {

@@ -38,12 +38,14 @@
   </div>
   <nav class="navbar navbar-header navbar-expand-lg">
     <div class="container-fluid">
-      <div class=".col-sm-2" *ngFor="let navItem of nav;let i = index">
-        <a [routerLink]="[navItem.link]" routerLinkActive="w--current" [routerLinkActiveOptions]=" {exact:navItem.exact}" class="nav-link">
-          {{navItem.name}}
-          <!-- <div class="bar--purple link__bar "></div> -->
-        </a>
-      </div>
+      <ul class="navbar-nav bd-navbar-nav flex-row">
+        <li class="nav-item" *ngFor="let navItem of nav;let i = index">
+          <a [routerLink]="[navItem.link]" routerLinkActive="w--current" [routerLinkActiveOptions]=" {exact:navItem.exact}" class="nav-link">
+            {{navItem.name}}
+            <!-- <div class="bar--purple link__bar "></div> -->
+          </a>
+        </li>
+      </ul>
       <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
         <app-login-item *ngIf="loggedIn" [profileDetails]="profileaccordion" [user]="userName"></app-login-item>
       </ul>

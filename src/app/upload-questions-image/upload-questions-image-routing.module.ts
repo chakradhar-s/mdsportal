@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { UploadFileComponent } from './upload-file/upload-file.component';
 
 const routes: Routes = [
-  { path: '', component: UploadFileComponent }
+  { path: 'upload-questions-image', component: UploadFileComponent }
 ];
 
 @NgModule({

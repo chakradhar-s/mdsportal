@@ -2,9 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
+import { DataTablesModule } from 'angular-datatables';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
 import { AppComponent } from './app.component';
@@ -12,32 +16,21 @@ import { AppNavbarComponent } from './app-navbar/app-navbar.component';
 import { AppFooterComponent } from './app-footer/app-footer.component';
 import { AppHomeComponent } from './app-home/app-home.component';
 import { LoginNavItem } from './app-navbar/login-navitem.component';
-
-import { ContactUsModule } from './contact-us/contact-us.module';
-import { ScheduleModule } from './schedule/schedule.module';
-
-import { HttpServiceRegistryModule } from './http-service-registry/http-service-registry.module';
-
 import { AppUtilityModule } from './app-utility/app-utility.module';
 
-import { HttpModule } from '@angular/http';
-
-
-import { DataTablesModule } from 'angular-datatables';
+import { HttpServiceRegistryModule } from './http-service-registry/http-service-registry.module';
 import { QuestionpaperComponent } from './questionpaper/questionpaper.component';
-
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FileUploadService } from './mdsportal.services/file.upload.service';
 import { FileUploadModule } from 'primeng/fileupload';
 
-import { HttpClientModule } from '@angular/common/http';
 import { TableModule } from 'primeng/table';
 import { QuestionpaperService } from './mdsportal.services/questionpaper.service';
 
 import { LoginUserModule } from './login-user/login-user.module';
 import { RegisterUserModule } from './register-user/register-user.module';
 import { UserProfileModule } from './user-profile/user-profile.module';
+import { UploadQuestionsImageModule } from './upload-questions-image/upload-questions-image.module';
 
 import { GuardHubModule } from './guard-hub/guard-hub.module';
 import { AuthGuard } from './guard-hub/auth/auth.guard';
@@ -46,10 +39,10 @@ import { ViewResolve } from './guard-hub/resolve/view.resolve';
 import { ViewUserGuard } from './guard-hub/view-user/view-user.guard';
 import { MainExamComponent } from './main-exam/main-exam.component';
 
-import { } from "./demo-exam/demo-exam.module"
 import { ChatBotComponent } from './chat-bot/chat-bot.component';
-import { FormsModule } from '@angular/forms';
 import { ChatBotService } from './http-service-registry/services/chat-bot.service';
+
+
 
 const myRoots: Routes = [
   {
@@ -98,10 +91,6 @@ const myRoots: Routes = [
   {
     path: 'main-exam/:paperid',
     loadChildren: 'app/main-exam/main-exam.module#MainExamModule'
-  },
-  {
-    path: 'upload-questions-image',
-    loadChildren: 'app/upload-questions-image/upload-questions-image.module#UploadQuestionsImageModule'
   }
 ];
 
@@ -124,7 +113,8 @@ const myRoots: Routes = [
     HttpModule,
     LoginUserModule,
     RegisterUserModule,
-    UserProfileModule,
+    UserProfileModule,   
+    UploadQuestionsImageModule,
     GuardHubModule,
     NgbModule.forRoot(),
     Ng4LoadingSpinnerModule.forRoot(),
@@ -138,7 +128,7 @@ const myRoots: Routes = [
     TableModule,
     FormsModule
   ],
-  providers: [FileUploadService, QuestionpaperService,ChatBotService],
+  providers: [FileUploadService, QuestionpaperService, ChatBotService],
   bootstrap: [AppComponent],
   exports: [HttpServiceRegistryModule]
 })

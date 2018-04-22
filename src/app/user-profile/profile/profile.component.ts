@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { FormBuilder, FormGroup, FormArray, Validators, AbstractControl } from '@angular/forms';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 import { UserLoginValidators } from '../../login-user/login/login-user.validators';
 import { LoginService } from '../../http-service-registry/services/login-service.service';
@@ -12,6 +13,8 @@ import { SignUpService } from '../../http-service-registry/services/signup.servi
 import { Registration } from '../../models/registration.interface';
 import { Alert } from '../../models/alert.interface';
 
+//export const uploadUrl:string="https://ec2-52-66-160-163.ap-south-1.compute.amazonaws.com/mdservice/api/users/profilepicurl";
+export const uploadUrl: string = "http://localhost:5000/mdservice/api/users/profilepicurl";
 
 @Component({
   selector: 'app-profile',
@@ -20,6 +23,8 @@ import { Alert } from '../../models/alert.interface';
 })
 export class ProfileComponent implements OnInit {
 
+  public profileName: string = "";
+  public profileUrl: string = "assets/images/anonym-person.png";
   public profileForm = this.fb.group({
     userId: ['',
       [Validators.required]],
@@ -50,14 +55,27 @@ export class ProfileComponent implements OnInit {
   });
 
   public alerts: Array<Alert> = [];
+  public imageBackground: string = "e51lmc";
+  public imageUploadUrl: string = "";
 
-  constructor(private router: Router, private route: ActivatedRoute, private spinnerService: Ng4LoadingSpinnerService, private fb: FormBuilder, private login: LoginService, private signup: SignUpService) {
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private spinnerService: Ng4LoadingSpinnerService,
+    private fb: FormBuilder,
+    private login: LoginService,
+    private signup: SignUpService,
+    private modalService: NgbModal) {
 
   }
 
   ngOnInit() {
     this.route.data.subscribe((data) => {
       const user = data["user"];
+      this.profileName = `${user.firstName} ${user.lastName}`;
+      this.signup.getUserPic(user.userId).subscribe((re) => {
+        this.profileUrl = re.imageUrl;
+      });
       this.profileForm.get('userId').setValue(user.userId);
       this.profileForm.get('firstName').setValue(user.firstName);
       this.profileForm.get('lastName').setValue(user.lastName);
@@ -67,6 +85,7 @@ export class ProfileComponent implements OnInit {
       this.profileForm.get('mobileNumber').setValue(user.mobileNumber);
       this.profileForm.get('whatsAPPNumber').setValue(user.whatsAPPNumber);
       this.profileForm.get('emailId').setValue(user.emailId);
+      this.imageUploadUrl = uploadUrl+`/${user.userId}`;
     });
   }
   ngAfterViewInit() {
@@ -131,5 +150,27 @@ export class ProfileComponent implements OnInit {
     const index: number = this.alerts.indexOf(alert);
     this.alerts.splice(index, 1);
   }
+
+  public changeBackground(event, content) {
+    if (event.type == "mouseover") {
+      this.imageBackground = "e51lmc";
+    }
+    else if (event.type == "mouseout") {
+      this.imageBackground = "";
+    }
+    else if (event.type == "click") {
+      this.openVerticallyCentered(content);
+    }
+  }
+
+  private openVerticallyCentered(content) {
+    this.modalService.open(content, { centered: true });
+  }
+
+  public uploadedPaths(paths: Array<string>) {
+    if (paths && paths.length) {
+      this.profileUrl = paths[0];
+    }
+  };
 
 }

@@ -7,12 +7,15 @@ import { UploadFileComponent } from './upload-file/upload-file.component';
 import { FileUploadModule } from 'primeng/fileupload';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { HttpServiceRegistryModule } from '../http-service-registry/http-service-registry.module';
+
 @NgModule({
   imports: [
     CommonModule,
     UploadQuestionsImageRoutingModule,
     FileUploadModule,
-    NgbModule
+    NgbModule,
+    HttpServiceRegistryModule
   ],
   declarations: [UploadFileComponent],
   exports: [UploadFileComponent]
