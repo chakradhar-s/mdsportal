@@ -8,13 +8,13 @@ import { ChatBotModel, ChatCommentTypeEnum } from '../models/question-set';
   styleUrls: ['./chat-bot.component.scss']
 })
 export class ChatBotComponent implements OnInit {
-  private showChatBot: boolean = true;
+  public showChatBot: boolean = true;
   private toggleChatBot: boolean = false;
   private BOT_CLASS: string = "left-chat";
   private USER_CLASS: string = "right-chat";
   private BOT_IMG_PATH: string = "/assets/chatbot/businessman.png";
   private USER_IMG_PATH: string = "/assets/chatbot/man.png";
-  private messages: Array<ChatBotModel> = [];
+  public messages: Array<ChatBotModel> = [];
   @Output() ChatEnable = new EventEmitter<boolean>();
 
   constructor(private chatService: ChatBotService) {
@@ -22,7 +22,7 @@ export class ChatBotComponent implements OnInit {
        "Hi, I can help you with questions in exams", this.BOT_IMG_PATH));
 
   }
-  private comment: string = "";
+  public comment: string = "";
   ngOnInit() {
   }
 
