@@ -41,7 +41,7 @@ import { MainExamComponent } from './main-exam/main-exam.component';
 
 import { ChatBotComponent } from './chat-bot/chat-bot.component';
 import { ChatBotService } from './http-service-registry/services/chat-bot.service';
-
+import {DataTableModule} from 'primeng/datatable';
 
 
 const myRoots: Routes = [
@@ -130,7 +130,8 @@ const myRoots: Routes = [
     HttpClientModule,
     HttpServiceRegistryModule,
     TableModule,
-    FormsModule
+    FormsModule,
+    DataTableModule
   ],
   providers: [FileUploadService, QuestionpaperService, ChatBotService],
   bootstrap: [AppComponent],
