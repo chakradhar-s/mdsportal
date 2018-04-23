@@ -1,4 +1,4 @@
-<p-table [paginator]="true" [rows]="10" [columns]="cols" [value]="papers" selectionMode="single" [(selection)]="selectedPaper" dataKey="questionPaperId"
+<p-table [paginator]="true" [rows]="10" [columns]="cols" sortMode="single" [value]="papers" selectionMode="single" [(selection)]="selectedPaper" dataKey="questionPaperId"
   (onRowSelect)="onRowSelect($event)">
   <ng-template pTemplate="header" let-columns>
     <tr>

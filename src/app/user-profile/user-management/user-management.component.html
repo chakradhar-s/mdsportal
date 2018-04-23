@@ -29,7 +29,7 @@
         <p-column field="email_id" header="Email Id"></p-column>
         <p-column field="created_at" header="Created at"></p-column>
         <p-column field="user_status" header="Status"></p-column>
-        <p-column field="is_active" header="IsActive" styleClass="status-badge-btn">
+        <p-column field="is_active" [style]="{'width':'5%'}" header="IsActive" styleClass="status-badge-btn">
             <ng-template let-user="rowData" pTemplate="body">
                 <!-- <button type="button" pButton (click)="selectCar(car)" icon="fa-search"></button> -->
                 <span *ngIf="user.is_active" class="badge badge-success">Active</span>
