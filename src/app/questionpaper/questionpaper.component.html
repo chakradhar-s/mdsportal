@@ -6,16 +6,20 @@
       <p-fileUpload name="uploadedFile[]" customUpload="true" (uploadHandler)="onUpload($event)"></p-fileUpload>
     </div>
     <div>
-      <div class="input-group padding-10-bottom">
-        <button type="text" (click)="activatePapers()" pButton icon="fa-plus-square" label="Activate"></button>
-        <p-confirmDialog header="Confirmation" icon="fa fa-question-circle" width="500" #cd>
-          <p-footer>
-            <button type="button" pButton icon="fa-close" label="No" (click)="cd.reject()"></button>
-            <button type="button" pButton icon="fa-check" label="Yes" (click)="cd.accept()"></button>
-          </p-footer>
-        </p-confirmDialog>
-        <button type="text" (click)="confirm()" pButton icon="fa-trash-o" label="Deactivate"></button>
-      </div>
+      <div class="input-group padding-10-bottom" style="min-height:45px;">
+        <div *ngIf="selectedQuestionGroup && selectedQuestionGroup.length > 0">
+            <button type="text" (click)="activatePapers()" pButton icon="fa-plus-square" label="Activate"></button>
+            <p-confirmDialog header="Confirmation" icon="fa fa-question-circle" width="500" #cd>
+              <p-footer>
+                <button type="button" pButton icon="fa-close" label="No" (click)="cd.reject()"></button>
+                <button type="button" pButton icon="fa-check" label="Yes" (click)="cd.accept()"></button>
+              </p-footer>
+            </p-confirmDialog>
+            <button type="text" (click)="confirm()" pButton icon="fa-trash-o" label="Deactivate"></button>
+        
+        </div>
+      </div> 
+        
       <p-dataTable [value]="questionPaperGroup" [lazy]="true" [rows]="10" [paginator]="true" [pageLinks]="pagesToDisplay" [rowsPerPageOptions]="[5,10,20]"
         [totalRecords]="totalRecords" (onLazyLoad)="loadPapersLazy($event)" [(selection)]="selectedQuestionGroup" columnResizeMode="expand"
         [loading]="loading" loadingIcon="fa-spinner">
@@ -23,7 +27,7 @@
         <p-column [style]="{'width':'38px'}" selectionMode="multiple"></p-column>
         <p-column field="questionPaperId" header="Question Paper ID"></p-column>
         <p-column field="fileName" header="File Name"></p-column>
-        <p-column field="isActive" [style]="{'width':'5%'}" header="IsActive" styleClass="status-badge-btn">
+        <p-column field="isActive" [style]="{'width':'8%'}" header="IsActive" styleClass="status-badge-btn">
           <ng-template let-paper="rowData" pTemplate="body">
             <span *ngIf="paper.isActive" class="badge badge-success">Active</span>
             <span *ngIf="!paper.isActive" class="badge badge-danger">InActive</span>

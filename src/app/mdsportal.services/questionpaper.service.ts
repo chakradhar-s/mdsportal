@@ -44,7 +44,7 @@ export class QuestionpaperService {
 
   getAvailableQuestionPapers(): Observable<qp[]> {
     return this.http.get(`${this._proxyHost}/uploaddocument/all-questions`).map((response) => {
-      return response;
+      return response.json();
     }).catch((error) => {
       return Observable.throw(error);
     });
