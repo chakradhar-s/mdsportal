@@ -40,9 +40,9 @@ export class ForgotPasswordComponent implements OnInit {
       this.login.sendResetPassword(this.requestResetPasswordForm.get('userName').value).subscribe(()=>{
 
       },(error)=>{
-        this.router.navigate(['/login/user/password_link']);
+        this.router.navigate(['/password_link']);
       },()=>{
-        this.router.navigate(['/login/user/password_link']);
+        this.router.navigate(['/password_link']);
       }) ;
     }
   }

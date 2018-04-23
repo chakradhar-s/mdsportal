@@ -8,10 +8,15 @@ import { ProfileComponent } from './profile/profile.component';
 import { GuardHubModule } from '../guard-hub/guard-hub.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ResultsComponent } from './results/results.component';
+
 import { TableModule } from 'primeng/table';
 import { DataTableModule } from 'primeng/datatable';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
+
 import { UploadQuestionsImageModule } from '../upload-questions-image/upload-questions-image.module';
 import { UserManagementComponent } from './user-management/user-management.component';
+
 
 
 
@@ -24,7 +29,11 @@ import { UserManagementComponent } from './user-management/user-management.compo
     TableModule,
     NgbModule,
     UploadQuestionsImageModule,
-    DataTableModule
+    DataTableModule,
+    ConfirmDialogModule
+  ],
+  providers: [
+    ConfirmationService
   ],
   declarations: [ProfileComponent, ResultsComponent, UserManagementComponent]
 })

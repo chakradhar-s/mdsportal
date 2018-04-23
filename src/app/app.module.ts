@@ -41,7 +41,9 @@ import { MainExamComponent } from './main-exam/main-exam.component';
 
 import { ChatBotComponent } from './chat-bot/chat-bot.component';
 import { ChatBotService } from './http-service-registry/services/chat-bot.service';
-
+import {DataTableModule} from 'primeng/datatable';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
 
 
 const myRoots: Routes = [
@@ -91,6 +93,10 @@ const myRoots: Routes = [
   {
     path: 'main-exam/:paperid',
     loadChildren: 'app/main-exam/main-exam.module#MainExamModule'
+  },
+  {
+    path: 'forgot_password',
+    loadChildren: 'app/login-user/login-user.module#LoginUserModule'
   }
 ];
 
@@ -126,9 +132,11 @@ const myRoots: Routes = [
     HttpClientModule,
     HttpServiceRegistryModule,
     TableModule,
-    FormsModule
+    FormsModule,
+    DataTableModule,
+    ConfirmDialogModule
   ],
-  providers: [FileUploadService, QuestionpaperService, ChatBotService],
+  providers: [FileUploadService, QuestionpaperService, ChatBotService,ConfirmationService],
   bootstrap: [AppComponent],
   exports: [HttpServiceRegistryModule]
 })

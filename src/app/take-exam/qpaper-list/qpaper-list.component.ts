@@ -18,6 +18,7 @@ export class QpaperListComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    debugger;
     this.route.data.subscribe((data) => {
       this.cols = [
         { field: 'fileName', header: 'Test Name' },
