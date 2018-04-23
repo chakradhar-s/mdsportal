@@ -184,4 +184,29 @@ export class DemoExamComponent implements OnInit, OnDestroy {
     }
   }
 
+  get invalid() {
+    this.inValidCredentials = false;
+    return (
+      this.loginForm.get('userName').hasError('invalidUserName') &&
+      this.loginForm.get('userName').dirty &&
+      !this.demoFormrequired('userName')
+    );
+  }
+
+  get passvalid() {
+    this.inValidCredentials = false;
+    return (
+      this.loginForm.get('password').hasError('invalidPassword') &&
+      this.loginForm.get('password').dirty &&
+      !this.demoFormrequired('password')
+    );
+  }
+
+  demoFormrequired(name: string) {
+    return (
+      this.loginForm.get(`${name}`).hasError('required') &&
+      this.loginForm.get(`${name}`).touched
+    );
+  }
+
 }

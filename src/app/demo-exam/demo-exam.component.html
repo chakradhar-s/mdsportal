@@ -24,9 +24,22 @@
                 </p>
               </div>
               <div class="form-group">
-                <label>
-                  UserName: {{loginForm.get('userName').value}}
-                </label>
+                <input class="form-control p_input" placeholder="Email Id or Mobile Number" type="text" formControlName="userName" readonly="readonly">
+                <div class="error" *ngIf="demoFormrequired('userName')">
+                  Username is required
+                </div>
+                <div class="error" *ngIf="invalid">
+                  Invalid Username
+                </div>
+              </div>
+              <div class="form-group">
+                <input class="form-control p_input" placeholder="Password" type="password" formControlName="password" readonly="readonly">
+                <div class="error" *ngIf="demoFormrequired('password')">
+                  Password is required
+                </div>
+                <div class="error" *ngIf="passvalid">
+                  Minimum 4 Characters are required
+                </div>
               </div>
               <div class="text-center">
                 <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary btn-block enter-btn">LOG IN</button>
