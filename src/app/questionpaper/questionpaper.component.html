@@ -1,13 +1,18 @@
 <div class=container>
   <div class="row">
-    <div class="">
+    <!-- <div class="">
       <div class="form-group">
         <label for="exampleInputFile">Upload File</label>
         <input type="file" class="form-control-file" id="exampleInputFile" (change)="onUpload($event)" aria-describedby="fileHelp">
+        
         <small id="fileHelp" class="form-text text-muted">Upload Question Paper</small>
       </div>
+    </div> -->
+    <!-- <p-fileUpload mode="basic" name="uploadedFile[]"   maxFileSize="1000000" (onUpload)="onUpload($event)" auto="false"></p-fileUpload> -->
+    <div class="padding-20-bottom">
+        <label for="exampleInputFile">Upload File</label>
+        <p-fileUpload name="uploadedFile[]" customUpload="true" (uploadHandler)="onUpload($event)"></p-fileUpload>
     </div>
-
     <div>
       <p-table [paginator]="true" [rows]="10" [columns]="columns" [value]="questionPaperGroup" [(selection)]="selectedQuestionGroup"
         dataKey="question_paper_id">

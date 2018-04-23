@@ -40,8 +40,7 @@ export class QuestionpaperComponent implements OnInit {
 
   onUpload(event) {
 
-
-    let files = event.target.files;
+    let files = event.files;
 
     if (files.length > 0)
       this.uploadedFile = files[0];
