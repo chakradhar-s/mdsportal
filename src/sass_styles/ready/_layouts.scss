@@ -98,10 +98,11 @@ body {
         white-space: nowrap;
         display: block;
         position: relative;
-        &:hover, &:focus {
+        &:hover,
+        &:focus {
           text-decoration: none;
         }
-        > span {
+        >span {
           font-size: 14px;
           font-weight: $font-weight-bold;
           color: #777;
@@ -185,7 +186,8 @@ body {
         font-weight: $font-weight-bold;
         position: relative;
         margin-bottom: 5px;
-        &:hover, &:focus {
+        &:hover,
+        &:focus {
           text-decoration: none;
           background: #fbfbfb;
         }
@@ -245,16 +247,158 @@ body {
   }
 }
 
-.author{
-  .camer-pic{
+.author {
+  .camer-pic {
     display: inline-block;
     position: relative;
     .e51lmc {
       background: url(../assets/images/photo_camera_white_24dp.png);
-          background-size: auto auto;
+      background-size: auto auto;
       background-size: 24px;
       height: 24px;
       width: 24px;
     }
   }
+}
+
+.normal-background {
+  background: linear-gradient(#ffffff, #fefefe);
+}
+
+.html5-directory-slider {
+  background-size: auto auto;
+  background-size: cover;
+  min-height: 800px;
+}
+
+.html5-directory-grid {
+  position: relative;
+  margin: 0 auto;
+  padding: 1em 0 4em;
+  max-width: 1000px;
+  list-style: none;
+  text-align: center;
+}
+
+/* Common style */
+
+.html5-directory-grid figure {
+  position: relative;
+  float: left;
+  overflow: hidden;
+  margin: 0;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+}
+
+.html5-directory-grid figure img {
+  position: relative;
+  display: block;
+  min-height: 100%;
+  width: 100%;
+  opacity: 0.8;
+}
+
+.html5-directory-grid figure figcaption {
+  padding: 2em;
+  color: rgb(240, 240, 240);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+@media (max-width: 992px) {
+  .html5-directory-grid figure figcaption {
+    padding: 0.7em;
+  }
+}
+
+.html5-directory-grid figure figcaption h5 {
+  font-weight: 400;
+  text-align: left;
+}
+
+@media (max-width: 992px) {
+  .html5-directory-grid figure figcaption h5 {
+    font-size: 22px;
+  }
+}
+
+.html5-directory-grid figure figcaption::before,
+.html5-directory-grid figure figcaption::after {
+  pointer-events: none;
+}
+
+.html5-directory-grid figure figcaption,
+.html5-directory-grid figure figcaption>a {
+  // 	position: absolute;
+  // 	bottom: 0;
+  // 	left: 0;
+}
+
+/* Anchor will cover the whole item by default */
+
+/* For some effects it will show as a button */
+
+.html5-directory-grid figure figcaption>a {
+  z-index: 1000;
+  text-indent: 200%;
+  white-space: nowrap;
+  font-size: 0;
+  opacity: 0;
+}
+
+.html5-directory-grid figure h5 {
+  word-spacing: -0.15em;
+  font-weight: 300;
+}
+
+.html5-directory-grid figure h5 span {
+  font-weight: 800;
+}
+
+.html5-directory-grid figure h5,
+.html5-directory-grid figure p {
+  margin: 0;
+}
+
+.html5-directory-grid figure p {
+  letter-spacing: 1px;
+  font-weight: 300;
+  text-align: left;
+  margin: 6px 0 0;
+}
+
+/* Individual effects */
+
+/*---------------*/
+
+/***** Ruby *****/
+
+/*---------------*/
+
+figure.effect-ruby img {
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+  -webkit-transform: scale(1.15);
+  transform: scale(1.15);
+}
+
+figure.effect-ruby:hover {
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  color: rgb(255, 255, 255);
+}
+
+figure.effect-ruby h2 {
+  margin-top: 20%;
+  -webkit-transition: -webkit-transform 0.35s;
+  transition: transform 0.35s;
+  -webkit-transform: translate3d(0, 20px, 0);
+  transform: translate3d(0, 20px, 0);
+}
+
+figure.effect-ruby:hover h2 {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
 }

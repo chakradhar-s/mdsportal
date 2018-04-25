@@ -114,8 +114,9 @@ export class RegisterUserComponent implements OnInit, AfterViewInit {
         this.spinnerService.hide();
       }, () => {
         this.spinnerService.hide();
-        console.log({ userName: this.registerForm.get('emailId').value, password: this.registerForm.get('password').value });
-        this.login.validateUser({ userName: this.registerForm.get('emailId').value, password: this.registerForm.get('password').value });
+        // console.log({ userName: this.registerForm.get('emailId').value, password: this.registerForm.get('password').value });
+        // this.login.validateUser({ userName: this.registerForm.get('emailId').value, password: this.registerForm.get('password').value });
+        this.router.navigate(['/user-management']);
 
       });
     }
