@@ -9,7 +9,7 @@
           </div>
         </div>
         <div data-tilt class="c-art-contact">
-          <img src="assets/images/svgs/get-in-touch1.svg" data-ix="ia-mask" class="c-art__mask" style="transform: scaleX(1) scaleY(1) scaleZ(1); transform-style: preserve-3d; transition: transform 3000ms ease-in-out;">
+          <img src="assets/images/svgs/get-in-touch1.svg" data-ix="ia-mask" class="c-art__mask" style="transform: scaleX(0.8) scaleY(0.8) scaleZ(0.8); transform-style: preserve-3d; transition: transform 3000ms ease-in-out;">
           <div class="c-art__inner">
             <div data-ix="ia-blob" class="c-art__blob cont-b1 w-embed" style="opacity: 1; transform: scaleX(1) scaleY(1) scaleZ(1); transform-style: preserve-3d; transition: opacity 200ms, transform 2000ms ease-in-out;">
               <svg viewBox="0 0 313 406" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -107,7 +107,7 @@
               <!--[if IE 7]><link rel="stylesheet" type="text/css" media="all" href="https://papertiger.formstack.com/forms/css/3/ie7.css" /><![endif]-->
               <!--[if IE 6]><link rel="stylesheet" type="text/css" media="all" href="https://papertiger.formstack.com/forms/css/3/ie6fixes.css" /><![endif]-->
       
-              <form method="post" accept-charset="UTF-8" novalidate="" class="fsForm fsMultiColumn" id="fsForm2834307">
+              <!-- <form method="post" accept-charset="UTF-8" novalidate="" class="fsForm fsMultiColumn" id="fsForm2834307">
                 <div class="fsPage" id="fsPage2834307-1">
                   <div class="fsSection fs2Col">
                     <div id="fsRow2834307-1" class="fsRow fsFieldRow fsLastRow">
@@ -158,24 +158,7 @@
                       </div>
                       <div class="fs-clear"></div>
                     </div>
-                    <!-- <div id="fsRow2834307-5" class="fsRow fsFieldRow fsLastRow">
-                      <div class="fsRowBody fsCell fsFieldCell fsFirst fsLast fsLabelVertical fsSpan100" id="fsCell57032877" aria-describedby="fsSupporting57032877"
-                        lang="en" fs-field-type="select">
-                        <label id="label57032877" class="fsLabel fsRequiredLabel" for="field57032877">Approximate Budget
-                          <span class="fsRequiredMarker">*</span>
-                        </label>
-                        <select id="field57032877" name="field57032877" size="1" required="" class="fsField fsRequired" aria-required="true">
-                          <option value="Not Sure Yet">Not Sure Yet</option>
-                          <option value="5-10k">5-10k</option>
-                          <option value="10-30k">10-30k</option>
-                          <option value="30-50k">30-50k</option>
-                          <option value="50-100k">50-100k</option>
-                          <option value="100k+">100k+</option>
-                        </select>
-                        <div id="fsSupporting57032877" class="fsSupporting">We highly recommend selecting an approximate budget.</div>
-                      </div>
-                      <div class="fs-clear"></div>
-                    </div> -->
+                   
                   </div>
                 </div>
                 <div id="fsSubmit2834307" class="fsSubmit fsPagination">
@@ -190,15 +173,9 @@
                   <input id="fsSubmitButton2834307" class="fsSubmitButton" style="" type="submit" value="Get In Touch">
                   <div class="clear"></div>
                 </div>
-                <!-- <script type="text/javascript" src="//static.formstack.com/forms/js/3/jquery.min_1d14cd3798.js"></script>
-                <script type="text/javascript" src="//static.formstack.com/forms/js/3/jquery-ui.min_42a497cb9f.js"></script>
-                <script type="text/javascript" src="//static.formstack.com/forms/js/3/scripts_54495a0cc2.js"></script>
-                <script type="text/javascript" src="//static.formstack.com/forms/js/3/analytics_e092e22178.js"></script>
-                <script type="text/javascript" src="//static.formstack.com/forms/js/3/google-phone-lib_f0ceec66db.js"></script>
-                <script type="text/javascript" src="//static.formstack.com/forms/js/3/modernizr_60a2d5aeb5.js"></script> -->
       
-              </form>
-              <div class="fs-ngdialog fs-modal-medium fs-form-dialog fs-form-dialog--hidden">
+              </form> -->
+              <!-- <div class="fs-ngdialog fs-modal-medium fs-form-dialog fs-form-dialog--hidden">
                 <div class="fs-ngdialog-overlay"></div>
                 <div class="fs-ngdialog-content">
                   <div class="fs-modal__top fs-form-dialog__title"></div>
@@ -225,7 +202,44 @@
                     </a>
                   </div>
                 </div>
-              </div>
+              </div> -->
+              <h2>Hero Detail</h2>
+              <form [formGroup]="heroForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                  <label class="center-block">First Name:
+                    <input class="form-control" formControlName="FirstName">
+                    <!-- <show-errors [control]="heroForm.controls.FirstName"></show-errors> -->
+                    
+                  </label>
+                </div>
+                <div class="form-group">
+                    <label class="center-block">Last Name:
+                      <input class="form-control" formControlName="LastName">
+                    </label>
+                </div>
+                <div class="form-group">
+                  <label class="center-block">Company:
+                    <input class="form-control" formControlName="Company">
+                  </label>
+                </div>
+                <div class="form-group">
+                  <label class="center-block">Email:
+                    <input class="form-control" formControlName="Email">
+                  </label>
+                </div>
+                <div class="form-group">
+                  <label class="center-block">Phone:
+                    <input class="form-control" formControlName="Phone">
+                  </label>
+                </div>
+
+                <div class="form-group">
+                    <label class="center-block">Message:
+                      <textarea class="form-control" formControlName="Message"></textarea>
+                    </label>
+                </div>
+              </form>
+              <button class="btn" (click)="onSubmit()">Get in touch</button>
             </div>
       
       

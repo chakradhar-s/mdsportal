@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DataTablesModule } from 'angular-datatables';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -44,6 +44,7 @@ import { ChatBotService } from './http-service-registry/services/chat-bot.servic
 import {DataTableModule} from 'primeng/datatable';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
+import { ShowErrorsComponent } from './common/show-errors/show-errors.component';
 
 
 const myRoots: Routes = [
@@ -109,7 +110,9 @@ const myRoots: Routes = [
     AppHomeComponent,
     LoginNavItem,
     QuestionpaperComponent,
-    ChatBotComponent
+    ChatBotComponent,
+    ShowErrorsComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -122,6 +125,7 @@ const myRoots: Routes = [
     UserProfileModule,   
     UploadQuestionsImageModule,
     GuardHubModule,
+    ReactiveFormsModule,
     NgbModule.forRoot(),
     Ng4LoadingSpinnerModule.forRoot(),
     RouterModule.forRoot(myRoots
