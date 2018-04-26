@@ -7,7 +7,8 @@
     <!-- [globalFilter]="gb" -->
     <div class="input-group">
         <!-- <button type="button" class="btn btn-success" > <span class="glyphicon glyphicon-plus"></span> Create New User</button> -->
-        <button type="text" pButton icon="fa-plus-square" label="Create new User"></button>
+        <button type="text" pButton icon="fa-plus-square" label="Create new User" 
+        (click)="registerNav()"></button>
         <!-- <button type="button" class="btn btn-danger" > <span class="glyphicon glyphicon-plus"></span> InActive User</button> -->
         <!-- <p-confirmDialog header="Confirmation" icon="fa fa-question-circle" width="425" #dd></p-confirmDialog> -->
         <p-confirmDialog header="Confirmation" icon="fa fa-question-circle" width="500" #cd>
