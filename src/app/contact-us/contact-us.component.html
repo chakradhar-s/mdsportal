@@ -97,7 +97,8 @@
             <script type="text/javascript" src="https://papertiger.formstack.com/forms/js.php/get_started"></script>
             <div class="fsBody fsEmbed">
               <h2>Contact us</h2>
-              <form [formGroup]="contactusForm" (ngSubmit)="onSubmit()">
+              <label *ngIf="submitTriggered">Your request has been submitted successfully.</label>
+              <form [formGroup]="contactusForm" (ngSubmit)="onSubmit()" *ngIf="!submitTriggered">
                 <div class="row">
                   <div class="form-group row">
                     <label class="col-sm-12 col-form-label">First Name:
@@ -185,7 +186,7 @@
                     <label class="col-sm-12 col-form-label">Message:
                     </label>
                     <div class="col-sm-12">
-                    <input class="form-control p_input" type="text" formControlName="Message">
+                    <textarea class="form-control p_input" type="text" formControlName="Message"></textarea>
                     </div>
                   </div>
                 </div>
