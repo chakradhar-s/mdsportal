@@ -63,6 +63,12 @@ export class ProfileComponent implements OnInit {
   public verificationForm = this.fb.group({
     verification: ['']
   });
+  private otpModal;
+
+  public otpVerificationForm = this.fb.group({
+    otp: ['',
+      [Validators.required]]
+  });
 
   constructor(
     private router: Router,
@@ -175,7 +181,10 @@ export class ProfileComponent implements OnInit {
   }
 
   private openVerticallyCentered(content) {
-    this.modalService.open(content, { centered: true });
+    this.otpModal = this.modalService.open(content, {
+      centered: true, backdrop: 'static',
+      keyboard: false
+    });
   }
 
   public uploadedPaths(paths: Array<string>) {
@@ -188,9 +197,32 @@ export class ProfileComponent implements OnInit {
     this.verification.sendEmailVerification().subscribe();
   }
 
-  sendMobileVerification() {
-    this.verification.sendMobileVerification().subscribe();
+  sendMobileVerification(content) {
+    this.verification.sendMobileVerification().subscribe(
+      (t) => {
+        debugger;
+        this.openVerticallyCentered(content);
+      },
+      (e) => { },
+      () => {
+      }
+    );
   }
+
+  otpSubmit() {
+    this.verification.submitMobileVerification(this.otpVerificationForm.get('otp').value).subscribe((t) => {
+      if (t && t.verified) {
+        this.alerts = [{
+          id: 1,
+          type: 'success',
+          message: 'Mobile number is verified successfully!',
+        }];
+        this.mobileVerificationIsRequired = false;
+        this.otpModal.close();
+      }
+    });
+  }
+
 
   showVerifyButtons(){
     this.verification.getEmailVerificationStatus().subscribe(
@@ -218,6 +250,14 @@ export class ProfileComponent implements OnInit {
       () => {
 
       }
+    );
+  }
+
+
+  otprequired(name: string) {
+    return (
+      this.otpVerificationForm.get(`${name}`).hasError('required') &&
+      this.otpVerificationForm.get(`${name}`).touched
     );
   }
 

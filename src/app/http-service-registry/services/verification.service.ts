@@ -76,6 +76,27 @@ export class VerificationService {
 
     return this.http.post(this._proxyHost + '/Users/mobileverificationstatuses/',
       null, new RequestOptions({ headers: headers }))
+      .map((response: Response) => {
+        debugger;
+        return response.json();
+      })
+      .catch((error) =>
+        Observable.throw(error)
+      );
+  }
+
+  submitMobileVerification(otp: string) {
+    const headers = new Headers();
+    if (window.localStorage.getItem('jwt-access-mds')) {
+      let rslt = JSON.parse(window.localStorage.getItem('jwt-access-mds'));
+      headers.append('Authorization', 'bearer ' + rslt.access_token);
+    }
+    headers.append('Content-Type', 'application/vnd.api+json');
+
+    return this.http.post(this._proxyHost + '/auth/verifymobilenumber/',
+      JSON.stringify({
+        otp: otp
+      }), new RequestOptions({ headers: headers }))
       .map((response: Response) => response.json())
       .catch((error) =>
         Observable.throw(error)
