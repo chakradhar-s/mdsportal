@@ -95,32 +95,7 @@ export class ProfileComponent implements OnInit {
       this.imageUploadUrl = uploadUrl + `/${user.userId}`;
     });
 
-    this.verification.getEmailVerificationStatus().subscribe(
-      (x) => {
-        if (x && x.pending) {
-          this.emailVerificationIsRequired = true;
-        }
-      },
-      error => {
-
-      },
-      () => {
-
-      }
-    );
-    this.verification.getMobileVerificationStatus().subscribe(
-      (x) => {
-        if (x && x.pending) {
-          this.mobileVerificationIsRequired = true;
-        }
-      },
-      error => {
-
-      },
-      () => {
-
-      }
-    );
+    this.showVerifyButtons();
 
   }
   ngAfterViewInit() {
@@ -159,6 +134,7 @@ export class ProfileComponent implements OnInit {
           type: 'success',
           message: 'Details are saved successfully!',
         }];
+        this.showVerifyButtons();
       }, (error) => {
         this.spinnerService.hide();
         this.alerts = [{
@@ -214,6 +190,35 @@ export class ProfileComponent implements OnInit {
 
   sendMobileVerification() {
     this.verification.sendMobileVerification().subscribe();
+  }
+
+  showVerifyButtons(){
+    this.verification.getEmailVerificationStatus().subscribe(
+      (x) => {
+        if (x && x.pending) {
+          this.emailVerificationIsRequired = true;
+        }
+      },
+      error => {
+
+      },
+      () => {
+
+      }
+    );
+    this.verification.getMobileVerificationStatus().subscribe(
+      (x) => {
+        if (x && x.pending) {
+          this.mobileVerificationIsRequired = true;
+        }
+      },
+      error => {
+
+      },
+      () => {
+
+      }
+    );
   }
 
 }

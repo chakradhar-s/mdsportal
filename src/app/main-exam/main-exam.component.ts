@@ -25,7 +25,7 @@ export class MainExamComponent implements OnInit {
   private _userId: string = '';
   private mmodal: NgbModalRef;
   private _activeQuestionPaper: string = '';
-  public timerCount : number = 120;
+  public timerCount: number = 120;
 
 
   form = this.fb.group({
@@ -125,7 +125,7 @@ export class MainExamComponent implements OnInit {
       backdrop: 'static',
       keyboard: false
     };
-    this.mmodal = this.modalService.open(content);
+    this.mmodal = this.modalService.open(content, ngbModalOptions);
     this.mmodal.result.then((result) => {
       this.endExam();
     }, (reason) => {
@@ -153,12 +153,12 @@ export class MainExamComponent implements OnInit {
     this.alerts.splice(index, 1);
   }
 
-  public endExam(){
-    this.service.examCompleted().subscribe((response : Response) => {
+  public endExam() {
+    this.service.examCompleted().subscribe((response: Response) => {
       console.log('exam ended');
       console.log('api call made');
       console.log(response);
-    }, (error : Error) => {
+    }, (error: Error) => {
       console.log(error);
     })
   }
