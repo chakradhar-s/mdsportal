@@ -7,8 +7,9 @@ import { ViewResolve } from '../guard-hub/resolve/view.resolve';
 
 import { ViewUserGuard } from '../guard-hub/view-user/view-user.guard';
 
-import {ResultsComponent} from './results/results.component';
+import { ResultsComponent } from './results/results.component';
 import { UserManagementComponent } from './user-management/user-management.component';
+import { VerifyGuard } from '../guard-hub/verify/verify.guard';
 
 const routes: Routes = [
   {
@@ -22,7 +23,7 @@ const routes: Routes = [
     path: 'view-results/:id',
     component: ResultsComponent,
     canLoad: [AuthGuard],
-    canActivate: [ViewUserGuard]
+    canActivate: [ViewUserGuard, VerifyGuard]
   },
   {
     path: 'user-management',

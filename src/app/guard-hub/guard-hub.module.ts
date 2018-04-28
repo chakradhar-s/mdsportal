@@ -9,6 +9,7 @@ import { HttpServiceRegistryModule } from '../http-service-registry/http-service
 import { ViewResolve } from './resolve/view.resolve';
 
 import { ViewQuestionPapersResolve } from './resolve/view-questionpapers.resolve';
+import { VerifyGuard } from './verify/verify.guard';
 
 @NgModule({
   imports: [
@@ -16,6 +17,13 @@ import { ViewQuestionPapersResolve } from './resolve/view-questionpapers.resolve
     HttpServiceRegistryModule
   ],
   declarations: [],
-  providers: [LoginGuard, AuthGuard, ViewUserGuard, ViewResolve, ViewQuestionPapersResolve]
+  providers: [
+    LoginGuard,
+    AuthGuard,
+    ViewUserGuard,
+    ViewResolve,
+    ViewQuestionPapersResolve,
+    VerifyGuard
+  ]
 })
 export class GuardHubModule { }

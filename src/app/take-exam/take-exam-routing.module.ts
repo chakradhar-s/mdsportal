@@ -6,12 +6,14 @@ import { ViewQuestionPapersResolve } from '../guard-hub/resolve/view-questionpap
 
 
 import { QpaperListComponent } from './qpaper-list/qpaper-list.component';
+import { VerifyGuard } from '../guard-hub/verify/verify.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: QpaperListComponent,
-    canLoad: [AuthGuard],
+    canLoad: [AuthGuard, VerifyGuard],
+    canActivate : [VerifyGuard],
     resolve: { questionPapers: ViewQuestionPapersResolve }
   }
 ];

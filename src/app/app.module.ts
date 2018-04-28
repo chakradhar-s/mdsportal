@@ -45,6 +45,8 @@ import {DataTableModule} from 'primeng/datatable';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { ShowErrorsComponent } from './common/show-errors/show-errors.component';
+import { PromptCompleteVerifyComponent } from './prompt-complete-verify/prompt-complete-verify.component';
+import { PromptCompleteVerifyModule } from './prompt-complete-verify/prompt-complete-verify.module';
 
 
 const myRoots: Routes = [
@@ -98,7 +100,13 @@ const myRoots: Routes = [
   {
     path: 'forgot_password',
     loadChildren: 'app/login-user/login-user.module#LoginUserModule'
+  },
+  {
+    path: 'complete-verification',
+    loadChildren: 'app/prompt-complete-verify/prompt-complete-verify.module#PromptCompleteVerifyModule'
   }
+
+
 ];
 
 
@@ -112,7 +120,6 @@ const myRoots: Routes = [
     QuestionpaperComponent,
     ChatBotComponent,
     ShowErrorsComponent
-    
   ],
   imports: [
     BrowserModule,
@@ -124,6 +131,7 @@ const myRoots: Routes = [
     RegisterUserModule,
     UserProfileModule,   
     UploadQuestionsImageModule,
+    PromptCompleteVerifyModule,
     GuardHubModule,
     ReactiveFormsModule,
     NgbModule.forRoot(),
