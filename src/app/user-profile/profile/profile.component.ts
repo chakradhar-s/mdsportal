@@ -9,6 +9,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { UserLoginValidators } from '../../login-user/login/login-user.validators';
 import { LoginService } from '../../http-service-registry/services/login-service.service';
 import { SignUpService } from '../../http-service-registry/services/signup.service';
+import { VerificationService } from '../../http-service-registry/services/verification.service';
 
 import { Registration } from '../../models/registration.interface';
 import { Alert } from '../../models/alert.interface';
@@ -57,6 +58,11 @@ export class ProfileComponent implements OnInit {
   public alerts: Array<Alert> = [];
   public imageBackground: string = "e51lmc";
   public imageUploadUrl: string = "";
+  public emailVerificationIsRequired: boolean = false;
+  public mobileVerificationIsRequired: boolean = false;
+  public verificationForm = this.fb.group({
+    verification: ['']
+  });
 
   constructor(
     private router: Router,
@@ -65,7 +71,8 @@ export class ProfileComponent implements OnInit {
     private fb: FormBuilder,
     private login: LoginService,
     private signup: SignUpService,
-    private modalService: NgbModal) {
+    private modalService: NgbModal,
+    private verification: VerificationService) {
 
   }
 
@@ -85,8 +92,36 @@ export class ProfileComponent implements OnInit {
       this.profileForm.get('mobileNumber').setValue(user.mobileNumber);
       this.profileForm.get('whatsAPPNumber').setValue(user.whatsAPPNumber);
       this.profileForm.get('emailId').setValue(user.emailId);
-      this.imageUploadUrl = uploadUrl+`/${user.userId}`;
+      this.imageUploadUrl = uploadUrl + `/${user.userId}`;
     });
+
+    this.verification.getEmailVerificationStatus().subscribe(
+      (x) => {
+        if (x && x.pending) {
+          this.emailVerificationIsRequired = true;
+        }
+      },
+      error => {
+
+      },
+      () => {
+
+      }
+    );
+    this.verification.getMobileVerificationStatus().subscribe(
+      (x) => {
+        if (x && x.pending) {
+          this.mobileVerificationIsRequired = true;
+        }
+      },
+      error => {
+
+      },
+      () => {
+
+      }
+    );
+
   }
   ngAfterViewInit() {
     this.spinnerService.hide();
@@ -172,5 +207,13 @@ export class ProfileComponent implements OnInit {
       this.profileUrl = paths[0];
     }
   };
+
+  sendEmailVerification() {
+    this.verification.sendEmailVerification().subscribe();
+  }
+
+  sendMobileVerification() {
+    this.verification.sendMobileVerification().subscribe();
+  }
 
 }

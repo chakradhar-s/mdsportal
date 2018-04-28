@@ -409,3 +409,10 @@ figure.effect-ruby:hover h2 {
   position: relative;
   bottom: 10px;
 }
+
+.star-admin-form-check label, .star-admin-form-radio label {
+  display: block;
+  padding-left: 30px;
+  font-size: 13px;
+  line-height: 1.42857143;
+}

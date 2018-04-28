@@ -23,26 +23,29 @@
         </p>
         <hr>
         <div class="text-center">
-          <div class="row">
-            <!-- <div class="col-md-3 col-md-offset-1">
-              <h5>12
-                <br>
-                <small>Files</small>
-              </h5>
+          <form [formGroup]="verificationForm" *ngIf="emailVerificationIsRequired||mobileVerificationIsRequired">
+            <div class="row">
+              <div class="col-md-6 col-md-offset-1" *ngIf="emailVerificationIsRequired">
+                <button class="btn btn-secondary" type="button" (click)="sendEmailVerification()">Verify Email</button>
+              </div>
+              <div class="col-md-6" *ngIf="mobileVerificationIsRequired">
+                <button class="btn btn-secondary" type="button" (click)="sendMobileVerification()">Verify Mobile Number</button>
+              </div>
+              <!-- 
+                  <div class="col-md-4">
+                    <h5>2GB
+                      <br>
+                      <small>Used</small>
+                    </h5>
+                  </div>
+                  <div class="col-md-3">
+                    <h5>24,6$
+                      <br>
+                      <small>Spent</small>
+                    </h5>
+                  </div> -->
             </div>
-            <div class="col-md-4">
-              <h5>2GB
-                <br>
-                <small>Used</small>
-              </h5>
-            </div>
-            <div class="col-md-3">
-              <h5>24,6$
-                <br>
-                <small>Spent</small>
-              </h5>
-            </div> -->
-          </div>
+          </form>
         </div>
       </div>
     </div>
