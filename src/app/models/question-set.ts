@@ -58,3 +58,8 @@ export enum ChatCommentTypeEnum{
     Comment,
     Response
 }
+
+export enum ExamTypeEnum{
+    DemoExam,
+    MainExam
+}

@@ -304,13 +304,15 @@ ul {
 
 .footer_paper {
   display: block;
-  padding-top: 2.5em;
-  padding-bottom: 2.5em;
+  padding-top: 10px;
+  padding-bottom: 1.5em;
   -webkit-justify-content: space-around;
   -ms-flex-pack: distribute;
   justify-content: space-around;
-  bottom: 0;
+  bottom: -53px;
   width: 100%;
+  position: fixed;
+  background: #fff;
 }
 
 .footer_paper__credits {

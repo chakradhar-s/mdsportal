@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
-import { QuestionSet, QuestionOutput, QuestionResult } from '../models/question-set';
+import { QuestionSet, QuestionOutput, QuestionResult, ExamTypeEnum } from '../models/question-set';
 import { FormBuilder, FormGroup, FormArray, Validators, AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
@@ -37,7 +37,8 @@ export class DemoExamComponent implements OnInit, OnDestroy {
   private mmodal: NgbModalRef;
   private _activeQuestionPaper: string = '';
   public inValidCredentials: boolean = false;
-
+  public examType = ExamTypeEnum.DemoExam;
+  
   form = this.fb.group({
     start: this.fb.group({ disclaimer: [false, [Validators.required]] }),
     questionAnswer: this.fb.array([])

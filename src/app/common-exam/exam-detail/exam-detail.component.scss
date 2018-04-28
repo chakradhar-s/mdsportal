@@ -3,6 +3,12 @@
   display: flex;
   overflow: auto;
 }
+.exam-content-colored{
+  background: aliceblue;
+}
+.exam-content-footer{
+  background: aliceblue;
+}
 
 .sm-text {
   font-size: 0.8em;
@@ -38,6 +44,9 @@ fieldset {
   font-weight: bold;
   padding: 3px;
   text-align: left;
+  color: antiquewhite;
+  background: dimgray;
+  padding-left: 14px;
 }
 
 .exam-column {

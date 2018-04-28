@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
-import { QuestionSet, OptionSet, QuestionOutput, QuestionResult, ReportModel } from '../../models/question-set';
+import { QuestionSet, OptionSet, QuestionOutput, QuestionResult, ReportModel, ExamTypeEnum } from '../../models/question-set';
 import { AnswerSet } from '../../models/answer-set';
 import { RelExamAnswer, StatusId } from '../../models/rel-exam-answer.interface';
 
@@ -26,7 +26,9 @@ export class ExamDetailComponent implements OnInit {
   @Input() map: Map<string, QuestionSet>;
   @Output() endExamEvent = new EventEmitter<boolean>();
   @Input() timerCount: number;
+  @Input() typeOfExam: ExamTypeEnum;
   public reportForm : FormGroup;
+  public requiredExamType = ExamTypeEnum.MainExam;
 
   public answerStatus = StatusId;
   public currentCounter: number = 0;

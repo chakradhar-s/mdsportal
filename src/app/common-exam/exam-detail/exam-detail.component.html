@@ -24,7 +24,7 @@
             <b>
               <span>Question No</span>{{i+1}}</b>
           </div>
-          <div class="exam-content">
+          <div class="exam-content exam-content-colored">
             <div class="exam-box">
               <div class="exam-column">
                 <div class="inner-content">
@@ -43,7 +43,7 @@
               </div>
             </div>
           </div>
-          <div class="row">
+          <div class="exam-content-footer">
             <div class="col-12">
               <button type="button" class="btn btn-primary ml-2 mr-2 mb-2" *ngIf="i!=0" (click)="show(i-1)">Previous</button>
               <button type="button" class="btn btn-primary mr-2 mb-2" *ngIf="i!=questionanswers.length-1" (click)="show(i+1)">Next</button>
@@ -55,7 +55,7 @@
               </button>
               <button class="btn btn-outline-primary mb-1" type="button" (click)="openVerticallyCentered(test)">Report question</button>
               <button type="button" class="btn btn-info mr-2 mb-2" (click)="clearResponse(item,i)">Clear the response</button>
-              <button type="submit" class="btn btn-sucess mr-2 mb-2">Submit</button>
+              <button type="submit" *ngIf="typeOfExam == requiredExamType" class="btn btn-sucess mr-2 mb-2">Submit</button>
             </div>
           </div>
         </fieldset>

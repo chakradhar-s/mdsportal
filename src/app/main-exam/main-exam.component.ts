@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { QuestionOutput, QuestionSet } from '../models/question-set';
+import { QuestionOutput, QuestionSet,ExamTypeEnum } from '../models/question-set';
 import { Alert } from '../models/alert.interface';
 import { NgbModalRef, NgbModal, NgbModalOptions, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormArray, Validators } from '@angular/forms';
@@ -26,6 +26,7 @@ export class MainExamComponent implements OnInit {
   private mmodal: NgbModalRef;
   private _activeQuestionPaper: string = '';
   public timerCount: number = 120;
+  public examType = ExamTypeEnum.MainExam;
 
 
   form = this.fb.group({
