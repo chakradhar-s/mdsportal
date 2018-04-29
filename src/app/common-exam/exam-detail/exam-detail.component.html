@@ -61,16 +61,17 @@
         </fieldset>
 
         <ng-template #test let-c="close" let-d="dismiss" id="reportModal">
-            <div class="modal-header">
+            <!-- <div class="modal-header">
               <h4 class="modal-title">Modal title</h4>
               <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
                 <span aria-hidden="true">&times;</span>
               </button>
-            </div>
+            </div> -->
             <div class="modal-body">
               <div >
                 <div class="form-group">
-                  <label for="recipient-name" class="col-form-label">Question:</label>{{ questionByQuestionId(item.value.questionId).question_text }}
+                  <!-- <label class="col-form-label">Question:</label>{{ questionByQuestionId(item.value.questionId).question_text }} -->
+                  <label class="col-form-label"><b>Question:&nbsp;</b>{{ questionByQuestionId(item.value.questionId).question_text }}</label>
                   <!-- <input type="text" class="form-control" #Question > -->
                   <!-- <label>{{questionByQuestionId(item.value.questionId).question_text}}</label> -->
                   
@@ -90,7 +91,7 @@
             <div class="modal-footer">
               <button type="button" class="btn btn-success" 
               (click)="alertSubmit(item.value.questionId,reportType,reportComment.value);c('Close click');">Submit</button>
-              <button type="button" class="btn btn-light" (click)="c('Close click')">Close</button>
+              <button type="button" class="btn btn-danger" (click)="c('Close click')">Close</button>
             </div>
             
           </ng-template>
