@@ -57,7 +57,11 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group row">
-                <label class="col-sm-4 col-form-label">First Name</label>
+                <label class="col-sm-4 col-form-label">First Name
+                  <i class="required-indicator">
+                    &#9733;
+                  </i>
+                </label>
                 <div class="col-sm-8">
                   <input class="form-control p_input" type="text" formControlName="firstName">
                   <div class="error" *ngIf="required('firstName')">
@@ -69,7 +73,12 @@
             </div>
             <div class="col-md-6">
               <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Last Name</label>
+                <label class="col-sm-4 col-form-label">
+                  Last Name
+                  <i class="required-indicator">
+                    &#9733;
+                  </i>
+                </label>
                 <div class="col-sm-8">
                   <input class="form-control p_input" type="text" formControlName="lastName">
                   <div class="error" *ngIf="required('firstName')">
@@ -109,7 +118,12 @@
             </div>
             <div class="col-md-6">
               <div class="form-group row">
-                <label class="col-sm-4 col-form-label">WhatsApp Number</label>
+                <label class="col-sm-4 col-form-label">
+                  WhatsApp Number
+                  <i class="required-indicator">
+                    &#9733;
+                  </i>
+                </label>
                 <div class="col-sm-8">
                   <input class="form-control p_input" type="text" formControlName="whatsAPPNumber">
                   <div class="error" *ngIf="required('whatsAPPNumber')">
@@ -125,7 +139,12 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group row">
-                <label class="col-sm-4 col-form-label">E-mail Id</label>
+                <label class="col-sm-4 col-form-label">
+                  E-mail Id
+                  <i class="required-indicator">
+                    &#9733;
+                  </i>
+                </label>
                 <div class="col-sm-8">
                   <input class="form-control p_input" type="text" formControlName="emailId">
                   <div class="error" *ngIf="required('emailId')">
@@ -134,12 +153,20 @@
                   <div class="error" *ngIf="emailvalid">
                     Invalid email Id
                   </div>
+                  <div class="error" *ngIf="checkemail">
+                    Email Id is already taken
+                  </div>
                 </div>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Mobile Number</label>
+                <label class="col-sm-4 col-form-label">
+                  Mobile Number
+                  <i class="required-indicator">
+                    &#9733;
+                  </i>
+                </label>
                 <div class="col-sm-8">
                   <input class="form-control p_input" type="text" formControlName="mobileNumber">
                   <div class="error" *ngIf="required('mobileNumber')">
@@ -147,6 +174,9 @@
                   </div>
                   <div class="error" *ngIf="invalid('mobileNumber')">
                     Invalid mobile number
+                  </div>
+                  <div class="error" *ngIf="checkmobile">
+                    Mobile number is already taken
                   </div>
                 </div>
               </div>
@@ -171,7 +201,7 @@
           </div>
           <div class="text-center">
             <button type="button" (click)="managePassword()" class="btn btn-success btn-lg success-btn">Manage Password</button>
-            <button type="submit" [disabled]="profileForm.invalid" class="btn btn-primary btn-lg enter-btn">submit</button>
+            <button type="submit" [disabled]="profileForm.invalid && disableProfileForm" class="btn btn-primary btn-lg enter-btn">submit</button>
             <button type="button" (click)="cancel()" class="btn btn-secondary btn-lg secondary-btn">cancel</button>
           </div>
         </form>
@@ -207,8 +237,8 @@
         </div>
       </div>
       <div class="text-center">
-        <button type="submit" [disabled]="profileForm.invalid" class="btn btn-primary btn-lg enter-btn">submit</button>
-        <button type="button" class="btn btn-secondary btn-lg enter-btn"  (click)="c('Close click')">Cancel</button>
+        <button type="submit" [disabled]="otpVerificationForm.invalid" class="btn btn-primary btn-lg enter-btn">submit</button>
+        <button type="button" class="btn btn-secondary btn-lg enter-btn" (click)="c('Close click')">Cancel</button>
       </div>
     </form>
   </div>

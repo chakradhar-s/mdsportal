@@ -116,6 +116,7 @@ export class AppNavbarComponent implements OnInit {
 
         { name: 'MyResults', exact: false, link: `/view-results/${this._login.userProfile.user.userId}` },
         { name: 'Analysis', exact: true, link: '/analysis' },
+        { name: 'Rank Reports', exact: true, link: '/downloadranks' },
         { name: 'Manage users', exact: false, link: `/user-management` },
         { name: 'Upload a question paper', exact: false, link: '/question-upload' },
         { name: 'Upload questions image', exact: false, link: '/upload-questions-image' }];

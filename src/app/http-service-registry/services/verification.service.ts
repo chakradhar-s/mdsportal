@@ -119,4 +119,36 @@ export class VerificationService {
       );
   }
 
+  checkMobileNumberAvailable(mobileNumber: string) {
+    const headers = new Headers();
+    if (window.localStorage.getItem('jwt-access-mds')) {
+      let rslt = JSON.parse(window.localStorage.getItem('jwt-access-mds'));
+      headers.append('Authorization', 'bearer ' + rslt.access_token);
+    }
+    headers.append('Content-Type', 'application/vnd.api+json');
+
+    return this.http.get(this._proxyHost + '/Users/checkmobilenumber?mobileNumber=' + mobileNumber,
+      new RequestOptions({ headers: headers }))
+      .map((response: Response) => response.json())
+      .catch((error) =>
+        Observable.throw(error)
+      );
+  }
+
+  checkEmailIdAvailable(emailId: string) {
+    const headers = new Headers();
+    if (window.localStorage.getItem('jwt-access-mds')) {
+      let rslt = JSON.parse(window.localStorage.getItem('jwt-access-mds'));
+      headers.append('Authorization', 'bearer ' + rslt.access_token);
+    }
+    headers.append('Content-Type', 'application/vnd.api+json');
+
+    return this.http.get(this._proxyHost + '/Users/checkemailId?emailId=' + emailId,
+      new RequestOptions({ headers: headers }))
+      .map((response: Response) => response.json())
+      .catch((error) =>
+        Observable.throw(error)
+      );
+  }
+
 }

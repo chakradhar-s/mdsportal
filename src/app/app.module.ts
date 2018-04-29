@@ -41,13 +41,13 @@ import { MainExamComponent } from './main-exam/main-exam.component';
 
 import { ChatBotComponent } from './chat-bot/chat-bot.component';
 import { ChatBotService } from './http-service-registry/services/chat-bot.service';
-import {DataTableModule} from 'primeng/datatable';
+import { DataTableModule } from 'primeng/datatable';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { ShowErrorsComponent } from './common/show-errors/show-errors.component';
-import { PromptCompleteVerifyComponent } from './prompt-complete-verify/prompt-complete-verify.component';
-import { PromptCompleteVerifyModule } from './prompt-complete-verify/prompt-complete-verify.module';
 
+
+import { DataReportsModule } from './data-reports/data-reports.module';
 
 const myRoots: Routes = [
   {
@@ -129,9 +129,8 @@ const myRoots: Routes = [
     HttpModule,
     LoginUserModule,
     RegisterUserModule,
-    UserProfileModule,   
+    UserProfileModule,
     UploadQuestionsImageModule,
-    PromptCompleteVerifyModule,
     GuardHubModule,
     ReactiveFormsModule,
     NgbModule.forRoot(),
@@ -146,9 +145,10 @@ const myRoots: Routes = [
     TableModule,
     FormsModule,
     DataTableModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    DataReportsModule
   ],
-  providers: [FileUploadService, QuestionpaperService, ChatBotService,ConfirmationService],
+  providers: [FileUploadService, QuestionpaperService, ChatBotService, ConfirmationService],
   bootstrap: [AppComponent],
   exports: [HttpServiceRegistryModule]
 })

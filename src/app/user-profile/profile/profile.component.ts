@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/forkJoin';
 
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { FormBuilder, FormGroup, FormArray, Validators, AbstractControl } from '@angular/forms';
@@ -70,6 +71,10 @@ export class ProfileComponent implements OnInit {
       [Validators.required]]
   });
 
+  private mobilenotavailable: boolean = false;
+  private emailnotavailable: boolean = false;
+  public disableProfileForm: boolean = true;
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -99,6 +104,10 @@ export class ProfileComponent implements OnInit {
       this.profileForm.get('whatsAPPNumber').setValue(user.whatsAPPNumber);
       this.profileForm.get('emailId').setValue(user.emailId);
       this.imageUploadUrl = uploadUrl + `/${user.userId}`;
+      this.profileForm.valueChanges.subscribe(t => {
+        console.log(t);
+        this.disableProfileForm = false;
+      });
     });
 
     this.showVerifyButtons();
@@ -134,24 +143,46 @@ export class ProfileComponent implements OnInit {
   onSubmit() {
     if (this.profileForm.valid) {
       this.spinnerService.show();
-      this.signup.updateRegisterUser(this.profileForm.value).subscribe((result) => {
-        this.alerts = [{
-          id: 1,
-          type: 'success',
-          message: 'Details are saved successfully!',
-        }];
-        this.showVerifyButtons();
-      }, (error) => {
-        this.spinnerService.hide();
-        this.alerts = [{
-          id: 1,
-          type: 'danger',
-          message: 'Save Failed',
-        }];
+      const mobileNumberAvailable = this.verification.checkMobileNumberAvailable(this.profileForm.get('mobileNumber').value);
+      const emailAvailable = this.verification.checkEmailIdAvailable(this.profileForm.get('emailId').value);
+      Observable
+        .forkJoin(mobileNumberAvailable, emailAvailable)
+        .subscribe(([mobile, email]) => {
+          if (!email.emailIdAvailable) {
+            this.emailnotavailable = true;
+          }
+          if (!mobile.mobileNumberAvailable) {
+            this.mobilenotavailable = true;
+          }
+          if (email.emailIdAvailable && mobile.mobileNumberAvailable) {
+            this.signup.updateRegisterUser(this.profileForm.value).subscribe((result) => {
+              this.alerts = [{
+                id: 1,
+                type: 'success',
+                message: 'Details are saved successfully!',
+              }];
+              this.showVerifyButtons();
+            }, (error) => {
+              this.spinnerService.hide();
+              this.alerts = [{
+                id: 1,
+                type: 'danger',
+                message: 'Save Failed',
+              }];
 
-      }, () => {
-        this.spinnerService.hide();
-      });
+            }, () => {
+              this.spinnerService.hide();
+            });
+          }
+          else {
+            this.spinnerService.hide();
+          }
+        }, err => {
+          this.spinnerService.hide();
+        }, () => {
+
+        });
+
     }
   }
 
@@ -224,7 +255,7 @@ export class ProfileComponent implements OnInit {
   }
 
 
-  showVerifyButtons(){
+  showVerifyButtons() {
     this.verification.getEmailVerificationStatus().subscribe(
       (x) => {
         if (x && x.pending) {
@@ -261,4 +292,11 @@ export class ProfileComponent implements OnInit {
     );
   }
 
+  public get checkmobile() {
+    return this.mobilenotavailable;
+  }
+
+  public get checkemail() {
+    return this.emailnotavailable;
+  }
 }

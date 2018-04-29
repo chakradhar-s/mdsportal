@@ -11,6 +11,7 @@ import { QuestionsImageService } from './services/questions-image.service';
 import { UserManagementService } from './services/user-management.service';
 import { CommonService } from './services/common.service';
 import { VerificationService } from './services/verification.service';
+import { DataReportsService } from './services/data-reports.service';
 
 
 @NgModule({
@@ -20,6 +21,6 @@ import { VerificationService } from './services/verification.service';
     RouterModule
   ],
   declarations: [],
-  providers: [LoginService, ExamService,SignUpService,UserResultsService, QuestionsImageService, UserManagementService, CommonService, VerificationService]
+  providers: [LoginService, ExamService,SignUpService,UserResultsService, QuestionsImageService, UserManagementService, CommonService, VerificationService, DataReportsService]
 })
 export class HttpServiceRegistryModule { }
