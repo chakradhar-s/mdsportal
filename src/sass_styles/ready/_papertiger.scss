@@ -313,6 +313,7 @@ ul {
   width: 100%;
   position: fixed;
   background: #fff;
+  z-index: 3;
 }
 
 .footer_paper__credits {
@@ -482,7 +483,7 @@ ul {
 .b-hero.hero--contact {
   height: auto;
   margin-bottom: 0;
-  padding-top: 10em
+  padding-top: 5em
 }
 
 .b-hero.hero--case {
@@ -2858,7 +2859,7 @@ html.w-mod-js *[data-ix="cs-thumb-2"] {
     padding-top: 5em
   }
   .b-hero.hero--contact {
-    padding-top: 14em
+    padding-top: 7em
   }
   .b-hero.hero--case {
     padding-top: 17em;

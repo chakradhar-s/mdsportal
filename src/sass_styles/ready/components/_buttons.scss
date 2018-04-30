@@ -51,6 +51,12 @@
   }
 }
 
+.btn-primary {
+  &:hover, &:focus, &:disabled {
+    color: $black-color !important;
+  }
+}
+
 .btn-info {
   background: $info-color !important;
   border-color: $info-color !important;
