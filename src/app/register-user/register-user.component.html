@@ -83,6 +83,7 @@
                         <div class="error" *ngIf="invalid('whatsAPPNumber')">
                           Invalid mobile number
                         </div>
+                      
                       </div>
                     </div>
                   </div>
@@ -104,6 +105,9 @@
                         <div class="error" *ngIf="emailvalid">
                           Invalid email Id
                         </div>
+                        <div class="error" *ngIf="checkemail">
+                          Email Id is already taken
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -122,6 +126,9 @@
                         </div>
                         <div class="error" *ngIf="invalid('mobileNumber')">
                           Invalid mobile number
+                        </div>
+                        <div class="error" *ngIf="checkmobile">
+                          Mobile number is already taken
                         </div>
                       </div>
                     </div>
@@ -171,6 +178,13 @@
                       </div>
   
                     </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col align-self-center">
+                    <p *ngFor="let alert of alerts" class="text-center">
+                      <ngb-alert [type]="alert.type" (close)="closeAlert(alert)">{{ alert.message }}</ngb-alert>
+                    </p>
                   </div>
                 </div>
                 <div class="text-center">

@@ -18,7 +18,7 @@ export class UserManagementComponent implements OnInit {
   public selectedUsers: any[];
   public totalRecords: number;
   public cols: any[];
-  public loading: boolean;
+  public loading: boolean = false;
   public pagesToDisplay: number;
   public dataTableEvent: DataTableTrackEvent = { currentFilter: '', currentFirstRec: 1, currentRows: 10 };
   // public loadedEvent : LazyLoadEvent;

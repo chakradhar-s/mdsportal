@@ -32,9 +32,9 @@ export class VerifyGuard implements CanActivate {
 
   private nagivate(){
     if (!this._isVerificationCompleted) {
-      // // uncomment this lines during prod
-      // this.router.navigate(['complete-verification']);
-      // return false; 
+      // uncomment this lines during prod
+      this.router.navigate(['complete-verification']);
+      return false; 
     }
     return true;
   }

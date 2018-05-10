@@ -1,41 +1,50 @@
 <div class="container">
-    <h3>User Management</h3>
+
     <!-- <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
         <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
         <input #gb type="text" pInputText size="50" placeholder="Global Filter">
     </div> -->
     <!-- [globalFilter]="gb" -->
-    <div class="input-group">
-        <!-- <button type="button" class="btn btn-success" > <span class="glyphicon glyphicon-plus"></span> Create New User</button> -->
-        <button type="text" pButton icon="fa-plus-square" label="Create new User" 
-        (click)="registerNav()"></button>
-        <!-- <button type="button" class="btn btn-danger" > <span class="glyphicon glyphicon-plus"></span> InActive User</button> -->
-        <!-- <p-confirmDialog header="Confirmation" icon="fa fa-question-circle" width="425" #dd></p-confirmDialog> -->
-        <p-confirmDialog header="Confirmation" icon="fa fa-question-circle" width="500" #cd>
-            <p-footer>
-                <button type="button" pButton icon="fa-close" label="No" (click)="cd.reject()"></button>
-                <button type="button" pButton icon="fa-check" label="Yes" (click)="cd.accept()"></button>
-            </p-footer>
-        </p-confirmDialog>
-        <button type="text" (click)="confirm()" pButton icon="fa-trash-o" label="Confirm"></button>
+    <div class="row">
+        <div class="col-md-12">
+            <h3>User Management</h3>
+            <div class="input-group py-2">
+                <!-- <button type="button" class="btn btn-success" > <span class="glyphicon glyphicon-plus"></span> Create New User</button> -->
+                <button type="text" pButton icon="fa-plus-square" label="Create new User" (click)="registerNav()"></button>
+                <!-- <button type="button" class="btn btn-danger" > <span class="glyphicon glyphicon-plus"></span> InActive User</button> -->
+                <!-- <p-confirmDialog header="Confirmation" icon="fa fa-question-circle" width="425" #dd></p-confirmDialog> -->
+                <p-confirmDialog header="Confirmation" icon="fa fa-question-circle" width="500" #cd>
+                    <p-footer>
+                        <button type="button" pButton icon="fa-close" label="No" (click)="cd.reject()"></button>
+                        <button type="button" pButton icon="fa-check" label="Yes" (click)="cd.accept()"></button>
+                    </p-footer>
+                </p-confirmDialog>
+                <button type="text" (click)="confirm()" pButton icon="fa-trash-o" label="Delete User"></button>
+            </div>
+        </div>
     </div>
-    <p-dataTable [value]="users" [lazy]="true" [rows]="10" [paginator]="true" [pageLinks]="pagesToDisplay" [rowsPerPageOptions]="[5,10,20]"
-        [totalRecords]="totalRecords" (onLazyLoad)="loadUsersLazy($event)" [(selection)]="selectedUsers" columnResizeMode="expand"
-        [loading]="loading" loadingIcon="fa-spinner">
-        <p-header>List of Users</p-header>
-        <p-column [style]="{'width':'38px'}" selectionMode="multiple"></p-column>
-        <p-column field="first_name" header="First Name"></p-column>
-        <p-column field="last_name" header="LastName"></p-column>
-        <p-column field="mobile_number" header="Mobile"></p-column>
-        <p-column field="email_id" header="Email Id"></p-column>
-        <p-column field="created_at" header="Created at"></p-column>
-        <p-column field="user_status" header="Status"></p-column>
-        <p-column field="is_active" [style]="{'width':'5%'}" header="IsActive" styleClass="status-badge-btn">
-            <ng-template let-user="rowData" pTemplate="body">
-                <!-- <button type="button" pButton (click)="selectCar(car)" icon="fa-search"></button> -->
-                <span *ngIf="user.is_active" class="badge badge-success">Active</span>
-                <span *ngIf="!user.is_active" class="badge badge-danger">InActive</span>
-            </ng-template>
-        </p-column>
-    </p-dataTable>
+
+    <div class="row">
+        <div class="col-md-12">
+            <p-dataTable [value]="users" [lazy]="true" [rows]="10" [paginator]="true" [pageLinks]="pagesToDisplay" [rowsPerPageOptions]="[5,10,20]"
+                [totalRecords]="totalRecords" (onLazyLoad)="loadUsersLazy($event)" [(selection)]="selectedUsers" columnResizeMode="expand"
+                [loading]="loading" loadingIcon="fa-spinner">
+                <p-header>List of Users</p-header>
+                <p-column [style]="{'width':'38px'}" selectionMode="multiple"></p-column>
+                <p-column field="first_name" header="First Name"></p-column>
+                <p-column field="last_name" header="LastName"></p-column>
+                <p-column field="mobile_number" header="Mobile"></p-column>
+                <p-column field="email_id" header="Email Id"></p-column>
+                <p-column field="created_at" header="Created at"></p-column>
+                <p-column field="user_status" header="Status"></p-column>
+                <p-column field="is_active" [style]="{'width':'5%'}" header="IsActive" styleClass="status-badge-btn">
+                    <ng-template let-user="rowData" pTemplate="body">
+                        <!-- <button type="button" pButton (click)="selectCar(car)" icon="fa-search"></button> -->
+                        <span *ngIf="user.is_active" class="badge badge-success">Active</span>
+                        <span *ngIf="!user.is_active" class="badge badge-danger">InActive</span>
+                    </ng-template>
+                </p-column>
+            </p-dataTable>
+        </div>
+    </div>
 </div>

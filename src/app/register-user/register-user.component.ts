@@ -7,6 +7,11 @@ import { FormBuilder, FormGroup, FormArray, Validators, AbstractControl } from '
 import { UserLoginValidators } from '../login-user/login/login-user.validators';
 import { LoginService } from '../http-service-registry/services/login-service.service';
 import { SignUpService } from '../http-service-registry/services/signup.service';
+import { Alert } from '../models/alert.interface';
+import { VerificationService } from '../http-service-registry/services/verification.service';
+
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/forkJoin';
 
 @Component({
   selector: 'app-register-user',
@@ -15,6 +20,10 @@ import { SignUpService } from '../http-service-registry/services/signup.service'
 })
 export class RegisterUserComponent implements OnInit, AfterViewInit {
   private acceptUserAggrement: boolean = false;
+  public alerts: Array<Alert> = [];
+  private mobilenotavailable: boolean = false;
+  private emailnotavailable: boolean = false;
+  
 
   public registerForm = this.fb.group({
     firstName: ['',
@@ -49,7 +58,8 @@ export class RegisterUserComponent implements OnInit, AfterViewInit {
     })
   });
 
-  constructor(private router: Router, private spinnerService: Ng4LoadingSpinnerService, private fb: FormBuilder, private login: LoginService, private signup: SignUpService) {
+  constructor(private router: Router, private spinnerService: Ng4LoadingSpinnerService, private fb: FormBuilder, 
+    private login: LoginService, private signup: SignUpService,private verification: VerificationService) {
 
   }
 
@@ -106,24 +116,100 @@ export class RegisterUserComponent implements OnInit, AfterViewInit {
 
 
   onSubmit() {
+    // if (this.registerForm.valid) {
+    //   this.spinnerService.show();
+    //   this.signup.registerUser(this.registerForm.value).subscribe((result) => {
+    //     this.alerts = [{
+    //       id: 1,
+    //       type: 'success',
+    //       message: 'Details are saved successfully!',
+    //     }];
+    //   }, (error) => {
+    //     this.spinnerService.hide();
+    //     this.alerts = [{
+    //       id: 2,
+    //       type: 'error',
+    //       message: 'Details are not saved!',
+    //     }];
+    //   }, () => {
+    //     debugger;
+    //     this.spinnerService.hide();
+    //     // console.log({ userName: this.registerForm.get('emailId').value, password: this.registerForm.get('password').value });
+    //     // this.login.validateUser({ userName: this.registerForm.get('emailId').value, password: this.registerForm.get('password').value });
+    //     this.router.navigate(['/user-management']);
+
+    //   });
+    // }
+
+    // new code changes 
     if (this.registerForm.valid) {
       this.spinnerService.show();
-      this.signup.registerUser(this.registerForm.value).subscribe((result) => {
+      const mobileNumberAvailable = this.verification.checkMobileNumberAvailable(this.registerForm.get('mobileNumber').value);
+      const emailAvailable = this.verification.checkEmailIdAvailable(this.registerForm.get('emailId').value);
+      Observable
+        .forkJoin(mobileNumberAvailable, emailAvailable)
+        .subscribe(([mobile, email]) => {
+          if (!email.emailIdAvailable) {
+            this.emailnotavailable = true;
+          }
+          if (!mobile.mobileNumberAvailable) {
+            this.mobilenotavailable = true;
+          }
+          if (email.emailIdAvailable && mobile.mobileNumberAvailable) {
+            this.signup.registerUser(this.registerForm.value).subscribe((result) => {
+              this.alerts = [{
+                id: 1,
+                type: 'success',
+                message: 'Details are saved successfully!',
+              }];
+              // this.showVerifyButtons();
+              this.router.navigate(['/user-management']);
+            }, (error) => {
+              this.spinnerService.hide();
+              this.alerts = [{
+                id: 1,
+                type: 'danger',
+                message: 'Save Failed',
+              }];
 
-      }, (error) => {
-        this.spinnerService.hide();
-      }, () => {
-        this.spinnerService.hide();
-        // console.log({ userName: this.registerForm.get('emailId').value, password: this.registerForm.get('password').value });
-        // this.login.validateUser({ userName: this.registerForm.get('emailId').value, password: this.registerForm.get('password').value });
-        this.router.navigate(['/user-management']);
+            }, () => {
+              this.spinnerService.hide();
+             
+            });
+          }
+          else {
+            this.spinnerService.hide();
+          }
+        }, err => {
+          this.spinnerService.hide();
+          this.alerts = [{
+            id: 1,
+            type: 'danger',
+            message: 'Save Failed',
+          }];
+        }, () => {
 
-      });
+        });
+
     }
+    //end here
+  }
+
+  public closeAlert(alert: Alert) {
+    const index: number = this.alerts.indexOf(alert);
+    this.alerts.splice(index, 1);
+  }
+
+  public get checkmobile() {
+    return this.mobilenotavailable;
+  }
+
+  public get checkemail() {
+    return this.emailnotavailable;
   }
 
   cancel(){
-    this.router.navigate(['/home']);
+    this.router.navigate(['/user-management']);
   }
 
 }

@@ -2,7 +2,7 @@ import { AbstractControl } from '@angular/forms';
 
 export class UserLoginValidators {
     static validUserName(control: AbstractControl) {
-        const regexp = /(?:[1-9]{10}|(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,}))/i;
+        const regexp = /(?:[1-9][0-9]{9}|(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,}))/i;
         const valid = regexp.test(control.value);
         return valid ? null : { invalidUserName: true };
     }
@@ -17,7 +17,7 @@ export class UserLoginValidators {
         return valid ? null : { invalidEmailId: true };
     }
     static validMobileNumber(control: AbstractControl){
-        const regexp = /^[1-9]{10}$/i;
+        const regexp = /^[1-9][0-9]{9}$/i;
         const valid = regexp.test(control.value);
         return valid ? null : { invalidMobileNumber: true };
     }
