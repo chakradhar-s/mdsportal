@@ -15,13 +15,14 @@ import { LoginService } from '../../http-service-registry/services/login-service
 export class LoginComponent implements OnInit, AfterViewInit {
 
   public loginForm = this.fb.group({
-    userName: ['',
-      [Validators.required,
-      UserLoginValidators.validUserName]],
+    userName: ['', {
+      validators: [Validators.required, UserLoginValidators.validUserName],
+      updateOn: 'blur'
+    }],
     password: ['',
       [Validators.required,
       UserLoginValidators.validPassword]]
-  });
+  }, { updateOn: 'submit' });
 
   public inValidCredentials: boolean = false;
 

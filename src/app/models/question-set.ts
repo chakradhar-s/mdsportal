@@ -6,6 +6,7 @@ export class QuestionSet {
     public question_index: number;
     public question_paper_id: string;
     public question_text: string;
+    public image_path:string;
     public optionSet: OptionSet[];
 
 }

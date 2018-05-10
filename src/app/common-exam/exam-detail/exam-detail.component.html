@@ -30,7 +30,8 @@
                 <div class="inner-content">
                   <legend>
                     {{ questionByQuestionId(item.value.questionId).question_text }}
-                  </legend>
+                    <img width="90%" *ngIf="questionByQuestionId(item.value.questionId).image_path!=null" src="{{questionByQuestionId(item.value.questionId).image_path}}"/>
+                  </legend>                  
                   <div class="form-group">
                     <div class="form-radio" *ngFor="let option of optionsByQuestionId(item.value.questionId)">
                       <label>

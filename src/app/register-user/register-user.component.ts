@@ -42,16 +42,25 @@ export class RegisterUserComponent implements OnInit, AfterViewInit {
     referencedBy: ['',
     ],
     mobileNumber: ['',
-      [Validators.required,
-      UserLoginValidators.validMobileNumber]
+      {
+        validators: [Validators.required,
+        UserLoginValidators.validMobileNumber],
+        updateOn: 'blur'
+      }
     ],
     whatsAPPNumber: ['',
-      [Validators.required,
-      UserLoginValidators.validMobileNumber]
+      {
+        validators: [Validators.required,
+        UserLoginValidators.validMobileNumber],
+        updateOn: 'blur'
+      }
     ],
     emailId: ['',
-      [Validators.required,
-      UserLoginValidators.validEmailId]
+      {
+        validators: [Validators.required,
+        UserLoginValidators.validEmailId],
+        updateOn: 'blur'
+      }
     ],
     declarationAcceptance: this.fb.group({
       is_accepted: [false, [Validators.required, this.userAcceptance.bind(this)]]

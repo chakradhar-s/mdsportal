@@ -1,5 +1,5 @@
 <li class="nav-item dropdown">
-  <a (click)="showStyle = !showStyle;" class="dropdown-toggle profile-pic" aria-expanded="false">
+  <a class="dropdown-toggle profile-pic" aria-expanded="false">
     <img src="{{profileDetails.image_path}}" alt="user-img" width="36" class="img-circle">
     <span>{{user.firstName||''}}</span>
   </a>
@@ -11,14 +11,14 @@
         </div>
         <div class="u-text">
           <h4>{{user.firstName||''}}</h4>       
-          <p class="text-muted">{{user.emailId||''}}</p><a [routerLink]="['view-users',user.userId]" class="btn btn-rounded btn-danger btn-sm">View Profile</a>         
+          <p class="text-muted">{{user.emailId||''}}</p><a [routerLink]="['view-users',user.userId]" class="btn btn-rounded btn-danger btn-sm cmenu-item">View Profile</a>         
         </div>
       </div>
     </li>
     <div class="dropdown-divider"></div>
-    <a class="dropdown-item" *ngFor="let navItem of profileDetails.nav_items" (click)="takeroute(navItem.link,$event)">
+    <a class="dropdown-item cmenu-item" *ngFor="let navItem of profileDetails.nav_items" (click)="takeroute(navItem.link,$event)">
       <i class="ti-user"></i> {{navItem.name}}</a>
-    <a class="dropdown-item" (click)="logoff()">
+    <a class="dropdown-item cmenu-item" (click)="logoff()">
       <i class="fa fa-power-off"></i> Logout</a>
   </ul>
   <!-- /.dropdown-user -->
