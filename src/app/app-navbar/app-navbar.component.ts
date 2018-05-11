@@ -26,28 +26,28 @@ export class AppNavbarComponent implements OnInit {
 
   private _userType: UserType;
   constructor(private _login: LoginService, private signup: SignUpService) {
-    this._defaultNav = [{ exact: true, link: '/home', name: 'Home' },
-    { exact: true, link: '/about', name: 'About us' },
+    this._defaultNav = [{ exact: true, link: '/home', name: 'HOME' },
+    { exact: true, link: '/about', name: 'ABOUT US' },
     // { exact: true, link: '/analysis', name: 'Analysis' },
-    { exact: true, link: '/payment', name: 'Payment  |  Schedule & PP Books' },
+    { exact: true, link: '/payment', name: 'PAYMENT  |  SCHEDULE & PP BOOKS' },
     { exact: true, link: '/s-strategy', name: 'DEV' },
-    { exact: true, link: '/demo-exam/410b088a-6fae-42ae-9bf9-283aa438a890', name: 'Demo Exam' },
-    { exact: true, link: '/contactus', name: 'Contact Us' },
+    { exact: true, link: '/demo-exam/410b088a-6fae-42ae-9bf9-283aa438a890', name: 'DEMO EXAM' },
+    { exact: true, link: '/contactus', name: 'CONTACT US' },
     { exact: true, link: '/login', name: 'Login' }
     ];
 
-    this._studentNav = [{ exact: true, link: '/home', name: 'Home' },
-    { exact: true, link: '/payment', name: 'Payment  |  Schedule & PP Books' },
+    this._studentNav = [{ exact: true, link: '/home', name: 'HOME' },
+    { exact: true, link: '/payment', name: 'PAYMENT  |  SCHEDULE & PP BOOKS' },
     { exact: true, link: '/s-strategy', name: 'DEV' },
-    { exact: true, link: '/demo-exam/410b088a-6fae-42ae-9bf9-283aa438a890', name: 'Demo Exam' },
-    { exact: true, link: '/contactus', name: 'Contact Us' }];
+    { exact: true, link: '/demo-exam/410b088a-6fae-42ae-9bf9-283aa438a890', name: 'DEMO EXAM' },
+    { exact: true, link: '/contactus', name: 'CONTACT US' }];
 
-    this._adminNav = [{ exact: true, link: '/home', name: 'Home' },
-    { exact: true, link: '/about', name: 'About us' },
-    { exact: true, link: '/payment', name: 'Payment  |  Schedule & PP Books' },
+    this._adminNav = [{ exact: true, link: '/home', name: 'HOME' },
+    { exact: true, link: '/about', name: 'ABOUT US' },
+    { exact: true, link: '/payment', name: 'PAYMENT  |  SCHEDULE & PP BOOKS' },
     { exact: true, link: '/s-strategy', name: 'DEV' },
-    { exact: true, link: '/demo-exam/410b088a-6fae-42ae-9bf9-283aa438a890', name: 'Demo Exam' },
-    { exact: true, link: '/contactus', name: 'Contact Us' }];
+    { exact: true, link: '/demo-exam/410b088a-6fae-42ae-9bf9-283aa438a890', name: 'DEMO EXAM' },
+    { exact: true, link: '/contactus', name: 'CONTACT US' }];
 
     this.profileaccordion = { image_default: true, image_path: "", nav_items: [{ link: '', exact: false, name: '' }] };
   }
@@ -119,7 +119,7 @@ export class AppNavbarComponent implements OnInit {
         { name: 'Rank Reports', exact: true, link: '/downloadranks' },
         { name: 'Manage users', exact: false, link: `/user-management` },
         { name: 'Upload a question paper', exact: false, link: '/question-upload' },
-        { name: 'Upload questions image', exact: false, link: '/upload-questions-image' }];
+        { name: 'Upload questions images', exact: false, link: '/upload-questions-image' }];
     }
 
   }
