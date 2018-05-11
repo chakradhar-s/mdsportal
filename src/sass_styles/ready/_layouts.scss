@@ -17,14 +17,15 @@ body {
   width: 100%;
   background: $white-color;
   position: fixed;
-  z-index: 1001;
-  border-bottom: 1px solid #eee;
+  z-index: 1001; //border-bottom: 1px solid #eee;
+  -webkit-box-shadow: 1px 1px 1px #eee;
+  -moz-box-shadow: 1px 1px 1px #eee;
+  box-shadow: 1px 1px 1px #eee;
   .logo-header {
     float: left;
     width: 260px;
     height: 55px;
     line-height: 55px;
-    border-right: 1px solid #eee;
     color: $black-color;
     z-index: 1001;
     font-size: 18px;
@@ -231,7 +232,7 @@ body {
   float: right;
   background: #fff;
   .content {
-    padding: 30px 15px;
+    padding: 30px 1px;
     min-height: calc(100% - 123px);
     margin-top: 55px;
   }
@@ -403,16 +404,22 @@ figure.effect-ruby:hover h2 {
   transform: translate3d(0, 0, 0);
 }
 
-.required-indicator{
+.required-indicator {
   color: $red;
   font-size: 70%;
   position: relative;
   bottom: 10px;
 }
 
-.star-admin-form-check label, .star-admin-form-radio label {
+.star-admin-form-check label,
+.star-admin-form-radio label {
   display: block;
   padding-left: 30px;
   font-size: 13px;
   line-height: 1.42857143;
+}
+
+.no-link:hover {
+  text-decoration: none;
+  color: inherit;
 }

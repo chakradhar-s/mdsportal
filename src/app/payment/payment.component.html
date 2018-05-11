@@ -1,7 +1,13 @@
+<div class="row">
+  <div class="col-12 px-0">
+    <img src="{{images[imageIndex]}}" style="width:100%">
+  </div>
+</div>
+
 <div style="position: relative;display: flex;width: 100%; padding-top:4rem;">
   <div class="container">
-    <ngb-tabset [justify]="currentJustify">
-      <ngb-tab>
+    <ngb-tabset [justify]="currentJustify" (tabChange)="beforeChange($event)">
+      <ngb-tab id="tab-payments">
         <ng-template ngbTabTitle>
           <b>Payment</b>
         </ng-template>
@@ -91,7 +97,7 @@
           </div>
         </ng-template>
       </ngb-tab>
-      <ngb-tab>
+      <ngb-tab id="tab-schedule">
         <ng-template ngbTabTitle>
           <b>Schedule &amp; PP Books</b>
         </ng-template>
