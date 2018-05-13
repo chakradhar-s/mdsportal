@@ -30,6 +30,7 @@ export class AppNavbarComponent implements OnInit {
     { exact: true, link: '/about', name: 'ABOUT US' },
     // { exact: true, link: '/analysis', name: 'Analysis' },
     { exact: true, link: '/payment', name: 'PAYMENT  |  SCHEDULE & PP BOOKS' },
+    { exact: true, link: '/feedback', name: 'Results' },
     { exact: true, link: '/s-strategy', name: 'DEV' },
     { exact: true, link: '/demo-exam/410b088a-6fae-42ae-9bf9-283aa438a890', name: 'DEMO EXAM' },
     { exact: true, link: '/contactus', name: 'CONTACT US' },
@@ -38,6 +39,7 @@ export class AppNavbarComponent implements OnInit {
 
     this._studentNav = [{ exact: true, link: '/home', name: 'HOME' },
     { exact: true, link: '/payment', name: 'PAYMENT  |  SCHEDULE & PP BOOKS' },
+    { exact: true, link: '/feedback', name: 'Results' },    
     { exact: true, link: '/s-strategy', name: 'DEV' },
     { exact: true, link: '/demo-exam/410b088a-6fae-42ae-9bf9-283aa438a890', name: 'DEMO EXAM' },
     { exact: true, link: '/contactus', name: 'CONTACT US' }];
@@ -45,6 +47,7 @@ export class AppNavbarComponent implements OnInit {
     this._adminNav = [{ exact: true, link: '/home', name: 'HOME' },
     { exact: true, link: '/about', name: 'ABOUT US' },
     { exact: true, link: '/payment', name: 'PAYMENT  |  SCHEDULE & PP BOOKS' },
+    { exact: true, link: '/feedback', name: 'Results' },    
     { exact: true, link: '/s-strategy', name: 'DEV' },
     { exact: true, link: '/demo-exam/410b088a-6fae-42ae-9bf9-283aa438a890', name: 'DEMO EXAM' },
     { exact: true, link: '/contactus', name: 'CONTACT US' }];

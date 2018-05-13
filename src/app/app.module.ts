@@ -104,6 +104,10 @@ const myRoots: Routes = [
   {
     path: 'complete-verification',
     loadChildren: 'app/prompt-complete-verify/prompt-complete-verify.module#PromptCompleteVerifyModule'
+  },
+  {
+    path: 'feedback',
+    loadChildren: 'app/testimonials/testimonials.module#TestimonialsModule'
   }
 
 

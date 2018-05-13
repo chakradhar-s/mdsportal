@@ -15,7 +15,7 @@ body {
 .main-header {
   min-height: 55px;
   width: 100%;
-  background: $white-color;
+  color: $header-font-color;
   position: fixed;
   z-index: 1001; //border-bottom: 1px solid #eee;
   -webkit-box-shadow: 1px 1px 1px #eee;
@@ -26,7 +26,7 @@ body {
     width: 260px;
     height: 55px;
     line-height: 55px;
-    color: $black-color;
+    color:  $header-font-color;
     z-index: 1001;
     font-size: 18px;
     font-weight: $font-weight-bold;
@@ -34,8 +34,11 @@ body {
     padding-right: 25px;
     z-index: 1001;
     display: inline-block;
+    a {
+      color: $white-color !important;
+    }
     a.logo {
-      color: $body-text-color;
+      color: $header-font-color;
     }
     .navbar-toggler {
       padding-left: 0px;
@@ -234,7 +237,7 @@ body {
   .content {
     padding: 30px 1px;
     min-height: calc(100% - 123px);
-    margin-top: 55px;
+    margin-top: 55px;    
   }
 }
 
@@ -421,5 +424,16 @@ figure.effect-ruby:hover h2 {
 
 .no-link:hover {
   text-decoration: none;
-  color: inherit;
+  color: $white-color;
+}
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, .5);
+  -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
 }

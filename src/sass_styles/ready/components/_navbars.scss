@@ -3,7 +3,7 @@
 .navbar .navbar-nav .nav-item .nav-link {
   display: inline-block;
   vertical-align: middle;
-  color: #666;
+  color: $header-font-color;
   line-height: 55px;
   letter-spacing: 0.04em;
   padding: 0 20px 0 0;
@@ -61,7 +61,7 @@
 
 .navbar-header .dropdown-toggle::after {
   vertical-align: middle;
-  color: #555;
+  color: $header-font-color !important;
 }
 
 .hidden-caret .dropdown-toggle::after {
@@ -76,12 +76,22 @@
     font-size: 14px;
     font-weight: $font-weight-bold;
     padding: 0 10px;
-    color: #555;
+    color: $header-font-color !important;
   }
 }
 
 .nav-link.w--current {
   text-decoration: underline;
-  color: #242424 !important;
+  color: $white-color !important;
   opacity: 0.9;
+}
+
+.header-gradient {
+  background: linear-gradient(to right, rgba(49, 69, 248, 1) 0%, rgba(31, 42, 192, 1) 12%, rgba(0, 88, 147, 1) 35%, rgb(216, 45, 45) 45%, rgba(238, 33, 33, 1) 86%, rgba(195, 18, 18, 1) 100%);
+  background-attachment: initial;
+  background-clip: initial;
+  background-color: initial;
+  background-image: linear-gradient(to right, rgba(49, 69, 248, 1) 0%, rgba(31, 42, 192, 1) 12%, rgba(0, 88, 147, 1) 35%, rgb(216, 45, 45) 45%, rgba(238, 33, 33, 1) 86%, rgba(195, 18, 18, 1) 100%);
+  background-origin: initial;
+  background-size: initial;
 }

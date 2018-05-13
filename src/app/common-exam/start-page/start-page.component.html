@@ -6,7 +6,7 @@
         <option value="sysInstText1">English</option>
       </select>
     </span>
-    <div class="content firstPageContent">
+    <div class="content firstPageContent" style="max-height: 24rem;margin-top:26px;">
       <div class="box">
         <div class="column">
           <div class="inner-content">
@@ -45,7 +45,7 @@
                     </tr>
                     <tr>
                       <td class="small-ans-box answered">
-                        <span  title="Answered">3</span>
+                        <span title="Answered">3</span>
                       </td>
                       <td>This question has been answered and will be considered for evaluation.</td>
                     </tr>
@@ -129,7 +129,7 @@
   </div>
 
   <div [ngClass]="{'show': currentStep==wizard.Step2 , 'hide': currentStep!=wizard.Step2}">
-    <div class="content secondPageContent">
+    <div class="content secondPageContent" style="max-height: 22rem;margin-top:26px;">
       <div class="box">
         <div class="column">
           <div class="inner-content">
@@ -148,7 +148,7 @@
                 <option value="cusInstText1">English</option>
               </select>
             </span>
-            <div class="cusInstText1" style="height: 91%; width: 100%; overflow: auto;">
+            <div class="cusInstText1" style="height: 91%; width: 100%;">
               <strong>
                 <u>Instructions for Mock Test</u>
               </strong>
@@ -191,7 +191,7 @@
       </div>
     </div>
     <hr>
-    <div class="content" style="margin-top:0px !important;">
+    <div class="content" style="padding-top:10px;max-height: 24rem;margin-top:0 !important;">
       <div class="box">
         <div class="column">
           <div id="secondPagep2" style="max-height: 120px;">
@@ -208,7 +208,7 @@
               </div> -->
               <!-- <br> -->
               <label class="" id="highlightDisclaimer" style="line-height:21px;margin-bottom: 0;padding-left: 0;">
-                  <input type="checkbox" name="checkedIn" formControlName="disclaimer" style="margin-top:2px;"> 
+                <input type="checkbox" name="checkedIn" formControlName="disclaimer" style="margin-top:2px;">
                 <span style="width: 98%; margin-left: 1.5em;" id="agreementMessageCustom">
                   <span class="cusInstText1">
                     <strong>NON DISCLOSURE AGREEMENT (NDA) – DEV- MDS</strong>
@@ -247,8 +247,8 @@
     <div class="row">
       <div class="col align-self-center" style="margin-top:1rem;">
         <button type="button" (click)="move(wizard.Step1)" class="btn btn-primary">
-          Previous
           <i class="fa fa-chevron-left"></i>
+          Previous
         </button>
         <button type="button" name="done" [disabled]="!parent.get('start.disclaimer').value" (click)="start()" class="btn btn-success">
           I am ready to begin
