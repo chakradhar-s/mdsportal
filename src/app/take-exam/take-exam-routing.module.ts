@@ -12,7 +12,7 @@ const routes: Routes = [
   {
     path: '',
     component: QpaperListComponent,
-    canLoad: [AuthGuard, VerifyGuard],
+    canLoad: [AuthGuard],
     canActivate : [VerifyGuard],
     resolve: { questionPapers: ViewQuestionPapersResolve }
   }
