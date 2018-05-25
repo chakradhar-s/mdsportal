@@ -32,7 +32,7 @@ export class AppNavbarComponent implements OnInit {
     { exact: true, link: '/payment', name: 'PAYMENT  |  SCHEDULE & PP BOOKS' },
     { exact: true, link: '/feedback', name: 'Results' },
     { exact: true, link: '/s-strategy', name: 'DEV' },
-    { exact: true, link: '/demo-exam/410b088a-6fae-42ae-9bf9-283aa438a890', name: 'DEMO EXAM' },
+    { exact: true, link: '/demo-exam/4c9c71ef-1103-4692-bcca-901ff03efcab', name: 'DEMO EXAM' },
     { exact: true, link: '/contactus', name: 'CONTACT US' },
     { exact: true, link: '/login', name: 'Login' }
     ];
@@ -41,7 +41,7 @@ export class AppNavbarComponent implements OnInit {
     { exact: true, link: '/payment', name: 'PAYMENT  |  SCHEDULE & PP BOOKS' },
     { exact: true, link: '/feedback', name: 'Results' },    
     { exact: true, link: '/s-strategy', name: 'DEV' },
-    { exact: true, link: '/demo-exam/410b088a-6fae-42ae-9bf9-283aa438a890', name: 'DEMO EXAM' },
+    { exact: true, link: '/demo-exam/4c9c71ef-1103-4692-bcca-901ff03efcab', name: 'DEMO EXAM' },
     { exact: true, link: '/contactus', name: 'CONTACT US' }];
 
     this._adminNav = [{ exact: true, link: '/home', name: 'HOME' },
@@ -49,7 +49,7 @@ export class AppNavbarComponent implements OnInit {
     { exact: true, link: '/payment', name: 'PAYMENT  |  SCHEDULE & PP BOOKS' },
     { exact: true, link: '/feedback', name: 'Results' },    
     { exact: true, link: '/s-strategy', name: 'DEV' },
-    { exact: true, link: '/demo-exam/410b088a-6fae-42ae-9bf9-283aa438a890', name: 'DEMO EXAM' },
+    { exact: true, link: '/demo-exam/4c9c71ef-1103-4692-bcca-901ff03efcab', name: 'DEMO EXAM' },
     { exact: true, link: '/contactus', name: 'CONTACT US' }];
 
     this.profileaccordion = { image_default: true, image_path: "", nav_items: [{ link: '', exact: false, name: '' }] };
@@ -97,7 +97,6 @@ export class AppNavbarComponent implements OnInit {
   }
 
   public fillUserProfile() {
-    debugger;
     if (this.loggedIn) {
       this.profileaccordion.image_path = "assets/images/anonym-person.png";
       this.signup.getUserPic(this._login.userProfile.user.userId).subscribe((re) => {

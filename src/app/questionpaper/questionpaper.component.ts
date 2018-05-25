@@ -84,7 +84,7 @@ export class QuestionpaperComponent implements OnInit {
       message: 'Are you sure that you want to make this papers Inactive?',
       accept: () => {
         //Actual logic to perform a confirmation
-        debugger;
+      
         // this.deleteUsers();
         this.Activate(false);
       }
@@ -97,10 +97,9 @@ export class QuestionpaperComponent implements OnInit {
 
   Activate(active: boolean) {
     this.selectedQuestionGroup.map(function (s) { s.isActive = active });
-    debugger;
+ 
     this.questionService.EnableOrDisableQuestionPapers(this.questionPaperGroup)
       .subscribe(res => {
-        debugger;
         console.log(res);
         this.selectedQuestionGroup = [];
         this.serverCall();

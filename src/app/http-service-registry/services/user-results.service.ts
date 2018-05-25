@@ -39,7 +39,6 @@ export class UserResultsService {
   }
 
   getRank(sessionId : string): any {
-    debugger;
     const headers = new Headers();
     if (window.localStorage.getItem('jwt-access-mds')) {
       let rslt = JSON.parse(window.localStorage.getItem('jwt-access-mds'));

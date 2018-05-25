@@ -18,7 +18,6 @@ export class ResultsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    debugger;
     this.allRanks();
     this.activeSessionRank();
   }
@@ -38,7 +37,6 @@ export class ResultsComponent implements OnInit {
   }
 
   activeSessionRank() {
-    debugger;
     this.resultService.currentSessionResult()
       .subscribe((res) => {
         this.currentRecord = res;
@@ -69,7 +67,7 @@ export class ResultsComponent implements OnInit {
   }
 
   toggleRankPanel(): void {
-    debugger;
+  
     this.togglePanel = false;
   }
 

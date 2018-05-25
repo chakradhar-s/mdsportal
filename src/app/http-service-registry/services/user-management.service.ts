@@ -21,7 +21,6 @@ export class UserManagementService {
       let rslt = JSON.parse(window.localStorage.getItem('jwt-access-mds'));
       headers.append('Authorization', 'bearer ' + rslt.access_token);
     }
-    debugger;
     headers.append('Content-Type', 'application/vnd.api+json');
     return this.http.get(this._proxyHost + `/Users/GetPagedUsers/?PageSize=${size}&PageNumber=${pageNo}&Search=${search}`,
       new RequestOptions({ headers: headers }))
@@ -37,9 +36,6 @@ export class UserManagementService {
             u.created_at = dateString;
           }
           if (typeof u.user_status == "number") {
-            debugger;
-
-
             console.log(this.userStatus.getEnumName(u.user_status), 'status-user in service');
             u.user_status = this.userStatus.getEnumName(u.user_status);
             console.log(this.userStatus.getEnumName(u.user_status), 'status-user in service');
@@ -59,7 +55,6 @@ export class UserManagementService {
       let rslt = JSON.parse(window.localStorage.getItem('jwt-access-mds'));
       headers.append('Authorization', 'bearer ' + rslt.access_token);
     }
-    debugger;
     headers.append('Content-Type', 'application/vnd.api+json');
     return this.http.delete(this._proxyHost + `/Users/DeleteUsers`,
       new RequestOptions({
@@ -68,9 +63,8 @@ export class UserManagementService {
           "userIds": userids
         })
       }))
-      .map((response: Response) => { debugger; return response.json(); })
+      .map((response: Response) => { return response.json(); })
       .catch((error) => {
-        debugger;
         return Observable.throw(error)
       }
       );

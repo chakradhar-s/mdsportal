@@ -49,11 +49,10 @@ export class ContactUsComponent implements OnInit {
   }
 
   onSubmit() {
-    debugger;
     this.submitTriggered = true;
     let form = this.contactusForm.value;
     this.commonService.GetInTouch(form).subscribe(() => {
-      debugger;
+   
     }, (error: Error) => console.log(error));
   }
 

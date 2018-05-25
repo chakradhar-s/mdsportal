@@ -6,18 +6,7 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
   styleUrls: ['./timer.component.scss']
 })
 export class TimerComponent implements OnInit {
-  @Output() endExamEvent = new EventEmitter<boolean>();
 
-  @Input() timerCount: number;
-
-  constructor() { }
-
-  ngOnInit() {
-    debugger;
-    console.log(this.fminutes + " : " + this.fseconds);
-    this.tickTick();
-    this.start();
-  }
   timeString: string;
   // duration = 10*60;
   fduration = 20 * 60;
@@ -33,6 +22,30 @@ export class TimerComponent implements OnInit {
   rDisplay: string;
   rCounter: number = 0;
   rclockDisplay: string;
+
+  @Output() endExamEvent = new EventEmitter<boolean>();
+
+  @Input() timerCount: number;
+
+  constructor() { }
+
+  ngOnInit() {
+
+    if (typeof this.timerCount ==='string'&&!isNaN(parseInt(<any>this.timerCount))) {
+      this.fduration = parseInt(<any>this.timerCount) * 60;
+      this.rDuration = parseInt(<any>this.timerCount) * 60;
+      console.log("enyert")
+    }
+    else if (typeof this.timerCount ==='number') {
+      this.fduration = this.timerCount * 60;
+      this.rDuration = this.timerCount * 60;
+      console.log("juert")
+    }
+    console.log(this.fminutes + " : " + this.fseconds);
+    this.tickTick();
+    this.start();
+  }
+  
 
   tickTick() {
     if (this.fduration > 0) {

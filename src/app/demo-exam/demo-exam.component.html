@@ -66,7 +66,7 @@
       <div class="row">
         <div class="col-12">
           <exam-detail *ngIf="!startPage && questionAnswerMap && questionAnswerMap.size>=1" [parent]="form" [map]="questionAnswerMap"
-            [timerCount]="20" (endExamEvent)="onSubmit(content)" [typeOfExam]="examType"></exam-detail>
+            [timerCount]="40" (endExamEvent)="onSubmit(content)" [typeOfExam]="examType"></exam-detail>
         </div>
       </div>
     </form>

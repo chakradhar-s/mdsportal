@@ -32,7 +32,7 @@ export class QuestionpaperService {
       let rslt = JSON.parse(window.localStorage.getItem('jwt-access-mds'));
       headers.append('Authorization', 'bearer ' + rslt.access_token);
     }
-    debugger;
+  
     headers.append('Content-Type', 'application/vnd.api+json');
     return this.http.get(this._proxyHost + `/uploaddocument/all-questions-paged/?PageSize=${size}&PageNumber=${pageNo}&Search=${search}`,
       new RequestOptions({ headers: headers }))

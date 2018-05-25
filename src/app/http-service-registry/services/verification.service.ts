@@ -77,7 +77,6 @@ export class VerificationService {
     return this.http.post(this._proxyHost + '/Users/mobileverificationstatuses/',
       null, new RequestOptions({ headers: headers }))
       .map((response: Response) => {
-        debugger;
         return response.json();
       })
       .catch((error) =>

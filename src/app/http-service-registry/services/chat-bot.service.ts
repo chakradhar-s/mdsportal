@@ -28,7 +28,6 @@ export class ChatBotService {
         .catch((error) => Observable.throw(error))
     }
     catch (error) {
-      debugger;
       console.log(error)
     }
   }

@@ -96,7 +96,6 @@ export class ExamService {
         new RequestOptions({ headers: headers }));
     }
     catch (error) {
-      debugger;
       console.log(error)
     }
   }
@@ -118,7 +117,6 @@ export class ExamService {
         )
         .subscribe();
     } catch (error) {
-      debugger;
       console.log(error)
     }
   }
@@ -133,7 +131,6 @@ export class ExamService {
 
     const headers = new Headers();
     if (this._activeSession_id.length > 0) {
-      debugger;
       headers.append('Authorization', 'bearer ' + this._activeSession_id);
       console.log('**END EXAM**');
     }
@@ -154,7 +151,6 @@ export class ExamService {
       let rslt = JSON.parse(window.localStorage.getItem('jwt-access-mds'));
       headers.append('Authorization', 'bearer ' + rslt.access_token);
     }
-    debugger;
     headers.append('Content-Type', 'application/vnd.api+json');
     return this.http.get(this._proxyHost + '/Analysis/GetAnalysis/',
       new RequestOptions({ headers: headers }))

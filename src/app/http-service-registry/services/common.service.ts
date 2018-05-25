@@ -16,22 +16,17 @@ export class CommonService {
   GetInTouch(form : any){
     try {
       const headers = new Headers();
-      // if (window.localStorage.getItem('jwt-access-mds')) {
-      //   let rslt = JSON.parse(window.localStorage.getItem('jwt-access-mds'));
-      //   headers.append('Authorization', 'bearer ' + rslt.access_token);
-      // }
       headers.append('Content-Type', 'application/vnd.api+json');
       let data = JSON.stringify(form);
       return this.http.post(this._proxyHost + '/Users/GetInTouch', data,
         new RequestOptions({ headers: headers }))
         .map((response: Response) => {
-          debugger;
+         
           return response.json();
         })
         .catch((error) => Observable.throw(error))
     }
     catch (error) {
-      debugger;
       console.log(error)
     }
   }

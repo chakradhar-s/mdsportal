@@ -22,8 +22,7 @@ export class AnalysisStudentComponent implements OnInit {
     this.onLoad();
   }
 
-  onLoad() {
-    debugger;
+  onLoad() {  
     this.service.getAnalytics()
       .subscribe((response: Response) => {
         this.result = response;
@@ -31,7 +30,6 @@ export class AnalysisStudentComponent implements OnInit {
         this.loadPercentages();
         this.loadRadarData();
       });
-
   }
 
   loadPercentages() {

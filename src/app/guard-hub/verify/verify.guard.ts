@@ -17,7 +17,7 @@ export class VerifyGuard implements CanActivate {
   }
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    debugger;
+ 
     return this.verifyService.getVerifyAllVerificationsCompleted().map(e => {
       if (e.verified) {
         return true;
@@ -28,7 +28,6 @@ export class VerifyGuard implements CanActivate {
       this.router.navigate(['complete-verification']);
       return Observable.of(false);
     });
-    // return this.nagivate();
   }
 
 }

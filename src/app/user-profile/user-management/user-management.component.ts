@@ -25,7 +25,7 @@ export class UserManagementComponent implements OnInit {
   constructor(private manageService: UserManagementService,
     private confirmationService: ConfirmationService,
     private router: Router) {
-    debugger;
+  
   }
 
   ngOnInit() {
@@ -120,7 +120,7 @@ export class UserManagementComponent implements OnInit {
       message: 'Are you sure that you want to make this users Inactive?',
       accept: () => {
         //Actual logic to perform a confirmation
-        debugger;
+     
         this.deleteUsers();
       }
     });
@@ -132,11 +132,11 @@ export class UserManagementComponent implements OnInit {
       userIdList.push(element.user_id);
     });
     this.manageService.deleteUsers(userIdList).subscribe(() => {
-      debugger;
+      
       // this.loadUsersLazy(this.loadedEvent);
       this.serviceCall();
     }, (error: Error) => {
-      debugger;
+    
       console.log(error);
     });
   }

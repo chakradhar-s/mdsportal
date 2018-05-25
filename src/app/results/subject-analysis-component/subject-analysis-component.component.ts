@@ -38,7 +38,7 @@ public barData : any;
         });
         // d.push(this.subjectData.answered);
         // d.push(this.subjectData.unAnswered);
-        debugger;
+ 
         this.barData ={
           labels: ['Hard','Medium', 'Low','Basic'],
           datasets: [
