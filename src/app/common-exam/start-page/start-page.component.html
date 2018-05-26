@@ -6,7 +6,7 @@
         <option value="sysInstText1">English</option>
       </select>
     </span>
-    <div class="content firstPageContent" style="max-height: 24rem;margin-top:26px;">
+    <div class="content firstPageContent" style="max-height: 38rem;margin-top:0px;padding-top:0px;padding-bottom:0px;">
       <div class="box">
         <div class="column">
           <div class="inner-content">
@@ -21,7 +21,7 @@
                 <u>General Instructions:</u>
               </strong>
             </p>
-            <h3>Don't refresh the page after a exam is started.</h3>
+            <h5 class="refreshIns">Don't refresh the page after the exam is started.</h5>
             <ol style="TEXT-ALIGN: left; LIST-STYLE-TYPE: decimal; PADDING-LEFT: 4%; PADDING-TOP: 3px">
               <li>Total duration of mock sample questions is 20 minutes.</li>
               <li>The clock will be set at the server. The countdown timer in the top right corner of screen will display the
@@ -118,8 +118,8 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div style="margin-left: auto;padding-right: 1rem;margin-top:1rem;">
+    <div class="row" style="border-top:  1px solid darkgray;">
+      <div style="margin-left: auto;padding-right: 1rem;margin-top:5px;">
         <button id="confirm" type="button" name="Save" (click)="move(wizard.Step2)" class="btn btn-primary">
           Next
           <i class="fa fa-chevron-right"></i>
@@ -129,7 +129,7 @@
   </div>
 
   <div [ngClass]="{'show': currentStep==wizard.Step2 , 'hide': currentStep!=wizard.Step2}">
-    <div class="content secondPageContent" style="max-height: 22rem;margin-top:26px;">
+    <div class="content secondPageContent" style="max-height: 22rem;margin-top: 0px;padding: 0px;">
       <div class="box">
         <div class="column">
           <div class="inner-content">
