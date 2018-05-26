@@ -11,13 +11,36 @@
   font-size: 14px;
   font-weight: $font-weight-mediumbold;
   text-align: center;
+  padding-right:0px;
   i {
     font-size: 22px;
     width: 30px;
     vertical-align: middle;
   }
 }
-
+.nav-link-login{
+  display: inline-block;
+  vertical-align: middle;
+  color: $header-font-color;
+  line-height: 55px;
+  letter-spacing: 0.04em;
+  padding: 0 20px 0 0;
+  position: relative;
+  font-size: 14px;
+  font-weight: $font-weight-mediumbold;
+  text-align: center;
+  i {
+    font-size: 22px;
+    width: 30px;
+    vertical-align: middle;
+  }
+  font-weight: bold;
+  color: royalblue;
+}
+.nav-item{
+  width: calc(100% / 6);
+  text-align:center
+}
 .navbar-expand-lg .navbar-nav .dropdown-menu {
   left: auto;
   right: 0;
@@ -81,17 +104,20 @@
 }
 
 .nav-link.w--current {
-  text-decoration: underline;
-  color: $white-color !important;
+  //text-decoration: underline;
+  //color: $white-color !important;
   opacity: 0.9;
-}
-
+  width:100%;
+  background: whitesmoke;
+  border-bottom: 5px solid deepskyblue;
+ }
 .header-gradient {
-  background: linear-gradient(to right, rgba(49, 69, 248, 1) 0%, rgba(31, 42, 192, 1) 12%, rgba(0, 88, 147, 1) 35%, rgb(216, 45, 45) 45%, rgba(238, 33, 33, 1) 86%, rgba(195, 18, 18, 1) 100%);
+  //background: linear-gradient(to right, rgba(49, 69, 248, 1) 0%, rgba(31, 42, 192, 1) 12%, rgba(0, 88, 147, 1) 35%, rgb(216, 45, 45) 45%, rgba(238, 33, 33, 1) 86%, rgba(195, 18, 18, 1) 100%);
   background-attachment: initial;
   background-clip: initial;
   background-color: initial;
-  background-image: linear-gradient(to right, rgba(49, 69, 248, 1) 0%, rgba(31, 42, 192, 1) 12%, rgba(0, 88, 147, 1) 35%, rgb(216, 45, 45) 45%, rgba(238, 33, 33, 1) 86%, rgba(195, 18, 18, 1) 100%);
+  //background-image: linear-gradient(to right, rgba(49, 69, 248, 1) 0%, rgba(31, 42, 192, 1) 12%, rgba(0, 88, 147, 1) 35%, rgb(216, 45, 45) 45%, rgba(238, 33, 33, 1) 86%, rgba(195, 18, 18, 1) 100%);
   background-origin: initial;
   background-size: initial;
+  background: white;
 }

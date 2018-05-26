@@ -1,7 +1,8 @@
 <header class="main-header header-gradient" *ngIf="!isLoginPage">
   <div class="logo-header">
     <a href="/#" class="no-link" alt="Homepage">
-      <p>MDS CONQUER</p>
+      <img src="/assets/images/logo-trans.png" alt="user-img" width="120" height="60" class="img-circle">
+      <span class="logo-title">MDS CONQUER</span>
       <!-- <img src="/assets/images/logo-300x252.jpg" height="50px" width="110px">       -->
     </a>
     <!-- <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-controls="sidebar"
@@ -9,21 +10,23 @@
       <span class="navbar-toggler-icon"></span>
     </button> -->
     <button class="topbar-toggler more" (click)="toggleTop($event)">
-      <i class="fa fa-ellipsis-v"></i>
+      <i class="fa fa-bars"></i>
     </button>
   </div>
   <nav class="navbar navbar-header navbar-expand-lg">
     <div class="container-fluid">
-      <ul class="navbar-nav bd-navbar-nav flex-row">
-        <li class="nav-item" *ngFor="let navItem of nav;let i = index">
-          <a [routerLink]="[navItem.link]" routerLinkActive="w--current" [routerLinkActiveOptions]=" {exact:navItem.exact}" class="nav-link">
+      <ul class="navbar-nav bd-navbar-nav flex-row col">
+        <li class="nav-item col-xs" *ngFor="let navItem of nav;let i = index">
+          <a [routerLink]="[navItem.link]" routerLinkActive="w--current" [routerLinkActiveOptions]=" {exact:navItem.exact}" 
+          [ngClass]="navItem.name=='LOGIN' ? 'nav-link-login' : 'nav-link' " 
+          (click)="toggleTop($event)">
             {{navItem.name}}
             <!-- <div class="bar--purple link__bar "></div> -->
           </a>
         </li>
       </ul>
-      <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
-        <app-login-item *ngIf="loggedIn" [profileDetails]="profileaccordion" [user]="userName"></app-login-item>
+      <ul class="navbar-nav topbar-nav ml-md-auto align-items-center" *ngIf="loggedIn">
+        <app-login-item  [profileDetails]="profileaccordion" [user]="userName"></app-login-item>
       </ul>
     </div>
   </nav>

@@ -29,26 +29,26 @@ export class AppNavbarComponent implements OnInit {
     this._defaultNav = [{ exact: true, link: '/home', name: 'HOME' },
     { exact: true, link: '/about', name: 'ABOUT US' },
     // { exact: true, link: '/analysis', name: 'Analysis' },
-    { exact: true, link: '/payment', name: 'PAYMENT  |  SCHEDULE & PP BOOKS' },
-    { exact: true, link: '/feedback', name: 'Results' },
-    { exact: true, link: '/s-strategy', name: 'DEV' },
+    { exact: true, link: '/payment', name: 'SCHEDULE'  },
+    { exact: true, link: '/feedback', name: 'RESULTS' },
+    { exact: true, link: '/s-strategy', name: 'SASSY'  },
     { exact: true, link: '/demo-exam/4c9c71ef-1103-4692-bcca-901ff03efcab', name: 'DEMO EXAM' },
     { exact: true, link: '/contactus', name: 'CONTACT US' },
-    { exact: true, link: '/login', name: 'Login' }
+    { exact: true, link: '/login', name: 'LOGIN'  }
     ];
 
     this._studentNav = [{ exact: true, link: '/home', name: 'HOME' },
-    { exact: true, link: '/payment', name: 'PAYMENT  |  SCHEDULE & PP BOOKS' },
-    { exact: true, link: '/feedback', name: 'Results' },    
-    { exact: true, link: '/s-strategy', name: 'DEV' },
+    { exact: true, link: '/payment', name: 'SCHEDULE'  },
+    { exact: true, link: '/feedback', name: 'RESULTS' },    
+    { exact: true, link: '/s-strategy', name: 'SASSY'  },
     { exact: true, link: '/demo-exam/4c9c71ef-1103-4692-bcca-901ff03efcab', name: 'DEMO EXAM' },
     { exact: true, link: '/contactus', name: 'CONTACT US' }];
 
     this._adminNav = [{ exact: true, link: '/home', name: 'HOME' },
     { exact: true, link: '/about', name: 'ABOUT US' },
-    { exact: true, link: '/payment', name: 'PAYMENT  |  SCHEDULE & PP BOOKS' },
-    { exact: true, link: '/feedback', name: 'Results' },    
-    { exact: true, link: '/s-strategy', name: 'DEV' },
+    { exact: true, link: '/payment', name: 'SCHEDULE'  },
+    { exact: true, link: '/feedback', name: 'RESULTS' },    
+    { exact: true, link: '/s-strategy', name: 'SASSY'  },
     { exact: true, link: '/demo-exam/4c9c71ef-1103-4692-bcca-901ff03efcab', name: 'DEMO EXAM' },
     { exact: true, link: '/contactus', name: 'CONTACT US' }];
 

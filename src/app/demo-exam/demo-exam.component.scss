@@ -152,5 +152,16 @@ p {
 .questions-window{
   min-height: 400px;
 }
-
-
+.row-bg-demo{
+  height: 660px;
+  margin-top:-25px !important;
+  background: url(/assets/images/login-wall.jpg) 235% 63%;
+}    
+.auth-pages{
+  margin-top:25px;
+}
+.btn-primary {
+  background: #3696c9 !important;
+  border-color: #3696c9 !important;
+  color:white;
+}

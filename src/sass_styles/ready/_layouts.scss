@@ -23,8 +23,10 @@ body {
   box-shadow: 1px 1px 1px #eee;
   .logo-header {
     float: left;
-    width: 260px;
-    height: 55px;
+    // width: 260px;
+    // height: 55px;
+    width: auto;
+    height: auto;
     line-height: 55px;
     color:  $header-font-color;
     z-index: 1001;
@@ -238,6 +240,7 @@ body {
     padding: 30px 1px;
     min-height: calc(100% - 123px);
     margin-top: 55px;    
+    font-family: calibri;
   }
 }
 

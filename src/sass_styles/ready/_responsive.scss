@@ -27,9 +27,78 @@
       opacity: 1;
     }
   }
-}
 
+.logo-title{
+  display: none;
+}
+}
 @media screen and (max-width: 991px) {
+  .whatsapp-slides{
+    width: 100% !important;
+    margin-left:0px !important;
+}
+.schedule-contact{
+  width:100% !important;
+}
+.neet-powerplay-books{
+    width: 100% !important;
+    margin-left:0px !important;
+}
+  .row-bg-demo{
+    height: 730px !important;
+    margin-top: -10px !important;
+    background: url(/assets/images/login-wall.jpg) 293% 75% !important;
+  }
+  .b-letter__txt{
+    padding-top:2em;
+  }
+  .main-section{
+    width:85% !important;
+  }
+  .nav-item{
+    width:100%;
+    text-align: center;
+    float: left;
+    background: #b2bec3;
+    color: white;
+    display: block;
+  }
+  .fa-bars{
+    color:white
+  }
+  .img-circle{
+    height: 45px;
+    width: 100px;
+  }
+  .no-link{
+    line-height: 40px;
+    margin-right:35px;
+  }
+  .nav-link{
+    color:white;
+  }
+  .w--current {
+    opacity: 0.9;
+    width: 100%;
+    background: deepskyblue !important;
+    border-bottom: 5px solid deepskyblue !important;
+    color:black  !important;
+  }
+  a.nav-link,.nav-link-login{
+    font-size:10px !important;
+    line-height: 25px  !important;
+    padding-right: 0px;
+    height: 100%;
+    color:white !important;
+  }
+  .navbar-expand-lg{
+    height: auto;
+    padding-left:0px;
+    padding-right:0px;
+  }
+  .container{
+     width : 100% !important;
+   }
   .sidebar {
     position: fixed;
     left: 0 !important;
@@ -64,12 +133,19 @@
   }
   .main-header {
     transition: all .5s;
+    background: #b2bec3;
+    min-height: 35px;
+    max-height:45px;
+  }
+  .logo-title{
+    display: inline;
   }
   .main-panel {
     width: 100%;
     transition: all .5s;
     .content {
       padding: 30px 1px;
+      padding-top:0px;
     }
   }
   .main-header .logo-header {
@@ -103,8 +179,9 @@
     position: absolute;
     width: 100%;
     background: $white-color;
-    transform: translate3d(0, -200px, 0) !important;
+    transform: translate3d(0, -300px, 0) !important;
     transition: all .5s;
+    margin-top:-10px;
   }
   .topbar_open {
     .navbar-header {
@@ -124,8 +201,11 @@
     justify-content: center;
     margin-left: 0px !important;
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
     position: relative;
+    display: block;
+    margin-top: 0px;
+    padding-right: 0px;
     .dropdown {
       position: unset;
     }
@@ -139,5 +219,20 @@
   }
   .profile-pic span {
     display: none;
+  }
+  .justify-content-start > li{
+    width: 50%;
+  }
+  .justify-content-start > li.nav-item > a.active{
+    color: #b2bec3 !important;
+    font-size: 14px !important;
+  }
+  .schedule-btn{
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+    width: 100%;
   }
 }

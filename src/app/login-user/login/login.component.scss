@@ -1,0 +1,33 @@
+.row-bg{
+    min-height: 720px;
+    margin-top: -85px;
+    margin-left: -17px;
+    background: url(/assets/images/login-wall-oran.jpg) 187% 85%;
+  }  
+  .btn-primary[_ngcontent-c5] {
+    background: #ffa84f !important;
+    border-color: #ffa84f !important;
+}
+  .content{
+      margin:0px;
+      padding:0px
+  }
+  a{
+    color: #005c63;
+  }
+  .card{
+    border: 2px solid #ffa84f;
+    border-radius: 20px;
+  }
+  .content{
+    margin-top: 0px;
+    padding-bottom: 0px;
+  }
+  @media screen and (max-width: 991px) {
+    .row-bg {
+      min-height: 770px;
+      margin-top: -55px;
+      margin-left: -17px;
+      background: url(/assets/images/login-wall-oran.jpg) 291% 78%;
+    } 
+  }  
