@@ -12,14 +12,14 @@
       </div>
     </ng-template>
 
-    <div class="row align-items-center align-items-center auth-pages" *ngIf="loginPage">
+    <div class="row row-bg-demo align-items-center align-items-center auth-pages" *ngIf="loginPage">
       <div class="col-lg-4 mx-auto">
         <div class="card">
           <div class="card-body px-5 py-5">
             <h3 class="card-title text-left mb-3">Login</h3>
             <form [formGroup]="loginForm" (ngSubmit)="loginSubmit()">
-              <div class="form-group">
-                <p class="error" *ngIf="inValidCredentials">
+              <div class="form-group" *ngIf="inValidCredentials">
+                <p class="error" >
                   Invalid Credentials
                 </p>
               </div>

@@ -1,30 +1,44 @@
- h2 {
-     text-decoration:underline;
-    text-transform: uppercase;
-    font-size: 22px;
-    line-height: 28px;
+h2 {
+    text-decoration:underline;
+   text-transform: uppercase;
+   font-size: 22px;
+   line-height: 28px;
 }
 .div-main{
-    margin-top: 120px;
+   margin-top: 120px;
 }
 .carousel-indicators li {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    margin: 2px;
-    text-indent: 0;
-    cursor: pointer;
-    border: none;
-    border-radius: 50%;
-    background-color:lightpink;
-    box-shadow: inset 1px 1px 1px 1px rgba(0,0,0,0.5);    
+   display: inline-block;
+   width: 10px;
+   height: 10px;
+   margin: 2px;
+   text-indent: 0;
+   cursor: pointer;
+   border: none;
+   border-radius: 50%;
+   background-color:lightpink;
+   box-shadow: inset 1px 1px 1px 1px rgba(0,0,0,0.5);    
 }
 .carousel-indicators .active {
-    width: 10px;
-    height: 10px;
-    margin: 2px;
-    background-color:white;
+   width: 10px;
+   height: 10px;
+   margin: 2px;
+   background-color:white;
 }
 .carousel-indicators{
-   bottom:-50px
+  bottom:-50px
+}
+.whatsapp-slides{
+   width: 40%;
+   margin-left:24%
+}
+.whatsapp-slides-main{
+   margin-left: 0px !important;
+   min-width: 100%;
+}
+.neet-powerplay-books{
+   width: 40%;
+   margin-left: 30%;
+   background-repeat: no-repeat;
+   background-position:center;
 }

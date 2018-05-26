@@ -1,11 +1,11 @@
-<div class="row align-items-center align-items-center auth-pages">
+<div class="row row-bg align-items-center align-items-center auth-pages">
   <div class="col-lg-4 mx-auto">
     <div class="card">
       <div class="card-body px-5 py-5">
-        <h3 class="card-title text-left mb-3">Login</h3>
+        <h3 class="card-title text-left mb-3" style="color:#ffa84f">Login</h3>
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-          <div class="form-group">
-            <p class="error" *ngIf="inValidCredentials">
+          <div class="form-group" *ngIf="inValidCredentials">
+            <p class="error" >
               Invalid Credentials
             </p>
           </div>

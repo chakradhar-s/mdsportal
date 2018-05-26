@@ -788,7 +788,8 @@ ul {
   position: relative;
   z-index: 1;
   display: block;
-  padding-top: 4em
+  padding-top: 4em;
+  text-align: justify;
 }
 
 .fs-deco {
@@ -1016,7 +1017,7 @@ ul {
   -webkit-flex: 0 29%;
   -ms-flex: 0 29%;
   flex: 0 29%;
-  border: 2px solid #f6f6f6
+  border: 2px solid #d6d6d6//#f6f6f6
 }
 
 .b-questions__text {
@@ -1083,6 +1084,21 @@ ul {
   color: #fff
 }
 
+.c-card.orange {
+  background-color: #e17055;
+  color: #fff
+}
+
+.c-card.yellow {
+    background-color: #fdcb6e;
+    color: #f6f6f6
+}
+
+.c-card.green {
+    background-color: #00b894;
+    color: #f6f6f6
+}
+
 .c-card.white {
   background-color: transparent
 }
@@ -1145,11 +1161,11 @@ ul {
 .b-contacts__txt {
   overflow: hidden;
   max-width: 13rem;
-  margin-right: 15%;
-  margin-left: 20%;
+  margin-right: 5%;  
   -webkit-flex-basis: 13rem;
   -ms-flex-preferred-size: 13rem;
-  flex-basis: 13rem
+  flex-basis: 13rem;
+  border-right: 3px solid #ababab;
 }
 
 .b-contacts__address {
@@ -1725,7 +1741,8 @@ ul {
 }
 
 .c-wrap {
-  overflow: hidden
+  overflow: hidden;
+  text-align: start;
 }
 
 .b-hero__top-sub {
