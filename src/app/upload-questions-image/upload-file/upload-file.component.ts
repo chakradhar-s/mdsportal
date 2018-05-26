@@ -20,8 +20,8 @@ export class UploadFileComponent implements OnInit {
   effPaths = new EventEmitter<Array<string>>();
 
 
-  public host_url: string = "http://localhost:5000/mdservice/api/UploadDocument/uploadimages";
-  //public host_url: string = "https://ec2-52-66-160-163.ap-south-1.compute.amazonaws.com/mdservice/api/UploadDocument/uploadimages";
+  //public host_url: string = "http://localhost:5000/mdservice/api/UploadDocument/uploadimages";
+  public host_url: string = "http://ec2-52-66-160-163.ap-south-1.compute.amazonaws.com/mdservice/api/UploadDocument/uploadimages";
   public form_method: string = "";
   public uploadedFiles: any[] = [];
   public alerts: Array<Alert> = [];
