@@ -15,7 +15,7 @@ import { VerificationService } from '../../http-service-registry/services/verifi
 import { Registration } from '../../models/registration.interface';
 import { Alert } from '../../models/alert.interface';
 
-export const uploadUrl:string="http://ec2-52-66-160-163.ap-south-1.compute.amazonaws.com/mdservice/api/users/profilepicurl";
+ export const uploadUrl:string="http://ec2-52-66-160-163.ap-south-1.compute.amazonaws.com/mdservice/api/users/profilepicurl";
 //export const uploadUrl: string = "http://localhost:5000/mdservice/api/users/profilepicurl";
 
 @Component({
@@ -234,7 +234,14 @@ export class ProfileComponent implements OnInit {
   };
 
   sendEmailVerification() {
-    this.verification.sendEmailVerification().subscribe();
+    this.verification.sendEmailVerification().subscribe(x => {
+      this.alerts = [{
+        id: 1,
+        type: 'success',
+        message: 'An email verification link is sent to your EmailId !',
+      }];
+
+    },(error: Error) => { console.log(error)});
   }
 
   sendMobileVerification(content) {
