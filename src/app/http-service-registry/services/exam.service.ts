@@ -13,10 +13,10 @@ import { LoginService } from './login-service.service';
 @Injectable()
 export class ExamService {
 
-   private _proxyHost: string = "http://ec2-52-66-160-163.ap-south-1.compute.amazonaws.com/mdservice/api";
-  //private _proxyHost: string = "http://localhost:5000/mdservice/api";
+  //private _proxyHost: string = "http://ec2-52-66-160-163.ap-south-1.compute.amazonaws.com/mdservice/api";
+  private _proxyHost: string = "http://localhost:5000/mdservice/api";
 
-  
+
   private _activeSession_id: string = "";
   private _testObservable: Observable<QuestionOutput[]>;
   private _userId: string;
@@ -122,20 +122,18 @@ export class ExamService {
   }
 
 
-  public get activeSession(){
+  public get activeSession() {
     return this._activeSession_id;
   }
 
 
-  public  examCompleted() {
-
+  public examCompleted() {
     const headers = new Headers();
     if (this._activeSession_id.length > 0) {
       headers.append('Authorization', 'bearer ' + this._activeSession_id);
-      console.log('**END EXAM**');
     }
     headers.append('Content-Type', 'application/vnd.api+json');
-    return this.http.post(this._proxyHost + '/DemoExam/Completed',
+    return this.http.post(this._proxyHost + '/DemoExam/Completed', {},
       new RequestOptions({ headers: headers }))
       .map((response: Response) => response.json())
       .catch((error) =>

@@ -128,6 +128,7 @@ export class MainExamComponent implements OnInit {
     };
     this.mmodal = this.modalService.open(content, ngbModalOptions);
     this.mmodal.result.then((result) => {
+      this.mmodal.close();    
       this.endExam();
     }, (reason) => {
 
@@ -135,8 +136,7 @@ export class MainExamComponent implements OnInit {
   }
 
   navigate() {
-    this.mmodal.close();
-    this.router.navigate(['view-results', this._userId], { replaceUrl: true });
+    this.mmodal.close();    
   }
 
   private getDismissReason(reason: any): string {
@@ -161,6 +161,8 @@ export class MainExamComponent implements OnInit {
       console.log(response);
     }, (error: Error) => {
       console.log(error);
+    },()=>{
+      this.router.navigate(['view-results', this._userId], { replaceUrl: true });
     })
   }
 }
