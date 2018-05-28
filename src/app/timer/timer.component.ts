@@ -34,14 +34,11 @@ export class TimerComponent implements OnInit {
     if (typeof this.timerCount ==='string'&&!isNaN(parseInt(<any>this.timerCount))) {
       this.fduration = parseInt(<any>this.timerCount) * 60;
       this.rDuration = parseInt(<any>this.timerCount) * 60;
-      console.log("enyert")
     }
     else if (typeof this.timerCount ==='number') {
       this.fduration = this.timerCount * 60;
       this.rDuration = this.timerCount * 60;
-      console.log("juert")
     }
-    console.log(this.fminutes + " : " + this.fseconds);
     this.tickTick();
     this.start();
   }

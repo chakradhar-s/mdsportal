@@ -46,7 +46,6 @@ export class QuestionpaperComponent implements OnInit {
   }
 
   loadPapersLazy(event: LazyLoadEvent) {
-    console.log(this.selectedQuestionGroup);
     this.loading = true;
     this.dataTableEvent = { currentFirstRec: event.first + 1, currentRows: event.rows, currentFilter: event.globalFilter };
     this.serverCall();
@@ -56,7 +55,6 @@ export class QuestionpaperComponent implements OnInit {
       .subscribe((res: PapersPaginated) => {
         this.questionPaperGroup = res.papers;
         this.totalRecords = res.count;
-        console.log('Total records available : ', res.count);
         if (res.count % this.dataTableEvent.currentRows == 0)
           this.pagesToDisplay = res.count / this.dataTableEvent.currentRows;
         else
@@ -100,7 +98,6 @@ export class QuestionpaperComponent implements OnInit {
  
     this.questionService.EnableOrDisableQuestionPapers(this.questionPaperGroup)
       .subscribe(res => {
-        console.log(res);
         this.selectedQuestionGroup = [];
         this.serverCall();
       }, err => {

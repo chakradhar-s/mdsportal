@@ -12,10 +12,8 @@ export class AuthGuard implements CanActivate {
   private _isStudent = false;
   constructor(private loginService: LoginService) {
 
-    console.log(new Date(), "auth guard");
     this._isAdmin = loginService.isAdmin;
     this._isStudent = loginService.isStudent;
-
   }
   canActivate(
     next: ActivatedRouteSnapshot,
@@ -23,7 +21,6 @@ export class AuthGuard implements CanActivate {
     return true;
   }
   canLoad() {
-    console.log(new Date(), "auth guard can load");
     return true;
   }
 }

@@ -16,7 +16,7 @@ export class FileUploadService {
     this.http.post(`${this._proxyHost}/uploaddocument/upload`, formData)
     .subscribe(
       res=>{
-          console.log(res);
+          
       },
       err=>{
         console.log(err);

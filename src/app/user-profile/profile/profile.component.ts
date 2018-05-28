@@ -114,7 +114,6 @@ export class ProfileComponent implements OnInit {
       this.profileForm.get('emailId').setValue(user.emailId);
       this.imageUploadUrl = uploadUrl + `/${user.userId}`;
       this.profileForm.valueChanges.subscribe(t => {
-        console.log(t);
         this.disableProfileForm = false;
       });
     });

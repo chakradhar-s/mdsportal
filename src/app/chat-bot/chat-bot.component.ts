@@ -42,7 +42,7 @@ export class ChatBotComponent implements OnInit {
 
   searchQuestion(): void {
     try {
-      console.log(this.comment);
+
       // adding user comment
       this.messages.push(new ChatBotModel(this.USER_CLASS, ChatCommentTypeEnum.Comment, this.comment, this.USER_IMG_PATH));
 

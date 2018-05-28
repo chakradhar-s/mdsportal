@@ -10,8 +10,8 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class UserManagementService {
   private userStatus: UserActiveStatus = new UserActiveStatus();
-  //private _proxyHost: string = "http://ec2-52-66-160-163.ap-south-1.compute.amazonaws.com/mdservice/api";
-  private _proxyHost: string = "http://localhost:5000/mdservice/api";
+  private _proxyHost: string = "http://ec2-52-66-160-163.ap-south-1.compute.amazonaws.com/mdservice/api";
+  // private _proxyHost: string = "http://localhost:5000/mdservice/api";
 
   constructor(private http: Http) { }
 
@@ -25,8 +25,6 @@ export class UserManagementService {
     return this.http.get(this._proxyHost + `/Users/GetPagedUsers/?PageSize=${size}&PageNumber=${pageNo}&Search=${search}`,
       new RequestOptions({ headers: headers }))
       .map((response: Response) => {
-        console.log('test'); console.log(response.json());
-
         let result = response.json();
 
         result.users = response.json().users.map((u) => {
@@ -36,9 +34,7 @@ export class UserManagementService {
             u.created_at = dateString;
           }
           if (typeof u.user_status == "number") {
-            console.log(this.userStatus.getEnumName(u.user_status), 'status-user in service');
             u.user_status = this.userStatus.getEnumName(u.user_status);
-            console.log(this.userStatus.getEnumName(u.user_status), 'status-user in service');
           }
           return u;
         });

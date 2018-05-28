@@ -76,7 +76,6 @@ export class MainExamComponent implements OnInit {
   startSession(starts: boolean) {
     this.sessionSubscription = this.service.startSession(1, this._activeQuestionPaper).subscribe((quest: QuestionOutput[]) => {
       const queriesFormat: QuestionOutput[] = quest;
-      console.log(queriesFormat);
       const ehjd = [];
       for (let i = 0; i < queriesFormat.length; i++) {
         let temp3 = queriesFormat[i].questionsResult.map<[string, QuestionSet]>(jr => {
@@ -156,9 +155,7 @@ export class MainExamComponent implements OnInit {
 
   public endExam() {
     this.service.examCompleted().subscribe((response: Response) => {
-      console.log('exam ended');
-      console.log('api call made');
-      console.log(response);
+      
     }, (error: Error) => {
       console.log(error);
     },()=>{

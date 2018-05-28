@@ -26,7 +26,6 @@ export class AnalysisStudentComponent implements OnInit {
     this.service.getAnalytics()
       .subscribe((response: Response) => {
         this.result = response;
-        console.log(this.result);
         this.loadPercentages();
         this.loadRadarData();
       });

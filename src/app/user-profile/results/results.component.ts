@@ -25,7 +25,6 @@ export class ResultsComponent implements OnInit {
   allRanks() {
     this.resultService.GetResults().subscribe((res) => {
       this.results = res;
-      console.log(this.results);
     }, err => {
       console.log(err);
     });
@@ -51,7 +50,6 @@ export class ResultsComponent implements OnInit {
   }
 
   showRank(object: any): void {
-    console.log(object.sessionId);
     if (object != null) {
       this.resultService.getRank(object.sessionId)
         .subscribe((res) => {

@@ -56,8 +56,6 @@ export class UserManagementComponent implements OnInit {
 
   loadUsersLazy(event: LazyLoadEvent) {
     this.loading = true;
-    console.log(event);
-    console.log(this.selectedUsers);
     this.dataTableEvent = { currentFirstRec: event.first + 1, currentRows: event.rows, currentFilter: event.globalFilter };
     this.serviceCall();
 
@@ -97,7 +95,6 @@ export class UserManagementComponent implements OnInit {
   serviceCall() {
     this.manageService.getUsers(this.dataTableEvent.currentFirstRec, this.dataTableEvent.currentRows, this.dataTableEvent.currentFilter)
       .subscribe((response: UserPaginated) => {
-        console.log(response);
         if (response) {
           this.users = response.users;
 

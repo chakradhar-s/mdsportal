@@ -67,7 +67,6 @@ export class DemoExamComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    console.log('demo exam log ' + this.questions);
     this.route.paramMap.subscribe((params: ParamMap) => {
       this._activeQuestionPaper = params.get('paperid');
     });
