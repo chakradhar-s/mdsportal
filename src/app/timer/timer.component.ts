@@ -107,7 +107,13 @@ export class TimerComponent implements OnInit {
         else {
           this.rSeconds = ("0" + (60 - this.rCounter)).slice(-2);
         }
-        this.rMinutes = ("0" + Math.ceil((this.rDuration - this.rCounter - 60) / 60)).slice(-2);
+        if(Math.ceil((this.rDuration - this.rCounter - 60) / 60) > 9)
+        {
+          this.rMinutes = (Math.ceil((this.rDuration - this.rCounter - 60) / 60)).toString();
+        }
+        else{
+          this.rMinutes = ("0" + Math.ceil((this.rDuration - this.rCounter - 60) / 60)).slice(-2);
+        }
       }
 
       this.rDisplay = this.rMinutes + " : " + this.rSeconds;
