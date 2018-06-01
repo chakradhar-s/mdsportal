@@ -8,6 +8,7 @@ import { LazyLoadEvent } from 'primeng/primeng';
 import { forEach } from '@angular/router/src/utils/collection';
 import { DataTableTrackEvent } from '../user-profile/user-management/user-management.component';
 import { ConfirmationService } from 'primeng/api';
+import { Alert } from '../models/alert.interface';
 
 @Component({
   selector: 'app-questionpaper',
@@ -24,6 +25,8 @@ export class QuestionpaperComponent implements OnInit {
   public totalRecords: number;
   public pagesToDisplay: number;
   public loading: boolean = true;
+  public alerts: Array<Alert> = [];
+  
 
   public dataTableEvent: DataTableTrackEvent = { currentFilter: '', currentFirstRec: 1, currentRows: 10 };
 
@@ -71,7 +74,23 @@ export class QuestionpaperComponent implements OnInit {
 
     if (files.length > 0)
       this.uploadedFile = files[0];
-    this.fileService.UploadFile(this.uploadedFile);
+    this.fileService.UploadFile(this.uploadedFile).subscribe(
+      res=>{
+        this.alerts = [{
+          id: 1,
+          type: 'success',
+          message: 'Question Paper uploaded Successfully!',
+        }];
+      },
+      err=>{
+        console.log(err);
+        this.alerts = [{
+          id: 1,
+          type: 'danger',
+          message: 'Uploading Failed',
+        }];
+      }
+    );
   }
 
   confirm() {
@@ -103,6 +122,11 @@ export class QuestionpaperComponent implements OnInit {
       }, err => {
         console.log(err);
       });
+  }
+
+  public closeAlert(alert: Alert) {
+    const index: number = this.alerts.indexOf(alert);
+    this.alerts.splice(index, 1);
   }
 
 }

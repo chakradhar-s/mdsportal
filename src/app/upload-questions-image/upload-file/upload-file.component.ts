@@ -3,6 +3,7 @@ import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy
 import { QuestionsImageService } from '../../http-service-registry/services/questions-image.service';
 
 import { Alert } from '../../models/alert.interface';
+import { Constants } from '../../constants';
 
 @Component({
   selector: 'app-upload-file',
@@ -19,9 +20,8 @@ export class UploadFileComponent implements OnInit {
   @Output()
   effPaths = new EventEmitter<Array<string>>();
 
-
-  // public host_url: string = "http://localhost:5000/mdservice/api/UploadDocument/uploadimages";
-  public host_url: string = "http://ec2-52-66-160-163.ap-south-1.compute.amazonaws.com/mdservice/api/UploadDocument/uploadimages";
+  public  host_url: string = Constants.API_URL + "/UploadDocument/uploadimages";
+  
   public form_method: string = "";
   public uploadedFiles: any[] = [];
   public alerts: Array<Alert> = [];

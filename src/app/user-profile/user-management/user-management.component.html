@@ -47,4 +47,11 @@
             </p-dataTable>
         </div>
     </div>
+    <div class="row">
+        <div class="col align-self-center">
+          <p *ngFor="let alert of alerts" class="text-center">
+            <ngb-alert [type]="alert.type" (close)="closeAlert(alert)">{{ alert.message }}</ngb-alert>
+          </p>
+        </div>
+      </div>
 </div>

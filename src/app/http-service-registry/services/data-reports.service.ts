@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
+import { Constants } from '../../constants';
 
 @Injectable()
 export class DataReportsService {
@@ -14,8 +15,8 @@ export class DataReportsService {
 
   }
 
-  private _proxyHost: string = "http://ec2-52-66-160-163.ap-south-1.compute.amazonaws.com/mdservice/api";
-  // private _proxyHost: string = "http://localhost:5000/mdservice/api";
+  
+  private _proxyHost: string = Constants.API_URL;
 
 
   getRankReports() {

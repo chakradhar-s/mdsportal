@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
+import { Alert } from '../../models/alert.interface';
 
 
 @Component({
@@ -20,6 +21,8 @@ export class UserManagementComponent implements OnInit {
   public cols: any[];
   public loading: boolean = false;
   public pagesToDisplay: number;
+  public alerts: Array<Alert> = [];
+  
   public dataTableEvent: DataTableTrackEvent = { currentFilter: '', currentFirstRec: 1, currentRows: 10 };
   // public loadedEvent : LazyLoadEvent;
   constructor(private manageService: UserManagementService,
@@ -132,6 +135,11 @@ export class UserManagementComponent implements OnInit {
       
       // this.loadUsersLazy(this.loadedEvent);
       this.serviceCall();
+      this.alerts = [{
+        id: 1,
+        type: 'success',
+        message: 'User deleted Successfully !',
+      }];
     }, (error: Error) => {
     
       console.log(error);
@@ -140,6 +148,11 @@ export class UserManagementComponent implements OnInit {
 
   registerNav() {
     this.router.navigate(['/register'], { replaceUrl: true });
+  }
+
+  public closeAlert(alert: Alert) {
+    const index: number = this.alerts.indexOf(alert);
+    this.alerts.splice(index, 1);
   }
 
 }

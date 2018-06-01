@@ -4,12 +4,13 @@ import { RequestOptions, Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { ExamService } from './exam.service';
 import 'rxjs/add/observable/empty';
+import { Constants } from '../../constants';
 
 @Injectable()
 export class UserResultsService {
 
-  private _proxyHost: string = "http://ec2-52-66-160-163.ap-south-1.compute.amazonaws.com/mdservice/api";
-  // private _proxyHost: string = "http://localhost:5000/mdservice/api";
+
+  private _proxyHost: string = Constants.API_URL;
   
   private _userId: string;
 

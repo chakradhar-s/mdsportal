@@ -5,6 +5,13 @@
       <label for="exampleInputFile">Upload File</label>
       <p-fileUpload name="uploadedFile[]" customUpload="true" (uploadHandler)="onUpload($event)"></p-fileUpload>
     </div>
+    <div class="row">
+      <div class="col align-self-center">
+        <p *ngFor="let alert of alerts" class="text-center">
+          <ngb-alert [type]="alert.type" (close)="closeAlert(alert)">{{ alert.message }}</ngb-alert>
+        </p>
+      </div>
+    </div>
     <div>
       <div class="input-group padding-10-bottom" style="min-height:45px;">
         <div *ngIf="selectedQuestionGroup && selectedQuestionGroup.length > 0">

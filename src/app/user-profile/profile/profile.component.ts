@@ -14,9 +14,9 @@ import { VerificationService } from '../../http-service-registry/services/verifi
 
 import { Registration } from '../../models/registration.interface';
 import { Alert } from '../../models/alert.interface';
+import { Constants } from '../../constants';
 
- export const uploadUrl:string="http://ec2-52-66-160-163.ap-south-1.compute.amazonaws.com/mdservice/api/users/profilepicurl";
-// export const uploadUrl: string = "http://localhost:5000/mdservice/api/users/profilepicurl";
+export const uploadUrl: string = Constants.API_URL + "/users/profilepicurl";
 
 @Component({
   selector: 'app-profile',
