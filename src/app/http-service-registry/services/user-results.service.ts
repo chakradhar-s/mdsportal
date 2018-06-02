@@ -11,12 +11,12 @@ export class UserResultsService {
 
 
   private _proxyHost: string = Constants.API_URL;
-  
+
   private _userId: string;
 
   constructor(
     private loginService: LoginService,
-    private examService : ExamService,
+    private examService: ExamService,
     private http: Http) {
     loginService.userId.subscribe((id) => {
       this._userId = id;
@@ -39,7 +39,7 @@ export class UserResultsService {
       );
   }
 
-  getRank(sessionId : string): any {
+  getRank(sessionId: string): any {
     const headers = new Headers();
     if (window.localStorage.getItem('jwt-access-mds')) {
       let rslt = JSON.parse(window.localStorage.getItem('jwt-access-mds'));
@@ -47,32 +47,50 @@ export class UserResultsService {
     }
     headers.append('Content-Type', 'application/vnd.api+json');
     let url = this._proxyHost + `/DemoExam/Rank/${sessionId}`;
-    
+
     return this.http.get(url,
       new RequestOptions({ headers: headers }))
-      .map((response: Response) =>  response.json())
+      .map((response: Response) => response.json())
       .catch((error) =>
         Observable.throw(error)
       );
   };
 
-  currentSessionResult(): any{
+  currentSessionResult(): any {
     const headers = new Headers();
     if (this.examService.activeSession.length) {
       headers.append('Authorization', 'bearer ' + this.examService.activeSession);
       headers.append('Content-Type', 'application/vnd.api+json');
       let url = this._proxyHost + `/DemoExam/Rank/current`;
-      
+
       return this.http.get(url,
         new RequestOptions({ headers: headers }))
-        .map((response: Response) =>  response.json())
+        .map((response: Response) => response.json())
         .catch((error) =>
           Observable.throw(error)
         );
     }
 
     return Observable.empty<Response>();
-   
+
+  }
+
+  getRevealAnswers(sessionId: string): any {
+    const headers = new Headers();
+
+    if (window.localStorage.getItem('jwt-access-mds')) {
+      let rslt = JSON.parse(window.localStorage.getItem('jwt-access-mds'));
+      headers.append('Authorization', 'bearer ' + rslt.access_token);
+    }
+    headers.append('Content-Type', 'application/vnd.api+json');
+    let url = this._proxyHost + `/Exam/answers-reveal/${sessionId}`;
+
+    return this.http.get(url,
+      new RequestOptions({ headers: headers }))
+      .map((response: Response) => response)
+      .catch((error) =>
+        Observable.throw(error)
+      );
   }
 
 }

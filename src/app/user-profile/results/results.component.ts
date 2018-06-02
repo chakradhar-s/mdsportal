@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { UserResultsService } from '../../http-service-registry/services/user-results.service';
 import { UserResult } from '../../models/question-set';
 
@@ -17,6 +17,9 @@ export class ResultsComponent implements OnInit {
     private resultService: UserResultsService
   ) { }
 
+  @ViewChild("tpl") tpl: TemplateRef<any>;
+  
+
   ngOnInit() {
     this.allRanks();
     this.activeSessionRank();
@@ -31,8 +34,9 @@ export class ResultsComponent implements OnInit {
     this.columns = [{ field: "questionPaperName", header: "Question Paper name", width: '40%' },
     // { field: "sessionId", header: "Session id", class: "col-md-3" },
     { field: "result", header: "Score Obtained", width: '10%' },
-    { field: "attemptedDate", header: "Date of attempt", width: '30%' },
-    { field: "rank", header: "Rank details", width: '20%' }];
+    { field: "attemptedDate", header: "Date of attempt", width: '20%' },
+    { field: "rank", header: "Rank details", width: '10%' },
+    { field: "rank", header: "Review", width: '10%' }];
   }
 
   activeSessionRank() {
@@ -61,6 +65,28 @@ export class ResultsComponent implements OnInit {
         }, err => {
           console.log(err);
         });
+    }
+  }
+
+  revealAns(object: any): void{
+    if (object != null) {
+      debugger;
+      this.resultService.getRevealAnswers(object.sessionId)
+      .subscribe((res) => {
+        let blob = new Blob([res._body], { type: 'text/html' });
+
+        if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+          window.navigator.msSaveOrOpenBlob(blob, "revealAns.html");
+        } else {
+          var a = document.createElement('a');
+          a.href = URL.createObjectURL(blob);
+          a.target = "_blank"
+          // a.download = "revealAns.html";
+          // this.spinnerService.hide();
+          this.tpl.createEmbeddedView(a);
+           a.click();
+        }
+      });
     }
   }
 
