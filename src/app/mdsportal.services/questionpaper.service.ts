@@ -33,7 +33,7 @@ export class QuestionpaperService {
       let rslt = JSON.parse(window.localStorage.getItem('jwt-access-mds'));
       headers.append('Authorization', 'bearer ' + rslt.access_token);
     }
-  
+
     headers.append('Content-Type', 'application/vnd.api+json');
     return this.http.get(this._proxyHost + `/uploaddocument/all-questions-paged/?PageSize=${size}&PageNumber=${pageNo}&Search=${search}`,
       new RequestOptions({ headers: headers }))
@@ -53,6 +53,22 @@ export class QuestionpaperService {
 
   EnableOrDisableQuestionPapers(questionArray: QuestionPaper[]): Observable<any> {
     return this.http.post(`${this._proxyHost}/uploaddocument/activate-questions`, questionArray);
+  }
+
+  SetTimerForQuestionPaper(time: string, questionPaperId: string) {
+    const headers = new Headers();
+    if (window.localStorage.getItem('jwt-access-mds')) {
+      let rslt = JSON.parse(window.localStorage.getItem('jwt-access-mds'));
+      headers.append('Authorization', 'bearer ' + rslt.access_token);
+    }
+    headers.append('Content-Type', 'application/vnd.api+json');
+
+    return this.http.patch(this._proxyHost + '/uploaddocument/questionpaper/' + questionPaperId + '/timer',
+      JSON.stringify({ 'time': time }), new RequestOptions({ headers: headers }))
+      .map((response: Response) => response)
+      .catch((error) =>
+        Observable.throw(error)
+      );
   }
 
 

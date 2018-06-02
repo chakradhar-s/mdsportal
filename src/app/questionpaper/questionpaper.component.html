@@ -1,5 +1,5 @@
 <div class=container>
-    <h3>Question Papers Management</h3>
+  <h3>Question Papers Management</h3>
   <div class="">
     <div class="padding-10-bottom">
       <label for="exampleInputFile">Upload File</label>
@@ -15,18 +15,18 @@
     <div>
       <div class="input-group padding-10-bottom" style="min-height:45px;">
         <div *ngIf="selectedQuestionGroup && selectedQuestionGroup.length > 0">
-            <button type="text" (click)="activatePapers()" pButton icon="fa-plus-square" label="Activate"></button>
-            <p-confirmDialog header="Confirmation" icon="fa fa-question-circle" width="500" #cd>
-              <p-footer>
-                <button type="button" pButton icon="fa-close" label="No" (click)="cd.reject()"></button>
-                <button type="button" pButton icon="fa-check" label="Yes" (click)="cd.accept()"></button>
-              </p-footer>
-            </p-confirmDialog>
-            <button type="text" (click)="confirm()" pButton icon="fa-trash-o" label="Deactivate"></button>
-        
+          <button type="text" (click)="activatePapers()" pButton icon="fa-plus-square" label="Activate"></button>
+          <p-confirmDialog header="Confirmation" icon="fa fa-question-circle" width="500" #cd>
+            <p-footer>
+              <button type="button" pButton icon="fa-close" label="No" (click)="cd.reject()"></button>
+              <button type="button" pButton icon="fa-check" label="Yes" (click)="cd.accept()"></button>
+            </p-footer>
+          </p-confirmDialog>
+          <button type="text" (click)="confirm()" pButton icon="fa-trash-o" label="Deactivate"></button>
+
         </div>
-      </div> 
-        
+      </div>
+
       <p-dataTable [value]="questionPaperGroup" [lazy]="true" [rows]="10" [paginator]="true" [pageLinks]="pagesToDisplay" [rowsPerPageOptions]="[5,10,20]"
         [totalRecords]="totalRecords" (onLazyLoad)="loadPapersLazy($event)" [(selection)]="selectedQuestionGroup" columnResizeMode="expand"
         [loading]="loading" loadingIcon="fa-spinner">
@@ -34,12 +34,23 @@
         <p-column [style]="{'width':'38px'}" selectionMode="multiple"></p-column>
         <p-column field="questionPaperId" header="Question Paper ID"></p-column>
         <p-column field="fileName" header="File Name"></p-column>
-        <p-column field="isActive" [style]="{'width':'8%'}" header="IsActive" styleClass="status-badge-btn">
+        <p-column field="isActive" [style]="{'width':'6%'}" header="IsActive" styleClass="status-badge-btn">
           <ng-template let-paper="rowData" pTemplate="body">
             <span *ngIf="paper.isActive" class="badge badge-success">Active</span>
             <span *ngIf="!paper.isActive" class="badge badge-danger">InActive</span>
           </ng-template>
         </p-column>
+
+        <p-column field="timer" [style]="{'width':'5%'}" header="Timer">
+          <ng-template let-paper="rowData" pTemplate="body">
+            <span *ngIf="paper.timer">{{paper.timer}}</span>
+            <!-- <span *ngIf="!paper.isActive" class="badge badge-danger">InActive</span> -->
+            <button *ngIf="!paper.timer" class="btn btn-sm btn-success" (click)="openTimerDialog(paper, modal_timer)"><i class="fa fa-clock"></i></button>
+          </ng-template>
+        </p-column>
+        <!-- <p-column field="timer">
+
+        </p-column> -->
         <!-- <ng-template pTemplate="paginatorLeft">
             <button type="button" pButton icon="fa-refresh"></button>
         </ng-template> -->
@@ -47,5 +58,46 @@
     </div>
 
   </div>
+
+  <ng-template #modal_timer let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Timer</h4>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="timerForm" (ngSubmit)="timerSubmit()">
+        <!-- <div class="form-group row">
+          <label class="col-sm-4 col-form-label">TIMER:</label>
+          <div class="col-sm-8">
+            <input class="form-control p_input" type="text" formControlName="timer">
+            <div class="error" *ngIf="timerRequired('timer')">
+              TIMER is required
+            </div>
+          </div>
+        </div> -->
+        <div class="input-group mb-3">
+          <label class="col-sm-4 col-form-label">TIMER:</label>
+          <input type="number" class="form-control" formControlName="timer">
+          <div class="input-group-append">
+            <span class="input-group-text">Minutes</span>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-12">
+            <div class="error" *ngIf="required('timer')">
+                TIMER is required
+            </div>
+            <div class="error" *ngIf="invalid('timer')">
+                TIMER minutes are invalid
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary btn-lg enter-btn">submit</button>
+          <button type="button" class="btn btn-secondary btn-lg enter-btn" (click)="c('Close click')">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </ng-template>
 
 </div>

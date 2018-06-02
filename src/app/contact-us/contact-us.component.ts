@@ -14,7 +14,7 @@ import { CommonService } from '../http-service-registry/services/common.service'
   styleUrls: ['./contact-us.component.scss']
 })
 export class ContactUsComponent implements OnInit {
-  public submitTriggered:boolean = false;
+  public submitTriggered: boolean = false;
   public contactusForm = this.fb.group({
     FirstName: ['',
       [Validators.required]],
@@ -22,7 +22,9 @@ export class ContactUsComponent implements OnInit {
       [Validators.required]],
     Company: [''],
     Message: [''],
-
+    College: [''],
+    State: [''],
+    ReferredBy: [''],
     Phone: ['',
       [Validators.required,
       UserLoginValidators.validMobileNumber]
@@ -52,7 +54,7 @@ export class ContactUsComponent implements OnInit {
     this.submitTriggered = true;
     let form = this.contactusForm.value;
     this.commonService.GetInTouch(form).subscribe(() => {
-   
+
     }, (error: Error) => console.log(error));
   }
 
@@ -87,7 +89,10 @@ export class ContactUsComponent implements OnInit {
       Email: '',
       Phone: '',
       Company: '',
-      Message: ''
+      Message: '',
+      College: '',
+      State: '',
+      ReferredBy: '',
     });
   }
 
