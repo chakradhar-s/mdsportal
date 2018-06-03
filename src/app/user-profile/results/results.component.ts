@@ -34,9 +34,9 @@ export class ResultsComponent implements OnInit {
     this.columns = [{ field: "questionPaperName", header: "Question Paper name", width: '40%' },
     // { field: "sessionId", header: "Session id", class: "col-md-3" },
     { field: "result", header: "Score Obtained", width: '10%' },
-    { field: "attemptedDate", header: "Date of attempt", width: '20%' },
-    { field: "rank", header: "Rank details", width: '10%' },
-    { field: "rank", header: "Review", width: '10%' }];
+    { field: "attemptedDate", header: "Date of attempt", width: '16%' },
+    { field: "rank", header: "Rank details", width: '14%' },
+    { field: "rank", header: "Review", width: '15%' }];
   }
 
   activeSessionRank() {

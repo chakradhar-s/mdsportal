@@ -36,14 +36,14 @@
           <td>{{rowData.attemptedDate | date:'full'}}</td>
           <td>
             <span *ngIf="!rowData.rank">
-            <button class="btn btn-success" (click)="showRank(rowData)">Show Rank</button>
+            <button class="btn btn-sm btn-success" (click)="showRank(rowData)">Show Rank</button>
           </span>
           <span *ngIf="rowData.rank">
             {{rowData.rank}}
           </span>
           </td>
           <td>
-            <button class="btn btn-success" (click)="revealAns(rowData)">Reveal Answers</button>
+            <button class="btn btn-sm btn-success" (click)="revealAns(rowData)">Reveal Answers</button>
           </td>
         </tr>
       </ng-template>
