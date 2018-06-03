@@ -29,7 +29,7 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <exam-detail *ngIf="!startPage && questionAnswerMap && questionAnswerMap.size>=1" [parent]="form" [map]="questionAnswerMap" [timerCount]="180"
+          <exam-detail *ngIf="!startPage && questionAnswerMap && questionAnswerMap.size>=1" [parent]="form" [map]="questionAnswerMap" [timerCount]="timerCount"
              (endExamEvent)="onSubmit(content)" [typeOfExam]="examType"></exam-detail>
         </div>
       </div>

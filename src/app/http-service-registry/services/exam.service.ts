@@ -10,18 +10,20 @@ import { HttpClient } from '@angular/common/http';
 import { RelExamAnswer, StatusId } from '../../models/rel-exam-answer.interface';
 import { LoginService } from './login-service.service';
 import { Constants } from '../../constants';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class ExamService {
 
-  
+
   private _proxyHost: string = Constants.API_URL;
 
 
   private _activeSession_id: string = "";
   private _testObservable: Observable<QuestionOutput[]>;
   private _userId: string;
-
+  private _duration: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+  
   constructor(private http: Http,
     private loginService: LoginService) {
     loginService.userId.subscribe((id) => {
@@ -43,7 +45,9 @@ export class ExamService {
       JSON.stringify({ questionPaperId: questionPaper_id, "examType": examType }),
       new RequestOptions({ headers: headers }))
       .flatMap(token => {
-        this._activeSession_id = (token.json())["exam_token"];
+        let read=token.json();
+        this._activeSession_id = (read)["exam_token"];
+        this._duration.next((read)["duration"]);
         return this.getQuestions();
       });
   }
@@ -136,7 +140,7 @@ export class ExamService {
     headers.append('Content-Type', 'application/vnd.api+json');
     return this.http.post(this._proxyHost + '/DemoExam/Completed', {},
       new RequestOptions({ headers: headers }))
-      .map((response: Response) => { return response;})
+      .map((response: Response) => { return response; })
       .catch((error) =>
         Observable.throw(error)
       );
@@ -158,5 +162,9 @@ export class ExamService {
         Observable.throw(error)
       );
   };
+
+  get durationTime() {
+    return this._duration.asObservable();
+  }
 
 }

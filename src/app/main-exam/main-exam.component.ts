@@ -25,7 +25,7 @@ export class MainExamComponent implements OnInit {
   private _userId: string = '';
   private mmodal: NgbModalRef;
   private _activeQuestionPaper: string = '';
-  public timerCount: number = 120;
+  public timerCount: number = 0;
   public examType = ExamTypeEnum.MainExam;
 
 
@@ -117,6 +117,10 @@ export class MainExamComponent implements OnInit {
 
     }, () => {
 
+    });
+
+  this.service.durationTime.subscribe((count) => {
+      this.timerCount = count;
     });
   }
 
