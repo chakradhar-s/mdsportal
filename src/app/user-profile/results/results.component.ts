@@ -36,7 +36,7 @@ export class ResultsComponent implements OnInit {
     { field: "result", header: "Score Obtained", width: '10%' },
     { field: "attemptedDate", header: "Date of attempt", width: '16%' },
     { field: "rank", header: "Rank details", width: '14%' },
-    { field: "rank", header: "Review", width: '15%' }];
+    { field: "review", header: "Review", width: '15%' }];
   }
 
   activeSessionRank() {
