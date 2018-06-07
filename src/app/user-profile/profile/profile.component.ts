@@ -70,6 +70,7 @@ export class ProfileComponent implements OnInit {
   public imageUploadUrl: string = "";
   public emailVerificationIsRequired: boolean = false;
   public mobileVerificationIsRequired: boolean = false;
+  public disableVerifyEmail : boolean = false;
   public verificationForm = this.fb.group({
     verification: ['']
   });
@@ -240,7 +241,11 @@ export class ProfileComponent implements OnInit {
         message: 'An email verification link is sent to your EmailId !',
       }];
 
-    },(error: Error) => { console.log(error)});
+    },(error: Error) => { console.log(error)},
+  () => {
+
+this.disableVerifyEmail = true;
+  });
   }
 
   sendMobileVerification(content) {

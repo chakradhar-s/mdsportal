@@ -26,7 +26,7 @@
           <form [formGroup]="verificationForm" *ngIf="emailVerificationIsRequired||mobileVerificationIsRequired">
             <div class="row">
               <div class="col-md-6 col-md-offset-1" *ngIf="emailVerificationIsRequired">
-                <button class="btn btn-secondary" type="button" (click)="sendEmailVerification()">Verify Email</button>
+                <button class="btn btn-secondary" [disabled]="disableVerifyEmail" type="button" (click)="sendEmailVerification()">Verify Email</button>
               </div>
               <div class="col-md-6" *ngIf="mobileVerificationIsRequired">
                 <button class="btn btn-secondary" type="button" (click)="sendMobileVerification(modal_otpverification)">Verify Mobile Number</button>
